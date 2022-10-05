@@ -11,6 +11,7 @@
     "start": "expo start"
   },
   "dependencies": {
+    "@react-native-community/slider": "^4.3.1",
     "expo": "^45.0.0",
     "expo-splash-screen": "~0.15.1",
     "react": "17.0.2",
@@ -24,6 +25,6 @@
     "babel-loader": "^8.2.5",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-preset-expo": "~9.1.0",
-    "expo-cli": "^5.4.11"
+    "expo-cli": "^6.0.5"
   }
 }
