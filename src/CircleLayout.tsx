@@ -1,5 +1,8 @@
-import React from 'react';
-import { StyleProp, View, ViewStyle } from 'react-native';
+import React, { useCallback, useMemo } from 'react';
+import { Animated, StyleProp, View, ViewStyle } from 'react-native';
+
+import { CircleLayoutComponent } from './CircleLayoutComponent';
+import { useAnimation } from './hooks';
 
 export type CircleLayoutProps = {
   /**
@@ -33,6 +36,27 @@ export type CircleLayoutProps = {
    * The styling of the center component's container.
    */
   centerComponentContainerStyle?: StyleProp<ViewStyle>;
+  /**
+   * Flag to show or hide the components in the circle layout.
+   * This flag is used to perform the start and end animation.
+   */
+  showComponents: boolean;
+  /**
+   * The configuration for the entry and exit of the components.
+   * If this prop is undefined, then there will be no animation.
+   */
+  animationConfig?: {
+    /**
+     * The duration for which the animation should last.
+     * This value is in milliseconds.
+     */
+    duration?: number;
+    /**
+     * The gap between the start of animation of 2 consecutive components.
+     * This value is in milliseconds.
+     */
+    gap: number;
+  };
 };
 
 /**
@@ -48,6 +72,8 @@ export const CircleLayout = ({
   startAngle,
   containerStyle,
   centerComponentContainerStyle,
+  showComponents,
+  animationConfig,
 }: CircleLayoutProps) => {
   const totalPoints =
     sweepAngle && sweepAngle !== 2 * Math.PI
@@ -68,6 +94,44 @@ export const CircleLayout = ({
       y: Math.sin(radians) * radius,
     };
   };
+
+  const value = useAnimation(
+    showComponents,
+    {
+      duration: animationConfig?.duration,
+    },
+    {
+      delay: (animationConfig?.gap ?? 1000) * totalPoints,
+      duration: animationConfig?.duration,
+    }
+  );
+
+  const opacity = useMemo(
+    () => (animationConfig && value) || (showComponents ? 1 : 0),
+    [animationConfig, showComponents, value]
+  );
+
+  const componentsList = useCallback(
+    () =>
+      components.map((component, index) => {
+        const { x, y } = point(index);
+
+        return (
+          <CircleLayoutComponent
+            key={index}
+            index={index}
+            x={x}
+            y={y}
+            component={component}
+            totalPoints={components.length}
+            showComponent={showComponents}
+            animationConfig={animationConfig}
+          />
+        );
+      }),
+    [components]
+  );
+
   return (
     <View
       style={[
@@ -81,20 +145,16 @@ export const CircleLayout = ({
       ]}
     >
       <View>
-        {components.map((component, index) => {
-          const { x, y } = point(index);
-          return (
-            <View
-              key={index}
-              style={{ position: 'absolute', bottom: y, right: x }}
-            >
-              {component}
-            </View>
-          );
-        })}
-        <View style={[{ marginTop: radius }, centerComponentContainerStyle]}>
+        {componentsList()}
+
+        <Animated.View
+          style={[
+            { marginTop: radius, opacity: animationConfig && opacity },
+            centerComponentContainerStyle,
+          ]}
+        >
           {centerComponent}
-        </View>
+        </Animated.View>
       </View>
     </View>
   );
