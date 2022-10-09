@@ -56,10 +56,20 @@
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.68.0",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/parser": "^5.37.0",
     "commitlint": "^17.0.2",
-    "eslint": "^8.4.1",
+    "eslint": "8.2.0",
+    "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.1",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-import-alias": "^1.2.0",
+    "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "7.28.0",
+    "eslint-plugin-react-hooks": "4.3.0",
+    "eslint-plugin-react-native": "^4.0.0",
     "jest": "^28.1.1",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
@@ -105,29 +115,11 @@
       }
     }
   },
-  "eslintConfig": {
-    "root": true,
-    "parser": "@babel/eslint-parser",
-    "extends": [
-      "@react-native-community",
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "quoteProps": "consistent",
-          "singleQuote": true,
-          "tabWidth": 2,
-          "trailingComma": "es5",
-          "useTabs": false
-        }
-      ]
-    }
-  },
   "eslintIgnore": [
     "node_modules/",
-    "lib/"
+    "lib/",
+    "*/*.config.js",
+    "scripts/"
   ],
   "prettier": {
     "quoteProps": "consistent",

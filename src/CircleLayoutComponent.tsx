@@ -2,6 +2,7 @@ import React, { ReactNode, useMemo } from 'react';
 import { Animated } from 'react-native';
 
 import { useAnimation } from './hooks';
+import { circleComponentStyles } from './styles';
 
 type ComponentProps = {
   /**
@@ -33,18 +34,20 @@ type ComponentProps = {
    * The configuration for the entry and exit of the components.
    * If this prop is undefined, then there will be no animation.
    */
-  animationConfig?: {
-    /**
-     * The duration for which the animation should last.
-     * This value is in milliseconds.
-     */
-    duration?: number;
-    /**
-     * The gap between the start of animation of 2 consecutive components.
-     * This value is in milliseconds.
-     */
-    gap: number;
-  };
+  animationConfig?:
+    | {
+        /**
+         * The duration for which the animation should last.
+         * This value is in milliseconds.
+         */
+        duration?: number | undefined;
+        /**
+         * The gap between the start of animation of 2 consecutive components.
+         * This value is in milliseconds.
+         */
+        gap: number;
+      }
+    | undefined;
 };
 
 /**
@@ -80,14 +83,20 @@ export const CircleLayoutComponent = ({
   return (
     <Animated.View
       key={index}
-      style={{
-        position: 'absolute',
-        bottom: y,
-        right: x,
-        opacity,
-      }}
+      style={[
+        circleComponentStyles.componentContainer,
+        {
+          bottom: y,
+          right: x,
+          opacity,
+        },
+      ]}
     >
       {component}
     </Animated.View>
   );
+};
+
+CircleLayoutComponent.defaultProps = {
+  animationConfig: undefined,
 };
