@@ -3,6 +3,7 @@ import { Animated, StyleProp, View, ViewStyle } from 'react-native';
 
 import { CircleLayoutComponent } from './CircleLayoutComponent';
 import { useAnimation } from './hooks';
+import { circleLayoutStyles } from './styles';
 
 export type CircleLayoutProps = {
   /**
@@ -12,7 +13,7 @@ export type CircleLayoutProps = {
   /**
    * The component to be placed at the center.
    */
-  centerComponent?: React.ReactNode;
+  centerComponent?: React.ReactNode | undefined;
   /**
    * The radius of the circle on which the components will
    * be placed.
@@ -31,11 +32,11 @@ export type CircleLayoutProps = {
   /**
    * The styling of the entire component's container.
    */
-  containerStyle?: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle> | undefined;
   /**
    * The styling of the center component's container.
    */
-  centerComponentContainerStyle?: StyleProp<ViewStyle>;
+  centerComponentContainerStyle?: StyleProp<ViewStyle> | undefined;
   /**
    * Flag to show or hide the components in the circle layout.
    * This flag is used to perform the start and end animation.
@@ -45,18 +46,20 @@ export type CircleLayoutProps = {
    * The configuration for the entry and exit of the components.
    * If this prop is undefined, then there will be no animation.
    */
-  animationConfig?: {
-    /**
-     * The duration for which the animation should last.
-     * This value is in milliseconds.
-     */
-    duration?: number;
-    /**
-     * The gap between the start of animation of 2 consecutive components.
-     * This value is in milliseconds.
-     */
-    gap: number;
-  };
+  animationConfig?:
+    | {
+        /**
+         * The duration for which the animation should last.
+         * This value is in milliseconds.
+         */
+        duration?: number | undefined;
+        /**
+         * The gap between the start of animation of 2 consecutive components.
+         * This value is in milliseconds.
+         */
+        gap: number;
+      }
+    | undefined;
 };
 
 /**
@@ -68,8 +71,8 @@ export const CircleLayout = ({
   components,
   radius,
   centerComponent,
-  sweepAngle,
-  startAngle,
+  sweepAngle = 2 * Math.PI,
+  startAngle = 0,
   containerStyle,
   centerComponentContainerStyle,
   showComponents,
@@ -88,7 +91,7 @@ export const CircleLayout = ({
    * of the component's placement.
    */
   const point = (index: number) => {
-    const radians = startAngle! + sweepAngle! * (index / totalPoints);
+    const radians = startAngle + sweepAngle * (index / totalPoints);
     return {
       x: Math.cos(radians) * radius,
       y: Math.sin(radians) * radius,
@@ -118,14 +121,15 @@ export const CircleLayout = ({
 
         return (
           <CircleLayoutComponent
-            key={index}
+            animationConfig={animationConfig}
+            component={component}
             index={index}
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            showComponent={showComponents}
+            totalPoints={components.length}
             x={x}
             y={y}
-            component={component}
-            totalPoints={components.length}
-            showComponent={showComponents}
-            animationConfig={animationConfig}
           />
         );
       }),
@@ -135,11 +139,9 @@ export const CircleLayout = ({
   return (
     <View
       style={[
+        circleLayoutStyles.layoutContainer,
         {
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: 10,
-          minHeight: sweepAngle! >= Math.PI ? 2 * radius : radius,
+          minHeight: sweepAngle >= Math.PI ? 2 * radius : radius,
         },
         containerStyle,
       ]}
@@ -161,6 +163,8 @@ export const CircleLayout = ({
 };
 
 CircleLayout.defaultProps = {
-  startAngle: 0,
-  sweepAngle: 2 * Math.PI,
+  centerComponent: undefined,
+  containerStyle: undefined,
+  centerComponentContainerStyle: undefined,
+  animationConfig: undefined,
 };

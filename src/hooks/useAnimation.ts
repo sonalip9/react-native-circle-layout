@@ -7,7 +7,7 @@ type AnimationProps = Omit<
 >;
 
 /**
- * A hook that creates fade-in entry animation and fade-out exit animation. 
+ * A hook that creates fade-in entry animation and fade-out exit animation.
  * @param showComponent A flag to maintain whether the component is visible or not.
  * The change in value of this property triggers the entry or exit animation.
  * @param entryAnimationConfig The configuration for the entry animation.
@@ -19,31 +19,35 @@ export const useAnimation = (
   showComponent: boolean,
   entryAnimationConfig: AnimationProps,
   exitAnimationConfig: AnimationProps = entryAnimationConfig,
-  initialValue: number = 0
+  initialValue = 0
 ) => {
   const value = useRef(new Animated.Value(initialValue)).current;
 
   /**
    * Function to create a fade-in entry animation.
    */
-  const entryAnimation = useCallback(() => {
-    return Animated.timing(value, {
-      useNativeDriver: true,
-      toValue: 1,
-      ...exitAnimationConfig,
-    });
-  }, []);
+  const entryAnimation = useCallback(
+    () =>
+      Animated.timing(value, {
+        useNativeDriver: true,
+        toValue: 1,
+        ...exitAnimationConfig,
+      }),
+    []
+  );
 
   /**
    * Function to create a fade-out exit animation.
    */
-  const exitAnimation = useCallback(() => {
-    return Animated.timing(value, {
-      useNativeDriver: true,
-      toValue: 0,
-      ...entryAnimationConfig,
-    });
-  }, []);
+  const exitAnimation = useCallback(
+    () =>
+      Animated.timing(value, {
+        useNativeDriver: true,
+        toValue: 0,
+        ...entryAnimationConfig,
+      }),
+    []
+  );
 
   /**
    * This hook performs entry and exit animation depending on the state of the

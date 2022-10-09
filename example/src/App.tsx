@@ -1,18 +1,18 @@
-import * as React from 'react';
-
 import Slider from '@react-native-community/slider';
+import * as React from 'react';
 import {
   Button,
   SafeAreaView,
   StatusBar,
-  StyleSheet,
   Text,
   useWindowDimensions,
   View,
 } from 'react-native';
 import { CircleLayout } from 'react-native-circle-layout';
 
-export default function App() {
+import { styles } from './styles';
+
+const App = () => {
   const { width: windowWidth } = useWindowDimensions();
   const [showCircle, setShowCircle] = React.useState(false);
   const [radius, setRadius] = React.useState(100);
@@ -23,9 +23,9 @@ export default function App() {
   const createComponents = (n: number) => {
     const components = [];
 
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < n; i += 1) {
       components.push(
-        <View style={{ alignItems: 'center' }}>
+        <View style={styles.alignCenter}>
           <View style={styles.circleLayoutComponent} />
           <Text>Point {i}</Text>
         </View>
@@ -39,40 +39,40 @@ export default function App() {
       <StatusBar />
       <View style={styles.container}>
         <CircleLayout
-          containerStyle={{ width: '100%', flex: 1 }}
-          components={createComponents(numberOfPoints)}
-          radius={radius}
-          sweepAngle={sweepAngle}
-          startAngle={startAngle}
-          centerComponent={<View style={styles.centerComponent} />}
-          showComponents={showCircle}
           animationConfig={{
             gap: 1000,
             duration: 1000,
           }}
+          centerComponent={<View style={styles.centerComponent} />}
+          components={createComponents(numberOfPoints)}
+          containerStyle={styles.circleLayoutContainer}
+          radius={radius}
+          showComponents={showCircle}
+          startAngle={startAngle}
+          sweepAngle={sweepAngle}
         />
-        <View style={{ flex: 1 }} />
+        <View style={styles.flex} />
 
         <View style={styles.sliderContainer}>
           <Text style={styles.sliderLabel}>Radius</Text>
           <Slider
-            value={radius}
-            style={styles.slider}
-            minimumValue={0}
             maximumValue={Number(((windowWidth * 0.85) / 2).toFixed(0))}
-            step={1}
+            minimumValue={0}
             onValueChange={setRadius}
+            step={1}
+            style={styles.slider}
+            value={radius}
           />
           <Text style={styles.sliderValue}>{radius}</Text>
         </View>
         <View style={styles.sliderContainer}>
           <Text style={styles.sliderLabel}>Sweep Angle</Text>
           <Slider
-            value={sweepAngle}
-            style={styles.slider}
-            minimumValue={0}
             maximumValue={2 * Math.PI}
+            minimumValue={0}
             onValueChange={setSweepAngle}
+            style={styles.slider}
+            value={sweepAngle}
           />
           <Text style={styles.sliderValue}>
             {((sweepAngle * 180) / Math.PI).toFixed(2)}°
@@ -81,11 +81,11 @@ export default function App() {
         <View style={styles.sliderContainer}>
           <Text style={styles.sliderLabel}>Start Angle</Text>
           <Slider
-            value={startAngle}
-            style={styles.slider}
-            minimumValue={0}
             maximumValue={2 * Math.PI}
+            minimumValue={0}
             onValueChange={setStartAngle}
+            style={styles.slider}
+            value={startAngle}
           />
           <Text style={styles.sliderValue}>
             {((startAngle * 180) / Math.PI).toFixed(2)}°
@@ -94,51 +94,24 @@ export default function App() {
         <View style={styles.sliderContainer}>
           <Text style={styles.sliderLabel}>Number of Points</Text>
           <Slider
-            value={numberOfPoints}
-            style={styles.slider}
-            minimumValue={2}
             maximumValue={20}
-            step={1}
+            minimumValue={2}
             onValueChange={setNumberOfPoints}
+            step={1}
+            style={styles.slider}
+            value={numberOfPoints}
           />
           <Text style={styles.sliderValue}>{numberOfPoints}</Text>
         </View>
-        <View style={{ marginBottom: 24 }}>
-          <Button
-            title={showCircle ? 'Hide circle layout' : 'Show circle layout'}
-            onPress={() => setShowCircle((oldValue) => !oldValue)}
-          />
-        </View>
+
+        <Button
+          onPress={() => setShowCircle((oldValue) => !oldValue)}
+          title={showCircle ? 'Hide circle layout' : 'Show circle layout'}
+        />
+        <View style={styles.footer} />
       </View>
     </SafeAreaView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    minHeight: '100%',
-    alignItems: 'center',
-  },
-  centerComponent: {
-    height: 25,
-    width: 25,
-    backgroundColor: 'pink',
-    borderRadius: 20,
-  },
-  circleLayoutComponent: {
-    height: 10,
-    width: 10,
-    borderRadius: 10,
-    backgroundColor: 'black',
-  },
-  sliderContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-    justifyContent: 'space-evenly',
-  },
-  slider: { width: '50%', height: 40 },
-  sliderLabel: { flex: 1, textAlign: 'right' },
-  sliderValue: { flex: 1 },
-});
+export default App;
