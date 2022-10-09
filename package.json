@@ -1,6 +1,6 @@
 {
   "name": "react-native-circle-layout",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "This package places components in a circle layout.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
