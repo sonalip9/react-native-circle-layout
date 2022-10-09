@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import Slider from '@react-native-community/slider';
 import {
+  Button,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -13,6 +14,7 @@ import { CircleLayout } from 'react-native-circle-layout';
 
 export default function App() {
   const { width: windowWidth } = useWindowDimensions();
+  const [showCircle, setShowCircle] = React.useState(false);
   const [radius, setRadius] = React.useState(100);
   const [sweepAngle, setSweepAngle] = React.useState(2 * Math.PI);
   const [startAngle, setStartAngle] = React.useState(0);
@@ -43,7 +45,13 @@ export default function App() {
           sweepAngle={sweepAngle}
           startAngle={startAngle}
           centerComponent={<View style={styles.centerComponent} />}
+          showComponents={showCircle}
+          animationConfig={{
+            gap: 1000,
+            duration: 1000,
+          }}
         />
+        <View style={{ flex: 1 }} />
 
         <View style={styles.sliderContainer}>
           <Text style={styles.sliderLabel}>Radius</Text>
@@ -89,11 +97,17 @@ export default function App() {
             value={numberOfPoints}
             style={styles.slider}
             minimumValue={2}
-            maximumValue={50}
+            maximumValue={20}
             step={1}
             onValueChange={setNumberOfPoints}
           />
           <Text style={styles.sliderValue}>{numberOfPoints}</Text>
+        </View>
+        <View style={{ marginBottom: 24 }}>
+          <Button
+            title={showCircle ? 'Hide circle layout' : 'Show circle layout'}
+            onPress={() => setShowCircle((oldValue) => !oldValue)}
+          />
         </View>
       </View>
     </SafeAreaView>
