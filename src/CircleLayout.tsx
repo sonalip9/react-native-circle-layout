@@ -2,9 +2,8 @@ import React, { useCallback, useMemo } from 'react';
 import { Animated, StyleProp, View, ViewStyle } from 'react-native';
 
 import { CircleLayoutComponent } from './CircleLayoutComponent';
+import { useAnimation } from './hooks';
 import { circleLayoutStyles } from './styles';
-
-import { useAnimation } from '@hooks';
 
 export type CircleLayoutProps = {
   /**
