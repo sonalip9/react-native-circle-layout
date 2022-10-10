@@ -31,7 +31,7 @@ export const useAnimation = (
       Animated.timing(value, {
         useNativeDriver: true,
         toValue: 1,
-        ...exitAnimationConfig,
+        ...entryAnimationConfig,
       }),
     []
   );
@@ -44,7 +44,7 @@ export const useAnimation = (
       Animated.timing(value, {
         useNativeDriver: true,
         toValue: 0,
-        ...entryAnimationConfig,
+        ...exitAnimationConfig,
       }),
     []
   );
