@@ -1,9 +1,8 @@
 import React, { ReactNode, useMemo } from 'react';
 import { Animated } from 'react-native';
 
+import { useAnimation } from './hooks';
 import { circleComponentStyles } from './styles';
-
-import { useAnimation } from '@hooks';
 
 type ComponentProps = {
   /**

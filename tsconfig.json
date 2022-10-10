@@ -2,9 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-circle-layout": ["./src/index"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@*": ["./src/*"]
+      "react-native-circle-layout": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

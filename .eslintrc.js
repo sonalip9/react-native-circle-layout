@@ -84,10 +84,7 @@ module.exports = {
       'error',
       {
         relativeDepth: 2,
-        aliases: [
-          { alias: 'react-native-circle-layout', matcher: './src' },
-          { alias: '@hooks', matcher: './src/hooks' },
-        ],
+        aliases: [{ alias: 'react-native-circle-layout', matcher: './src' }],
       },
     ],
   },
