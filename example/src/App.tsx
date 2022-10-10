@@ -13,6 +13,7 @@ import { CircleLayout } from 'react-native-circle-layout';
 import { styles } from './styles';
 
 const App = () => {
+  const [showInitial, setShowInitial] = React.useState(false);
   const { width: windowWidth } = useWindowDimensions();
   const [showCircle, setShowCircle] = React.useState(false);
   const [radius, setRadius] = React.useState(100);
@@ -38,19 +39,21 @@ const App = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar />
       <View style={styles.container}>
-        <CircleLayout
-          animationConfig={{
-            gap: 1000,
-            duration: 1000,
-          }}
-          centerComponent={<View style={styles.centerComponent} />}
-          components={createComponents(numberOfPoints)}
-          containerStyle={styles.circleLayoutContainer}
-          radius={radius}
-          showComponents={showCircle}
-          startAngle={startAngle}
-          sweepAngle={sweepAngle}
-        />
+        {showInitial && (
+          <CircleLayout
+            animationConfig={{
+              gap: 1000,
+              duration: 1000,
+            }}
+            centerComponent={<View style={styles.centerComponent} />}
+            components={createComponents(numberOfPoints)}
+            containerStyle={styles.circleLayoutContainer}
+            radius={radius}
+            showComponents={showCircle}
+            startAngle={startAngle}
+            sweepAngle={sweepAngle}
+          />
+        )}
         <View style={styles.flex} />
 
         <View style={styles.sliderContainer}>
@@ -91,7 +94,10 @@ const App = () => {
             {((startAngle * 180) / Math.PI).toFixed(2)}°
           </Text>
         </View>
-        <View style={styles.sliderContainer}>
+        <View
+          pointerEvents={showInitial ? 'none' : 'auto'}
+          style={styles.sliderContainer}
+        >
           <Text style={styles.sliderLabel}>Number of Points</Text>
           <Slider
             maximumValue={20}
@@ -105,7 +111,10 @@ const App = () => {
         </View>
 
         <Button
-          onPress={() => setShowCircle((oldValue) => !oldValue)}
+          onPress={() => {
+            setShowInitial(() => true);
+            setShowCircle((oldValue) => !oldValue);
+          }}
           title={showCircle ? 'Hide circle layout' : 'Show circle layout'}
         />
         <View style={styles.footer} />
