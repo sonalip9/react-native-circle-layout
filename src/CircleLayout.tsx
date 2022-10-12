@@ -70,33 +70,18 @@ export type CircleLayoutProps = {
 export const CircleLayout = ({
   components,
   radius,
-  centerComponent,
+  centerComponent = undefined,
   sweepAngle = 2 * Math.PI,
   startAngle = 0,
-  containerStyle,
+  containerStyle = undefined,
   centerComponentContainerStyle,
   showComponents,
-  animationConfig,
+  animationConfig = undefined,
 }: CircleLayoutProps) => {
   const totalPoints =
     sweepAngle && sweepAngle !== 2 * Math.PI
       ? components.length - 1
       : components.length;
-
-  /**
-   * Converts the polar coordinates of a point on the circle
-   * to cartesian coordinates.
-   * @param index The point to be plotted.
-   * @returns The cartesian coordinates for the top left point
-   * of the component's placement.
-   */
-  const point = (index: number) => {
-    const radians = startAngle + sweepAngle * (index / totalPoints);
-    return {
-      x: Math.cos(radians) * radius,
-      y: Math.sin(radians) * radius,
-    };
-  };
 
   const value = useFadeAnimation(
     showComponents,
@@ -116,23 +101,20 @@ export const CircleLayout = ({
 
   const componentsList = useCallback(
     () =>
-      components.map((component, index) => {
-        const { x, y } = point(index);
-
-        return (
-          <CircleLayoutComponent
-            animationConfig={animationConfig}
-            component={component}
-            index={index}
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-            showComponent={showComponents}
-            totalPoints={components.length}
-            x={x}
-            y={y}
-          />
-        );
-      }),
+      components.map((component, index) => (
+        <CircleLayoutComponent
+          animationConfig={animationConfig}
+          component={component}
+          index={index}
+          // eslint-disable-next-line react/no-array-index-key
+          key={index}
+          radius={radius}
+          showComponent={showComponents}
+          startAngle={startAngle}
+          sweepAngle={sweepAngle}
+          totalPoints={components.length}
+        />
+      )),
     [components]
   );
 
@@ -160,11 +142,4 @@ export const CircleLayout = ({
       </View>
     </View>
   );
-};
-
-CircleLayout.defaultProps = {
-  centerComponent: undefined,
-  containerStyle: undefined,
-  centerComponentContainerStyle: undefined,
-  animationConfig: undefined,
 };

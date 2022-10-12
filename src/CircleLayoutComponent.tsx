@@ -2,21 +2,15 @@ import React, { ReactNode, useMemo } from 'react';
 import { Animated } from 'react-native';
 
 import { useFadeAnimation } from './hooks';
+import { useLinearAnimation } from './hooks/useLinearAnimation';
 import { circleComponentStyles } from './styles';
+import { pointOnCircle } from './utils';
 
 type ComponentProps = {
   /**
    * The value of the component that is plotted.
    */
   index: number;
-  /**
-   * The position of the component on the horizontal axis.
-   */
-  x: number;
-  /**
-   * The position of the component on the vertical axis.
-   */
-  y: number;
   /**
    * The component to be displayed.
    */
@@ -48,6 +42,9 @@ type ComponentProps = {
         gap: number;
       }
     | undefined;
+  startAngle: number;
+  sweepAngle: number;
+  radius: number;
 };
 
 /**
@@ -57,12 +54,13 @@ type ComponentProps = {
  */
 export const CircleLayoutComponent = ({
   index,
-  x,
-  y,
   component,
   totalPoints,
   showComponent,
   animationConfig,
+  startAngle,
+  sweepAngle,
+  radius,
 }: ComponentProps) => {
   const value = useFadeAnimation(
     showComponent,
@@ -80,15 +78,47 @@ export const CircleLayoutComponent = ({
     [animationConfig, showComponent, value]
   );
 
+  const endPosition = pointOnCircle({
+    radians: startAngle + sweepAngle * (index / totalPoints),
+    radius,
+  });
+
+  const startPosition = pointOnCircle({
+    radians: startAngle + sweepAngle * (index / totalPoints),
+    radius: 0,
+  });
+
+  const position = useLinearAnimation(
+    showComponent,
+    startPosition,
+    endPosition,
+    {
+      delay: (animationConfig?.gap ?? 1000) * index,
+      duration: animationConfig?.duration,
+    },
+    {
+      delay: (animationConfig?.gap ?? 1000) * (totalPoints - index - 1),
+      duration: animationConfig?.duration,
+    }
+  );
+
   return (
     <Animated.View
       key={index}
       style={[
         circleComponentStyles.componentContainer,
         {
-          bottom: y,
-          right: x,
+          bottom: startPosition.y,
+          right: startPosition.x,
           opacity,
+          transform: [
+            {
+              translateX: Animated.multiply(position.x, -1),
+            },
+            {
+              translateY: Animated.multiply(position.y, -1),
+            },
+          ],
         },
       ]}
     >
