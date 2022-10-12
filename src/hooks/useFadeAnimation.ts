@@ -15,7 +15,7 @@ type AnimationProps = Omit<
  * @param initialValue The initialValue of the animated value.
  * @returns The Animated Value on which the animation will be performed.
  */
-export const useAnimation = (
+export const useFadeAnimation = (
   showComponent: boolean,
   entryAnimationConfig: AnimationProps,
   exitAnimationConfig: AnimationProps = entryAnimationConfig,

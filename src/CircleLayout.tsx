@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { Animated, StyleProp, View, ViewStyle } from 'react-native';
 
 import { CircleLayoutComponent } from './CircleLayoutComponent';
-import { useAnimation } from './hooks';
+import { useFadeAnimation } from './hooks';
 import { circleLayoutStyles } from './styles';
 
 export type CircleLayoutProps = {
@@ -98,7 +98,7 @@ export const CircleLayout = ({
     };
   };
 
-  const value = useAnimation(
+  const value = useFadeAnimation(
     showComponents,
     {
       duration: animationConfig?.duration,

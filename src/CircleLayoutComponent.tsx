@@ -1,7 +1,7 @@
 import React, { ReactNode, useMemo } from 'react';
 import { Animated } from 'react-native';
 
-import { useAnimation } from './hooks';
+import { useFadeAnimation } from './hooks';
 import { circleComponentStyles } from './styles';
 
 type ComponentProps = {
@@ -64,7 +64,7 @@ export const CircleLayoutComponent = ({
   showComponent,
   animationConfig,
 }: ComponentProps) => {
-  const value = useAnimation(
+  const value = useFadeAnimation(
     showComponent,
     {
       delay: (animationConfig?.gap ?? 1000) * index,
