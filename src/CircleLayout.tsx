@@ -108,10 +108,9 @@ export const CircleLayout = ({
           index={index}
           // eslint-disable-next-line react/no-array-index-key
           key={index}
+          radians={startAngle + sweepAngle * (index / totalPoints)}
           radius={radius}
           showComponent={showComponents}
-          startAngle={startAngle}
-          sweepAngle={sweepAngle}
           totalPoints={components.length}
         />
       )),

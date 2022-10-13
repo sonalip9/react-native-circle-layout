@@ -10,6 +10,8 @@ export const circleLayoutStyles = StyleSheet.create({
 
 export const circleComponentStyles = StyleSheet.create({
   componentContainer: {
+    bottom: 0,
     position: 'absolute',
+    right: 0,
   },
 });
