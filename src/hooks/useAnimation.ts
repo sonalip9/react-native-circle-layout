@@ -6,26 +6,42 @@ type AnimationProps = Omit<
   'toValue' | 'useNativeDriver'
 >;
 
-type ValueXY = { x: number; y: number };
+interface AnimationArgs {
+  /**
+   * A flag to maintain whether the component is visible or not.
+   * The change in value of this property triggers the entry or exit animation.
+   */
+  showComponent: boolean;
+  /**
+   * The start value of the animated value.
+   */
+  initialValue: number;
+  /**
+   * The end value of the animated value.
+   */
+  finalValue: number;
+  /**
+   * The configuration for the entry animation.
+   */
+  entryAnimationConfig: AnimationProps;
+  /**
+   * The configuration for the exit animation.
+   */
+  exitAnimationConfig: AnimationProps;
+}
 
 /**
  * A hook that creates linear translation animation.
- * @param showComponent A flag to maintain whether the component is visible or not.
- * The change in value of this property triggers the entry or exit animation.
- * @param initialValue The start value of the animated value.
- * @param finalValue The end value of the animated value.
- * @param entryAnimationConfig The configuration for the entry animation.
- * @param exitAnimationConfig The configuration for the exit animation.
  * @returns The Animated Value on which the animation will be performed.
  */
-export const useLinearAnimation = (
-  showComponent: boolean,
-  initialValue: ValueXY,
-  finalValue: ValueXY,
-  entryAnimationConfig: AnimationProps,
-  exitAnimationConfig: AnimationProps = entryAnimationConfig
-) => {
-  const value = useRef(new Animated.ValueXY(initialValue)).current;
+export const useAnimation = ({
+  showComponent,
+  initialValue,
+  finalValue,
+  entryAnimationConfig,
+  exitAnimationConfig = entryAnimationConfig,
+}: AnimationArgs) => {
+  const value = useRef(new Animated.Value(initialValue)).current;
 
   /**
    * Function to create a fade-in entry animation.

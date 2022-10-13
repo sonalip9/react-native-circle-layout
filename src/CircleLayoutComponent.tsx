@@ -1,8 +1,7 @@
 import React, { ReactNode, useMemo } from 'react';
 import { Animated } from 'react-native';
 
-import { useFadeAnimation } from './hooks';
-import { useLinearAnimation } from './hooks/useLinearAnimation';
+import { useAnimation, useFadeAnimation } from './hooks';
 import { circleComponentStyles } from './styles';
 import { pointOnCircle } from './utils';
 
@@ -42,9 +41,8 @@ type ComponentProps = {
         gap: number;
       }
     | undefined;
-  startAngle: number;
-  sweepAngle: number;
   radius: number;
+  radians: number;
 };
 
 /**
@@ -58,9 +56,8 @@ export const CircleLayoutComponent = ({
   totalPoints,
   showComponent,
   animationConfig,
-  startAngle,
-  sweepAngle,
   radius,
+  radians,
 }: ComponentProps) => {
   const value = useFadeAnimation(
     showComponent,
@@ -78,29 +75,25 @@ export const CircleLayoutComponent = ({
     [animationConfig, showComponent, value]
   );
 
-  const endPosition = pointOnCircle({
-    radians: startAngle + sweepAngle * (index / totalPoints),
-    radius,
-  });
-
-  const startPosition = pointOnCircle({
-    radians: startAngle + sweepAngle * (index / totalPoints),
-    radius: 0,
-  });
-
-  const position = useLinearAnimation(
+  const animatedRadius = useAnimation({
     showComponent,
-    startPosition,
-    endPosition,
-    {
+    initialValue: 0,
+    finalValue: radius,
+    entryAnimationConfig: {
       delay: (animationConfig?.gap ?? 1000) * index,
       duration: animationConfig?.duration,
     },
-    {
+    exitAnimationConfig: {
       delay: (animationConfig?.gap ?? 1000) * (totalPoints - index - 1),
       duration: animationConfig?.duration,
-    }
+    },
+  });
+  const radiusValue = useMemo(
+    () => (animationConfig && animatedRadius) || radius,
+    [animationConfig, radius, animatedRadius]
   );
+
+  const position = pointOnCircle({ radians, radius: radiusValue });
 
   return (
     <Animated.View
@@ -108,8 +101,6 @@ export const CircleLayoutComponent = ({
       style={[
         circleComponentStyles.componentContainer,
         {
-          bottom: startPosition.y,
-          right: startPosition.x,
           opacity,
           transform: [
             {
