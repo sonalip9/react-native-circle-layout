@@ -46,13 +46,14 @@ const App = () => {
         <View style={styles.flex}>
           {showInitial && (
             <CircleLayout
-              animationConfig={{
-                gap: 1000,
-                duration: 1000,
-              }}
               centerComponent={<View style={styles.centerComponent} />}
               components={createComponents(numberOfPoints)}
               containerStyle={styles.circleLayoutContainer}
+              linearAnimationConfig={{ gap: 0 }}
+              opacityAnimationConfig={{
+                gap: 1000,
+                duration: 1000,
+              }}
               radius={radius}
               showComponents={showCircle}
               startAngle={startAngle}

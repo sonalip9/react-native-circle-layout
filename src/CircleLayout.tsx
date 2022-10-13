@@ -46,7 +46,21 @@ export type CircleLayoutProps = {
    * The configuration for the entry and exit of the components.
    * If this prop is undefined, then there will be no animation.
    */
-  animationConfig?:
+  opacityAnimationConfig?:
+    | {
+        /**
+         * The duration for which the animation should last.
+         * This value is in milliseconds.
+         */
+        duration?: number | undefined;
+        /**
+         * The gap between the start of animation of 2 consecutive components.
+         * This value is in milliseconds.
+         */
+        gap: number;
+      }
+    | undefined;
+  linearAnimationConfig?:
     | {
         /**
          * The duration for which the animation should last.
@@ -76,7 +90,8 @@ export const CircleLayout = ({
   containerStyle = undefined,
   centerComponentContainerStyle,
   showComponents,
-  animationConfig = undefined,
+  opacityAnimationConfig = undefined,
+  linearAnimationConfig = undefined,
 }: CircleLayoutProps) => {
   const totalPoints =
     sweepAngle && sweepAngle !== 2 * Math.PI
@@ -86,28 +101,29 @@ export const CircleLayout = ({
   const value = useFadeAnimation(
     showComponents,
     {
-      duration: animationConfig?.duration,
+      duration: opacityAnimationConfig?.duration,
     },
     {
-      delay: (animationConfig?.gap ?? 1000) * totalPoints,
-      duration: animationConfig?.duration,
+      delay: (opacityAnimationConfig?.gap ?? 1000) * totalPoints,
+      duration: opacityAnimationConfig?.duration,
     }
   );
 
   const opacity = useMemo(
-    () => (animationConfig && value) || (showComponents ? 1 : 0),
-    [animationConfig, showComponents, value]
+    () => (opacityAnimationConfig && value) || (showComponents ? 1 : 0),
+    [opacityAnimationConfig, showComponents, value]
   );
 
   const componentsList = useCallback(
     () =>
       components.map((component, index) => (
         <CircleLayoutComponent
-          animationConfig={animationConfig}
           component={component}
           index={index}
           // eslint-disable-next-line react/no-array-index-key
           key={index}
+          linearAnimationConfig={linearAnimationConfig}
+          opacityAnimationConfig={opacityAnimationConfig}
           radians={startAngle + sweepAngle * (index / totalPoints)}
           radius={radius}
           showComponent={showComponents}
@@ -132,7 +148,7 @@ export const CircleLayout = ({
 
         <Animated.View
           style={[
-            { marginTop: radius, opacity: animationConfig && opacity },
+            { marginTop: radius, opacity: opacityAnimationConfig && opacity },
             centerComponentContainerStyle,
           ]}
         >

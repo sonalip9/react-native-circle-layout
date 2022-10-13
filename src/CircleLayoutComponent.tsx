@@ -27,7 +27,21 @@ type ComponentProps = {
    * The configuration for the entry and exit of the components.
    * If this prop is undefined, then there will be no animation.
    */
-  animationConfig?:
+  opacityAnimationConfig?:
+    | {
+        /**
+         * The duration for which the animation should last.
+         * This value is in milliseconds.
+         */
+        duration?: number | undefined;
+        /**
+         * The gap between the start of animation of 2 consecutive components.
+         * This value is in milliseconds.
+         */
+        gap: number;
+      }
+    | undefined;
+  linearAnimationConfig?:
     | {
         /**
          * The duration for which the animation should last.
@@ -55,24 +69,25 @@ export const CircleLayoutComponent = ({
   component,
   totalPoints,
   showComponent,
-  animationConfig,
+  opacityAnimationConfig,
+  linearAnimationConfig,
   radius,
   radians,
 }: ComponentProps) => {
   const value = useFadeAnimation(
     showComponent,
     {
-      delay: (animationConfig?.gap ?? 1000) * index,
-      duration: animationConfig?.duration,
+      delay: (opacityAnimationConfig?.gap ?? 1000) * index,
+      duration: opacityAnimationConfig?.duration,
     },
     {
-      delay: (animationConfig?.gap ?? 1000) * (totalPoints - index - 1),
-      duration: animationConfig?.duration,
+      delay: (opacityAnimationConfig?.gap ?? 1000) * (totalPoints - index - 1),
+      duration: opacityAnimationConfig?.duration,
     }
   );
   const opacity = useMemo(
-    () => (animationConfig && value) || (showComponent ? 1 : 0),
-    [animationConfig, showComponent, value]
+    () => (opacityAnimationConfig && value) || (showComponent ? 1 : 0),
+    [opacityAnimationConfig, showComponent, value]
   );
 
   const animatedRadius = useAnimation({
@@ -80,17 +95,17 @@ export const CircleLayoutComponent = ({
     initialValue: 0,
     finalValue: radius,
     entryAnimationConfig: {
-      delay: (animationConfig?.gap ?? 1000) * index,
-      duration: animationConfig?.duration,
+      delay: (linearAnimationConfig?.gap ?? 1000) * index,
+      duration: linearAnimationConfig?.duration,
     },
     exitAnimationConfig: {
-      delay: (animationConfig?.gap ?? 1000) * (totalPoints - index - 1),
-      duration: animationConfig?.duration,
+      delay: (linearAnimationConfig?.gap ?? 1000) * (totalPoints - index - 1),
+      duration: linearAnimationConfig?.duration,
     },
   });
   const radiusValue = useMemo(
-    () => (animationConfig && animatedRadius) || radius,
-    [animationConfig, radius, animatedRadius]
+    () => (linearAnimationConfig && animatedRadius) || radius,
+    [linearAnimationConfig, radius, animatedRadius]
   );
 
   const position = pointOnCircle({ radians, radius: radiusValue });
@@ -119,5 +134,6 @@ export const CircleLayoutComponent = ({
 };
 
 CircleLayoutComponent.defaultProps = {
-  animationConfig: undefined,
+  opacityAnimationConfig: undefined,
+  linearAnimationConfig: undefined,
 };
