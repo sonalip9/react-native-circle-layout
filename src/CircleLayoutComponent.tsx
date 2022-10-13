@@ -1,63 +1,10 @@
-import React, { ReactNode, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Animated } from 'react-native';
 
-import { useAnimation, useFadeAnimation } from './hooks';
+import { useAnimation } from './hooks';
 import { circleComponentStyles } from './styles';
+import type { ComponentProps } from './types';
 import { pointOnCircle } from './utils';
-
-type ComponentProps = {
-  /**
-   * The value of the component that is plotted.
-   */
-  index: number;
-  /**
-   * The component to be displayed.
-   */
-  component: ReactNode;
-  /**
-   * The total number of components in the circle layout.
-   */
-  totalPoints: number;
-  /**
-   * Flag to show or hide the component in the circle layout.
-   * This flag is used to perform the start and end animation.
-   */
-  showComponent: boolean;
-  /**
-   * The configuration for the entry and exit of the components.
-   * If this prop is undefined, then there will be no animation.
-   */
-  opacityAnimationConfig?:
-    | {
-        /**
-         * The duration for which the animation should last.
-         * This value is in milliseconds.
-         */
-        duration?: number | undefined;
-        /**
-         * The gap between the start of animation of 2 consecutive components.
-         * This value is in milliseconds.
-         */
-        gap: number;
-      }
-    | undefined;
-  linearAnimationConfig?:
-    | {
-        /**
-         * The duration for which the animation should last.
-         * This value is in milliseconds.
-         */
-        duration?: number | undefined;
-        /**
-         * The gap between the start of animation of 2 consecutive components.
-         * This value is in milliseconds.
-         */
-        gap: number;
-      }
-    | undefined;
-  radius: number;
-  radians: number;
-};
 
 /**
  * A component that positions one component in the circle layout.
@@ -69,25 +16,31 @@ export const CircleLayoutComponent = ({
   component,
   totalPoints,
   showComponent,
-  opacityAnimationConfig,
-  linearAnimationConfig,
+  opacityAnimationConfig = undefined,
+  linearAnimationConfig = undefined,
   radius,
   radians,
 }: ComponentProps) => {
-  const value = useFadeAnimation(
+  const entryAnimationDelay = (opacityAnimationConfig?.gap ?? 1000) * index;
+  const exitAnimationDelay =
+    (opacityAnimationConfig?.gap ?? 1000) * (totalPoints - index - 1);
+
+  const opacityValue = useAnimation({
     showComponent,
-    {
-      delay: (opacityAnimationConfig?.gap ?? 1000) * index,
-      duration: opacityAnimationConfig?.duration,
+    initialValue: 0,
+    finalValue: 1,
+    entryAnimationConfig: {
+      delay: entryAnimationDelay,
+      ...opacityAnimationConfig,
     },
-    {
-      delay: (opacityAnimationConfig?.gap ?? 1000) * (totalPoints - index - 1),
-      duration: opacityAnimationConfig?.duration,
-    }
-  );
+    exitAnimationConfig: {
+      delay: exitAnimationDelay,
+      ...opacityAnimationConfig,
+    },
+  });
   const opacity = useMemo(
-    () => (opacityAnimationConfig && value) || (showComponent ? 1 : 0),
-    [opacityAnimationConfig, showComponent, value]
+    () => (opacityAnimationConfig && opacityValue) || (showComponent ? 1 : 0),
+    [opacityAnimationConfig, showComponent, opacityValue]
   );
 
   const animatedRadius = useAnimation({
@@ -95,12 +48,12 @@ export const CircleLayoutComponent = ({
     initialValue: 0,
     finalValue: radius,
     entryAnimationConfig: {
-      delay: (linearAnimationConfig?.gap ?? 1000) * index,
-      duration: linearAnimationConfig?.duration,
+      delay: entryAnimationDelay,
+      ...linearAnimationConfig,
     },
     exitAnimationConfig: {
-      delay: (linearAnimationConfig?.gap ?? 1000) * (totalPoints - index - 1),
-      duration: linearAnimationConfig?.duration,
+      delay: exitAnimationDelay,
+      ...linearAnimationConfig,
     },
   });
   const radiusValue = useMemo(
@@ -131,9 +84,4 @@ export const CircleLayoutComponent = ({
       {component}
     </Animated.View>
   );
-};
-
-CircleLayoutComponent.defaultProps = {
-  opacityAnimationConfig: undefined,
-  linearAnimationConfig: undefined,
 };
