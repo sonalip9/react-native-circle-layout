@@ -36,7 +36,7 @@ module.exports = {
   ],
   rules: {
     // React hooks
-    'react-hooks/exhaustive-deps': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
 
     // React
     'react/function-component-definition': [
