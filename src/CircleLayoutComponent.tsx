@@ -21,20 +21,16 @@ export const CircleLayoutComponent = ({
   radius,
   radians,
 }: ComponentProps) => {
-  const entryAnimationDelay = (opacityAnimationConfig?.gap ?? 1000) * index;
-  const exitAnimationDelay =
-    (opacityAnimationConfig?.gap ?? 1000) * (totalPoints - index - 1);
-
   const opacityValue = useAnimation({
     showComponent,
     initialValue: 0,
     finalValue: 1,
     entryAnimationConfig: {
-      delay: entryAnimationDelay,
+      delay: (opacityAnimationConfig?.gap ?? 1000) * index,
       ...opacityAnimationConfig,
     },
     exitAnimationConfig: {
-      delay: exitAnimationDelay,
+      delay: (opacityAnimationConfig?.gap ?? 1000) * (totalPoints - index - 1),
       ...opacityAnimationConfig,
     },
   });
@@ -48,11 +44,11 @@ export const CircleLayoutComponent = ({
     initialValue: 0,
     finalValue: radius,
     entryAnimationConfig: {
-      delay: entryAnimationDelay,
+      delay: (linearAnimationConfig?.gap ?? 1000) * index,
       ...linearAnimationConfig,
     },
     exitAnimationConfig: {
-      delay: exitAnimationDelay,
+      delay: (linearAnimationConfig?.gap ?? 1000) * (totalPoints - index - 1),
       ...linearAnimationConfig,
     },
   });
