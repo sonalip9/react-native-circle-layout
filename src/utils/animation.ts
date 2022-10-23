@@ -1,11 +1,23 @@
 import type { Animated } from 'react-native';
 
-const withFunction = (callback: (value: number) => number) => {
+type InterpolationConfig = {
+  startValue?: number;
+  endValue?: number;
+};
+
+const withFunction = (
+  callback: (value: number) => number,
+  interpolationConfig?: InterpolationConfig
+) => {
+  const { startValue = 0, endValue = 1 } = interpolationConfig ?? {
+    startValue: 0,
+    endValue: 1,
+  };
   const inputRange: number[] = [];
   const outputRange: number[] = [];
-  const steps = 50;
-  for (let i = 0; i <= steps; i += 1) {
-    const key = i / steps;
+  const step = endValue - startValue;
+  for (let i = startValue; i <= endValue; i += 1) {
+    const key = startValue + step * i;
     inputRange.push(key);
     outputRange.push(callback(key));
   }
@@ -14,5 +26,6 @@ const withFunction = (callback: (value: number) => number) => {
 
 export const interpolationWithFunction = (
   value: Animated.Value,
-  callback: (value: number) => number
-) => value.interpolate(withFunction(callback));
+  callback: (value: number) => number,
+  interpolationConfig?: InterpolationConfig
+) => value.interpolate(withFunction(callback, interpolationConfig));
