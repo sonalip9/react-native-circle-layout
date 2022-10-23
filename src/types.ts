@@ -53,12 +53,20 @@ export type CircleLayoutProps = {
    */
   opacityAnimationConfig?: AnimationConfig | undefined;
   /**
-   * The configuration for the linear entry and exit
+   * The configuration for the linear entry and exit animations
    * of the components. The components will start from the
    * center and move to their final positions. If this
    * prop is undefined, then there will be no animation.
    */
   linearAnimationConfig?: AnimationConfig | undefined;
+  /**
+   * The configuration for the circle entry and exit animations
+   * of the components. The components will start from the
+   * position of the first component and move along the
+   * circumference of the circle to their final positions. If this
+   * prop is undefined, then there will be no animation.
+   */
+  circularAnimationConfig?: AnimationConfig | undefined;
 };
 
 export type ComponentProps = {
@@ -84,6 +92,11 @@ export type ComponentProps = {
    */
   radius: number;
   /**
+   * The angle at which the first component will be placed. The
+   * value needs to be in radians.
+   */
+  startAngle: number;
+  /**
    * Flag to show or hide the component in the circle layout.
    * This flag is used to perform the start and end animation.
    */
@@ -101,4 +114,12 @@ export type ComponentProps = {
    * prop is undefined, then there will be no animation.
    */
   linearAnimationConfig?: AnimationConfig | undefined;
+  /**
+   * The configuration for the circle entry and exit animations
+   * of the components. The components will start from the
+   * position of the first component and move along the
+   * circumference of the circle to their final positions. If this
+   * prop is undefined, then there will be no animation.
+   */
+  circularAnimationConfig?: AnimationConfig | undefined;
 };

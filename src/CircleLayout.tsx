@@ -22,6 +22,7 @@ export const CircleLayout = ({
   showComponents,
   opacityAnimationConfig = undefined,
   linearAnimationConfig = undefined,
+  circularAnimationConfig = undefined,
 }: CircleLayoutProps) => {
   const totalPoints =
     sweepAngle && sweepAngle !== 2 * Math.PI
@@ -48,6 +49,7 @@ export const CircleLayout = ({
     () =>
       components.map((component, index) => (
         <CircleLayoutComponent
+          circularAnimationConfig={circularAnimationConfig}
           component={component}
           index={index}
           // eslint-disable-next-line react/no-array-index-key
@@ -57,6 +59,7 @@ export const CircleLayout = ({
           radians={startAngle + sweepAngle * (index / totalPoints)}
           radius={radius}
           showComponent={showComponents}
+          startAngle={startAngle}
           totalPoints={components.length}
         />
       )),
