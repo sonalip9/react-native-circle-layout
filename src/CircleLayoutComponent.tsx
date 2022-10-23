@@ -18,6 +18,8 @@ export const CircleLayoutComponent = ({
   showComponent,
   opacityAnimationConfig = undefined,
   linearAnimationConfig = undefined,
+  circularAnimationConfig = undefined,
+  startAngle,
   radius,
   radians,
 }: ComponentProps) => {
@@ -57,7 +59,28 @@ export const CircleLayoutComponent = ({
     [linearAnimationConfig, radius, animatedRadius]
   );
 
-  const position = pointOnCircle({ radians, radius: radiusValue });
+  const animatedRadians = useAnimation({
+    showComponent,
+    initialValue: startAngle,
+    finalValue: radians,
+    entryAnimationConfig: {
+      delay: (circularAnimationConfig?.gap ?? 1000) * index,
+      ...circularAnimationConfig,
+    },
+    exitAnimationConfig: {
+      delay: (circularAnimationConfig?.gap ?? 1000) * (totalPoints - index - 1),
+      ...circularAnimationConfig,
+    },
+  });
+  const radiansValue = useMemo(
+    () => (circularAnimationConfig && animatedRadians) || radians,
+    [circularAnimationConfig, radians, animatedRadians]
+  );
+
+  const position = pointOnCircle({
+    radians: radiansValue,
+    radius: radiusValue,
+  });
 
   return (
     <Animated.View
