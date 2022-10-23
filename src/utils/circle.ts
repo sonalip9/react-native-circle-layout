@@ -25,8 +25,12 @@ export const pointOnCircle = ({ radius, radians }: PointOnCircle) => {
     throw Error('Either radians or radius must be number type.');
   } else if (typeof radians !== 'number') {
     return {
-      x: interpolationWithFunction(radians, (r) => Math.cos(r) * radius),
-      y: interpolationWithFunction(radians, (r) => Math.sin(r) * radius),
+      x: interpolationWithFunction(radians, (r) => Math.cos(r) * radius, {
+        endValue: 2 * Math.PI,
+      }),
+      y: interpolationWithFunction(radians, (r) => Math.sin(r) * radius, {
+        endValue: 2 * Math.PI,
+      }),
     };
   } else {
     return {
