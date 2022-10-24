@@ -47,13 +47,10 @@ const App = () => {
           {showInitial && (
             <CircleLayout
               centerComponent={<View style={styles.centerComponent} />}
+              circularAnimationConfig={{ gap: 1000, duration: 1000 }}
               components={createComponents(numberOfPoints)}
               containerStyle={styles.circleLayoutContainer}
-              linearAnimationConfig={{ gap: 0 }}
-              opacityAnimationConfig={{
-                gap: 1000,
-                duration: 1000,
-              }}
+              opacityAnimationConfig={{ gap: 1000, duration: 1000 }}
               radius={radius}
               showComponents={showCircle}
               startAngle={startAngle}
