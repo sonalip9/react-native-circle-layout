@@ -12,7 +12,7 @@ module.exports = {
     'plugin:import/recommended',
     'prettier',
   ],
-  plugins: ['@typescript-eslint', 'react'],
+  plugins: ['@typescript-eslint', 'react', 'jest'],
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
