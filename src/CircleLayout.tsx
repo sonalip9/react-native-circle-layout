@@ -24,11 +24,6 @@ export const CircleLayout = ({
   linearAnimationConfig = undefined,
   circularAnimationConfig = undefined,
 }: CircleLayoutProps) => {
-  if (linearAnimationConfig && circularAnimationConfig)
-    throw Error(
-      'Either linear or circular animation should exits. Both cannot exist simultaneously'
-    );
-
   const totalPoints =
     sweepAngle && sweepAngle !== 2 * Math.PI
       ? components.length - 1
