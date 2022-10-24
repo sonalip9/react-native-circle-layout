@@ -1,4 +1,4 @@
-import type { Animated } from 'react-native';
+import { Animated } from 'react-native';
 
 import { interpolationWithFunction } from './animation';
 
@@ -22,8 +22,24 @@ export const pointOnCircle = ({ radius, radians }: PointOnCircle) => {
         y: interpolationWithFunction(radius, (r) => Math.sin(radians) * r),
       };
     }
-    throw Error('Either radians or radius must be number type.');
-  } else if (typeof radians !== 'number') {
+
+    return {
+      x: Animated.multiply(
+        radius,
+        interpolationWithFunction(radians, (r) => Math.cos(r), {
+          endValue: 2 * Math.PI,
+        })
+      ),
+      y: Animated.multiply(
+        radius,
+        interpolationWithFunction(radians, (r) => Math.sin(r), {
+          endValue: 2 * Math.PI,
+        })
+      ),
+    };
+  }
+
+  if (typeof radians !== 'number') {
     return {
       x: interpolationWithFunction(radians, (r) => Math.cos(r) * radius, {
         endValue: 2 * Math.PI,
@@ -32,10 +48,10 @@ export const pointOnCircle = ({ radius, radians }: PointOnCircle) => {
         endValue: 2 * Math.PI,
       }),
     };
-  } else {
-    return {
-      x: Math.cos(radians) * radius,
-      y: Math.sin(radians) * radius,
-    };
   }
+
+  return {
+    x: Math.cos(radians) * radius,
+    y: Math.sin(radians) * radius,
+  };
 };
