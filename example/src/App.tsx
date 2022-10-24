@@ -50,6 +50,7 @@ const App = () => {
               circularAnimationConfig={{ gap: 1000, duration: 1000 }}
               components={createComponents(numberOfPoints)}
               containerStyle={styles.circleLayoutContainer}
+              linearAnimationConfig={{ gap: 1000, duration: 1000 }}
               opacityAnimationConfig={{ gap: 1000, duration: 1000 }}
               radius={radius}
               showComponents={showCircle}
