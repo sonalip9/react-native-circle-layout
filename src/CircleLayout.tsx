@@ -24,11 +24,15 @@ export const CircleLayout = ({
   linearAnimationConfig = undefined,
   circularAnimationConfig = undefined,
 }: CircleLayoutProps) => {
+  // The total number of points to divide the circle into
   const totalPoints =
     sweepAngle && sweepAngle !== 2 * Math.PI
       ? components.length - 1
       : components.length;
 
+  /**
+   * The animated value that is responsible for the opacity of the component.
+   */
   const value = useAnimation({
     showComponent: showComponents,
     initialValue: 0,
@@ -39,7 +43,7 @@ export const CircleLayout = ({
       ...opacityAnimationConfig,
     },
   });
-
+  // The value of opacity depending on the props of the component.
   const opacity = useMemo(
     () => (opacityAnimationConfig && value) || (showComponents ? 1 : 0),
     [opacityAnimationConfig, showComponents, value]

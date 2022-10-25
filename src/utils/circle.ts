@@ -2,17 +2,25 @@ import { Animated } from 'react-native';
 
 import { interpolationWithFunction } from './animation';
 
+/**
+ * The props of the polar co-ordinate of a point on the circle.
+ */
 export type PointOnCircle = {
+  /**
+   * The radius of the circle.
+   */
   radius: number | Animated.Value;
+  /**
+   * The angle of the point on the circle.
+   */
   radians: number | Animated.Value;
 };
 
 /**
- * Converts the polar coordinates of a point on the circle
- * to cartesian coordinates.
- * @param index The point to be plotted.
- * @returns The cartesian coordinates for the top left point
- * of the component's placement.
+ * Converts the polar co-ordinates of a point on a circle to its Cartesian co-ordinate.
+ * x = r cos θ, y = r sin θ
+ * @param props The property of the circle
+ * @returns The Cartesian co-ordinates of the point of the circle.
  */
 export const pointOnCircle = ({ radius, radians }: PointOnCircle) => {
   if (typeof radius !== 'number') {
