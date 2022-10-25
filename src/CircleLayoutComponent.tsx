@@ -23,6 +23,9 @@ export const CircleLayoutComponent = ({
   radius,
   radians,
 }: ComponentProps) => {
+  /**
+   * The animated value that is responsible for the opacity of the component.
+   */
   const opacityValue = useAnimation({
     showComponent,
     initialValue: 0,
@@ -36,11 +39,17 @@ export const CircleLayoutComponent = ({
       ...opacityAnimationConfig,
     },
   });
+  // The value of opacity depending on the props of the component.
   const opacity = useMemo(
     () => (opacityAnimationConfig && opacityValue) || (showComponent ? 1 : 0),
     [opacityAnimationConfig, showComponent, opacityValue]
   );
 
+  /**
+   * The animated value that is responsible for the radius of the component.
+   * This results in the linear animation of the component from the center to its
+   * final position.
+   */
   const animatedRadius = useAnimation({
     showComponent,
     initialValue: 0,
@@ -54,11 +63,17 @@ export const CircleLayoutComponent = ({
       ...linearAnimationConfig,
     },
   });
+  // The value of radius depending on the props of the component.
   const radiusValue = useMemo(
     () => (linearAnimationConfig && animatedRadius) || radius,
     [linearAnimationConfig, radius, animatedRadius]
   );
 
+  /**
+   * The animated value that is responsible for the radians of the component.
+   * This results in the circular animation of the component from the position of
+   * the first component to its final position.
+   */
   const animatedRadians = useAnimation({
     showComponent,
     initialValue: startAngle,
@@ -72,11 +87,14 @@ export const CircleLayoutComponent = ({
       ...circularAnimationConfig,
     },
   });
+  // The value of radians depending on the props of the component.
   const radiansValue = useMemo(
     () => (circularAnimationConfig && animatedRadians) || radians,
     [circularAnimationConfig, radians, animatedRadians]
   );
 
+  // The position of the component.
+  // This is animated if either linear or circular animation config is passed.
   const position = pointOnCircle({
     radians: radiansValue,
     radius: radiusValue,

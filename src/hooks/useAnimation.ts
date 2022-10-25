@@ -32,6 +32,7 @@ interface AnimationArgs {
 
 /**
  * A hook that creates linear translation animation.
+ * @params props The configuration to create the animation.
  * @returns The Animated Value on which the animation will be performed.
  */
 export const useAnimation = ({
