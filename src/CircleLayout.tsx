@@ -1,8 +1,7 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { Animated, View } from 'react-native';
 
 import { CircleLayoutComponent } from './CircleLayoutComponent';
-import { useAnimation } from './hooks';
 import { circleLayoutStyles } from './styles';
 import type { CircleLayoutProps } from './types';
 
@@ -29,25 +28,6 @@ export const CircleLayout = ({
     sweepAngle && sweepAngle !== 2 * Math.PI
       ? components.length - 1
       : components.length;
-
-  /**
-   * The animated value that is responsible for the opacity of the component.
-   */
-  const value = useAnimation({
-    showComponent: showComponents,
-    initialValue: 0,
-    finalValue: 1,
-    entryAnimationConfig: opacityAnimationConfig ?? {},
-    exitAnimationConfig: {
-      delay: (opacityAnimationConfig?.gap ?? 1000) * totalPoints,
-      ...opacityAnimationConfig,
-    },
-  });
-  // The value of opacity depending on the props of the component.
-  const opacity = useMemo(
-    () => (opacityAnimationConfig && value) || (showComponents ? 1 : 0),
-    [opacityAnimationConfig, showComponents, value]
-  );
 
   const componentsList = useCallback(
     () =>
@@ -83,10 +63,7 @@ export const CircleLayout = ({
       <View>
         {componentsList()}
         <Animated.View
-          style={[
-            { marginTop: radius, opacity: opacityAnimationConfig && opacity },
-            centerComponentContainerStyle,
-          ]}
+          style={[{ marginTop: radius }, centerComponentContainerStyle]}
         >
           {centerComponent}
         </Animated.View>
