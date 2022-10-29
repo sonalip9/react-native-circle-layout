@@ -16,6 +16,7 @@ export type CircleLayoutProps = {
   components: React.ReactNode[];
   /**
    * The component to be placed at the center.
+   * @default undefined
    */
   centerComponent?: React.ReactNode | undefined;
   /**
@@ -26,30 +27,36 @@ export type CircleLayoutProps = {
   /**
    * The distance in radians to be covered from the starting point. The
    * value needs to be in radians.
+   * @default 2 * Math.PI
    */
   sweepAngle?: number;
   /**
    * The angle at which the first component will be placed. The
    * value needs to be in radians.
+   * @default 0
    */
   startAngle?: number;
   /**
    * The styling of the entire component's container.
+   * @default undefined
    */
   containerStyle?: StyleProp<ViewStyle> | undefined;
   /**
    * The styling of the center component's container.
+   * @default undefined
    */
   centerComponentContainerStyle?: StyleProp<ViewStyle> | undefined;
   /**
    * Flag to show or hide the components in the circle layout.
    * This flag is used to perform the start and end animation.
+   * @default true
    */
-  showComponents: boolean;
+  showComponents?: boolean;
   /**
    * The configuration for the fade-in entry and fade-out exit
    * of the components. If this prop is undefined, then there
    * will be no animation.
+   * @default undefined
    */
   opacityAnimationConfig?: AnimationConfig | undefined;
   /**
@@ -57,6 +64,7 @@ export type CircleLayoutProps = {
    * of the components. The components will start from the
    * center and move to their final positions. If this
    * prop is undefined, then there will be no animation.
+   * @default undefined
    */
   linearAnimationConfig?: AnimationConfig | undefined;
   /**
@@ -65,6 +73,7 @@ export type CircleLayoutProps = {
    * position of the first component and move along the
    * circumference of the circle to their final positions. If this
    * prop is undefined, then there will be no animation.
+   * @default undefined
    */
   circularAnimationConfig?: AnimationConfig | undefined;
 };
@@ -105,6 +114,7 @@ export type ComponentProps = {
    * The configuration for the fade-in entry and fade-out exit
    * of the components. If this prop is undefined, then there
    * will be no animation.
+   * @default undefined
    */
   opacityAnimationConfig?: AnimationConfig | undefined;
   /**
@@ -112,6 +122,7 @@ export type ComponentProps = {
    * of the components. The components will start from the
    * center and move to their final positions. If this
    * prop is undefined, then there will be no animation.
+   * @default undefined
    */
   linearAnimationConfig?: AnimationConfig | undefined;
   /**
@@ -120,6 +131,7 @@ export type ComponentProps = {
    * position of the first component and move along the
    * circumference of the circle to their final positions. If this
    * prop is undefined, then there will be no animation.
+   * @default undefined
    */
   circularAnimationConfig?: AnimationConfig | undefined;
 };
