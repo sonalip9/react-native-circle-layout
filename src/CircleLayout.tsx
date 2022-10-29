@@ -29,6 +29,9 @@ export const CircleLayout = ({
       ? components.length - 1
       : components.length;
 
+  /**
+   * The list of components to be shown in the circle.
+   */
   const componentsList = useCallback(
     () =>
       components.map((component, index) => (
