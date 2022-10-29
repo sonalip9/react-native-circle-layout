@@ -18,9 +18,9 @@
 
 </div>
 
-Don't sit to re-invent the wheel, doing all the math, when you can use the `react-native-circle-layout` package to easily create any kind of a circular display of components - complete circle, semi-circle, quarter of a circle, or anything in the middle. You want it the other way around, we got you covered.
+Don't sit to re-invent the wheel, doing all the math, when you can use the `react-native-circle-layout` package to easily create any kind of a circular display of components - complete circle, semi-circle, quarter of a circle, or anything in the middle. You want it the other way around, I've got you covered. Animations? They're supported too.
 
-This library basically does the math to figure out where exactly it needs to place your elements so that they will be in a circular layout. Only minimal inputs required. See [this](#props) table for all inputs, and their defaults.
+This library basically does the math to figure out where exactly it needs to place your elements so that they will be in a circular layout. Only minimal inputs required. See [this](#props) section for all inputs, and their defaults.
 
 What each element is going to be is left to you - it can be an icon, a button, an image, literally anything.
 

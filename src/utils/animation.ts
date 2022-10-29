@@ -3,14 +3,17 @@ import type { Animated } from 'react-native';
 type InterpolationConfig = {
   /**
    * The start value of the input range.
+   * @default 0
    */
   startValue?: number;
   /**
    * The end value of the input range.
+   * @default 1
    */
   endValue?: number;
   /**
    * The number of iterations to perform.
+   * @default 50
    */
   totalIterations?: number;
 };
