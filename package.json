@@ -28,7 +28,8 @@
     "prepare": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn && yarn example pods"
+    "bootstrap": "yarn example && yarn && yarn example pods",
+    "ci:install": "rm -rf ./node_modules && yarn install --frozen-lockfile"
   },
   "keywords": [
     "react-native",
