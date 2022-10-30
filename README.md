@@ -3,41 +3,33 @@
 <div align='center'>
 
 <a href='https://www.npmjs.com/package/react-native-circle-layout'>
-  <img src='https://img.shields.io/npm/v/react-native-circle-layout' alt='NPM Version'>
-</a>
+  <img src='https://img.shields.io/npm/v/react-native-circle-layout' alt='NPM Version'></a>
 <a href='https://github.com/sonalip9/react-native-circle-layout/releases/latest'>
-  <img src='https://img.shields.io/github/release-date/sonalip9/react-native-circle-layout' alt='Releases'>
-</a>
+  <img src='https://img.shields.io/github/release-date/sonalip9/react-native-circle-layout' alt='Releases'></a>
 <a href='https://github.com/sonalip9/react-native-circle-layout/blob/main/LICENSE'>
-  <img src='https://img.shields.io/github/license/sonalip9/react-native-circle-layout' alt='License'>
-</a>
+  <img src='https://img.shields.io/github/license/sonalip9/react-native-circle-layout' alt='License'></a>
 <br/>
 <a href='https://github.com/sonalip9/react-native-circle-layout/releases'>
   <img src='https://img.shields.io/bundlephobia/minzip/react-native-circle-layout' alt='Minified zipped size'>
-</a>
-<a href='https://github.com/sonalip9/react-native-circle-layout/releases'>
-  <img src='https://img.shields.io/bundlephobia/min/react-native-circle-layout' alt='Minified size'>
-</a>
+  <img src='https://img.shields.io/bundlephobia/min/react-native-circle-layout' alt='Minified size'></a>
 <br/>
 <a href='https://github.com/sonalip9/react-native-circle-layout/search?l=typescript'>
-  <img src='https://img.shields.io/github/languages/top/sonalip9/react-native-circle-layout' alt='Language'>
-</a>
+  <img src='https://img.shields.io/github/languages/top/sonalip9/react-native-circle-layout' alt='Language'></a>
 <a href='https://github.com/sonalip9/react-native-circle-layout/commits/main'>
-  <img src='https://img.shields.io/tokei/lines/github/sonalip9/react-native-circle-layout' alt='Lines of code'>
-</a>
+  <img src='https://img.shields.io/tokei/lines/github/sonalip9/react-native-circle-layout' alt='Lines of code'></a>
 <a href='https://github.com/sonalip9/react-native-circle-layout/graphs/commit-activity'>
-  <img src='https://img.shields.io/github/commit-activity/m/sonalip9/react-native-circle-layout' alt='GitHub commit activity'>
-</a>
+  <img src='https://img.shields.io/github/commit-activity/m/sonalip9/react-native-circle-layout' alt='GitHub commit activity'></a>
 <br/>
 <a href='https://github.com/sonalip9/react-native-circle-layout'>
-  <img src='https://img.shields.io/github/stars/sonalip9/react-native-circle-layout?style=social' alt='GitHub Repo stars'>
-</a>
+  <img src='https://img.shields.io/github/stars/sonalip9/react-native-circle-layout?style=social' alt='GitHub Repo stars'></a>
 
 </div>
 
-Don't sit to re-invent the wheel, doing all the math, when you can use the `react-native-circle-layout` package to easily create any kind of a circular display of components - complete circle, semi-circle, quarter of a circle, or anything in the middle. You want it the other way around, I've got you covered. Animations? They're supported too.
+Easily create any kind of a circular display of components - complete circle, semi-circle, quarter of a circle, or anything in between. Start anywhere, end anywhere. Animations? They're supported too. (Make sure you have the latest version.)
 
-This library basically does the math to figure out where exactly it needs to place your elements so that they will be in a circular layout. Only minimal inputs required. See [this](#props) section for all inputs, and their defaults.
+Don't sit to re-invent the wheel, doing all the math, when you can use `react-native-circle-layout`.
+
+This library does the calculations to figure out where exactly it needs to place your elements so that they will be in a circular layout. Only minimal inputs required. See [this](#props) section for all inputs, and their defaults.
 
 What each element is going to be is left to you - it can be an icon, a button, an image, literally anything.
 
