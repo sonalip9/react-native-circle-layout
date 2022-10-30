@@ -2,19 +2,36 @@
 
 <div align='center'>
 
-![npm](https://img.shields.io/npm/v/react-native-circle-layout)
-![GitHub Release Date](https://img.shields.io/github/release-date/sonalip9/react-native-circle-layout)
-![npm](https://img.shields.io/npm/dt/react-native-circle-layout)
-![GitHub](https://img.shields.io/github/license/sonalip9/react-native-circle-layout)
+<a href='https://www.npmjs.com/package/react-native-circle-layout'>
+  <img src='https://img.shields.io/npm/v/react-native-circle-layout' alt='NPM Version'>
+</a>
+<a href='https://github.com/sonalip9/react-native-circle-layout/releases'>
+  <img src='https://img.shields.io/github/release-date/sonalip9/react-native-circle-layout' alt='Releases'>
+</a>
+<a href='https://github.com/sonalip9/react-native-circle-layout/blob/main/LICENSE'>
+  <img src='https://img.shields.io/github/license/sonalip9/react-native-circle-layout' alt='License'>
+</a>
 
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-native-circle-layout)
-![npm bundle size](https://img.shields.io/bundlephobia/min/react-native-circle-layout)
+<a href=''>
+  <img src='https://img.shields.io/bundlephobia/minzip/react-native-circle-layout' alt='Minified zipped size'>
+</a>
+<a href=''>
+  <img src='https://img.shields.io/bundlephobia/min/react-native-circle-layout' alt='Minified size'>
+</a>
 
-![GitHub top language](https://img.shields.io/github/languages/top/sonalip9/react-native-circle-layout)
-![Lines of code](https://img.shields.io/tokei/lines/github/sonalip9/react-native-circle-layout)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/sonalip9/react-native-circle-layout)
+<a href=''>
+  <img src='https://img.shields.io/github/languages/top/sonalip9/react-native-circle-layout' alt='Language'>
+</a>
+<a href=''>
+  <img src='https://img.shields.io/tokei/lines/github/sonalip9/react-native-circle-layout' alt='Lines of code'>
+</a>
+<a href=''>
+  <img src='https://img.shields.io/github/commit-activity/m/sonalip9/react-native-circle-layout' alt='GitHub commit activity'>
+</a>
 
-![GitHub Repo stars](https://img.shields.io/github/stars/sonalip9/react-native-circle-layout?style=social)
+<a href='https://github.com/sonalip9/react-native-circle-layout'>
+  <img src='https://img.shields.io/github/stars/sonalip9/react-native-circle-layout?style=social' alt='GitHub Repo stars'>
+</a>
 
 </div>
 
