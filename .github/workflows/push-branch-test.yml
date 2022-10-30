@@ -31,7 +31,7 @@ jobs:
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git remote set-url --push origin https://sonalip9:${{github_token}}@github.com/sonalip9/react-native-circle-layout.git
+          git remote set-url --push origin https://sonalip9:${{ secrets.GITHUB_TOKEN }}@github.com/sonalip9/react-native-circle-layout.git
           git push -u origin test-branch
 
       # raise a pr for this branch
