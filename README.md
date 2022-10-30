@@ -5,27 +5,27 @@
 <a href='https://www.npmjs.com/package/react-native-circle-layout'>
   <img src='https://img.shields.io/npm/v/react-native-circle-layout' alt='NPM Version'>
 </a>
-<a href='https://github.com/sonalip9/react-native-circle-layout/releases'>
+<a href='https://github.com/sonalip9/react-native-circle-layout/releases/latest'>
   <img src='https://img.shields.io/github/release-date/sonalip9/react-native-circle-layout' alt='Releases'>
 </a>
 <a href='https://github.com/sonalip9/react-native-circle-layout/blob/main/LICENSE'>
   <img src='https://img.shields.io/github/license/sonalip9/react-native-circle-layout' alt='License'>
 </a>
 <br/>
-<a href=''>
+<a href='https://github.com/sonalip9/react-native-circle-layout/releases'>
   <img src='https://img.shields.io/bundlephobia/minzip/react-native-circle-layout' alt='Minified zipped size'>
 </a>
-<a href=''>
+<a href='https://github.com/sonalip9/react-native-circle-layout/releases'>
   <img src='https://img.shields.io/bundlephobia/min/react-native-circle-layout' alt='Minified size'>
 </a>
 <br/>
-<a href=''>
+<a href='https://github.com/sonalip9/react-native-circle-layout/search?l=typescript'>
   <img src='https://img.shields.io/github/languages/top/sonalip9/react-native-circle-layout' alt='Language'>
 </a>
-<a href=''>
+<a href='https://github.com/sonalip9/react-native-circle-layout/commits/main'>
   <img src='https://img.shields.io/tokei/lines/github/sonalip9/react-native-circle-layout' alt='Lines of code'>
 </a>
-<a href=''>
+<a href='https://github.com/sonalip9/react-native-circle-layout/graphs/commit-activity'>
   <img src='https://img.shields.io/github/commit-activity/m/sonalip9/react-native-circle-layout' alt='GitHub commit activity'>
 </a>
 <br/>
