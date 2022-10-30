@@ -11,14 +11,14 @@
 <a href='https://github.com/sonalip9/react-native-circle-layout/blob/main/LICENSE'>
   <img src='https://img.shields.io/github/license/sonalip9/react-native-circle-layout' alt='License'>
 </a>
-
+<br/>
 <a href=''>
   <img src='https://img.shields.io/bundlephobia/minzip/react-native-circle-layout' alt='Minified zipped size'>
 </a>
 <a href=''>
   <img src='https://img.shields.io/bundlephobia/min/react-native-circle-layout' alt='Minified size'>
 </a>
-
+<br/>
 <a href=''>
   <img src='https://img.shields.io/github/languages/top/sonalip9/react-native-circle-layout' alt='Language'>
 </a>
@@ -28,7 +28,7 @@
 <a href=''>
   <img src='https://img.shields.io/github/commit-activity/m/sonalip9/react-native-circle-layout' alt='GitHub commit activity'>
 </a>
-
+<br/>
 <a href='https://github.com/sonalip9/react-native-circle-layout'>
   <img src='https://img.shields.io/github/stars/sonalip9/react-native-circle-layout?style=social' alt='GitHub Repo stars'>
 </a>
