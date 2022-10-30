@@ -1,9 +1,9 @@
 name: Release
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -56,7 +56,7 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn release --npm.skipChecks --dry-run
+        run: yarn release --npm.skipChecks
 
       # raise a pr for this branch
       - name: Create pull request
