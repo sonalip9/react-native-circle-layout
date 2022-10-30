@@ -40,7 +40,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: echo "VERSION=$(yarn release --release-version --npm.skipChecks | egrep -o '^([0-9]{1,}\.){2}[0-9]{1,}$')" >> $GITHUB_OUTPUT
 
-      - run: echo "The next release version is ${{ steps.release-version.outputs.VERSION }}"
+      - name: Print release version
+        run: echo "The next release version is ${{ steps.release-version.outputs.VERSION }}"
 
       # Create a release branch with the naming as - release-v{version}
       # push the branch to origin
@@ -50,6 +51,7 @@ jobs:
         run: |
           git checkout -b release-v${{ steps.release-version.outputs.VERSION }}
           git remote set-url --push origin https://sonalip9:${{ secrets.GITHUB_TOKEN }}@github.com/sonalip9/react-native-circle-layout.git
+          git push -u origin release-v${{ steps.release-version.outputs.VERSION }}
 
       - name: Release
         env:
