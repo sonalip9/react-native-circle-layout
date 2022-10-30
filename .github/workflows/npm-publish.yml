@@ -27,11 +27,20 @@ jobs:
 
       - name: Install dependencies
         run: yarn ci:install
-      
+
       - name: Setup Git user
-        run : |
+        run: |
           git config --global user.email "sonali.parekh912@gmail.com"
           git config --global user.name "Sonali Parekh"
+
+      # Find the version to be released and store it in github env
+      - name: Get release version
+        id: release-version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "VERSION=$(yarn release --release-version --npm.skipChecks | egrep -o '^([0-9]{1,}\.){2}[0-9]{1,}$')" >> $GITHUB_OUTPUT
+
+      - run: echo "The next release version is ${{ steps.release-version.outputs.VERSION }}"
 
       - name: Release
         env:
