@@ -1,2 +1,2 @@
 export { CircleLayout } from './CircleLayout';
-export type { CircleLayoutProps } from './types';
+export type { CircleLayoutProps, CircleLayoutRef } from './types';

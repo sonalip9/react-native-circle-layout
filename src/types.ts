@@ -47,12 +47,6 @@ export type CircleLayoutProps = {
    */
   centerComponentContainerStyle?: StyleProp<ViewStyle> | undefined;
   /**
-   * Flag to show or hide the components in the circle layout.
-   * This flag is used to perform the start and end animation.
-   * @default true
-   */
-  showComponents?: boolean;
-  /**
    * The configuration for the fade-in entry and fade-out exit
    * of the components. If this prop is undefined, then there
    * will be no animation.
