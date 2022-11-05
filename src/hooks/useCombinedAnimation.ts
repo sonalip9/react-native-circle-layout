@@ -16,12 +16,19 @@ type UseCombinedAnimation = {
   radians: number;
 };
 
+/**
+ * A hook to perform entry and exit animation of each of the config
+ * passed.
+ * @param props The props passed to the hook.
+ * @returns An object containing animated value for the animation config passed,
+ * the entry and exit functions and the visibility state of the component.
+ */
 export const useCombinedAnimation = ({
   index,
   radians,
 }: UseCombinedAnimation) => {
   const {
-    totalPoints,
+    totalParts: totalPoints,
     circularAnimationConfig,
     linearAnimationConfig,
     opacityAnimationConfig,
@@ -29,7 +36,11 @@ export const useCombinedAnimation = ({
     startAngle,
   } = React.useContext(CircleLayoutContext);
 
+  /**
+   * A flag to determine the visibility state of the component.
+   */
   const [componentVisible, setComponentVisible] = React.useState(true);
+
   /**
    * The animated value that is responsible for the opacity of the component.
    */
@@ -110,6 +121,9 @@ export const useCombinedAnimation = ({
     [circularAnimationConfig, radians, animatedRadians]
   );
 
+  /**
+   * Function to hide the component by performing the animation configs passed.
+   */
   const hideComponent = React.useCallback(() => {
     const animationList: Array<Animated.CompositeAnimation> = [];
     if (opacityAnimationConfig) animationList.push(opacityExitAnimation());
@@ -127,6 +141,9 @@ export const useCombinedAnimation = ({
     opacityExitAnimation,
   ]);
 
+  /**
+   * Function to show the component by performing the animation configs passed.
+   */
   const showComponent = React.useCallback(() => {
     const animationList: Array<Animated.CompositeAnimation> = [];
     if (opacityAnimationConfig) animationList.push(opacityEntryAnimation());

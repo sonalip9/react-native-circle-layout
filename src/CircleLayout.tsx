@@ -14,7 +14,7 @@ import type {
 /**
  * A component that places a list of components in a circular layout.
  * @param props The properties passed to the component
- * @returns
+ * @returns A component that places the passed components in a circular view.
  */
 export const CircleLayout = React.forwardRef<
   CircleLayoutRef,
@@ -35,19 +35,28 @@ export const CircleLayout = React.forwardRef<
     }: CircleLayoutProps,
     ref
   ) => {
+    /**
+     * Array of references for each of the circle components.
+     */
     const componentRefs = React.useRef<Array<ComponentRef | null>>(
       Array(components.length).fill(null) as null[]
     );
 
-    // The total number of points to divide the circle into
-    const totalPoints =
-      sweepAngle && sweepAngle !== 2 * Math.PI
-        ? components.length - 1
-        : components.length;
+    // The total number of parts to divide the circle into
+    const totalParts = React.useMemo(
+      () =>
+        sweepAngle && sweepAngle !== 2 * Math.PI
+          ? components.length - 1
+          : components.length,
+      [components, sweepAngle]
+    );
 
+    /**
+     * The value passed to the context of the circle layout.
+     */
     const contextValue: CircleLayoutContextType = React.useMemo(
       () => ({
-        totalPoints,
+        totalParts,
         opacityAnimationConfig,
         circularAnimationConfig,
         linearAnimationConfig,
@@ -60,7 +69,7 @@ export const CircleLayout = React.forwardRef<
         opacityAnimationConfig,
         radius,
         startAngle,
-        totalPoints,
+        totalParts,
       ]
     );
 
@@ -75,15 +84,18 @@ export const CircleLayout = React.forwardRef<
             index={index}
             // eslint-disable-next-line react/no-array-index-key
             key={index}
-            radians={startAngle + sweepAngle * (index / totalPoints)}
+            radians={startAngle + sweepAngle * (index / totalParts)}
             ref={(el) => {
               componentRefs.current[index] = el;
             }}
           />
         )),
-      [components, startAngle, sweepAngle, totalPoints]
+      [components, startAngle, sweepAngle, totalParts]
     );
 
+    /**
+     * The instance value that is exposed to parent components when using ref.
+     */
     React.useImperativeHandle(ref, () => ({
       hideComponents: () =>
         componentRefs.current?.forEach((componentRef) =>

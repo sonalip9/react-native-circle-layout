@@ -26,9 +26,11 @@ interface AnimationArgs {
 }
 
 /**
- * A hook that creates linear translation animation.
+ * A hook that creates entry and exit animations based on
+ * the config.
  * @params props The configuration to create the animation.
- * @returns The Animated Value on which the animation will be performed.
+ * @returns The an object containing the animated value on which
+ * the animation will be performed, the entry and exit animation function.
  */
 export const useAnimation = ({
   initialValue,
@@ -48,7 +50,7 @@ export const useAnimation = ({
         toValue: finalValue,
         ...entryAnimationConfig,
       }),
-    []
+    [entryAnimationConfig, finalValue]
   );
 
   /**
@@ -61,7 +63,7 @@ export const useAnimation = ({
         toValue: initialValue,
         ...exitAnimationConfig,
       }),
-    []
+    [exitAnimationConfig, initialValue]
   );
 
   return { value, entryAnimation, exitAnimation };

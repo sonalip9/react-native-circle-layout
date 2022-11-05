@@ -9,7 +9,7 @@ import { pointOnCircle } from './utils';
 /**
  * A component that positions one component in the circle layout.
  * @param props  The properties passed to the component
- * @returns
+ * @returns A component that is placed at a point on the circle.
  */
 export const CircleLayoutComponent = forwardRef<ComponentRef, ComponentProps>(
   ({ component, index, radians }: ComponentProps, ref) => {
@@ -29,6 +29,9 @@ export const CircleLayoutComponent = forwardRef<ComponentRef, ComponentProps>(
       radius: radiusValue,
     });
 
+    /**
+     * The instance value that is exposed to parent components when using ref.
+     */
     useImperativeHandle(ref, () => ({
       componentVisible,
       hideComponent,
@@ -37,7 +40,6 @@ export const CircleLayoutComponent = forwardRef<ComponentRef, ComponentProps>(
 
     return (
       <Animated.View
-        key={index}
         style={[
           circleComponentStyles.componentContainer,
           {
