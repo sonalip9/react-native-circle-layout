@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { Animated, StyleProp, ViewStyle } from 'react-native';
 
-type AnimationConfig = {
+export type AnimationConfig = {
   /**
    * The gap between the start of animation of 2 consecutive components.
    * This value is in milliseconds.
