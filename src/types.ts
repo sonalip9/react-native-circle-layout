@@ -73,15 +73,20 @@ export type CircleLayoutProps = {
 };
 
 export type CircleLayoutRef = {
+  /**
+   * Function to show every component in the circle layout by
+   * performing animation according to the passed config.
+   */
   showComponents: () => void;
+  /**
+   * Function to hide every component in the circle layout by
+   * performing animation according to the passed config.
+   */
   hideComponents: () => void;
+  /**
+   * Flag to maintain the visibility state of the components.
+   */
   componentsVisible: boolean;
-};
-
-export type ComponentRef = {
-  showComponent: () => void;
-  hideComponent: () => void;
-  componentVisible: boolean;
 };
 
 export type ComponentProps = {
@@ -99,8 +104,28 @@ export type ComponentProps = {
   radians: number;
 };
 
+export type ComponentRef = {
+  /**
+   * Function to show the component in the circle layout by
+   * performing animation according to the passed config.
+   */
+  showComponent: () => void;
+  /**
+   * Function to hide component in the circle layout by
+   * performing animation according to the passed config.
+   */
+  hideComponent: () => void;
+  /**
+   * Flag to maintain the visibility state of the component.
+   */
+  componentVisible: boolean;
+};
+
 export type CircleLayoutContextType = {
-  totalPoints: number;
+  /**
+   * The total number of parts the circle is divided into.
+   */
+  totalParts: number;
   /**
    * The configuration for the fade-in entry and fade-out exit
    * of the components. If this prop is undefined, then there
