@@ -1,7 +1,7 @@
 name: Static Code Analysis
 
 on:
-  pull-request:
+  pull_request:
     branches:
       - main
   push:
@@ -24,7 +24,9 @@ jobs:
           cache: 'yarn'
 
       - name: Install dependencies
-        run: yarn ci:install
+        run: |
+          yarn ci:install
+          yarn example install --frozen-lockfile  --prefer-offline
 
       - name: Run linter
         run: yarn lint
