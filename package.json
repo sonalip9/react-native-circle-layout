@@ -29,7 +29,7 @@
     "release": "release-it",
     "example": "yarn --cwd example",
     "bootstrap": "yarn example && yarn && yarn example pods",
-    "ci:install": "rm -rf ./node_modules && yarn install --frozen-lockfile"
+    "ci:install": "rm -rf ./node_modules && yarn install --frozen-lockfile  --prefer-offline"
   },
   "keywords": [
     "react-native",
