@@ -78,6 +78,18 @@ export type CircleLayoutProps = {
   circularAnimationConfig?: AnimationConfig | undefined;
 };
 
+export type CircleLayoutRef = {
+  showComponents: () => void;
+  hideComponents: () => void;
+  componentsVisible: boolean;
+};
+
+export type ComponentRef = {
+  showComponent: () => void;
+  hideComponent: () => void;
+  componentVisible: boolean;
+};
+
 export type ComponentProps = {
   /**
    * The value of the component that is plotted.
@@ -105,11 +117,6 @@ export type ComponentProps = {
    * value needs to be in radians.
    */
   startAngle: number;
-  /**
-   * Flag to show or hide the component in the circle layout.
-   * This flag is used to perform the start and end animation.
-   */
-  showComponent: boolean;
   /**
    * The configuration for the fade-in entry and fade-out exit
    * of the components. If this prop is undefined, then there
