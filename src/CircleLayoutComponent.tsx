@@ -12,20 +12,7 @@ import { pointOnCircle } from './utils';
  * @returns
  */
 export const CircleLayoutComponent = forwardRef<ComponentRef, ComponentProps>(
-  (
-    {
-      index,
-      component,
-      totalPoints,
-      opacityAnimationConfig = undefined,
-      linearAnimationConfig = undefined,
-      circularAnimationConfig = undefined,
-      startAngle,
-      radius,
-      radians,
-    }: ComponentProps,
-    ref
-  ) => {
+  ({ component, index, radians }: ComponentProps, ref) => {
     const {
       hideComponent,
       opacityValue: opacity,
@@ -33,16 +20,7 @@ export const CircleLayoutComponent = forwardRef<ComponentRef, ComponentProps>(
       radiusValue,
       showComponent,
       componentVisible,
-    } = useCombinedAnimation({
-      totalPoints,
-      circularAnimationConfig,
-      index,
-      linearAnimationConfig,
-      opacityAnimationConfig,
-      radians,
-      radius,
-      startAngle,
-    });
+    } = useCombinedAnimation({ index, radians });
 
     // The position of the component.
     // This is animated if either linear or circular animation config is passed.

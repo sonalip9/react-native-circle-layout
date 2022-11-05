@@ -1,31 +1,34 @@
 import React, { useMemo } from 'react';
 import { Animated } from 'react-native';
 
+import { CircleLayoutContext } from '../CircleLayoutContext';
+
 import { useAnimation } from './useAnimation';
 
-import type { AnimationConfig } from 'src/types';
-
 type UseCombinedAnimation = {
-  totalPoints: number;
+  /**
+   * The value of the component that is plotted.
+   */
   index: number;
-  radius: number;
+  /**
+   * The angle at which this component will be placed on the circle.
+   */
   radians: number;
-  startAngle: number;
-  opacityAnimationConfig: AnimationConfig | undefined;
-  linearAnimationConfig: AnimationConfig | undefined;
-  circularAnimationConfig: AnimationConfig | undefined;
 };
 
 export const useCombinedAnimation = ({
-  totalPoints,
   index,
-  radius,
   radians,
-  startAngle,
-  opacityAnimationConfig,
-  linearAnimationConfig,
-  circularAnimationConfig,
 }: UseCombinedAnimation) => {
+  const {
+    totalPoints,
+    circularAnimationConfig,
+    linearAnimationConfig,
+    opacityAnimationConfig,
+    radius,
+    startAngle,
+  } = React.useContext(CircleLayoutContext);
+
   const [componentVisible, setComponentVisible] = React.useState(true);
   /**
    * The animated value that is responsible for the opacity of the component.

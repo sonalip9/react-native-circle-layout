@@ -92,31 +92,21 @@ export type ComponentRef = {
 
 export type ComponentProps = {
   /**
-   * The value of the component that is plotted.
-   */
-  index: number;
-  /**
    * The component to be displayed.
    */
   component: ReactNode;
   /**
-   * The total number of components in the circle layout.
+   * The value of the component that is plotted.
    */
-  totalPoints: number;
+  index: number;
   /**
    * The angle at which this component will be placed on the circle.
    */
   radians: number;
-  /**
-   * The radius of the circle on which the components will
-   * be placed.
-   */
-  radius: number;
-  /**
-   * The angle at which the first component will be placed. The
-   * value needs to be in radians.
-   */
-  startAngle: number;
+};
+
+export type CircleLayoutContextType = {
+  totalPoints: number;
   /**
    * The configuration for the fade-in entry and fade-out exit
    * of the components. If this prop is undefined, then there
@@ -141,4 +131,14 @@ export type ComponentProps = {
    * @default undefined
    */
   circularAnimationConfig?: AnimationConfig | undefined;
+  /**
+   * The radius of the circle on which the components will
+   * be placed.
+   */
+  radius: number;
+  /**
+   * The angle at which the first component will be placed. The
+   * value needs to be in radians.
+   */
+  startAngle: number;
 };

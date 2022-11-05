@@ -1,21 +1,25 @@
-import React, {
-  forwardRef,
-  useCallback,
-  useImperativeHandle,
-  useRef,
-} from 'react';
+import React from 'react';
 import { Animated, View } from 'react-native';
 
 import { CircleLayoutComponent } from './CircleLayoutComponent';
+import { CircleLayoutContext } from './CircleLayoutContext';
 import { circleLayoutStyles } from './styles';
-import type { CircleLayoutProps, CircleLayoutRef, ComponentRef } from './types';
+import type {
+  CircleLayoutContextType,
+  CircleLayoutProps,
+  CircleLayoutRef,
+  ComponentRef,
+} from './types';
 
 /**
  * A component that places a list of components in a circular layout.
  * @param props The properties passed to the component
  * @returns
  */
-export const CircleLayout = forwardRef<CircleLayoutRef, CircleLayoutProps>(
+export const CircleLayout = React.forwardRef<
+  CircleLayoutRef,
+  CircleLayoutProps
+>(
   (
     {
       components,
@@ -31,7 +35,7 @@ export const CircleLayout = forwardRef<CircleLayoutRef, CircleLayoutProps>(
     }: CircleLayoutProps,
     ref
   ) => {
-    const componentRefs = useRef<Array<ComponentRef | null>>(
+    const componentRefs = React.useRef<Array<ComponentRef | null>>(
       Array(components.length).fill(null) as null[]
     );
 
@@ -41,33 +45,46 @@ export const CircleLayout = forwardRef<CircleLayoutRef, CircleLayoutProps>(
         ? components.length - 1
         : components.length;
 
+    const contextValue: CircleLayoutContextType = React.useMemo(
+      () => ({
+        totalPoints,
+        opacityAnimationConfig,
+        circularAnimationConfig,
+        linearAnimationConfig,
+        radius,
+        startAngle,
+      }),
+      [
+        circularAnimationConfig,
+        linearAnimationConfig,
+        opacityAnimationConfig,
+        radius,
+        startAngle,
+        totalPoints,
+      ]
+    );
+
     /**
      * The list of components to be shown in the circle.
      */
-    const componentsList = useCallback(
+    const componentsList = React.useCallback(
       () =>
         components.map((component, index) => (
           <CircleLayoutComponent
-            circularAnimationConfig={circularAnimationConfig}
             component={component}
             index={index}
             // eslint-disable-next-line react/no-array-index-key
             key={index}
-            linearAnimationConfig={linearAnimationConfig}
-            opacityAnimationConfig={opacityAnimationConfig}
             radians={startAngle + sweepAngle * (index / totalPoints)}
-            radius={radius}
             ref={(el) => {
               componentRefs.current[index] = el;
             }}
-            startAngle={startAngle}
-            totalPoints={components.length}
           />
         )),
-      [components]
+      [components, startAngle, sweepAngle, totalPoints]
     );
 
-    useImperativeHandle(ref, () => ({
+    React.useImperativeHandle(ref, () => ({
       hideComponents: () =>
         componentRefs.current?.forEach((componentRef) =>
           componentRef?.hideComponent()
@@ -82,24 +99,24 @@ export const CircleLayout = forwardRef<CircleLayoutRef, CircleLayoutProps>(
     }));
 
     return (
-      <View
-        style={[
-          circleLayoutStyles.layoutContainer,
-          {
-            minHeight: sweepAngle >= Math.PI ? 2 * radius : radius,
-          },
-          containerStyle,
-        ]}
-      >
-        <View>
-          {componentsList()}
-          <Animated.View
-            style={[{ marginTop: radius }, centerComponentContainerStyle]}
-          >
-            {centerComponent}
-          </Animated.View>
+      <CircleLayoutContext.Provider value={contextValue}>
+        <View
+          style={[
+            circleLayoutStyles.layoutContainer,
+            { minHeight: sweepAngle >= Math.PI ? 2 * radius : radius },
+            containerStyle,
+          ]}
+        >
+          <View>
+            {componentsList()}
+            <Animated.View
+              style={[{ marginTop: radius }, centerComponentContainerStyle]}
+            >
+              {centerComponent}
+            </Animated.View>
+          </View>
         </View>
-      </View>
+      </CircleLayoutContext.Provider>
     );
   }
 );
