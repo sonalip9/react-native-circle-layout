@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import { CircleLayout } from 'react-native-circle-layout';
+import type { CircleLayoutRef } from 'src/types';
 
 import { styles } from './styles';
 
@@ -24,6 +25,15 @@ const App = () => {
   const [sweepAngle, setSweepAngle] = React.useState(2 * Math.PI);
   const [startAngle, setStartAngle] = React.useState(0);
   const [numberOfPoints, setNumberOfPoints] = React.useState(2);
+  const circleLayoutRef = React.useRef<CircleLayoutRef>(null);
+
+  React.useEffect(() => {
+    if (showCircle) {
+      circleLayoutRef.current?.showComponents();
+    } else {
+      circleLayoutRef.current?.hideComponents();
+    }
+  }, [showCircle]);
 
   const createComponents = (n: number) => {
     const components = [];
@@ -53,7 +63,7 @@ const App = () => {
               linearAnimationConfig={{ gap: 1000, duration: 1000 }}
               opacityAnimationConfig={{ gap: 1000, duration: 1000 }}
               radius={radius}
-              showComponents={showCircle}
+              ref={circleLayoutRef}
               startAngle={startAngle}
               sweepAngle={sweepAngle}
             />

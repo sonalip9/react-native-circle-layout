@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { Animated } from 'react-native';
 
 type AnimationProps = Omit<
@@ -7,11 +7,6 @@ type AnimationProps = Omit<
 >;
 
 interface AnimationArgs {
-  /**
-   * A flag to maintain whether the component is visible or not.
-   * The change in value of this property triggers the entry or exit animation.
-   */
-  showComponent: boolean;
   /**
    * The start value of the animated value.
    */
@@ -36,7 +31,6 @@ interface AnimationArgs {
  * @returns The Animated Value on which the animation will be performed.
  */
 export const useAnimation = ({
-  showComponent,
   initialValue,
   finalValue,
   entryAnimationConfig,
@@ -70,26 +64,5 @@ export const useAnimation = ({
     []
   );
 
-  /**
-   * This hook performs entry and exit animation depending on the state of the
-   * showComponent flag.
-   */
-  useEffect(() => {
-    const inAnimation = entryAnimation();
-    const outAnimation = exitAnimation();
-
-    if (showComponent) {
-      value.setValue(initialValue);
-      inAnimation.start();
-    } else {
-      value.setValue(finalValue);
-      outAnimation.start();
-    }
-    return () => {
-      inAnimation.stop();
-      outAnimation.stop();
-    };
-  }, [showComponent]);
-
-  return value;
+  return { value, entryAnimation, exitAnimation };
 };

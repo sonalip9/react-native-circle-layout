@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { Animated, StyleProp, ViewStyle } from 'react-native';
 
-type AnimationConfig = {
+export type AnimationConfig = {
   /**
    * The gap between the start of animation of 2 consecutive components.
    * This value is in milliseconds.
@@ -78,38 +78,35 @@ export type CircleLayoutProps = {
   circularAnimationConfig?: AnimationConfig | undefined;
 };
 
+export type CircleLayoutRef = {
+  showComponents: () => void;
+  hideComponents: () => void;
+  componentsVisible: boolean;
+};
+
+export type ComponentRef = {
+  showComponent: () => void;
+  hideComponent: () => void;
+  componentVisible: boolean;
+};
+
 export type ComponentProps = {
-  /**
-   * The value of the component that is plotted.
-   */
-  index: number;
   /**
    * The component to be displayed.
    */
   component: ReactNode;
   /**
-   * The total number of components in the circle layout.
+   * The value of the component that is plotted.
    */
-  totalPoints: number;
+  index: number;
   /**
    * The angle at which this component will be placed on the circle.
    */
   radians: number;
-  /**
-   * The radius of the circle on which the components will
-   * be placed.
-   */
-  radius: number;
-  /**
-   * The angle at which the first component will be placed. The
-   * value needs to be in radians.
-   */
-  startAngle: number;
-  /**
-   * Flag to show or hide the component in the circle layout.
-   * This flag is used to perform the start and end animation.
-   */
-  showComponent: boolean;
+};
+
+export type CircleLayoutContextType = {
+  totalPoints: number;
   /**
    * The configuration for the fade-in entry and fade-out exit
    * of the components. If this prop is undefined, then there
@@ -134,4 +131,14 @@ export type ComponentProps = {
    * @default undefined
    */
   circularAnimationConfig?: AnimationConfig | undefined;
+  /**
+   * The radius of the circle on which the components will
+   * be placed.
+   */
+  radius: number;
+  /**
+   * The angle at which the first component will be placed. The
+   * value needs to be in radians.
+   */
+  startAngle: number;
 };
