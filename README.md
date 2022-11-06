@@ -6,7 +6,8 @@
   <img src='https://img.shields.io/npm/v/react-native-circle-layout' alt='NPM Version'></a>
 <a href='https://github.com/sonalip9/react-native-circle-layout/releases/latest'>
   <img src='https://img.shields.io/github/release-date/sonalip9/react-native-circle-layout' alt='Releases'></a>
-<img src='https://img.shields.io/npm/dt/react-native-circle-layout' />
+<a href='https://www.npmjs.com/package/react-native-circle-layout'>
+  <img src='https://img.shields.io/npm/dt/react-native-circle-layout' /></a>
 <a href='https://github.com/sonalip9/react-native-circle-layout/blob/main/LICENSE'>
   <img src='https://img.shields.io/github/license/sonalip9/react-native-circle-layout' alt='License'></a>
 <br/>
