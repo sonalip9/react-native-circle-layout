@@ -8,8 +8,11 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import { CircleLayout } from 'react-native-circle-layout';
-import type { CircleLayoutRef } from 'src/types';
+import {
+  AnimationType,
+  CircleLayout,
+  CircleLayoutRef,
+} from 'react-native-circle-layout';
 
 import { styles } from './styles';
 
@@ -56,12 +59,23 @@ const App = () => {
         <View style={styles.flex}>
           {showInitial && (
             <CircleLayout
+              animationConfigs={[
+                {
+                  type: AnimationType.OPACITY,
+                  config: { gap: 1000, duration: 1000 },
+                },
+                {
+                  type: AnimationType.LINEAR,
+                  config: { gap: 1000, duration: 1000 },
+                },
+                {
+                  type: AnimationType.CIRCULAR,
+                  config: { gap: 1000, duration: 1000 },
+                },
+              ]}
               centerComponent={<View style={styles.centerComponent} />}
-              circularAnimationConfig={{ gap: 1000, duration: 1000 }}
               components={createComponents(numberOfPoints)}
               containerStyle={styles.circleLayoutContainer}
-              linearAnimationConfig={{ gap: 1000, duration: 1000 }}
-              opacityAnimationConfig={{ gap: 1000, duration: 1000 }}
               radius={radius}
               ref={circleLayoutRef}
               startAngle={startAngle}
