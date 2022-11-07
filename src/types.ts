@@ -1,13 +1,40 @@
 import type { ReactNode } from 'react';
 import type { Animated, StyleProp, ViewStyle } from 'react-native';
 
-export type AnimationConfig = {
+export enum AnimationType {
   /**
-   * The gap between the start of animation of 2 consecutive components.
-   * This value is in milliseconds.
+   * The configuration for the fade-in entry and fade-out exit
+   * of the components. If this prop is undefined, then there
+   * will be no animation.
    */
-  gap: number;
-} & Omit<Animated.TimingAnimationConfig, 'toValue' | 'useNativeDriver'>;
+  OPACITY = 'opacityAnimationConfig',
+  /**
+   * The configuration for the linear entry and exit animations
+   * of the components. The components will start from the
+   * center and move to their final positions. If this
+   * prop is undefined, then there will be no animation.
+   */
+  LINEAR = 'linearAnimationConfig',
+  /**
+   * The configuration for the circle entry and exit animations
+   * of the components. The components will start from the
+   * position of the first component and move along the
+   * circumference of the circle to their final positions. If this
+   * prop is undefined, then there will be no animation.
+   */
+  CIRCULAR = 'circularAnimationConfig',
+}
+
+export type AnimationConfig = {
+  type: AnimationType;
+  config: {
+    /**
+     * The gap between the start of animation of 2 consecutive components.
+     * This value is in milliseconds.
+     */
+    gap: number;
+  } & Omit<Animated.TimingAnimationConfig, 'toValue' | 'useNativeDriver'>;
+};
 
 export type CircleLayoutProps = {
   /**
@@ -47,29 +74,9 @@ export type CircleLayoutProps = {
    */
   centerComponentContainerStyle?: StyleProp<ViewStyle> | undefined;
   /**
-   * The configuration for the fade-in entry and fade-out exit
-   * of the components. If this prop is undefined, then there
-   * will be no animation.
-   * @default undefined
+   * Array of animations to be performed on entry and exit of components.
    */
-  opacityAnimationConfig?: AnimationConfig | undefined;
-  /**
-   * The configuration for the linear entry and exit animations
-   * of the components. The components will start from the
-   * center and move to their final positions. If this
-   * prop is undefined, then there will be no animation.
-   * @default undefined
-   */
-  linearAnimationConfig?: AnimationConfig | undefined;
-  /**
-   * The configuration for the circle entry and exit animations
-   * of the components. The components will start from the
-   * position of the first component and move along the
-   * circumference of the circle to their final positions. If this
-   * prop is undefined, then there will be no animation.
-   * @default undefined
-   */
-  circularAnimationConfig?: AnimationConfig | undefined;
+  animationConfigs?: AnimationConfig[] | undefined;
 };
 
 export type CircleLayoutRef = {
@@ -127,29 +134,9 @@ export type CircleLayoutContextType = {
    */
   totalParts: number;
   /**
-   * The configuration for the fade-in entry and fade-out exit
-   * of the components. If this prop is undefined, then there
-   * will be no animation.
-   * @default undefined
+   * Array of animations to be performed on entry and exit of components.
    */
-  opacityAnimationConfig?: AnimationConfig | undefined;
-  /**
-   * The configuration for the linear entry and exit
-   * of the components. The components will start from the
-   * center and move to their final positions. If this
-   * prop is undefined, then there will be no animation.
-   * @default undefined
-   */
-  linearAnimationConfig?: AnimationConfig | undefined;
-  /**
-   * The configuration for the circle entry and exit animations
-   * of the components. The components will start from the
-   * position of the first component and move along the
-   * circumference of the circle to their final positions. If this
-   * prop is undefined, then there will be no animation.
-   * @default undefined
-   */
-  circularAnimationConfig?: AnimationConfig | undefined;
+  animationConfigs?: AnimationConfig[] | undefined;
   /**
    * The radius of the circle on which the components will
    * be placed.
