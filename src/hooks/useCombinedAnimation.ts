@@ -5,6 +5,8 @@ import { CircleLayoutContext } from '../CircleLayoutContext';
 
 import { useAnimation } from './useAnimation';
 
+import { AnimationType } from 'src/types';
+
 type UseCombinedAnimation = {
   /**
    * The value of the component that is plotted.
@@ -29,12 +31,20 @@ export const useCombinedAnimation = ({
 }: UseCombinedAnimation) => {
   const {
     totalParts: totalPoints,
-    circularAnimationConfig,
-    linearAnimationConfig,
-    opacityAnimationConfig,
+    animationConfigs,
     radius,
     startAngle,
   } = React.useContext(CircleLayoutContext);
+
+  const opacityAnimationConfig = animationConfigs?.find(
+    (config) => config.type === AnimationType.OPACITY
+  )?.config;
+  const linearAnimationConfig = animationConfigs?.find(
+    (config) => config.type === AnimationType.LINEAR
+  )?.config;
+  const circularAnimationConfig = animationConfigs?.find(
+    (config) => config.type === AnimationType.CIRCULAR
+  )?.config;
 
   /**
    * A flag to determine the visibility state of the component.
@@ -121,45 +131,71 @@ export const useCombinedAnimation = ({
     [circularAnimationConfig, radians, animatedRadians]
   );
 
+  const entryAnimationList = React.useMemo(
+    () =>
+      animationConfigs?.map((animationConfig) => {
+        switch (animationConfig.type) {
+          case AnimationType.OPACITY:
+            return opacityEntryAnimation();
+          case AnimationType.LINEAR:
+            return linearEntryAnimation();
+          case AnimationType.CIRCULAR:
+            return circularEntryAnimation();
+          default:
+            throw new Error(`Unrecognized config type`);
+        }
+      }),
+    [
+      animationConfigs,
+      circularEntryAnimation,
+      linearEntryAnimation,
+      opacityEntryAnimation,
+    ]
+  );
+
+  const exitAnimationList = React.useMemo(
+    () =>
+      animationConfigs?.map((animationConfig) => {
+        switch (animationConfig.type) {
+          case AnimationType.OPACITY:
+            return opacityExitAnimation();
+          case AnimationType.LINEAR:
+            return linearExitAnimation();
+          case AnimationType.CIRCULAR:
+            return circularExitAnimation();
+          default:
+            throw new Error(`Unrecognized config type`);
+        }
+      }),
+    [
+      animationConfigs,
+      circularExitAnimation,
+      linearExitAnimation,
+      opacityExitAnimation,
+    ]
+  );
+
   /**
    * Function to hide the component by performing the animation configs passed.
    */
   const hideComponent = React.useCallback(() => {
-    const animationList: Array<Animated.CompositeAnimation> = [];
-    if (opacityAnimationConfig) animationList.push(opacityExitAnimation());
-    if (linearAnimationConfig) animationList.push(linearExitAnimation());
-    if (circularAnimationConfig) animationList.push(circularExitAnimation());
-    Animated.parallel(animationList).start(() => {
-      setComponentVisible(false);
-    });
-  }, [
-    circularAnimationConfig,
-    circularExitAnimation,
-    linearAnimationConfig,
-    linearExitAnimation,
-    opacityAnimationConfig,
-    opacityExitAnimation,
-  ]);
+    if (exitAnimationList) {
+      Animated.parallel(exitAnimationList).start(() => {
+        setComponentVisible(false);
+      });
+    }
+  }, [exitAnimationList]);
 
   /**
    * Function to show the component by performing the animation configs passed.
    */
   const showComponent = React.useCallback(() => {
-    const animationList: Array<Animated.CompositeAnimation> = [];
-    if (opacityAnimationConfig) animationList.push(opacityEntryAnimation());
-    if (linearAnimationConfig) animationList.push(linearEntryAnimation());
-    if (circularAnimationConfig) animationList.push(circularEntryAnimation());
-    Animated.parallel(animationList).start(() => {
-      setComponentVisible(true);
-    });
-  }, [
-    circularAnimationConfig,
-    circularEntryAnimation,
-    linearAnimationConfig,
-    linearEntryAnimation,
-    opacityAnimationConfig,
-    opacityEntryAnimation,
-  ]);
+    if (entryAnimationList) {
+      Animated.parallel(entryAnimationList).start(() => {
+        setComponentVisible(true);
+      });
+    }
+  }, [entryAnimationList]);
 
   return {
     opacityValue,
