@@ -7,6 +7,8 @@ import { useAnimation } from './useAnimation';
 
 import { AnimationType } from 'src/types';
 
+const DEFAULT_DELAY = 0;
+
 type UseCombinedAnimation = {
   /**
    * The value of the component that is plotted.
@@ -62,11 +64,13 @@ export const useCombinedAnimation = ({
     initialValue: 0,
     finalValue: 1,
     entryAnimationConfig: {
-      delay: (opacityAnimationConfig?.gap ?? 1000) * index,
+      delay: (opacityAnimationConfig?.gap ?? DEFAULT_DELAY) * index,
       ...opacityAnimationConfig,
     },
     exitAnimationConfig: {
-      delay: (opacityAnimationConfig?.gap ?? 1000) * (totalPoints - index - 1),
+      delay:
+        (opacityAnimationConfig?.gap ?? DEFAULT_DELAY) *
+        (totalPoints - index - 1),
       ...opacityAnimationConfig,
     },
   });
@@ -90,11 +94,13 @@ export const useCombinedAnimation = ({
     initialValue: 0,
     finalValue: radius,
     entryAnimationConfig: {
-      delay: (linearAnimationConfig?.gap ?? 1000) * index,
+      delay: (linearAnimationConfig?.gap ?? DEFAULT_DELAY) * index,
       ...linearAnimationConfig,
     },
     exitAnimationConfig: {
-      delay: (linearAnimationConfig?.gap ?? 1000) * (totalPoints - index - 1),
+      delay:
+        (linearAnimationConfig?.gap ?? DEFAULT_DELAY) *
+        (totalPoints - index - 1),
       ...linearAnimationConfig,
     },
   });
@@ -117,11 +123,13 @@ export const useCombinedAnimation = ({
     initialValue: startAngle,
     finalValue: radians,
     entryAnimationConfig: {
-      delay: (circularAnimationConfig?.gap ?? 1000) * index,
+      delay: (circularAnimationConfig?.gap ?? DEFAULT_DELAY) * index,
       ...circularAnimationConfig,
     },
     exitAnimationConfig: {
-      delay: (circularAnimationConfig?.gap ?? 1000) * (totalPoints - index - 1),
+      delay:
+        (circularAnimationConfig?.gap ?? DEFAULT_DELAY) *
+        (totalPoints - index - 1),
       ...circularAnimationConfig,
     },
   });
