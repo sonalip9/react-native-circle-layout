@@ -2,10 +2,9 @@ import React, { useMemo } from 'react';
 import { Animated } from 'react-native';
 
 import { CircleLayoutContext } from '../CircleLayoutContext';
+import { AnimationType } from '../types';
 
 import { useAnimation } from './useAnimation';
-
-import { AnimationType } from 'src/types';
 
 const DEFAULT_DELAY = 0;
 
