@@ -30,6 +30,7 @@ export const CircleLayout = React.forwardRef<
       containerStyle = undefined,
       centerComponentContainerStyle = undefined,
       animationConfigs = undefined,
+      animationCombinationType = undefined,
     }: CircleLayoutProps,
     ref
   ) => {
@@ -58,8 +59,15 @@ export const CircleLayout = React.forwardRef<
         animationConfigs,
         radius,
         startAngle,
+        animationCombinationType,
       }),
-      [animationConfigs, radius, startAngle, totalParts]
+      [
+        animationCombinationType,
+        animationConfigs,
+        radius,
+        startAngle,
+        totalParts,
+      ]
     );
 
     /**
