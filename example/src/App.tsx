@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import {
+  AnimationCombinationType,
   AnimationType,
   CircleLayout,
   CircleLayoutRef,
@@ -59,18 +60,19 @@ const App = () => {
         <View style={styles.flex}>
           {showInitial && (
             <CircleLayout
+              animationCombinationType={AnimationCombinationType.SEQUENCE}
               animationConfigs={[
                 {
                   type: AnimationType.OPACITY,
-                  config: { gap: 1000, duration: 1000 },
+                  config: { gap: 500 },
                 },
                 {
                   type: AnimationType.LINEAR,
-                  config: { gap: 1000, duration: 1000 },
+                  config: { gap: 500 },
                 },
                 {
                   type: AnimationType.CIRCULAR,
-                  config: { gap: 1000, duration: 1000 },
+                  config: { gap: 500 },
                 },
               ]}
               centerComponent={<View style={styles.centerComponent} />}
