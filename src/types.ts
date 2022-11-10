@@ -25,6 +25,11 @@ export enum AnimationType {
   CIRCULAR = 'circularAnimationConfig',
 }
 
+export enum AnimationCombinationType {
+  PARALLEL = 'parallel',
+  SEQUENCE = 'sequence',
+}
+
 export type AnimationConfig = {
   type: AnimationType;
   config: {
@@ -77,6 +82,14 @@ export type CircleLayoutProps = {
    * Array of animations to be performed on entry and exit of components.
    */
   animationConfigs?: AnimationConfig[] | undefined;
+  /**
+   * The type of composition animation to be performed with
+   * all the animation configs provided.
+   *
+   * For those composition which perform animation in a particular order,
+   * the order is picked by the order in the animationConfig array.
+   */
+  animationCombinationType?: AnimationCombinationType | undefined;
 };
 
 export type CircleLayoutRef = {
@@ -147,4 +160,12 @@ export type CircleLayoutContextType = {
    * value needs to be in radians.
    */
   startAngle: number;
+  /**
+   * The type of composition animation to be performed with
+   * all the animation configs provided.
+   *
+   * For those composition which perform animation in a particular order,
+   * the order is picked by the order in the animationConfig array.
+   */
+  animationCombinationType?: AnimationCombinationType | undefined;
 };

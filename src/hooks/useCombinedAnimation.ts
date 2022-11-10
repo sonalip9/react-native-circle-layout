@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Animated } from 'react-native';
 
 import { CircleLayoutContext } from '../CircleLayoutContext';
-import { AnimationType } from '../types';
+import { AnimationCombinationType, AnimationType } from '../types';
 
 import { useAnimation } from './useAnimation';
 
@@ -33,6 +33,7 @@ export const useCombinedAnimation = ({
   const {
     totalParts: totalPoints,
     animationConfigs,
+    animationCombinationType,
     radius,
     startAngle,
   } = React.useContext(CircleLayoutContext);
@@ -162,18 +163,20 @@ export const useCombinedAnimation = ({
 
   const exitAnimationList = React.useMemo(
     () =>
-      animationConfigs?.map((animationConfig) => {
-        switch (animationConfig.type) {
-          case AnimationType.OPACITY:
-            return opacityExitAnimation();
-          case AnimationType.LINEAR:
-            return linearExitAnimation();
-          case AnimationType.CIRCULAR:
-            return circularExitAnimation();
-          default:
-            throw new Error(`Unrecognized config type`);
-        }
-      }),
+      animationConfigs
+        ?.map((animationConfig) => {
+          switch (animationConfig.type) {
+            case AnimationType.OPACITY:
+              return opacityExitAnimation();
+            case AnimationType.LINEAR:
+              return linearExitAnimation();
+            case AnimationType.CIRCULAR:
+              return circularExitAnimation();
+            default:
+              throw new Error(`Unrecognized config type`);
+          }
+        })
+        .reverse(),
     [
       animationConfigs,
       circularExitAnimation,
@@ -187,22 +190,40 @@ export const useCombinedAnimation = ({
    */
   const hideComponent = React.useCallback(() => {
     if (exitAnimationList) {
-      Animated.parallel(exitAnimationList).start(() => {
-        setComponentVisible(false);
-      });
+      switch (animationCombinationType) {
+        case AnimationCombinationType.SEQUENCE:
+          Animated.sequence(exitAnimationList).start(() => {
+            setComponentVisible(false);
+          });
+          break;
+        default:
+          Animated.parallel(exitAnimationList).start(() => {
+            setComponentVisible(false);
+          });
+          break;
+      }
     }
-  }, [exitAnimationList]);
+  }, [animationCombinationType, exitAnimationList]);
 
   /**
    * Function to show the component by performing the animation configs passed.
    */
   const showComponent = React.useCallback(() => {
     if (entryAnimationList) {
-      Animated.parallel(entryAnimationList).start(() => {
-        setComponentVisible(true);
-      });
+      switch (animationCombinationType) {
+        case AnimationCombinationType.SEQUENCE:
+          Animated.sequence(entryAnimationList).start(() => {
+            setComponentVisible(true);
+          });
+          break;
+        default:
+          Animated.parallel(entryAnimationList).start(() => {
+            setComponentVisible(true);
+          });
+          break;
+      }
     }
-  }, [entryAnimationList]);
+  }, [animationCombinationType, entryAnimationList]);
 
   return {
     opacityValue,
