@@ -60,21 +60,14 @@ const App = () => {
         <View style={styles.flex}>
           {showInitial && (
             <CircleLayout
-              animationCombinationType={AnimationCombinationType.SEQUENCE}
-              animationConfigs={[
-                {
-                  type: AnimationType.OPACITY,
-                  config: { gap: 500 },
-                },
-                {
-                  type: AnimationType.LINEAR,
-                  config: { gap: 500 },
-                },
-                {
-                  type: AnimationType.CIRCULAR,
-                  config: { gap: 500 },
-                },
-              ]}
+              animationProps={{
+                animationCombinationType: AnimationCombinationType.SEQUENCE,
+                animationConfigs: [
+                  { type: AnimationType.OPACITY },
+                  { type: AnimationType.LINEAR },
+                  { type: AnimationType.CIRCULAR },
+                ],
+              }}
               centerComponent={<View style={styles.centerComponent} />}
               components={createComponents(numberOfPoints)}
               containerStyle={styles.circleLayoutContainer}
