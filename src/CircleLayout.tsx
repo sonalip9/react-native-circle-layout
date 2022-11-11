@@ -29,8 +29,7 @@ export const CircleLayout = React.forwardRef<
       startAngle = 0,
       containerStyle = undefined,
       centerComponentContainerStyle = undefined,
-      animationConfigs = undefined,
-      animationCombinationType = undefined,
+      animationProps = undefined,
     }: CircleLayoutProps,
     ref
   ) => {
@@ -56,18 +55,11 @@ export const CircleLayout = React.forwardRef<
     const contextValue: CircleLayoutContextType = React.useMemo(
       () => ({
         totalParts,
-        animationConfigs,
         radius,
         startAngle,
-        animationCombinationType,
+        animationProps,
       }),
-      [
-        animationCombinationType,
-        animationConfigs,
-        radius,
-        startAngle,
-        totalParts,
-      ]
+      [animationProps, radius, startAngle, totalParts]
     );
 
     /**

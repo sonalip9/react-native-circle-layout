@@ -6,8 +6,6 @@ import { AnimationCombinationType, AnimationType } from '../types';
 
 import { useAnimation } from './useAnimation';
 
-const DEFAULT_DELAY = 0;
-
 type UseCombinedAnimation = {
   /**
    * The value of the component that is plotted.
@@ -30,23 +28,18 @@ export const useCombinedAnimation = ({
   index,
   radians,
 }: UseCombinedAnimation) => {
-  const {
-    totalParts: totalPoints,
-    animationConfigs,
-    animationCombinationType,
-    radius,
-    startAngle,
-  } = React.useContext(CircleLayoutContext);
+  const { totalParts, animationProps, radius, startAngle } =
+    React.useContext(CircleLayoutContext);
 
-  const opacityAnimationConfig = animationConfigs?.find(
+  const opacityAnimationConfig = animationProps?.animationConfigs.find(
     (config) => config.type === AnimationType.OPACITY
-  )?.config;
-  const linearAnimationConfig = animationConfigs?.find(
+  );
+  const linearAnimationConfig = animationProps?.animationConfigs.find(
     (config) => config.type === AnimationType.LINEAR
-  )?.config;
-  const circularAnimationConfig = animationConfigs?.find(
+  );
+  const circularAnimationConfig = animationProps?.animationConfigs.find(
     (config) => config.type === AnimationType.CIRCULAR
-  )?.config;
+  );
 
   /**
    * A flag to determine the visibility state of the component.
@@ -63,16 +56,7 @@ export const useCombinedAnimation = ({
   } = useAnimation({
     initialValue: 0,
     finalValue: 1,
-    entryAnimationConfig: {
-      delay: (opacityAnimationConfig?.gap ?? DEFAULT_DELAY) * index,
-      ...opacityAnimationConfig,
-    },
-    exitAnimationConfig: {
-      delay:
-        (opacityAnimationConfig?.gap ?? DEFAULT_DELAY) *
-        (totalPoints - index - 1),
-      ...opacityAnimationConfig,
-    },
+    entryAnimationConfig: opacityAnimationConfig?.config ?? {},
   });
   // The value of opacity depending on the props of the component.
   const opacityValue = React.useMemo(
@@ -93,16 +77,7 @@ export const useCombinedAnimation = ({
   } = useAnimation({
     initialValue: 0,
     finalValue: radius,
-    entryAnimationConfig: {
-      delay: (linearAnimationConfig?.gap ?? DEFAULT_DELAY) * index,
-      ...linearAnimationConfig,
-    },
-    exitAnimationConfig: {
-      delay:
-        (linearAnimationConfig?.gap ?? DEFAULT_DELAY) *
-        (totalPoints - index - 1),
-      ...linearAnimationConfig,
-    },
+    entryAnimationConfig: linearAnimationConfig?.config ?? {},
   });
   // The value of radius depending on the props of the component.
   const radiusValue = useMemo(
@@ -122,16 +97,7 @@ export const useCombinedAnimation = ({
   } = useAnimation({
     initialValue: startAngle,
     finalValue: radians,
-    entryAnimationConfig: {
-      delay: (circularAnimationConfig?.gap ?? DEFAULT_DELAY) * index,
-      ...circularAnimationConfig,
-    },
-    exitAnimationConfig: {
-      delay:
-        (circularAnimationConfig?.gap ?? DEFAULT_DELAY) *
-        (totalPoints - index - 1),
-      ...circularAnimationConfig,
-    },
+    entryAnimationConfig: circularAnimationConfig?.config ?? {},
   });
   // The value of radians depending on the props of the component.
   const radiansValue = useMemo(
@@ -139,58 +105,71 @@ export const useCombinedAnimation = ({
     [circularAnimationConfig, radians, animatedRadians]
   );
 
-  const entryAnimationList = React.useMemo(
-    () =>
-      animationConfigs?.map((animationConfig) => {
+  const entryAnimationList = React.useMemo(() => {
+    if (animationProps === undefined) return undefined;
+
+    const list = animationProps.animationConfigs.map((animationConfig) => {
+      switch (animationConfig.type) {
+        case AnimationType.OPACITY:
+          return opacityEntryAnimation();
+        case AnimationType.LINEAR:
+          return linearEntryAnimation();
+        case AnimationType.CIRCULAR:
+          return circularEntryAnimation();
+        default:
+          throw new Error(`Unrecognized config type`);
+      }
+    });
+
+    list?.unshift(Animated.delay(index * (animationProps.animationGap ?? 0)));
+    return list;
+  }, [
+    animationProps,
+    circularEntryAnimation,
+    index,
+    linearEntryAnimation,
+    opacityEntryAnimation,
+  ]);
+
+  const exitAnimationList = React.useMemo(() => {
+    if (animationProps === undefined) return undefined;
+
+    const list = animationProps?.animationConfigs
+      ?.map((animationConfig) => {
         switch (animationConfig.type) {
           case AnimationType.OPACITY:
-            return opacityEntryAnimation();
+            return opacityExitAnimation();
           case AnimationType.LINEAR:
-            return linearEntryAnimation();
+            return linearExitAnimation();
           case AnimationType.CIRCULAR:
-            return circularEntryAnimation();
+            return circularExitAnimation();
           default:
             throw new Error(`Unrecognized config type`);
         }
-      }),
-    [
-      animationConfigs,
-      circularEntryAnimation,
-      linearEntryAnimation,
-      opacityEntryAnimation,
-    ]
-  );
+      })
+      .reverse();
 
-  const exitAnimationList = React.useMemo(
-    () =>
-      animationConfigs
-        ?.map((animationConfig) => {
-          switch (animationConfig.type) {
-            case AnimationType.OPACITY:
-              return opacityExitAnimation();
-            case AnimationType.LINEAR:
-              return linearExitAnimation();
-            case AnimationType.CIRCULAR:
-              return circularExitAnimation();
-            default:
-              throw new Error(`Unrecognized config type`);
-          }
-        })
-        .reverse(),
-    [
-      animationConfigs,
-      circularExitAnimation,
-      linearExitAnimation,
-      opacityExitAnimation,
-    ]
-  );
+    list.unshift(
+      Animated.delay(
+        (totalParts - index - 1) * (animationProps.animationGap ?? 0)
+      )
+    );
+    return list;
+  }, [
+    animationProps,
+    circularExitAnimation,
+    index,
+    linearExitAnimation,
+    opacityExitAnimation,
+    totalParts,
+  ]);
 
   /**
    * Function to hide the component by performing the animation configs passed.
    */
   const hideComponent = React.useCallback(() => {
     if (exitAnimationList) {
-      switch (animationCombinationType) {
+      switch (animationProps?.animationCombinationType) {
         case AnimationCombinationType.SEQUENCE:
           Animated.sequence(exitAnimationList).start(() => {
             setComponentVisible(false);
@@ -203,14 +182,14 @@ export const useCombinedAnimation = ({
           break;
       }
     }
-  }, [animationCombinationType, exitAnimationList]);
+  }, [animationProps?.animationCombinationType, exitAnimationList]);
 
   /**
    * Function to show the component by performing the animation configs passed.
    */
   const showComponent = React.useCallback(() => {
     if (entryAnimationList) {
-      switch (animationCombinationType) {
+      switch (animationProps?.animationCombinationType) {
         case AnimationCombinationType.SEQUENCE:
           Animated.sequence(entryAnimationList).start(() => {
             setComponentVisible(true);
@@ -223,7 +202,7 @@ export const useCombinedAnimation = ({
           break;
       }
     }
-  }, [animationCombinationType, entryAnimationList]);
+  }, [animationProps?.animationCombinationType, entryAnimationList]);
 
   return {
     opacityValue,
