@@ -22,7 +22,7 @@ interface AnimationArgs {
   /**
    * The configuration for the exit animation.
    */
-  exitAnimationConfig: AnimationProps;
+  exitAnimationConfig?: AnimationProps;
 }
 
 /**
