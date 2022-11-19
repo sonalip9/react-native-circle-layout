@@ -94,9 +94,6 @@ export const CircleLayout = React.forwardRef<
         componentRefs.current?.forEach((componentRef) => {
           componentRef?.showComponent();
         }),
-      componentsVisible: componentRefs.current.every(
-        (component) => component?.componentVisible
-      ),
     }));
 
     return (
