@@ -26,13 +26,69 @@ export enum AnimationType {
 }
 
 export enum AnimationCombinationType {
+  /**
+   * The components will be animated at the same time.
+   */
   PARALLEL = 'parallel',
+  /**
+   * The components will be animated one after the other.
+   */
   SEQUENCE = 'sequence',
 }
 
 export type AnimationConfig = {
+  /**
+   * The type of animation to be used for the entry and exit
+   * animations of the components.
+   * @see AnimationType
+   */
   type: AnimationType;
+  /**
+   * The configuration for the animation.
+   * @default undefined
+   * @see https://reactnative.dev/docs/animated#timing
+   */
   config?: Omit<Animated.TimingAnimationConfig, 'toValue' | 'useNativeDriver'>;
+};
+
+type AnimationProps = {
+  /**
+   * Array of animations to be performed on entry and exit of components.
+   * @see AnimationConfig
+   * @example
+   * [
+   *  {
+   *   type: AnimationType.OPACITY,
+   *   config: {
+   *    duration: 500,
+   *    easing: Easing.inOut(Easing.ease),
+   *   },
+   *  },
+   *  {
+   *   type: AnimationType.LINEAR,
+   *   config: {
+   *    duration: 500,
+   *   },
+   *  },
+   * ]
+   */
+  animationConfigs: AnimationConfig[];
+  /**
+   * The type of composition animation to be performed with
+   * all the animation configs provided.
+   *
+   * For those composition which perform animation in a particular order,
+   * the order is picked by the order in the animationConfig array.
+   * @see AnimationCombinationType
+   *
+   */
+  animationCombinationType: AnimationCombinationType;
+  /**
+   * The gap between the start of animation of 2 consecutive components.
+   * This value is in milliseconds.
+   * @default 0
+   */
+  animationGap?: number;
 };
 
 export type CircleLayoutProps = {
@@ -72,25 +128,12 @@ export type CircleLayoutProps = {
    * @default undefined
    */
   centerComponentContainerStyle?: StyleProp<ViewStyle> | undefined;
-  animationProps?: {
-    /**
-     * Array of animations to be performed on entry and exit of components.
-     */
-    animationConfigs: AnimationConfig[];
-    /**
-     * The type of composition animation to be performed with
-     * all the animation configs provided.
-     *
-     * For those composition which perform animation in a particular order,
-     * the order is picked by the order in the animationConfig array.
-     */
-    animationCombinationType: AnimationCombinationType;
-    /**
-     * The gap between the start of animation of 2 consecutive components.
-     * This value is in milliseconds.
-     */
-    animationGap?: number;
-  };
+  /**
+   * The props for the animation.
+   * @default undefined
+   * @see AnimationProps
+   */
+  animationProps?: AnimationProps;
 };
 
 export type CircleLayoutRef = {
@@ -149,25 +192,9 @@ export type CircleLayoutContextType = {
    * value needs to be in radians.
    */
   startAngle: number;
-  animationProps?:
-    | {
-        /**
-         * Array of animations to be performed on entry and exit of components.
-         */
-        animationConfigs: AnimationConfig[];
-        /**
-         * The type of composition animation to be performed with
-         * all the animation configs provided.
-         *
-         * For those composition which perform animation in a particular order,
-         * the order is picked by the order in the animationConfig array.
-         */
-        animationCombinationType: AnimationCombinationType;
-        /**
-         * The gap between the start of animation of 2 consecutive components.
-         * This value is in milliseconds.
-         */
-        animationGap?: number;
-      }
-    | undefined;
+  /**
+   * The props for the animation.
+   * @default undefined
+   */
+  animationProps?: AnimationProps | undefined;
 };

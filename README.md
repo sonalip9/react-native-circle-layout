@@ -37,12 +37,16 @@ What each element is going to be is left to you - it can be an icon, a button, a
 
 Star the [project](https://github.com/sonalip9/react-native-circle-layout) to show your support if you liked it!
 
+Share your project [here](https://github.com/sonalip9/react-native-circle-layout/discussions/29)!
+
 ## Installation
 
 ```sh
 npm install react-native-circle-layout
 ```
+
 or
+
 ```sh
 yarn add react-native-circle-layout
 ```
@@ -53,87 +57,175 @@ yarn add react-native-circle-layout
 import { CircleLayout } from 'react-native-circle-layout';
 
 const Example = () => {
-    const components = [];
-    for (let i = 0; i < 6; i++) {
-      components.push(
-        <View style={{ alignItems: 'center' }}>
-          <View style={styles.circleLayoutComponent} />
-          <Text>Point {i}</Text>
-        </View>
-      );
-    }
+  const components = [];
+  for (let i = 0; i < 6; i++) {
+    components.push(
+      <View style={{ alignItems: 'center' }}>
+        <View style={styles.circleLayoutComponent} />
+        <Text>Point {i}</Text>
+      </View>
+    );
+  }
 
-  return (
-    <CircleLayout
-      components={components}
-      radius={100}
-    />
-  );
-}
-
+  return <CircleLayout components={components} radius={100} />;
+};
 ```
 
 ## Props
-### `components` **Required**
-*type:* `ReactNode[]`
 
-*description:* List of components that need to be placed on the circle.
+### `components` **Required**
+
+_type:_ `ReactNode[]`
+
+_description:_ List of components that need to be placed on the circle.
 
 ### `radius` **Required**
-*type:* `number` 
 
-*description:* The radius of the circle.
+_type:_ `number`
+
+_description:_ The radius of the circle.
 
 ### `centerComponent`
-*type:* `ReactNode`
 
-*description:* The component to be shown at the center of the circle
+_type:_ `ReactNode`
+
+_description:_ The component to be shown at the center of the circle
 
 ### `sweepAngle`
-*type:* `number`
 
-*default value:* `2 * Math.Pi`
+_type:_ `number`
 
-*description:* The distance in radians to be covered by the circle's arc from the starting point. This value should always be in radians between `-2 * Math.PI` and `2 * Math.PI`.
+_default value:_ `2 * Math.Pi`
 
- For example, if the elements need to be placed in semi-circle the value will be `Math.PI`, for quarter of a circle, it will be `Math.PI / 2`.
+_description:_ The distance in radians to be covered by the circle's arc from the starting point. This value should always be in radians between `-2 * Math.PI` and `2 * Math.PI`.
 
-#### `startAngle`
-*type:* `number`
+For example, if the elements need to be placed in semi-circle the value will be `Math.PI`, for quarter of a circle, it will be `Math.PI / 2`.
 
-*default value:* 0
+### `startAngle`
 
-*description:* The angle at which the first component will be placed. The value needs to be in radians between `-2 * Math.PI` and `2 * Math.PI`.
+_type:_ `number`
+
+_default value:_ 0
+
+_description:_ The angle at which the first component will be placed. The value needs to be in radians between `-2 * Math.PI` and `2 * Math.PI`.
 
 ### `containerStyle`
-*type:* `ViewStyle`
 
-*description:* The styling to be applied to the container of the component.
+_type:_ `ViewStyle`
 
-#### `centerComponentContainerStyle`
-*type:* `ViewStyle`
+_description:_ The styling to be applied to the container of the component.
 
-*description:* The styling to be applied to the container of the center component.
+### `centerComponentContainerStyle`
 
-### `showComponents`
-*type:* boolean
+_type:_ `ViewStyle`
 
-*description:* Flag to show or hide the components in the circle layout. This flag is used to perform the start and end animation.
+_description:_ The styling to be applied to the container of the center component.
 
-### `opacityAnimationConfig`
-*type:* AnimationConfig | undefined
+### `animationProps`
 
-*description:* The configuration for the fade-in entry and fade-out exit of the components. If this prop is undefined, then there will be no animation.
+_type_: [AnimationProps](#animationprops-1)
 
+_description_: The properties to configure the entry and exit animation of the component.
 
-### `linearAnimationConfig`
-*type:* AnimationConfig | undefined
+## Methods
 
-*description:* The configuration for the linear entry and exit animations of the components. The components will start from the center and move to their final positions. If this prop is undefined, then there will be no animation.
+## Custom Types and Constants
 
-### `circularAnimationConfig`
-*type:* AnimationConfig | undefined
-*description:* The configuration for the circle entry and exit animations of the components. The components will start from the position of the first component and move along the circumference of the circle to their final positions. If this prop is undefined, then there will be no animation.
+### AnimationProps
+
+```ts
+export type AnimationProps = {
+  /**
+   * Array of animations to be performed on entry and exit of components.
+   */
+  animationConfigs: AnimationConfig[];
+  /**
+   * The type of composition animation to be performed with
+   * all the animation configs provided.
+   *
+   * For those composition which perform animation in a particular order,
+   * the order is picked by the order in the animationConfig array.
+   */
+  animationCombinationType: AnimationCombinationType;
+  /**
+   * The gap between the start of animation of 2 consecutive components.
+   * This value is in milliseconds.
+   */
+  animationGap?: number;
+};
+```
+
+### AnimationConfig
+
+```ts
+export type AnimationConfig = {
+  /**
+   * The type of animation to be performed.
+   */
+  animationType: AnimationType;
+  /**
+   * The configuration for the animation.
+   */
+  config?: {
+    /**
+     * The duration of the animation in milliseconds.
+     * @default 500
+     */
+    duration?: number;
+    /**
+     * The delay before the animation starts in milliseconds.
+     * @default 0
+     */
+    delay?: number;
+    /**
+     * The easing function to be used for the animation.
+     * @default Easing.inOut(Easing.ease)
+     */
+    easing?: EasingFunction;
+    /**
+     * Flag to indicate if this animation creates an "interaction
+     * handle" on the InteractionManager.
+     * @default true.
+     */
+    isInteraction?: boolean | undefined;
+  };
+};
+```
+
+### AnimationType
+
+```ts
+export enum AnimationType {
+  /**
+   * The component will fade in on entry and fade out on exit.
+   */
+  OPACITY = 'OPACITY',
+  /**
+   * The component will move from the center to its final position.
+   */
+  LINEAR = 'LINEAR',
+  /**
+   * The component will move along the circumference of the circle
+   * from the position of the first component to its final position.
+   */
+  CIRCULAR = 'CIRCULAR',
+}
+```
+
+### AnimationCombinationType
+
+```ts
+export enum AnimationCombinationType {
+  /**
+   * The animations will be performed in parallel.
+   */
+  PARALLEL = 'PARALLEL',
+  /**
+   * The animations will be performed in sequence.
+   */
+  SEQUENCE = 'SEQUENCE',
+}
+```
 
 ## Authors
 
