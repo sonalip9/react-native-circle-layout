@@ -104,10 +104,6 @@ export type CircleLayoutRef = {
    * performing animation according to the passed config.
    */
   hideComponents: () => void;
-  /**
-   * Flag to maintain the visibility state of the components.
-   */
-  componentsVisible: boolean;
 };
 
 export type ComponentProps = {
@@ -136,10 +132,6 @@ export type ComponentRef = {
    * performing animation according to the passed config.
    */
   hideComponent: () => void;
-  /**
-   * Flag to maintain the visibility state of the component.
-   */
-  componentVisible: boolean;
 };
 
 export type CircleLayoutContextType = {

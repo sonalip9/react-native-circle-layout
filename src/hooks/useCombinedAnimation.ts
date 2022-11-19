@@ -210,6 +210,5 @@ export const useCombinedAnimation = ({
     radiusValue,
     hideComponent,
     showComponent,
-    componentVisible,
   };
 };

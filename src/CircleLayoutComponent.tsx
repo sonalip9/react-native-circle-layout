@@ -15,11 +15,10 @@ export const CircleLayoutComponent = forwardRef<ComponentRef, ComponentProps>(
   ({ component, index, radians }: ComponentProps, ref) => {
     const {
       hideComponent,
+      showComponent,
       opacityValue: opacity,
       radiansValue,
       radiusValue,
-      showComponent,
-      componentVisible,
     } = useCombinedAnimation({ index, radians });
 
     // The position of the component.
@@ -33,9 +32,8 @@ export const CircleLayoutComponent = forwardRef<ComponentRef, ComponentProps>(
      * The instance value that is exposed to parent components when using ref.
      */
     useImperativeHandle(ref, () => ({
-      componentVisible,
-      hideComponent,
       showComponent,
+      hideComponent,
     }));
 
     return (
