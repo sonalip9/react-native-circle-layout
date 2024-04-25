@@ -33,3 +33,6 @@ jobs:
 
       - name: Run TypeScript check on the code
         run: yarn typescript
+
+      - name: Run tests
+        run: yarn test
