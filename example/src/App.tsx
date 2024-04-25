@@ -12,7 +12,7 @@ import {
   AnimationCombinationType,
   AnimationType,
   CircleLayout,
-  CircleLayoutRef,
+  type CircleLayoutRef,
 } from 'react-native-circle-layout';
 
 import { styles } from './styles';
