@@ -23,8 +23,22 @@ type InterpolationConfig = {
  * @param callback The function used to create the output range for the interpolation.
  * @param interpolationConfig The configuration for the input range and the iterations to perform.
  * @returns The object containing the inputRange and the outputRange for the interpolation
+ *
+ * @example
+ * ```ts
+ * const callback = (value: number) => value * 2;
+ * const interpolationConfig = {
+ *  startValue: 0,
+ * endValue: 10,
+ * totalIterations: 5,
+ * };
+ *
+ * const result = withFunction(callback, interpolationConfig);
+ *
+ * console.log(result.inputRange); // [0, 2, 4, 6, 8, 10]
+ * console.log(result.outputRange); // [0, 4, 8, 12, 16, 20]
  */
-const withFunction = (
+export const withFunction = (
   callback: (value: number) => number,
   interpolationConfig?: InterpolationConfig
 ) => {
@@ -37,11 +51,20 @@ const withFunction = (
     endValue: 1,
     totalIterations: 50,
   };
+
+  if (totalIterations < 0)
+    throw new Error('totalIterations cannot be negative');
+
   const inputRange: number[] = [];
   const outputRange: number[] = [];
-  const step = (endValue - startValue) / totalIterations;
-  for (let i = startValue; i <= totalIterations; i += 1) {
-    const key = startValue + step * i;
+
+  if (totalIterations === 0) return { inputRange, outputRange };
+
+  const step = (index: number) =>
+    ((endValue - startValue) * index) / totalIterations;
+
+  for (let i = 0; i <= totalIterations; i += 1) {
+    const key = startValue + step(i);
     inputRange.push(key);
     outputRange.push(callback(key));
   }
