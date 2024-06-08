@@ -1,12 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any -- The animated value not having __getValue in the type is creating the problem. */
-/* eslint-disable @typescript-eslint/no-unsafe-call -- The get value method of animated value is not defined in its type. */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access -- The get value method of animated value is not defined in its type. */
-/* eslint-disable no-underscore-dangle -- The method to fetch animated value starts with underscore */
 import { Animated } from 'react-native';
 
 import { pointOnCircle } from '../utils/circle';
 
-// TODO update the test with Animated.Value response using testing library
+const expectListenerValue = (
+  animatedValue: Animated.Value | Animated.AnimatedInterpolation<number>,
+  expectedValue: number
+) => {
+  animatedValue.addListener(({ value }) => {
+    expect(value).toBeCloseTo(expectedValue);
+  });
+};
 
 describe('pointOnCircle', () => {
   it('should return the correct coordinates on the circle when only radius is provided', () => {
@@ -36,9 +39,14 @@ describe('pointOnCircle', () => {
       radians: Math.PI / 4,
     });
 
-    expect(result.x instanceof Animated.Value).toBe(true);
-    expect((result.x as any).__getValue()).toBeCloseTo(1.414);
-    expect((result.y as any).__getValue()).toBeCloseTo(1.414);
+    expectListenerValue(
+      result.x as Animated.AnimatedInterpolation<number>,
+      1.414
+    );
+    expectListenerValue(
+      result.y as Animated.AnimatedInterpolation<number>,
+      1.414
+    );
   });
 
   it('should return the correct coordinates on the circle when radians is animated', () => {
@@ -47,8 +55,11 @@ describe('pointOnCircle', () => {
       radians: new Animated.Value(Math.PI / 3),
     });
 
-    expect((result.x as any).__getValue()).toBeCloseTo(2);
-    expect((result.y as any).__getValue()).toBeCloseTo(3.457);
+    expectListenerValue(result.x as Animated.AnimatedInterpolation<number>, 2);
+    expectListenerValue(
+      result.y as Animated.AnimatedInterpolation<number>,
+      3.464
+    );
   });
 
   it('should return the correct coordinates on the circle when both radius and radians are animated', () => {
@@ -57,7 +68,10 @@ describe('pointOnCircle', () => {
       radians: new Animated.Value(Math.PI / 6),
     });
 
-    expect((result.x as any).__getValue()).toBeCloseTo(1.73);
-    expect((result.y as any).__getValue()).toBeCloseTo(0.999);
+    expectListenerValue(result.x as Animated.AnimatedInterpolation<number>, 1);
+    expectListenerValue(
+      result.y as Animated.AnimatedInterpolation<number>,
+      1.732
+    );
   });
 });
