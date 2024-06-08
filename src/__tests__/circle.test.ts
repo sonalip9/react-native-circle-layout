@@ -1,6 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/no-explicit-any -- The animated value not having __getValue in the type is creating the problem. */
+/* eslint-disable @typescript-eslint/no-unsafe-call -- The get value method of animated value is not defined in its type. */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access -- The get value method of animated value is not defined in its type. */
+/* eslint-disable no-underscore-dangle -- The method to fetch animated value starts with underscore */
 import { Animated } from 'react-native';
 
 import { pointOnCircle } from '../utils/circle';
@@ -35,6 +36,7 @@ describe('pointOnCircle', () => {
       radians: Math.PI / 4,
     });
 
+    expect(result.x instanceof Animated.Value).toBe(true);
     expect((result.x as any).__getValue()).toBeCloseTo(1.414);
     expect((result.y as any).__getValue()).toBeCloseTo(1.414);
   });

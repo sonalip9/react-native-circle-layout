@@ -117,7 +117,7 @@ export const useCombinedAnimation = ({
         case AnimationType.CIRCULAR:
           return circularEntryAnimation();
         default:
-          throw new Error(`Unrecognized config type`);
+          throw new Error('Unrecognized config type');
       }
     });
 
@@ -144,7 +144,7 @@ export const useCombinedAnimation = ({
           case AnimationType.CIRCULAR:
             return circularExitAnimation();
           default:
-            throw new Error(`Unrecognized config type`);
+            throw new Error('Unrecognized config type');
         }
       })
       .reverse();
