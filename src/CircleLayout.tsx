@@ -36,7 +36,7 @@ export const CircleLayout = React.forwardRef<
     /**
      * Array of references for each of the circle components.
      */
-    const componentRefs = React.useRef<Array<ComponentRef | null>>(
+    const componentRefs = React.useRef<(ComponentRef | null)[]>(
       Array(components.length).fill(null) as null[]
     );
 
@@ -67,18 +67,20 @@ export const CircleLayout = React.forwardRef<
      */
     const componentsList = React.useCallback(
       () =>
-        components.map((component, index) => (
-          <CircleLayoutComponent
-            component={component}
-            index={index}
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-            radians={startAngle + sweepAngle * (index / totalParts)}
-            ref={(el) => {
-              componentRefs.current[index] = el;
-            }}
-          />
-        )),
+        components.map((component, index) => {
+          const angle = startAngle + sweepAngle * (index / totalParts);
+          return (
+            <CircleLayoutComponent
+              component={component}
+              index={index}
+              key={`Component-${angle}`}
+              radians={angle}
+              ref={(el) => {
+                componentRefs.current[index] = el;
+              }}
+            />
+          );
+        }),
       [components, startAngle, sweepAngle, totalParts]
     );
 
