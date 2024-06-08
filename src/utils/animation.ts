@@ -89,7 +89,7 @@ export const interpolationWithFunction = (
     'inputRange' | 'outputRange'
   >
 ) =>
-  value.interpolate({
+  value.interpolate<number>({
     ...withFunction(callback, interpolationConfig),
     ...animatedInterpolationConfig,
   });
