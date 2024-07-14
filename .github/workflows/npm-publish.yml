@@ -22,8 +22,10 @@ jobs:
         run: |
           CHANGED_FILES=$(git diff --name-only $(git describe --tags --abbrev=0) HEAD -- 'src/')
           if [ -z "$CHANGED_FILES" ]; then
+            echo "There are no changes in src directory"
             echo "IS_UPDATED=false" >> $GITHUB_OUTPUT
           else
+            echo "There are changes in src directory"
             echo "IS_UPDATED=true" >> $GITHUB_OUTPUT
           fi
 
