@@ -1,3 +1,13 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: '*.{js,ts,jsx,tsx}'
+      run: npx eslint {staged_files}
+
+    types:
+      glob: '*.{js,ts, jsx, tsx}'
+      run: npx tsc
 commit-msg:
   parallel: true
   commands:
@@ -8,7 +18,3 @@ pre-push:
   commands:
     test:
       run: yarn test
-    lint:
-      run: yarn lint
-    typescript:
-      run: yarn typescript

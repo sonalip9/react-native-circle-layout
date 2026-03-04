@@ -20,6 +20,8 @@ export type PointOnCircle = {
  * Converts the polar co-ordinates of a point on a circle to its Cartesian co-ordinate.
  * x = r cos θ, y = r sin θ
  * @param props The property of the circle
+ * @param props.radius The radius of the circle.
+ * @param props.radians The angle of the point on the circle.
  * @returns The Cartesian co-ordinates of the point of the circle.
  */
 export const pointOnCircle = ({ radius, radians }: PointOnCircle) => {

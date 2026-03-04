@@ -80,7 +80,6 @@ type AnimationProps = {
    * For those composition which perform animation in a particular order,
    * the order is picked by the order in the animationConfig array.
    * @see AnimationCombinationType
-   *
    */
   animationCombinationType: AnimationCombinationType;
   /**

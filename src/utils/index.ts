@@ -1,2 +1,3 @@
 export { interpolationWithFunction } from './animation';
-export { PointOnCircle, pointOnCircle } from './circle';
+export { pointOnCircle } from './circle';
+export type { PointOnCircle } from './circle';
