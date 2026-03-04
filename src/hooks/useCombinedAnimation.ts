@@ -30,8 +30,9 @@ export const useCombinedAnimation = ({
   index,
   radians,
 }: UseCombinedAnimation) => {
-  const { totalParts, animationProps, radius, startAngle } =
-    React.use(CircleLayoutContext);
+  const { totalParts, animationProps, radius, startAngle } = (
+    React.use ?? React.useContext
+  )(CircleLayoutContext);
 
   const opacityAnimationConfig = animationProps?.animationConfigs.find(
     (config) => config.type === AnimationType.OPACITY
