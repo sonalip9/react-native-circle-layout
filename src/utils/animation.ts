@@ -23,7 +23,6 @@ type InterpolationConfig = {
  * @param callback The function used to create the output range for the interpolation.
  * @param interpolationConfig The configuration for the input range and the iterations to perform.
  * @returns The object containing the inputRange and the outputRange for the interpolation
- *
  * @example
  * ```ts
  * const callback = (value: number) => value * 2;
@@ -85,7 +84,7 @@ export const interpolationWithFunction = (
   callback: (value: number) => number,
   interpolationConfig?: InterpolationConfig,
   animatedInterpolationConfig?: Omit<
-    Animated.InterpolationConfigType,
+    Animated.InterpolationConfig<number>,
     'inputRange' | 'outputRange'
   >
 ) =>

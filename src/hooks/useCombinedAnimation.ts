@@ -21,6 +21,8 @@ type UseCombinedAnimation = {
  * A hook to perform entry and exit animation of each of the config
  * passed.
  * @param props The props passed to the hook.
+ * @param props.index The value of the component that is plotted.
+ * @param props.radians The angle at which this component will be placed on the circle.
  * @returns An object containing animated value for the animation config passed,
  * the entry and exit functions and the visibility state of the component.
  */
@@ -29,7 +31,7 @@ export const useCombinedAnimation = ({
   radians,
 }: UseCombinedAnimation) => {
   const { totalParts, animationProps, radius, startAngle } =
-    React.useContext(CircleLayoutContext);
+    React.use(CircleLayoutContext);
 
   const opacityAnimationConfig = animationProps?.animationConfigs.find(
     (config) => config.type === AnimationType.OPACITY

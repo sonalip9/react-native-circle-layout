@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useState } from 'react';
 import { Animated } from 'react-native';
 
 type AnimationProps = Omit<
@@ -28,7 +28,11 @@ interface AnimationArgs {
 /**
  * A hook that creates entry and exit animations based on
  * the config.
- * @params props The configuration to create the animation.
+ * @param props The configuration to create the animation.
+ * @param props.initialValue The start value of the animated value.
+ * @param props.finalValue The end value of the animated value.
+ * @param props.entryAnimationConfig The configuration for the entry animation.
+ * @param props.exitAnimationConfig The configuration for the exit animation.
  * @returns The an object containing the animated value on which
  * the animation will be performed, the entry and exit animation function.
  */
@@ -38,7 +42,7 @@ export const useAnimation = ({
   entryAnimationConfig,
   exitAnimationConfig = entryAnimationConfig,
 }: AnimationArgs) => {
-  const value = useRef(new Animated.Value(initialValue)).current;
+  const [value] = useState(() => new Animated.Value(initialValue));
 
   /**
    * Function to create a fade-in entry animation.
@@ -50,7 +54,7 @@ export const useAnimation = ({
         toValue: finalValue,
         ...entryAnimationConfig,
       }),
-    [entryAnimationConfig, finalValue]
+    [entryAnimationConfig, finalValue, value]
   );
 
   /**
@@ -63,7 +67,7 @@ export const useAnimation = ({
         toValue: initialValue,
         ...exitAnimationConfig,
       }),
-    [exitAnimationConfig, initialValue]
+    [exitAnimationConfig, initialValue, value]
   );
 
   return { value, entryAnimation, exitAnimation };

@@ -70,7 +70,7 @@ describe('withFunction', () => {
       totalIterations: -5,
     };
 
-    expect(() => withFunction(callback, interpolationConfig)).toThrowError(
+    expect(() => withFunction(callback, interpolationConfig)).toThrow(
       new Error('totalIterations cannot be negative')
     );
   });
