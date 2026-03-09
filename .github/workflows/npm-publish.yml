@@ -61,6 +61,9 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
 
+      - name: Check npm authentication
+        run: npm whoami
+
       # Find the version to be released and store it in github env
       - name: Get release version
         id: release-version
