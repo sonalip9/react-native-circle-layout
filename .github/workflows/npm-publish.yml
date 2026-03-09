@@ -86,7 +86,9 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn release --npm.skipChecks
+        run: |
+          yarn release --npm.skipChecks
+          npm publish --provenance
 
       # raise a pr for this branch
       - name: Create pull request
