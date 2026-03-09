@@ -62,7 +62,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Check npm authentication
-        run: npm whoami
+        run: echo $ACTIONS_ID_TOKEN_REQUEST_URL
 
       # Find the version to be released and store it in github env
       - name: Get release version
