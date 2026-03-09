@@ -7,12 +7,14 @@ pre-commit:
 
     types:
       glob: '*.{js,ts,jsx,tsx}'
-      run: npx tsc
+      run: npx tsc {staged_files}
+
 commit-msg:
   parallel: true
   commands:
     commitlint:
       run: npx commitlint --edit
+
 pre-push:
   parallel: true
   commands:
