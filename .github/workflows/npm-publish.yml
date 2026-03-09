@@ -74,6 +74,11 @@ jobs:
       - name: Print release version
         run: echo "The next release version is ${{ steps.release-version.outputs.VERSION }}"
 
+      - name: Setup Git user
+        run: |
+          git config --global user.email "sonali.parekh912@gmail.com"
+          git config --global user.name "Sonali Parekh"
+
       # Create a release branch with the naming as - release-v{version}
       # push the branch to origin
       - name: Create branch for release
