@@ -61,11 +61,6 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
 
-      - name: Setup Git user
-        run: |
-          git config --global user.email "sonali.parekh912@gmail.com"
-          git config --global user.name "Sonali Parekh"
-
       # Find the version to be released and store it in github env
       - name: Get release version
         id: release-version
