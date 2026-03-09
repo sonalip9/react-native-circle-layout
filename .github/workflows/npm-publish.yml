@@ -61,9 +61,6 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
 
-      - name: Check npm authentication
-        run: echo $ACTIONS_ID_TOKEN_REQUEST_URL
-
       # Find the version to be released and store it in github env
       - name: Get release version
         id: release-version
@@ -91,9 +88,7 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          yarn release --npm.skipChecks
-          npm publish --provenance
+        run: yarn release --npm.skipChecks --npm.publishArgs="--provenance"
 
       # raise a pr for this branch
       - name: Create pull request
