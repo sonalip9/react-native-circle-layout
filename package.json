@@ -35,7 +35,7 @@
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
-    "release": "release-it --only-version",
+    "release": "release-it",
     "example": "yarn workspace react-native-circle-layout-example",
     "clean": "del-cli lib"
   },
