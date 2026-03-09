@@ -135,13 +135,26 @@ const App = () => {
             <Text style={styles.sliderValue}>{numberOfPoints}</Text>
           </View>
 
-          <Button
-            onPress={() => {
-              setShowInitial(() => true);
-              setShowCircle((oldValue) => !oldValue);
-            }}
-            title={showCircle ? 'Hide circle layout' : 'Show circle layout'}
-          />
+          <View style={{ gap: 10 }}>
+            <Button
+              onPress={() => {
+                setShowInitial(() => true);
+                setShowCircle((oldValue) => !oldValue);
+              }}
+              title={showCircle ? 'Hide circle layout' : 'Show circle layout'}
+            />
+            <Button
+              onPress={() => {
+                setShowInitial(() => false);
+                setShowCircle(() => false);
+                setRadius(100);
+                setSweepAngle(2 * Math.PI);
+                setStartAngle(0);
+                setNumberOfPoints(2);
+              }}
+              title={'Reset'}
+            />
+          </View>
           {windowHeight > windowWidth && <View style={styles.footer} />}
         </View>
       </View>
