@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+    tags-ignore:
+      - 'v*.*.*'
 
 jobs:
   check-if-library-updated:
@@ -75,4 +77,6 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn release --npm.skipChecks --npm.publishArgs="--provenance"
+        run: |
+          yarn pack --dry-run
+          yarn release --npm.skipChecks --npm.publishArgs="--provenance"
