@@ -51,6 +51,12 @@ or
 yarn add react-native-circle-layout
 ```
 
+or
+
+```sh
+pnpm add react-native-circle-layout
+```
+
 ## Usage
 
 ```tsx

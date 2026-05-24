@@ -64,7 +64,7 @@ jobs:
         id: release-version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: echo "VERSION=$(yarn release --release-version --npm.skipChecks | egrep -o '^([0-9]{1,}\.){2}[0-9]{1,}$')" >> $GITHUB_OUTPUT
+        run: echo "VERSION=$(pnpm release --release-version --npm.skipChecks | egrep -o '^([0-9]{1,}\.){2}[0-9]{1,}$')" >> $GITHUB_OUTPUT
 
       - name: Print release version
         run: echo "The next release version is ${{ steps.release-version.outputs.VERSION }}"
@@ -77,4 +77,4 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn release --npm.skipChecks --npm.publishArgs="--provenance"
+        run: pnpm release --npm.skipChecks --npm.publishArgs="--provenance"
