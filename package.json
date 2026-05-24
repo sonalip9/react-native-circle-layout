@@ -2,7 +2,6 @@
   "name": "react-native-circle-layout",
   "version": "0.9.0",
   "description": "This package places components in a circle layout.",
-  "private": false,
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -37,7 +36,7 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
     "release": "release-it",
-    "example": "yarn workspace react-native-circle-layout-example",
+    "example": "pnpm --filter example",
     "clean": "del-cli lib"
   },
   "keywords": [
@@ -96,10 +95,7 @@
     "react": "*",
     "react-native": "*"
   },
-  "workspaces": [
-    "example"
-  ],
-  "packageManager": "yarn@4.11.0",
+  "packageManager": "pnpm@10.33.0",
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",

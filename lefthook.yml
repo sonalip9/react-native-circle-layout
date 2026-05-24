@@ -19,4 +19,4 @@ pre-push:
   parallel: true
   commands:
     test:
-      run: yarn test
+      run: pnpm test
