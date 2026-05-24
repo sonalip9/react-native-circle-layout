@@ -36,7 +36,7 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
     "release": "release-it",
-    "example": "pnpm --filter example",
+    "example": "pnpm --filter react-native-circle-layout-example",
     "clean": "del-cli lib"
   },
   "keywords": [
