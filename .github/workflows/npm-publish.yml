@@ -5,44 +5,18 @@ on:
       - main
     tags-ignore:
       - 'v*.*.*'
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - '.github/workflows/npm-publish.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  check-if-library-updated:
-    if: "github.event.repository.fork == false && !startsWith(github.event.head_commit.message, 'chore: release')"
-    name: Check if there is an update to the library
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    outputs:
-      IS_UPDATED: ${{ steps.is-library-updated.outputs.IS_UPDATED }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          fetch-tags: true
-
-      - name: Check if there is a change in src
-        id: is-library-updated
-        run: |
-          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || true)
-          if [ -n "$LAST_TAG" ]; then
-            CHANGED_FILES=$(git diff --name-only "$LAST_TAG" HEAD -- 'src/')
-          else
-            FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)
-            CHANGED_FILES=$(git diff --name-only "$FIRST_COMMIT" HEAD -- 'src/')
-          fi
-          if [ -z "$CHANGED_FILES" ]; then
-            echo "There are no changes in src directory"
-            echo "IS_UPDATED=false" >> $GITHUB_OUTPUT
-          else
-            echo "There are changes in src directory"
-            echo "IS_UPDATED=true" >> $GITHUB_OUTPUT
-          fi
-
   release:
-    needs: check-if-library-updated
-    if: needs.check-if-library-updated.outputs.IS_UPDATED == 'true'
+    if: "github.event.repository.fork == false && !startsWith(github.event.head_commit.message, 'chore: release')"
     name: Release
     runs-on: ubuntu-latest
     permissions:
@@ -59,7 +33,6 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
 
-      # Find the version to be released and store it in github env
       - name: Get release version
         id: release-version
         env:
