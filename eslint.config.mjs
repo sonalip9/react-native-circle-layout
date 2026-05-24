@@ -55,7 +55,7 @@ export default defineConfig(
         '@eslint-react/no-missing-key': 'error',
         '@eslint-react/no-duplicate-key': 'error',
         '@eslint-react/no-implicit-key': 'error',
-        '@eslint-react/jsx-key-before-spread': 'error',
+        '@eslint-react/jsx-no-key-after-spread': 'error',
 
         // Comments
         '@eslint-community/eslint-comments/require-description': ['error'],
