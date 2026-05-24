@@ -69,4 +69,4 @@ jobs:
 
       - name: Build example for Web
         run: |
-          pnpm example expo export --platform web
+          pnpm --filter react-native-circle-layout-example exec expo export --platform web
