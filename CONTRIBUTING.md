@@ -110,7 +110,7 @@ pnpm release
 
 The `package.json` file contains various scripts for common tasks:
 
-- `pnpm`: setup project by installing dependencies.
+- `pnpm install`: setup project by installing dependencies.
 - `pnpm typecheck`: type-check files with TypeScript.
 - `pnpm lint`: lint files with [ESLint](https://eslint.org/).
 - `pnpm test`: run unit tests with [Jest](https://jestjs.io/).

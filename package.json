@@ -122,8 +122,7 @@
       "<rootDir>/lib/"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!(.pnpm/)?((jest-)?react-native|@react-native(-community)?))"
-    ]
+      "node_modules/(?!(\\.pnpm/[^/]+/node_modules/)?((jest-)?react-native|@react-native(-community)?)/)"]
   },
   "commitlint": {
     "extends": [
