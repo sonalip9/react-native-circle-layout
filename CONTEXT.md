@@ -6,7 +6,7 @@
 |---|---|
 | circle layout | Container component that positions children at equal angular intervals on a circle |
 | sweep angle | Arc in radians the layout spans; default `2π` (full circle). Prop: `sweepAngle` |
-| start angle | Radian offset of the first component from the 3 o'clock position (0 = rightward). Prop: `startAngle` |
+| start angle | Radian offset of the first component from the 9 o'clock position (0 = leftward). Prop: `startAngle` |
 | total parts | Number of angular divisions used for spacing. `n` for full circles, `n-1` for partial arcs |
 | polar-to-Cartesian | Coordinate transform `x = r·cosθ, y = r·sinθ` used to position each component. Implemented in `src/utils/circle.ts` |
 | entry animation | Transition played when `showComponents()` is called on the ref |

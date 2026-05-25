@@ -19,5 +19,5 @@ The ref approach also matches the React Native idiom used by `FlatList.scrollToI
 ## Consequences
 
 - Consumers must hold a ref to `CircleLayout` to trigger animations
-- Initial visibility is always "hidden" — consumers call `showComponents()` to animate in
+- Initial visibility depends on `animationProps`: components render **visible by default**. With an OPACITY animation config, they start hidden (opacity 0) and `showComponents()` animates them in. Without animation config, `showComponents()` / `hideComponents()` are no-ops.
 - The ref API is the only way to trigger animations; there is no prop-driven alternative
