@@ -11,17 +11,17 @@
     "start": "expo start"
   },
   "dependencies": {
-    "@expo/metro-runtime": "~55.0.6",
-    "@react-native-community/slider": "^5.1.2",
-    "expo": "~55.0.4",
-    "expo-status-bar": "~55.0.4",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "react-native": "0.83.6",
-    "react-native-web": "~0.21.0"
+    "@expo/metro-runtime": "~56.0.13",
+    "@react-native-community/slider": "^5.2.0",
+    "expo": "~56.0.5",
+    "expo-status-bar": "~56.0.4",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.85.3",
+    "react-native-web": "~0.21.2"
   },
   "devDependencies": {
-    "react-native-builder-bob": "^0.40.13",
-    "react-native-monorepo-config": "^0.3.3"
+    "react-native-builder-bob": "^0.41.0",
+    "react-native-monorepo-config": "^0.3.5"
   }
 }
