@@ -75,4 +75,4 @@ jobs:
       - name: Build example for Web
         run: |
           cd example
-          npx expo export --platform web -y
+          npx expo export --platform web
