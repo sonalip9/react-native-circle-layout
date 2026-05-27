@@ -1,0 +1,81 @@
+import AntDesign from '@expo/vector-icons/AntDesign';
+import * as React from 'react';
+import { View } from 'react-native';
+import {
+  AnimationCombinationType,
+  AnimationType,
+  CircleLayout,
+  type CircleLayoutRef,
+} from 'react-native-circle-layout';
+
+import { AppContext } from '../../AppContext';
+
+import { styles } from './styles';
+
+type Icon = 'delete' | 'edit' | 'home' | 'star';
+
+const RadialMenu = () => {
+  const icons: Icon[] = ['edit', 'home', 'star', 'delete'];
+  const [showCircleComponent, setShowCircleComponent] = React.useState(false);
+  const circleLayoutRef = React.useRef<CircleLayoutRef>(null);
+  const { showPopUp } = React.use(AppContext);
+
+  React.useEffect(() => {
+    if (showCircleComponent) {
+      circleLayoutRef.current?.showComponents();
+    } else {
+      circleLayoutRef.current?.hideComponents();
+    }
+  }, [showCircleComponent]);
+
+  return (
+    <View style={styles.flex}>
+      <CircleLayout
+        centerComponent={
+          <AntDesign.Button
+            backgroundColor="white"
+            borderRadius={100}
+            color="black"
+            iconStyle={styles.icon}
+            name={showCircleComponent ? 'close' : 'appstore'}
+            onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
+          />
+        }
+        components={icons.map((icon) => (
+          <AntDesign.Button
+            key={icon}
+            backgroundColor="white"
+            borderRadius={100}
+            color="black"
+            iconStyle={styles.icon}
+            name={icon}
+            onPress={() =>
+              showPopUp({ message: `The ${icon} button was clicked.` })
+            }
+            size={24}
+          />
+        ))}
+        containerStyle={styles.container}
+        animationProps={{
+          animationCombinationType: AnimationCombinationType.PARALLEL,
+          animationConfigs: [
+            {
+              config: { duration: 500 },
+              type: AnimationType.LINEAR,
+            },
+            {
+              config: { duration: 500 },
+              type: AnimationType.OPACITY,
+            },
+          ],
+        }}
+        radius={100}
+        ref={circleLayoutRef}
+        startAngle={0}
+        sweepAngle={Math.PI}
+      />
+    </View>
+  );
+};
+
+export default RadialMenu;
