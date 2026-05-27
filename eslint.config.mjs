@@ -34,6 +34,7 @@ export default defineConfig(
         '**/*.config.js',
         'scripts/**',
         'example/index.js',
+        'coverage/**',
       ],
     },
     {
