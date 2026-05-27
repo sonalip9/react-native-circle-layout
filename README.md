@@ -1,29 +1,12 @@
 # React Native Circle Layout
 
+<!-- markdownlint-disable-next-line MD033 -->
 <div align='center'>
 
-<a href='https://www.npmjs.com/package/react-native-circle-layout'>
-  <img src='https://img.shields.io/npm/v/react-native-circle-layout' alt='NPM Version'></a>
-<a href='https://github.com/sonalip9/react-native-circle-layout/releases/latest'>
-  <img src='https://img.shields.io/github/release-date/sonalip9/react-native-circle-layout' alt='Releases'></a>
-<a href='https://www.npmjs.com/package/react-native-circle-layout'>
-  <img src='https://img.shields.io/npm/dt/react-native-circle-layout' /></a>
-<a href='https://github.com/sonalip9/react-native-circle-layout/blob/main/LICENSE'>
-  <img src='https://img.shields.io/github/license/sonalip9/react-native-circle-layout' alt='License'></a>
-<br/>
-<a href='https://github.com/sonalip9/react-native-circle-layout/releases'>
-  <img src='https://img.shields.io/bundlephobia/minzip/react-native-circle-layout' alt='Minified zipped size'>
-  <img src='https://img.shields.io/bundlephobia/min/react-native-circle-layout' alt='Minified size'></a>
-<br/>
-<a href='https://github.com/sonalip9/react-native-circle-layout/search?l=typescript'>
-  <img src='https://img.shields.io/github/languages/top/sonalip9/react-native-circle-layout' alt='Language'></a>
-<a href='https://github.com/sonalip9/react-native-circle-layout/commits/main'>
-  <img src='https://img.shields.io/tokei/lines/github/sonalip9/react-native-circle-layout' alt='Lines of code'></a>
-<a href='https://github.com/sonalip9/react-native-circle-layout/graphs/commit-activity'>
-  <img src='https://img.shields.io/github/commit-activity/m/sonalip9/react-native-circle-layout' alt='GitHub commit activity'></a>
-<br/>
-<a href='https://github.com/sonalip9/react-native-circle-layout'>
-  <img src='https://img.shields.io/github/stars/sonalip9/react-native-circle-layout?style=social' alt='GitHub Repo stars'></a>
+![NPM Version](https://img.shields.io/npm/v/react-native-circle-layout) ![NPM Last Update](https://img.shields.io/npm/last-update/react-native-circle-layout) ![npms.io](https://img.shields.io/npm/dt/react-native-circle-layout) ![Licence](https://img.shields.io/github/license/sonalip9/react-native-circle-layout)
+![Language](https://img.shields.io/github/languages/top/sonalip9/react-native-circle-layout) [![Lines of Code](https://img.shields.io/endpoint?url=https%3A%2F%2Ftokei.kojix2.net%2Fbadge%2Fgithub%2Fsonalip9%2Freact-native-circle-layout%2Flines)](https://tokei.kojix2.net/github/sonalip9/react-native-circle-layout) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/sonalip9/react-native-circle-layout) ![Codecov](https://img.shields.io/codecov/c/github/sonalip9/react-native-circle-layout)
+[![install size](https://packagephobia.com/badge?p=react-native-circle-layout@0.9.1)](https://packagephobia.com/result?p=react-native-circle-layout@0.9.1) ![GitHub repo size](https://img.shields.io/github/repo-size/sonalip9/react-native-circle-layout)
+![GitHub Repo stars](https://img.shields.io/github/stars/sonalip9/react-native-circle-layout?style=social)
 
 </div>
 
@@ -37,7 +20,7 @@ What each element is going to be is left to you - it can be an icon, a button, a
 
 Star the [project](https://github.com/sonalip9/react-native-circle-layout) to show your support if you liked it!
 
-Share your project [here](https://github.com/sonalip9/react-native-circle-layout/discussions/29)!
+Share your project [in the discussions](https://github.com/sonalip9/react-native-circle-layout/discussions/29)!
 
 ## Installation
 
@@ -241,7 +224,7 @@ export enum AnimationCombinationType {
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
-You can report bugs or request a feature [here](https://github.com/sonalip9/react-native-circle-layout/issues).
+You can [report bugs or request a feature](https://github.com/sonalip9/react-native-circle-layout/issues) on GitHub.
 
 ## License
 
