@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated } from 'react-native';
 
 type AnimationProps = Omit<
@@ -25,6 +25,8 @@ interface AnimationArgs {
   exitAnimationConfig?: AnimationProps;
 }
 
+const EPSILON = 0.0001;
+
 /**
  * A hook that creates entry and exit animations based on
  * the config.
@@ -43,6 +45,46 @@ export const useAnimation = ({
   exitAnimationConfig = entryAnimationConfig,
 }: AnimationArgs) => {
   const [value] = useState(() => new Animated.Value(initialValue));
+
+  const currentValueRef = useRef(initialValue);
+  const previousInitialValueRef = useRef(initialValue);
+  const previousFinalValueRef = useRef(finalValue);
+
+  // Keep track of the current animated value.
+  useEffect(() => {
+    const listenerId = value.addListener(({ value: currentValue }) => {
+      currentValueRef.current = currentValue;
+    });
+
+    return () => {
+      value.removeListener(listenerId);
+    };
+  }, [value]);
+
+  useEffect(() => {
+    const previousInitialValue = previousInitialValueRef.current;
+    const previousFinalValue = previousFinalValueRef.current;
+
+    const currentValue = currentValueRef.current;
+
+    const isAtPreviousInitial =
+      Math.abs(currentValue - previousInitialValue) < EPSILON;
+
+    const isAtPreviousFinal =
+      Math.abs(currentValue - previousFinalValue) < EPSILON;
+
+    const initialChanged = initialValue !== previousInitialValue;
+    const finalChanged = finalValue !== previousFinalValue;
+
+    if (isAtPreviousFinal && finalChanged) {
+      value.setValue(finalValue);
+    } else if (isAtPreviousInitial && initialChanged) {
+      value.setValue(initialValue);
+    }
+
+    previousInitialValueRef.current = initialValue;
+    previousFinalValueRef.current = finalValue;
+  }, [initialValue, finalValue, value]);
 
   /**
    * Function to create a fade-in entry animation.
