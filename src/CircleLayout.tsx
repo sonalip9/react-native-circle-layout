@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import { Animated, View } from 'react-native';
 
 import { CircleLayoutContext } from './CircleLayoutContext';
-import { circleLayoutStyles } from './styles';
 import type {
   CircleLayoutContextType,
   CircleLayoutProps,
@@ -78,8 +77,12 @@ export const CircleLayout = ({
     <CircleLayoutContext value={contextValue}>
       <View
         style={[
-          circleLayoutStyles.layoutContainer,
-          { minHeight, minWidth },
+          {
+            minHeight,
+            minWidth,
+            justifyContent: sweepAngle >= Math.PI ? 'center' : 'flex-end',
+            alignItems: 'center',
+          },
           containerStyle,
         ]}
       >
