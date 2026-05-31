@@ -72,7 +72,8 @@ function CircleLayoutArray({
   }));
 
   return components.map((component, index) => {
-    const angle = startAngle + sweepAngle * (index / totalParts);
+    const angle =
+      (startAngle + sweepAngle * (index / totalParts)) % (2 * Math.PI);
     return (
       <CircleLayoutComponent
         component={component}
