@@ -60,9 +60,9 @@ export const CircleLayout = ({
   // The total number of parts to divide the circle into
   const totalParts = React.useMemo(
     () =>
-      sweepAngle && sweepAngle !== 2 * Math.PI
-        ? components.length - 1
-        : components.length,
+      Math.abs(sweepAngle - 2 * Math.PI) < 0.001
+        ? components.length
+        : components.length - 1,
     [components, sweepAngle]
   );
 
