@@ -17,10 +17,22 @@ const theme = createTheme({
   breakpoints: {},
   colors: palette,
   spacing: {
-    l: 24,
-    m: 16,
     s: 8,
+    m: 16,
+    l: 24,
     xl: 40,
+  },
+  borderRadii: {
+    s: 4,
+    m: 8,
+    l: 16,
+    xl: 24,
+  },
+  textVariants: {
+    defaults: {
+      color: 'black',
+      fontSize: 16,
+    },
   },
 });
 
