@@ -39,6 +39,8 @@ function CircleLayoutArray({
     Array(components.length).fill(null) as null[]
   );
 
+  const [isComponentsVisible, setIsComponentsVisible] = React.useState(false);
+
   const [componentLayouts, setComponentLayouts] = React.useState<Layout[]>([]);
 
   useEffect(() => {
@@ -61,15 +63,31 @@ function CircleLayoutArray({
    * The instance value that is exposed to parent components when using ref.
    */
   React.useImperativeHandle(ref, () => ({
-    hideComponents: () =>
+    hideComponents: () => {
       componentListRef.current?.forEach((componentRef) =>
         componentRef?.hideComponent()
-      ),
-    showComponents: () =>
+      );
+      setIsComponentsVisible(false);
+    },
+    showComponents: () => {
       componentListRef.current?.forEach((componentRef) => {
         componentRef?.showComponent();
-      }),
+      });
+      setIsComponentsVisible(true);
+    },
   }));
+
+  useEffect(() => {
+    if (isComponentsVisible) {
+      componentListRef.current?.forEach((componentRef) =>
+        componentRef?.showComponent()
+      );
+    } else {
+      componentListRef.current?.forEach((componentRef) =>
+        componentRef?.hideComponent()
+      );
+    }
+  }, [startAngle, sweepAngle, totalParts, isComponentsVisible]);
 
   return components.map((component, index) => {
     const angle =
