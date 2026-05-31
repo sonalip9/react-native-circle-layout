@@ -9,6 +9,7 @@ import type {
   CircleLayoutProps,
   CircleLayoutRef,
   ComponentRef,
+  Layout,
 } from './types';
 
 /**
@@ -45,6 +46,9 @@ export const CircleLayout = ({
   const componentListRef = React.useRef<(ComponentRef | null)[]>(
     Array(components.length).fill(null) as null[]
   );
+
+  const [centerComponentLayout, setCenterComponentLayout] =
+    React.useState<Layout>({ width: 0, height: 0 });
 
   // The total number of parts to divide the circle into
   const totalParts = React.useMemo(
@@ -84,10 +88,11 @@ export const CircleLayout = ({
             ref={(el) => {
               componentListRef.current[index] = el;
             }}
+            centerComponentLayout={centerComponentLayout}
           />
         );
       }),
-    [components, startAngle, sweepAngle, totalParts]
+    [centerComponentLayout, components, startAngle, sweepAngle, totalParts]
   );
 
   /**
@@ -116,7 +121,11 @@ export const CircleLayout = ({
         <View>
           {componentsList()}
           <Animated.View
-            style={[{ marginTop: radius }, centerComponentContainerStyle]}
+            style={[centerComponentContainerStyle]}
+            onLayout={(event) => {
+              const layout = event.nativeEvent.layout;
+              setCenterComponentLayout(layout);
+            }}
           >
             {centerComponent}
           </Animated.View>

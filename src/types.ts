@@ -161,6 +161,13 @@ export type ComponentProps = {
    * The angle at which this component will be placed on the circle.
    */
   radians: number;
+  /**
+   * The layout values of the component which can be used to calculate
+   * the position of the component on the circle. This is calculated
+   * when the layout of the component is calculated and is passed to
+   * the parent CircleLayout component through the onLayout prop.
+   */
+  centerComponentLayout: { width: number; height: number };
 };
 
 export type ComponentRef = {
@@ -196,4 +203,9 @@ export type CircleLayoutContextType = {
    * @default undefined
    */
   animationProps?: AnimationProps | undefined;
+};
+
+export type Layout = {
+  width: number;
+  height: number;
 };
