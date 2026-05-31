@@ -42,7 +42,7 @@ export const CircleLayout = ({
   /**
    * Array of references for each of the circle components.
    */
-  const componentRefs = React.useRef<(ComponentRef | null)[]>(
+  const componentListRef = React.useRef<(ComponentRef | null)[]>(
     Array(components.length).fill(null) as null[]
   );
 
@@ -82,7 +82,7 @@ export const CircleLayout = ({
             key={`Component-${angle}`}
             radians={angle}
             ref={(el) => {
-              componentRefs.current[index] = el;
+              componentListRef.current[index] = el;
             }}
           />
         );
@@ -95,11 +95,11 @@ export const CircleLayout = ({
    */
   React.useImperativeHandle(ref, () => ({
     hideComponents: () =>
-      componentRefs.current?.forEach((componentRef) =>
+      componentListRef.current?.forEach((componentRef) =>
         componentRef?.hideComponent()
       ),
     showComponents: () =>
-      componentRefs.current?.forEach((componentRef) => {
+      componentListRef.current?.forEach((componentRef) => {
         componentRef?.showComponent();
       }),
   }));
