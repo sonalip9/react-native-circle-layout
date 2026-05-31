@@ -4,7 +4,6 @@ export const circleLayoutStyles = StyleSheet.create({
   layoutContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 10,
   },
 });
 

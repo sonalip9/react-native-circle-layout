@@ -1,5 +1,10 @@
 import type { ReactNode } from 'react';
-import type { Animated, StyleProp, ViewStyle } from 'react-native';
+import type {
+  Animated,
+  LayoutChangeEvent,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 
 export enum AnimationType {
   /**
@@ -161,6 +166,13 @@ export type ComponentProps = {
    * The angle at which this component will be placed on the circle.
    */
   radians: number;
+  /**
+   * The function that is called when the layout of the component
+   * is calculated. The event passed to the function contains the
+   * layout values of the component which can be used to calculate
+   * the position of the component on the circle.
+   */
+  onLayout?: (event: LayoutChangeEvent) => void;
   /**
    * The layout values of the component which can be used to calculate
    * the position of the component on the circle. This is calculated
