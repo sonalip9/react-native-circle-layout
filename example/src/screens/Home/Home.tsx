@@ -1,17 +1,20 @@
-import { Pressable, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import { Text, View } from '../../design_system/atoms';
 
 import { RootScreens, type RootStackScreenProps } from '../../navigation';
 
-import { styles } from './styles';
-
 const Home = ({ navigation }: RootStackScreenProps<RootScreens.HOME>) => (
-  <View>
+  <View px="s" py="m" gap="s">
     {Object.values(RootScreens)
       .filter((screen) => screen !== RootScreens.HOME)
       .map((screen) => (
-        <Pressable key={screen} onPress={() => navigation.navigate(screen)}>
-          <Text style={styles.item}>{screen}</Text>
-        </Pressable>
+        <TouchableOpacity
+          key={screen}
+          onPress={() => navigation.navigate(screen)}
+          style={{ backgroundColor: 'lightgray', borderRadius: 4 }}
+        >
+          <Text p="m">{screen}</Text>
+        </TouchableOpacity>
       ))}
   </View>
 );
