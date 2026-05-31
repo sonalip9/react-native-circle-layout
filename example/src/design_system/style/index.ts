@@ -11,6 +11,29 @@ const palette = {
   purpleLight: '#8C6FF7',
   purplePrimary: '#5A31F4',
   white: '#F0F2F3',
+  transparent: 'transparent',
+};
+
+const buttonVariants = {
+  defaults: {
+    backgroundColor: 'purpleDark',
+    padding: 'm',
+    borderRadius: 'm',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'white',
+  },
+  text: {
+    backgroundColor: 'transparent',
+    color: 'purpleDark',
+  },
+  outlined: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: 'purpleDark',
+    color: 'purpleDark',
+  },
+  contained: {},
 };
 
 const theme = createTheme({
@@ -34,6 +57,7 @@ const theme = createTheme({
       fontSize: 16,
     },
   },
+  buttonVariants,
 });
 
 export type Theme = typeof theme;
