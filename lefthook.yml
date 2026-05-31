@@ -5,10 +5,6 @@ pre-commit:
       glob: '*.{js,ts,jsx,tsx}'
       run: npx eslint {staged_files}
 
-    types:
-      glob: '*.{ts,tsx}'
-      run: npx tsc {staged_files}
-
 commit-msg:
   parallel: true
   commands:
@@ -20,3 +16,7 @@ pre-push:
   commands:
     test:
       run: pnpm test
+
+    types:
+      glob: '*.{ts,tsx}'
+      run: npx tsc --noEmit
