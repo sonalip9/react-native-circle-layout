@@ -78,7 +78,8 @@ function CircleLayoutArray({
       <CircleLayoutComponent
         component={component}
         index={index}
-        key={`Component-${angle}`}
+        // eslint-disable-next-line @eslint-react/no-array-index-key -- This is a stable index as the order of the components will not change.
+        key={`Component-${index}`}
         radians={angle}
         ref={(el) => {
           componentListRef.current[index] = el;
