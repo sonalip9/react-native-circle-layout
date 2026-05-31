@@ -4,6 +4,7 @@ export const palette = {
   alert: '#FF0058',
   black: '#0B0B0B',
   disabled: '#E5E5E5',
+  grey: '#9E9E9E',
   greenDark: '#0A906E',
   greenLight: '#56DCBA',
   greenPrimary: '#0ECD9D',

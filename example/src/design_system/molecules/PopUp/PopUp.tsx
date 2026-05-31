@@ -1,16 +1,14 @@
 import * as React from 'react';
-import { Text, View, type StyleProp, type TextStyle } from 'react-native';
 
 import { AppContext } from '../../../AppContext';
-
-import { styles } from './styles';
+import { Text } from '../../atoms/Text';
+import { View } from '../../atoms/View';
 
 export type PopUpProps = {
   message: string;
-  textStyle?: StyleProp<TextStyle>;
 };
 
-const PopUp = ({ message, textStyle }: PopUpProps) => {
+const PopUp = ({ message }: PopUpProps) => {
   const { closePopUp } = React.use(AppContext);
 
   React.useEffect(() => {
@@ -24,8 +22,19 @@ const PopUp = ({ message, textStyle }: PopUpProps) => {
   }, [closePopUp]);
 
   return (
-    <View style={styles.container}>
-      <Text style={[styles.message, textStyle]}>{message}</Text>
+    <View
+      backgroundColor="grey"
+      bottom={0}
+      justifyContent="center"
+      left={0}
+      margin="l"
+      minHeight={48}
+      paddingStart="m"
+      position="absolute"
+      right={0}
+      style={{ borderRadius: 5, elevation: 3, paddingVertical: 12 }}
+    >
+      <Text color="white">{message}</Text>
     </View>
   );
 };
