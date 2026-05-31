@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Animated, View } from 'react-native';
 
-import { CircleLayoutComponent } from './CircleLayoutComponent';
 import { CircleLayoutContext } from './CircleLayoutContext';
 import { circleLayoutStyles } from './styles';
 import type {
   CircleLayoutContextType,
   CircleLayoutProps,
   CircleLayoutRef,
-  ComponentRef,
   Layout,
 } from './types';
+import CircleLayoutArray from './CircleLayoutArray';
 
 /**
  * A component that places a list of components in a circular layout.
@@ -40,12 +39,20 @@ export const CircleLayout = ({
   animationProps = undefined,
   ref,
 }: CircleLayoutProps & { ref: React.Ref<CircleLayoutRef> }) => {
-  /**
-   * Array of references for each of the circle components.
-   */
-  const componentListRef = React.useRef<(ComponentRef | null)[]>(
-    Array(components.length).fill(null) as null[]
-  );
+  const [minComponentLayout, setMinComponentLayout] = React.useState<Layout>({
+    height: 0,
+    width: 0,
+  });
+  const { minHeight, minWidth } = useMemo(() => {
+    return {
+      minHeight:
+        (sweepAngle >= Math.PI ? 2 * radius : radius) +
+        minComponentLayout.height,
+      minWidth:
+        (sweepAngle >= Math.PI ? 2 * radius : radius) +
+        minComponentLayout.width,
+    };
+  }, [minComponentLayout, radius, sweepAngle]);
 
   const [centerComponentLayout, setCenterComponentLayout] =
     React.useState<Layout>({ width: 0, height: 0 });
@@ -63,63 +70,28 @@ export const CircleLayout = ({
    * The value passed to the context of the circle layout.
    */
   const contextValue: CircleLayoutContextType = React.useMemo(
-    () => ({
-      totalParts,
-      radius,
-      startAngle,
-      animationProps,
-    }),
+    () => ({ totalParts, radius, startAngle, animationProps }),
     [animationProps, radius, startAngle, totalParts]
   );
-
-  /**
-   * The list of components to be shown in the circle.
-   */
-  const componentsList = React.useCallback(
-    () =>
-      components.map((component, index) => {
-        const angle = startAngle + sweepAngle * (index / totalParts);
-        return (
-          <CircleLayoutComponent
-            component={component}
-            index={index}
-            key={`Component-${angle}`}
-            radians={angle}
-            ref={(el) => {
-              componentListRef.current[index] = el;
-            }}
-            centerComponentLayout={centerComponentLayout}
-          />
-        );
-      }),
-    [centerComponentLayout, components, startAngle, sweepAngle, totalParts]
-  );
-
-  /**
-   * The instance value that is exposed to parent components when using ref.
-   */
-  React.useImperativeHandle(ref, () => ({
-    hideComponents: () =>
-      componentListRef.current?.forEach((componentRef) =>
-        componentRef?.hideComponent()
-      ),
-    showComponents: () =>
-      componentListRef.current?.forEach((componentRef) => {
-        componentRef?.showComponent();
-      }),
-  }));
 
   return (
     <CircleLayoutContext value={contextValue}>
       <View
         style={[
           circleLayoutStyles.layoutContainer,
-          { minHeight: sweepAngle >= Math.PI ? 2 * radius : radius },
+          { minHeight, minWidth },
           containerStyle,
         ]}
       >
         <View>
-          {componentsList()}
+          {/* The list of components to be shown in the circle. */}
+          <CircleLayoutArray
+            ref={ref}
+            components={components}
+            sweepAngle={sweepAngle}
+            setMinComponentLayout={setMinComponentLayout}
+            centerComponentLayout={centerComponentLayout}
+          />
           <Animated.View
             style={[centerComponentContainerStyle]}
             onLayout={(event) => {

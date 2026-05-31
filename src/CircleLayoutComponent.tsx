@@ -1,9 +1,9 @@
-import { useImperativeHandle, useMemo, useState, type Ref } from 'react';
+import { useImperativeHandle, useState, type Ref } from 'react';
 import { Animated } from 'react-native';
 
 import { useCombinedAnimation } from './hooks';
 import { circleComponentStyles } from './styles';
-import type { ComponentProps, ComponentRef, Layout } from './types';
+import type { ComponentProps, ComponentRef } from './types';
 import { pointOnCircle } from './utils';
 
 /**
@@ -12,8 +12,11 @@ import { pointOnCircle } from './utils';
  * @param props.component The component to be displayed.
  * @param props.index The position of the component in the circle layout.
  * @param props.radians The angle at which this component will be placed on the circle.
- * @param props.centerComponentLayout The layout values of the center component which
- * can be used to calculate the position of the component on the circle.
+ * @param props.onLayout The function that is called when the layout of the component
+ * is calculated. The event passed to the function contains the layout values of the component
+ * which can be used to calculate the position of the component on the circle.
+ * @param props.centerComponentLayout The layout of the center component which is used to
+ * calculate the position of the components on the circle.
  * @param props.ref The ref that is used to expose the show and hide function of the
  * component to parent components.
  * @returns A component that is placed at a point on the circle.
@@ -22,10 +25,14 @@ export const CircleLayoutComponent = ({
   component,
   index,
   radians,
+  onLayout,
   centerComponentLayout,
   ref,
 }: ComponentProps & { ref: Ref<ComponentRef> }) => {
-  const [layout, setLayout] = useState<Layout>({ width: 0, height: 0 });
+  const [layout, setLayout] = useState<{ width: number; height: number }>({
+    width: 0,
+    height: 0,
+  });
   const {
     hideComponent,
     showComponent,
@@ -49,22 +56,6 @@ export const CircleLayoutComponent = ({
     hideComponent,
   }));
 
-  const translate = useMemo(() => {
-    const { x, y } = position;
-    const { width, height } = layout;
-    const { width: centerWidth, height: centerHeight } = centerComponentLayout;
-    return {
-      translateX: Animated.multiply(
-        Animated.subtract(x, (width - centerWidth) / 2),
-        -1
-      ),
-      translateY: Animated.multiply(
-        Animated.subtract(y, (height - centerHeight) / 2),
-        -1
-      ),
-    };
-  }, [position, layout, centerComponentLayout]);
-
   return (
     <Animated.View
       style={[
@@ -72,14 +63,32 @@ export const CircleLayoutComponent = ({
         {
           opacity,
           transform: [
-            { translateX: translate.translateX },
-            { translateY: translate.translateY },
+            {
+              translateX: Animated.multiply(
+                Animated.subtract(
+                  position.x,
+                  layout.width / 2 - centerComponentLayout.width / 2
+                ),
+                -1
+              ),
+            },
+
+            {
+              translateY: Animated.multiply(
+                Animated.subtract(
+                  position.y,
+                  layout.height / 2 - centerComponentLayout.height / 2
+                ),
+                -1
+              ),
+            },
           ],
         },
       ]}
       onLayout={(event) => {
         const { width, height } = event.nativeEvent.layout;
         setLayout({ width, height });
+        onLayout?.(event);
       }}
     >
       {component}
