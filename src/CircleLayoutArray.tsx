@@ -44,6 +44,21 @@ function CircleLayoutArray({
   const [componentLayouts, setComponentLayouts] = React.useState<Layout[]>([]);
 
   useEffect(() => {
+    const diff = Math.abs(components.length - componentListRef.current.length);
+    if (componentListRef.current.length < components.length) {
+      // This means that a new component has been added and we need to add a new ref for it.
+      for (let i = 0; i < diff; i++) {
+        componentListRef.current.push(null);
+        componentLayouts.push({ width: 0, height: 0 });
+      }
+    } else if (componentListRef.current.length > components.length) {
+      // This means that a component has been removed and we need to remove the ref for it.
+      componentListRef.current.splice(components.length, diff);
+      componentLayouts.splice(components.length, diff);
+    }
+  }, [componentLayouts, components.length, setMinComponentLayout]);
+
+  useEffect(() => {
     const minLayout = componentLayouts.reduce(
       (acc, layout) => {
         return {
