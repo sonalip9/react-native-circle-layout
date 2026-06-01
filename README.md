@@ -118,6 +118,24 @@ _description_: The properties to configure the entry and exit animation of the c
 
 ## Methods
 
+These methods are available via the `ref` prop on `CircleLayout`.
+
+```tsx
+const ref = useRef<CircleLayoutRef>(null);
+<CircleLayout ref={ref} components={components} radius={100} />
+
+ref.current?.showComponents();
+ref.current?.hideComponents();
+```
+
+### `showComponents()`
+
+Makes all circle-layout components visible. Triggers the entry animation on each component if `animationProps` is configured.
+
+### `hideComponents()`
+
+Hides all circle-layout components. Triggers the exit animation on each component if `animationProps` is configured.
+
 ## Custom Types and Constants
 
 ### AnimationProps

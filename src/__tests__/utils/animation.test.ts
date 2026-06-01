@@ -1,7 +1,7 @@
-import { withFunction } from '../utils/animation';
+import { withFunction } from '../../utils/animation';
 
 describe('withFunction', () => {
-  it('should generate inputRange and outputRange arrays based on the provided callback and interpolationConfig', () => {
+  it('generates ranges by applying callback at each step', () => {
     const callback = (value: number) => value * 2;
     const interpolationConfig = {
       startValue: 0,
@@ -15,7 +15,7 @@ describe('withFunction', () => {
     expect(result.outputRange).toEqual([0, 4, 8, 12, 16, 20]);
   });
 
-  it('should use default interpolationConfig if not provided', () => {
+  it('uses default interpolationConfig (0→1, 50 steps) when config omitted', () => {
     const callback = (value: number) => value * 2;
 
     const result = withFunction(callback);
@@ -34,7 +34,7 @@ describe('withFunction', () => {
     ]);
   });
 
-  it('should return empty arrays if totalIterations is 0', () => {
+  it('returns empty ranges when totalIterations is 0', () => {
     const callback = (value: number) => value * 2;
     const interpolationConfig = {
       startValue: 0,
@@ -48,7 +48,7 @@ describe('withFunction', () => {
     expect(result.outputRange).toEqual([]);
   });
 
-  it('should generate descending inputRange and outputRange arrays when startValue is greater than endValue', () => {
+  it('generates descending ranges when startValue > endValue', () => {
     const callback = (value: number) => value * 2;
     const interpolationConfig = {
       startValue: 10,
@@ -62,7 +62,7 @@ describe('withFunction', () => {
     expect(result.outputRange).toEqual([20, 16, 12, 8, 4, 0]);
   });
 
-  it('should throw an error if totalIterations is negative', () => {
+  it('throws when totalIterations is negative', () => {
     const callback = (value: number) => value * 2;
     const interpolationConfig = {
       startValue: 0,
@@ -75,7 +75,7 @@ describe('withFunction', () => {
     );
   });
 
-  it('should generate inputRange and outputRange arrays when startValue is negative and endValue is positive', () => {
+  it('generates ranges spanning negative to positive values', () => {
     const callback = (value: number) => value * 2;
     const interpolationConfig = {
       startValue: -10,
