@@ -3,7 +3,7 @@ import { Animated } from 'react-native';
 
 import { useCombinedAnimation } from './hooks';
 import { circleComponentStyles } from './styles';
-import type { ComponentProps, ComponentRef } from './types';
+import type { ComponentProps, ComponentRef, Layout } from './types';
 import { pointOnCircle } from './utils';
 
 /**
@@ -29,7 +29,7 @@ export const CircleLayoutComponent = ({
   centerComponentLayout,
   ref,
 }: ComponentProps & { ref: Ref<ComponentRef> }) => {
-  const [layout, setLayout] = useState<{ width: number; height: number }>({
+  const [layout, setLayout] = useState<Layout>({
     width: 0,
     height: 0,
   });

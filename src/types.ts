@@ -179,7 +179,7 @@ export type ComponentProps = {
    * when the layout of the component is calculated and is passed to
    * the parent CircleLayout component through the onLayout prop.
    */
-  centerComponentLayout: { width: number; height: number };
+  centerComponentLayout: Layout;
 };
 
 export type ComponentRef = {
