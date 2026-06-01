@@ -11,6 +11,43 @@ import type {
 import CircleLayoutArray from './CircleLayoutArray';
 
 /**
+ * Validates the props passed to the CircleLayout component and
+ * returns the validated props. If any of the props are invalid, an error is thrown.
+ * @param props The properties passed to the component
+ * @returns The validated properties
+ */
+function validateProps(props: CircleLayoutProps): CircleLayoutProps & {
+  sweepAngle: number;
+  startAngle: number;
+} {
+  const errors: string[] = [];
+  if (props.components.length < 2) {
+    errors.push('At least two components need to be passed to CircleLayout');
+  }
+  if (props.radius <= 0) {
+    errors.push('Radius needs to be greater than 0');
+  }
+
+  if (props.sweepAngle === 0) {
+    errors.push('Sweep angle cannot be 0');
+  }
+
+  if (errors.length > 0) {
+    throw new Error(errors.join('\n'));
+  }
+
+  return {
+    sweepAngle: props.sweepAngle
+      ? props.sweepAngle % (2 * Math.PI) === 0
+        ? 2 * Math.PI
+        : props.sweepAngle % (2 * Math.PI)
+      : 2 * Math.PI,
+    startAngle: (props.startAngle ?? 0) % (2 * Math.PI),
+    ...props,
+  };
+}
+
+/**
  * A component that places a list of components in a circular layout.
  * @param props The properties passed to the component
  * @param props.components The list of components to be placed in the circle layout.
@@ -28,41 +65,46 @@ import CircleLayoutArray from './CircleLayoutArray';
  * @returns A component that places the passed components in a circular view.
  */
 export const CircleLayout = ({
-  components,
-  radius,
-  centerComponent = undefined,
-  sweepAngle = 2 * Math.PI,
-  startAngle = 0,
-  containerStyle = undefined,
-  centerComponentContainerStyle = undefined,
-  animationProps = undefined,
   ref,
+  ...circleLayoutProps
 }: CircleLayoutProps & { ref: React.Ref<CircleLayoutRef> }) => {
+  const {
+    components,
+    radius,
+    centerComponent,
+    sweepAngle,
+    startAngle,
+    containerStyle,
+    centerComponentContainerStyle,
+    animationProps,
+  } = validateProps(circleLayoutProps);
+
+  const { isCompleteCircle, isGreaterThanHalfCircle } = useMemo(() => {
+    return {
+      isCompleteCircle: Math.abs(sweepAngle - 2 * Math.PI) < 0.001,
+      isGreaterThanHalfCircle: sweepAngle >= Math.PI,
+    };
+  }, [sweepAngle]);
+
   const [minComponentLayout, setMinComponentLayout] = React.useState<Layout>({
     height: 0,
     width: 0,
   });
   const { minHeight, minWidth } = useMemo(() => {
+    const defaultMinDimension = isGreaterThanHalfCircle ? 2 * radius : radius;
     return {
-      minHeight:
-        (sweepAngle >= Math.PI ? 2 * radius : radius) +
-        minComponentLayout.height,
-      minWidth:
-        (sweepAngle >= Math.PI ? 2 * radius : radius) +
-        minComponentLayout.width,
+      minHeight: defaultMinDimension + minComponentLayout.height,
+      minWidth: defaultMinDimension + minComponentLayout.width,
     };
-  }, [minComponentLayout, radius, sweepAngle]);
+  }, [minComponentLayout, radius, isGreaterThanHalfCircle]);
 
   const [centerComponentLayout, setCenterComponentLayout] =
     React.useState<Layout>({ width: 0, height: 0 });
 
   // The total number of parts to divide the circle into
   const totalParts = React.useMemo(
-    () =>
-      Math.abs(sweepAngle - 2 * Math.PI) < 0.001
-        ? components.length
-        : components.length - 1,
-    [components, sweepAngle]
+    () => (isCompleteCircle ? components.length : components.length - 1),
+    [components.length, isCompleteCircle]
   );
 
   /**
