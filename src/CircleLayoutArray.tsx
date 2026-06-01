@@ -44,19 +44,25 @@ function CircleLayoutArray({
   const [componentLayouts, setComponentLayouts] = React.useState<Layout[]>([]);
 
   useEffect(() => {
-    const diff = Math.abs(components.length - componentListRef.current.length);
-    if (componentListRef.current.length < components.length) {
-      // This means that a new component has been added and we need to add a new ref for it.
+    const currentLength = componentListRef.current.length;
+    const diff = Math.abs(components.length - currentLength);
+    if (currentLength < components.length) {
+      // New component added — extend ref array and layout state.
       for (let i = 0; i < diff; i++) {
         componentListRef.current.push(null);
-        componentLayouts.push({ width: 0, height: 0 });
       }
-    } else if (componentListRef.current.length > components.length) {
-      // This means that a component has been removed and we need to remove the ref for it.
+      // eslint-disable-next-line @eslint-react/set-state-in-effect -- We need to update the layout state to add the new components' layout.
+      setComponentLayouts((prev) => [
+        ...prev,
+        ...Array<Layout>(diff).fill({ width: 0, height: 0 }),
+      ]);
+    } else if (currentLength > components.length) {
+      // Component removed — trim ref array and layout state.
       componentListRef.current.splice(components.length, diff);
-      componentLayouts.splice(components.length, diff);
+      // eslint-disable-next-line @eslint-react/set-state-in-effect -- We need to update the layout state to remove the removed components' layout.
+      setComponentLayouts((prev) => prev.slice(0, components.length));
     }
-  }, [componentLayouts, components.length, setMinComponentLayout]);
+  }, [components.length]);
 
   useEffect(() => {
     const minLayout = componentLayouts.reduce(
