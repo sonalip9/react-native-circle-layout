@@ -16,7 +16,7 @@ import CircleLayoutArray from './CircleLayoutArray';
  * @param props The properties passed to the component
  * @returns The validated properties
  */
-function validateProps(props: CircleLayoutProps): CircleLayoutProps & {
+export function validateProps(props: CircleLayoutProps): CircleLayoutProps & {
   sweepAngle: number;
   startAngle: number;
 } {
