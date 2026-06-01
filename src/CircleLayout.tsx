@@ -37,13 +37,13 @@ function validateProps(props: CircleLayoutProps): CircleLayoutProps & {
   }
 
   return {
+    ...props,
     sweepAngle: props.sweepAngle
       ? props.sweepAngle % (2 * Math.PI) === 0
         ? 2 * Math.PI
         : props.sweepAngle % (2 * Math.PI)
       : 2 * Math.PI,
     startAngle: (props.startAngle ?? 0) % (2 * Math.PI),
-    ...props,
   };
 }
 
