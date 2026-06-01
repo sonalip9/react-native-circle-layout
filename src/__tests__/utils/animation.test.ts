@@ -88,4 +88,67 @@ describe('withFunction', () => {
     expect(result.inputRange).toEqual([-10, -6, -2, 2, 6, 10]);
     expect(result.outputRange).toEqual([-20, -12, -4, 4, 12, 20]);
   });
+
+  describe('edge cases', () => {
+    it('produces constant ranges when startValue equals endValue', () => {
+      const callback = (value: number) => value * 2;
+      const result = withFunction(callback, {
+        startValue: 5,
+        endValue: 5,
+        totalIterations: 3,
+      });
+      expect(result.inputRange).toEqual([5, 5, 5, 5]);
+      expect(result.outputRange).toEqual([10, 10, 10, 10]);
+    });
+
+    it('produces exactly two points when totalIterations is 1', () => {
+      const callback = (value: number) => value * 3;
+      const result = withFunction(callback, {
+        startValue: 0,
+        endValue: 6,
+        totalIterations: 1,
+      });
+      expect(result.inputRange).toEqual([0, 6]);
+      expect(result.outputRange).toEqual([0, 18]);
+    });
+
+    it('handles callback returning Infinity without throwing', () => {
+      const result = withFunction(() => Infinity, {
+        startValue: 0,
+        endValue: 1,
+        totalIterations: 2,
+      });
+      expect(result.outputRange).toEqual([Infinity, Infinity, Infinity]);
+    });
+
+    it('handles callback returning NaN without throwing', () => {
+      const result = withFunction(() => NaN, {
+        startValue: 0,
+        endValue: 1,
+        totalIterations: 2,
+      });
+      expect(result.outputRange.every((v) => isNaN(v))).toBe(true);
+    });
+
+    it('handles fractional startValue and endValue', () => {
+      const callback = (value: number) => value;
+      const result = withFunction(callback, {
+        startValue: 0.1,
+        endValue: 0.3,
+        totalIterations: 2,
+      });
+      expect(result.inputRange[0]).toBeCloseTo(0.1);
+      expect(result.inputRange[2]).toBeCloseTo(0.3);
+    });
+
+    it('produces array of correct length when totalIterations is large', () => {
+      const result = withFunction((v) => v, {
+        startValue: 0,
+        endValue: 1,
+        totalIterations: 1000,
+      });
+      expect(result.inputRange).toHaveLength(1001);
+      expect(result.outputRange).toHaveLength(1001);
+    });
+  });
 });

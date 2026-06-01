@@ -69,7 +69,7 @@ describe('CircleLayoutComponent', () => {
       ).not.toThrow();
     });
 
-    it('positions component at index 0 and higher without crashing', () => {
+    it('positions component at index 0 and higher without throwing', () => {
       expect(() => renderComponent({ index: 0 })).not.toThrow();
       expect(() => renderComponent({ index: 5 })).not.toThrow();
     });
@@ -103,6 +103,44 @@ describe('CircleLayoutComponent', () => {
       renderComponent({ onLayout });
       // onLayout is forwarded from the Animated.View — no throw when invoked
       expect(() => onLayout({})).not.toThrow();
+    });
+  });
+
+  describe('edge cases', () => {
+    it('positions component at radians > 2π without throwing', () => {
+      expect(() => renderComponent({ radians: 3 * Math.PI })).not.toThrow();
+    });
+
+    it('positions component at negative radians without throwing', () => {
+      expect(() => renderComponent({ radians: -Math.PI / 4 })).not.toThrow();
+    });
+
+    it('renders with non-zero centerComponentLayout without throwing', () => {
+      expect(() =>
+        renderComponent({ centerComponentLayout: { width: 80, height: 80 } })
+      ).not.toThrow();
+    });
+
+    it('renders at very large index without throwing', () => {
+      expect(() => renderComponent({ index: 1000 })).not.toThrow();
+    });
+
+    it('renders null component without throwing', () => {
+      expect(() => renderComponent({ component: null })).not.toThrow();
+    });
+
+    it('renders with radius 0 in context without throwing', () => {
+      expect(() =>
+        renderComponent({
+          ctx: { ...baseContext, radius: 0 },
+        })
+      ).not.toThrow();
+    });
+
+    it('renders with very large radius in context without throwing', () => {
+      expect(() =>
+        renderComponent({ ctx: { ...baseContext, radius: 100000 } })
+      ).not.toThrow();
     });
   });
 

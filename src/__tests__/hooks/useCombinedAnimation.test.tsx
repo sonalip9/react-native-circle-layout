@@ -162,4 +162,103 @@ describe('useCombinedAnimation', () => {
       }).not.toThrow();
     });
   });
+
+  describe('edge cases', () => {
+    it('handles empty animationConfigs array without throwing', () => {
+      const ctx: CircleLayoutContextType = {
+        ...baseContext,
+        animationProps: {
+          animationConfigs: [],
+          animationCombinationType: AnimationCombinationType.PARALLEL,
+        },
+      };
+      const { result } = renderHook(
+        () => useCombinedAnimation({ index: 0, radians: 0 }),
+        { wrapper: makeWrapper(ctx) }
+      );
+      expect(() => {
+        result.current.hideComponent();
+        result.current.showComponent();
+      }).not.toThrow();
+    });
+
+    it('handles radians > 2π with CIRCULAR animation without throwing', () => {
+      const ctx: CircleLayoutContextType = {
+        ...baseContext,
+        animationProps: {
+          animationConfigs: [
+            { type: AnimationType.CIRCULAR, config: { duration: 300 } },
+          ],
+          animationCombinationType: AnimationCombinationType.PARALLEL,
+        },
+      };
+      expect(() => {
+        renderHook(
+          () => useCombinedAnimation({ index: 0, radians: 3 * Math.PI }),
+          { wrapper: makeWrapper(ctx) }
+        );
+      }).not.toThrow();
+    });
+
+    it('animationGap of 0 in SEQUENCE produces zero delay without throwing', () => {
+      const ctx: CircleLayoutContextType = {
+        ...baseContext,
+        animationProps: {
+          animationConfigs: [
+            { type: AnimationType.OPACITY, config: { duration: 300 } },
+          ],
+          animationCombinationType: AnimationCombinationType.SEQUENCE,
+          animationGap: 0,
+        },
+      };
+      const { result } = renderHook(
+        () => useCombinedAnimation({ index: 0, radians: 0 }),
+        { wrapper: makeWrapper(ctx) }
+      );
+      expect(() => {
+        result.current.hideComponent();
+        result.current.showComponent();
+      }).not.toThrow();
+    });
+
+    it('returns opacity 1 when no OPACITY config and component is visible', () => {
+      // No animationProps → componentVisible drives opacityValue
+      const { result } = renderHook(
+        () => useCombinedAnimation({ index: 0, radians: 0 }),
+        { wrapper: makeWrapper(baseContext) }
+      );
+      expect(result.current.opacityValue).toBe(1);
+    });
+
+    it('handles large index with SEQUENCE (large staggered delay) without throwing', () => {
+      const ctx: CircleLayoutContextType = {
+        ...baseContext,
+        animationProps: {
+          animationConfigs: [
+            { type: AnimationType.OPACITY, config: { duration: 100 } },
+          ],
+          animationCombinationType: AnimationCombinationType.SEQUENCE,
+          animationGap: 50,
+        },
+      };
+      expect(() => {
+        const { result } = renderHook(
+          () => useCombinedAnimation({ index: 999, radians: 0 }),
+          { wrapper: makeWrapper(ctx) }
+        );
+        result.current.showComponent();
+        result.current.hideComponent();
+      }).not.toThrow();
+    });
+
+    it('returns static values when no animationProps provided with non-zero radians', () => {
+      const { result } = renderHook(
+        () => useCombinedAnimation({ index: 2, radians: Math.PI }),
+        { wrapper: makeWrapper(baseContext) }
+      );
+      expect(result.current.radiusValue).toBe(100);
+      expect(result.current.radiansValue).toBe(Math.PI);
+      expect(result.current.opacityValue).toBe(1);
+    });
+  });
 });
