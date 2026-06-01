@@ -103,6 +103,55 @@ describe('validateProps', () => {
       expect(result.sweepAngle).toBeCloseTo(2 * Math.PI);
     });
   });
+
+  describe('edge cases', () => {
+    it('throws when components array is empty', () => {
+      expect(() => validateProps({ ...baseProps, components: [] })).toThrow(
+        'At least two components need to be passed to CircleLayout'
+      );
+    });
+
+    it('normalizes startAngle of exactly 2π to 0', () => {
+      const result = validateProps({ ...baseProps, startAngle: 2 * Math.PI });
+      expect(result.startAngle).toBeCloseTo(0);
+    });
+
+    it('passes negative startAngle through (JS modulo preserves sign)', () => {
+      const result = validateProps({
+        ...baseProps,
+        startAngle: -Math.PI / 4,
+      });
+      expect(result.startAngle).toBeCloseTo(-Math.PI / 4);
+    });
+
+    it('normalizes exact multiple startAngle (4π) to 0', () => {
+      const result = validateProps({ ...baseProps, startAngle: 4 * Math.PI });
+      expect(result.startAngle).toBeCloseTo(0);
+    });
+
+    it('does not throw when sweepAngle is negative', () => {
+      expect(() =>
+        validateProps({ ...baseProps, sweepAngle: -Math.PI })
+      ).not.toThrow();
+    });
+
+    it('normalizes negative sweepAngle via modulo (preserves sign)', () => {
+      const result = validateProps({ ...baseProps, sweepAngle: -Math.PI });
+      expect(result.sweepAngle).toBeCloseTo(-Math.PI);
+    });
+
+    it('passes validation when radius is Infinity', () => {
+      expect(() =>
+        validateProps({ ...baseProps, radius: Infinity })
+      ).not.toThrow();
+    });
+
+    it('does not throw for a very small positive sweepAngle', () => {
+      expect(() =>
+        validateProps({ ...baseProps, sweepAngle: 0.0001 })
+      ).not.toThrow();
+    });
+  });
 });
 
 // ─── CircleLayout integration tests ─────────────────────────────────────────
@@ -221,6 +270,54 @@ describe('CircleLayout', () => {
           ref.current?.showComponents();
         });
       }).not.toThrow();
+    });
+  });
+
+  describe('edge cases', () => {
+    it('renders with large number of components (20)', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(20)}
+            radius={100}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('renders correctly when sweepAngle > 2π (normalizes)', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            sweepAngle={3 * Math.PI}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('renders with startAngle > 2π (normalizes)', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            startAngle={5 * Math.PI}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('renders minimum 2 components without centerComponent', () => {
+      expect(() =>
+        render(
+          <CircleLayout components={makeComponents(2)} radius={50} ref={null} />
+        )
+      ).not.toThrow();
     });
   });
 

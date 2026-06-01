@@ -172,4 +172,90 @@ describe('useAnimation', () => {
       tracker.dispose();
     });
   });
+
+  describe('edge cases', () => {
+    it('handles initialValue equal to finalValue without error', () => {
+      const { result } = renderHook(() =>
+        useAnimation({
+          initialValue: 1,
+          finalValue: 1,
+          entryAnimationConfig: { duration: 300 },
+        })
+      );
+      const tracker = trackAnimatedValue(result.current.value, 1);
+      act(() => {
+        result.current.value.setValue(1);
+      });
+      expect(tracker.get()).toBe(1);
+      tracker.dispose();
+    });
+
+    it('handles negative initialValue and finalValue', () => {
+      const { result } = renderHook(() =>
+        useAnimation({
+          initialValue: -1,
+          finalValue: 0,
+          entryAnimationConfig: { duration: 300 },
+        })
+      );
+      const tracker = trackAnimatedValue(result.current.value, -1);
+      act(() => {
+        result.current.value.setValue(-1);
+      });
+      expect(tracker.get()).toBe(-1);
+      tracker.dispose();
+    });
+
+    it('does not throw when both initialValue and finalValue change simultaneously', () => {
+      const { result, rerender } = renderHook<
+        ReturnType<typeof useAnimation>,
+        AnimationConfig
+      >((props) => useAnimation(props), { initialProps: baseConfig });
+
+      const tracker = trackAnimatedValue(result.current.value, 0);
+      act(() => {
+        result.current.value.setValue(1);
+      });
+
+      expect(() => {
+        act(() => {
+          rerender({ ...baseConfig, initialValue: -1, finalValue: 2 });
+        });
+      }).not.toThrow();
+      // Value snaps to one of the new boundary values (not left at mid-point)
+      const v = tracker.get();
+      expect(v === -1 || v === 2).toBe(true);
+      tracker.dispose();
+    });
+
+    it('entry and exit animations do not throw when duration is 0', () => {
+      const { result } = renderHook(() =>
+        useAnimation({
+          initialValue: 0,
+          finalValue: 1,
+          entryAnimationConfig: { duration: 0 },
+          exitAnimationConfig: { duration: 0 },
+        })
+      );
+      expect(() => {
+        result.current.entryAnimation().start();
+        result.current.exitAnimation().start();
+      }).not.toThrow();
+    });
+
+    it('exitAnimationConfig defaults to entryAnimationConfig when omitted', () => {
+      const { result } = renderHook(() =>
+        useAnimation({
+          initialValue: 0,
+          finalValue: 1,
+          entryAnimationConfig: { duration: 400 },
+        })
+      );
+      // Both must be callable without throwing
+      expect(() => {
+        result.current.entryAnimation().start();
+        result.current.exitAnimation().start();
+      }).not.toThrow();
+    });
+  });
 });

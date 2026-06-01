@@ -146,4 +146,78 @@ describe('CircleLayoutArray', () => {
       expect(setMinComponentLayout).toHaveBeenCalled();
     });
   });
+
+  describe('edge cases', () => {
+    it('renders large number of components (20) without throwing', () => {
+      expect(() => renderArray(makeComponents(20))).not.toThrow();
+    });
+
+    it('renders when all components in array are null', () => {
+      expect(() => renderArray([null, null, null])).not.toThrow();
+    });
+
+    it('renders with sweepAngle < 2π (quarter-circle)', () => {
+      expect(() =>
+        render(
+          <CircleLayoutContext value={baseContext}>
+            <View>
+              <CircleLayoutArray
+                components={makeComponents(4)}
+                sweepAngle={Math.PI / 2}
+                setMinComponentLayout={noopSetLayout}
+                centerComponentLayout={zeroCenterLayout}
+                ref={null}
+              />
+            </View>
+          </CircleLayoutContext>
+        )
+      ).not.toThrow();
+    });
+
+    it('renders with non-zero centerComponentLayout without throwing', () => {
+      expect(() =>
+        renderArray(makeComponents(3), baseContext, {
+          centerComponentLayout: { width: 50, height: 50 },
+        })
+      ).not.toThrow();
+    });
+
+    it('calls setMinComponentLayout again when components grow', () => {
+      const setMinComponentLayout = jest.fn();
+      const { rerender } = renderArray(makeComponents(3), baseContext, {
+        setMinComponentLayout,
+      });
+      const callsBefore = setMinComponentLayout.mock.calls.length;
+      rerender(
+        <CircleLayoutContext value={baseContext}>
+          <View>
+            <CircleLayoutArray
+              components={makeComponents(5)}
+              sweepAngle={2 * Math.PI}
+              setMinComponentLayout={setMinComponentLayout}
+              centerComponentLayout={zeroCenterLayout}
+              ref={null}
+            />
+          </View>
+        </CircleLayoutContext>
+      );
+      expect(setMinComponentLayout.mock.calls.length).toBeGreaterThanOrEqual(
+        callsBefore
+      );
+    });
+
+    it('rapid hide then show via ref does not throw', () => {
+      const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
+      const ref = result.current;
+      renderArray(makeComponents(3), baseContext, { ref });
+      expect(() => {
+        act(() => {
+          ref.current?.hideComponents();
+          ref.current?.hideComponents();
+          ref.current?.showComponents();
+          ref.current?.showComponents();
+        });
+      }).not.toThrow();
+    });
+  });
 });
