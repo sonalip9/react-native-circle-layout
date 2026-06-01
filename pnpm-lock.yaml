@@ -89,9 +89,6 @@ importers:
       react-native-builder-bob:
         specifier: ^0.41.0
         version: 0.41.0
-      react-test-renderer:
-        specifier: 19.2.6
-        version: 19.2.6(react@19.2.6)
       release-it:
         specifier: ^20.0.1
         version: 20.0.1(@types/node@25.9.1)
