@@ -1,6 +1,6 @@
 import AntDesign from '@expo/vector-icons/AntDesign';
 import * as React from 'react';
-import { View } from 'react-native';
+
 import {
   AnimationCombinationType,
   AnimationType,
@@ -10,7 +10,7 @@ import {
 
 import { AppContext } from '../../AppContext';
 
-import { styles } from './styles';
+import { View } from '../../design_system/atoms';
 
 type Icon = 'delete' | 'edit' | 'home' | 'star';
 
@@ -29,14 +29,14 @@ const RadialMenu = () => {
   }, [showCircleComponent]);
 
   return (
-    <View style={styles.flex}>
+    <View flex={1}>
       <CircleLayout
         centerComponent={
           <AntDesign.Button
             backgroundColor="white"
             borderRadius={100}
             color="black"
-            iconStyle={styles.icon}
+            iconStyle={{ marginRight: 0 }}
             name={showCircleComponent ? 'close' : 'appstore'}
             onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
           />
@@ -47,7 +47,7 @@ const RadialMenu = () => {
             backgroundColor="white"
             borderRadius={100}
             color="black"
-            iconStyle={styles.icon}
+            iconStyle={{ marginRight: 0 }}
             name={icon}
             onPress={() =>
               showPopUp({ message: `The ${icon} button was clicked.` })
@@ -55,18 +55,18 @@ const RadialMenu = () => {
             size={24}
           />
         ))}
-        containerStyle={styles.container}
+        containerStyle={{
+          bottom: 0,
+          left: 0,
+          right: 0,
+          elevation: 3,
+          position: 'absolute',
+        }}
         animationProps={{
           animationCombinationType: AnimationCombinationType.PARALLEL,
           animationConfigs: [
-            {
-              config: { duration: 500 },
-              type: AnimationType.LINEAR,
-            },
-            {
-              config: { duration: 500 },
-              type: AnimationType.OPACITY,
-            },
+            { config: { duration: 500 }, type: AnimationType.LINEAR },
+            { config: { duration: 500 }, type: AnimationType.OPACITY },
           ],
         }}
         radius={100}
