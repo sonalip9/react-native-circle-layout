@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~56.0.14",
+    "@expo/vector-icons": "^15.1.1",
     "@react-native-community/slider": "^5.2.0",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
