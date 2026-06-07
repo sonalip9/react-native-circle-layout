@@ -14,6 +14,7 @@ import { TouchableOpacity, type ViewStyle } from 'react-native';
 import type { Theme } from '../../style';
 import { Text } from '../Text';
 import { View, type ViewProps } from '../View';
+import { resolveStyles } from '../../../utils/resolveStyles';
 
 type RestyleProps = SpacingProps<Theme> &
   BorderProps<Theme> &
@@ -26,7 +27,7 @@ type Props = {
 };
 
 type ButtonComponentProps = Omit<ViewProps, 'style'> &
-  Props & { style?: [ResolvedStyle] };
+  Props & { style?: ResolvedStyle[] };
 
 const ButtonComponent = ({
   onPress,
@@ -34,7 +35,7 @@ const ButtonComponent = ({
   style,
   ...props
 }: ButtonComponentProps) => {
-  const [{ color: labelColor, ...viewStyle }] = style ?? [{}];
+  const { color: labelColor, ...viewStyle } = resolveStyles(style);
 
   return (
     <TouchableOpacity onPress={onPress}>

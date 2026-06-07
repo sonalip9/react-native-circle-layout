@@ -11,6 +11,7 @@ import type { ViewStyle } from 'react-native';
 import { palette, type Theme } from '../../style';
 import { Text } from '../../atoms/Text';
 import { View, type ViewProps } from '../../atoms/View';
+import { resolveStyles } from '../../../utils/resolveStyles';
 
 type SliderWithLabelOwnProps = {
   label: string;
@@ -25,7 +26,7 @@ type SliderWithLabelOwnProps = {
 };
 
 type SliderWithLabelComponentProps = Omit<ViewProps, 'style'> &
-  SliderWithLabelOwnProps & { style?: [ViewStyle & { color?: string }] };
+  SliderWithLabelOwnProps & { style?: (ViewStyle & { color?: string })[] };
 
 const SliderWithLabelComponent = ({
   label,
@@ -39,7 +40,7 @@ const SliderWithLabelComponent = ({
   tapToSeek = true,
   style,
 }: SliderWithLabelComponentProps) => {
-  const [containerStyle] = style ?? [{}];
+  const containerStyle = resolveStyles(style);
 
   return (
     <View

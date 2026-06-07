@@ -10,6 +10,7 @@ import { Switch as RNSwitch, type ViewStyle } from 'react-native';
 import { palette, type Theme } from '../../style';
 import { Text } from '../../atoms/Text';
 import { View, type ViewProps } from '../../atoms/View';
+import { resolveStyles } from '../../../utils/resolveStyles';
 
 type SwitchOwnProps = {
   leftLabel: string;
@@ -20,7 +21,7 @@ type SwitchOwnProps = {
 };
 
 type SwitchComponentProps = Omit<ViewProps, 'style'> &
-  SwitchOwnProps & { style?: [ViewStyle & { color?: string }] };
+  SwitchOwnProps & { style?: (ViewStyle & { color?: string })[] };
 
 const SwitchComponent = ({
   leftLabel,
@@ -30,7 +31,7 @@ const SwitchComponent = ({
   isDisabled = false,
   style,
 }: SwitchComponentProps) => {
-  const [containerStyle] = style ?? [{}];
+  const containerStyle = resolveStyles(style);
 
   return (
     <View
