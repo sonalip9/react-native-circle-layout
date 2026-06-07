@@ -10,6 +10,7 @@ import { TouchableOpacity, type ViewStyle } from 'react-native';
 import { palette, type Theme } from '../../style';
 import { Text } from '../../atoms/Text';
 import { View, type ViewProps } from '../../atoms/View';
+import { resolveStyles } from '../../../utils/resolveStyles';
 
 export type DropdownOption = {
   label: string;
@@ -37,7 +38,7 @@ type DropdownOwnProps = (SingleSelectProps | MultipleSelectProps) & {
 };
 
 type DropdownComponentProps = Omit<ViewProps, 'style'> &
-  DropdownOwnProps & { style?: [ViewStyle & { color?: string }] };
+  DropdownOwnProps & { style?: (ViewStyle & { color?: string })[] };
 
 const DropdownComponent = ({
   options,
@@ -48,7 +49,7 @@ const DropdownComponent = ({
   ...variantProps
 }: DropdownComponentProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [containerStyle] = style ?? [{}];
+  const containerStyle = resolveStyles(style);
 
   const handleSelect = (optionValue: string) => {
     if (variantProps.variant === 'single') {
