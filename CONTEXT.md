@@ -22,6 +22,12 @@
 - "entry/exit animation" not "show/hide animation"
 - "circle layout component" (the wrapper, `CircleLayoutComponent`) vs "circle layout" (the public `CircleLayout` component)
 
+## Example app runtime
+
+- The example app in `example/` targets React 19.2.3.
+- React 19 APIs are valid there, including context provider shorthand (`<Context value={...}>`) and `use` for consuming context.
+- If you are reading older React docs, prefer the React 19 reference when reviewing the example app.
+
 ## What this library does NOT do
 
 - Does not handle gesture input or tap events on child components

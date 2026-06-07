@@ -24,6 +24,8 @@ Share your project [in the discussions](https://github.com/sonalip9/react-native
 
 ## Installation
 
+The published library works with the React Native stack used by the package, and the `example/` app is pinned to React 19.2.3. That example intentionally uses React 19 APIs such as context provider shorthand and `use`.
+
 ```sh
 npm install react-native-circle-layout
 ```
