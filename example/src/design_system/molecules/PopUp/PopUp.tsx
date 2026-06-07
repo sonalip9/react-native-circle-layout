@@ -19,7 +19,7 @@ const PopUp = ({ message }: PopUpProps) => {
     return () => {
       clearTimeout(id);
     };
-  }, [closePopUp]);
+  }, [closePopUp, message]);
 
   return (
     <View
