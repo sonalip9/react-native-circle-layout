@@ -10,6 +10,7 @@ import {
   AnimationCombinationType,
   AnimationType,
   CircleLayout,
+  type AnimationConfig,
   type CircleLayoutRef,
 } from 'react-native-circle-layout';
 
@@ -70,10 +71,15 @@ const Playground = () => {
           animationCombinationType: isParallelAnimation
             ? AnimationCombinationType.PARALLEL
             : AnimationCombinationType.SEQUENCE,
-          animationConfigs: animationTypeList.map((animationType) => ({
-            config: { duration: 500 },
-            type: animationType,
-          })),
+          animationConfigs: animationTypeList.reduce<
+            Partial<Record<AnimationType, AnimationConfig>>
+          >(
+            (acc, animationType) => ({
+              ...acc,
+              [animationType]: { duration: 500 },
+            }),
+            {}
+          ),
         }}
         centerComponent={
           <View bg="purplePrimary" borderRadius={'xl'} height={25} width={25} />

@@ -149,9 +149,9 @@ describe('CircleLayoutComponent', () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationProps: {
-          animationConfigs: [
-            { type: AnimationType.OPACITY, config: { duration: 300 } },
-          ],
+          animationConfigs: {
+            [AnimationType.OPACITY]: { duration: 300 },
+          },
           animationCombinationType: AnimationCombinationType.PARALLEL,
         },
       };
@@ -162,9 +162,9 @@ describe('CircleLayoutComponent', () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationProps: {
-          animationConfigs: [
-            { type: AnimationType.LINEAR, config: { duration: 300 } },
-          ],
+          animationConfigs: {
+            [AnimationType.LINEAR]: { duration: 300 },
+          },
           animationCombinationType: AnimationCombinationType.PARALLEL,
         },
       };
@@ -175,9 +175,9 @@ describe('CircleLayoutComponent', () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationProps: {
-          animationConfigs: [
-            { type: AnimationType.CIRCULAR, config: { duration: 300 } },
-          ],
+          animationConfigs: {
+            [AnimationType.CIRCULAR]: { duration: 300 },
+          },
           animationCombinationType: AnimationCombinationType.PARALLEL,
         },
       };
@@ -188,11 +188,11 @@ describe('CircleLayoutComponent', () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationProps: {
-          animationConfigs: [
-            { type: AnimationType.OPACITY, config: { duration: 300 } },
-            { type: AnimationType.LINEAR, config: { duration: 300 } },
-            { type: AnimationType.CIRCULAR, config: { duration: 300 } },
-          ],
+          animationConfigs: {
+            [AnimationType.OPACITY]: { duration: 300 },
+            [AnimationType.LINEAR]: { duration: 300 },
+            [AnimationType.CIRCULAR]: { duration: 300 },
+          },
           animationCombinationType: AnimationCombinationType.SEQUENCE,
           animationGap: 50,
         },

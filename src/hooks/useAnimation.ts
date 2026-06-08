@@ -1,10 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated } from 'react-native';
 
-type AnimationProps = Omit<
-  Animated.TimingAnimationConfig,
-  'toValue' | 'useNativeDriver'
->;
+import type { AnimationConfig } from '../types';
 
 interface AnimationArgs {
   /**
@@ -18,11 +15,11 @@ interface AnimationArgs {
   /**
    * The configuration for the entry animation.
    */
-  entryAnimationConfig: AnimationProps;
+  entryAnimationConfig: AnimationConfig;
   /**
    * The configuration for the exit animation.
    */
-  exitAnimationConfig?: AnimationProps;
+  exitAnimationConfig?: AnimationConfig;
 }
 
 const EPSILON = 0.0001;
