@@ -89,6 +89,44 @@ type AnimationProps = {
   animationGap?: number;
 };
 
+export type BgConfig = {
+  /**
+   * The fill color for the background of the circle layout.
+   * @default #3d19e0
+   */
+  color?: string;
+  /**
+   * The stroke color for the divider lines in the background.
+   * @default #3d19e027
+   */
+  strokeColor?: string;
+  /**
+   * The width of the stroke for the divider lines in the background.
+   * @default 1
+   */
+  strokeWidth?: number;
+  /**
+   * The radius of the inner circle in the background.
+   * If this prop is not provided, then there will be no inner circle in
+   * the background and the background will be a filled circle with the
+   * radius provided in the CircleLayoutProps.
+   * If this prop is provided, then the background will have a donut shape
+   * with the outer radius provided in the CircleLayoutProps and the
+   * inner radius provided in this prop.
+   * @default 0
+   */
+  innerRadius?: number;
+  /**
+   * The radius of the outer circle in the background.
+   * If this prop is not provided, then the radius provided in the
+   * CircleLayoutProps will be used as the outer radius of the background.
+   * @default radius provided in CircleLayoutProps
+   * @see CircleLayoutProps.radius
+   * @see BgConfig.innerRadius
+   */
+  outerRadius?: number;
+};
+
 export type CircleLayoutProps = {
   /**
    * The list of components that needs to be placed in the circle.
@@ -132,6 +170,12 @@ export type CircleLayoutProps = {
    * @see AnimationProps
    */
   animationProps?: AnimationProps;
+  /**
+   * The fill color for the background of the circle layout.
+   * If this prop is not provided, then the background will not be shown.
+   * @default undefined
+   */
+  bgConfig?: BgConfig | undefined;
 };
 
 export type CircleLayoutRef = {

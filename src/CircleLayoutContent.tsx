@@ -1,8 +1,9 @@
-import { useMemo } from 'react';
+import { useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { type StyleProp, type ViewStyle, Animated, View } from 'react-native';
 import CircleLayoutArray from './CircleLayoutArray';
-import type { CircleLayoutRef, Layout } from './types';
+import type { BgConfig, CircleLayoutRef, Layout } from './types';
 import React from 'react';
+import { Bg } from './Bg';
 
 /**
  * The content of the CircleLayout component. This is separated from the main
@@ -14,7 +15,9 @@ import React from 'react';
  * @param props.centerComponent The component to be placed at the center of the circle layout.
  * @param props.containerStyle The styling of the entire component's container.
  * @param props.centerComponentContainerStyle The styling of the center component's container.
- * @param props.sweepAngle The distance in radians to be covered from the starting point. The value needs to be in radians.
+ * @param props.bgConfig The configuration for the background of the circle layout.
+ * @param props.sweepAngle The distance in radians to be covered from the starting point. The
+ * value needs to be in radians.
  * @param props.ref The ref that is used to expose the show and hide function of the
  * component to parent components.
  * @returns The content of the CircleLayout component which contains the
@@ -28,6 +31,7 @@ export function CircleLayoutContent({
   containerStyle,
   centerComponentContainerStyle,
   sweepAngle,
+  bgConfig,
   ref,
 }: {
   radius: number;
@@ -36,7 +40,11 @@ export function CircleLayoutContent({
   containerStyle?: StyleProp<ViewStyle> | undefined | undefined;
   centerComponentContainerStyle?: StyleProp<ViewStyle> | undefined | undefined;
   sweepAngle: number;
+  bgConfig?: BgConfig;
 } & React.RefAttributes<CircleLayoutRef>) {
+  const componentLayoutArrayRef = useRef<CircleLayoutRef>(null);
+  const [componentVisible, setComponentVisible] = useState(false);
+
   const [minComponentLayout, setMinComponentLayout] = React.useState<Layout>({
     height: 0,
     width: 0,
@@ -52,6 +60,24 @@ export function CircleLayoutContent({
   const [centerComponentLayout, setCenterComponentLayout] =
     React.useState<Layout>({ width: 0, height: 0 });
 
+  /**
+   * The instance value that is exposed to parent components when using ref.
+   */
+  useImperativeHandle(
+    ref,
+    () => ({
+      hideComponents: () => {
+        componentLayoutArrayRef.current?.hideComponents();
+        setComponentVisible(false);
+      },
+      showComponents: () => {
+        componentLayoutArrayRef.current?.showComponents();
+        setComponentVisible(true);
+      },
+    }),
+    [setComponentVisible]
+  );
+
   return (
     <View
       style={[
@@ -65,9 +91,21 @@ export function CircleLayoutContent({
       ]}
     >
       <View>
+        {bgConfig &&
+          components.map((_, index) => (
+            <Bg
+              key={index}
+              index={index}
+              minComponentLayout={minComponentLayout}
+              centerComponentLayout={centerComponentLayout}
+              radius={radius}
+              isVisible={componentVisible}
+              {...bgConfig}
+            />
+          ))}
         {/* The list of components to be shown in the circle. */}
         <CircleLayoutArray
-          ref={ref}
+          ref={componentLayoutArrayRef}
           components={components}
           sweepAngle={sweepAngle}
           setMinComponentLayout={setMinComponentLayout}
