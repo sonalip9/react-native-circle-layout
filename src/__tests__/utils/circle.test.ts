@@ -1,6 +1,6 @@
 import { Animated } from 'react-native';
 
-import { pointOnCircle } from '../../utils/circle';
+import { pointOnCircle, pointOnCircleAnimated } from '../../utils/circle';
 
 const expectListenerValue = (
   animatedValue: Animated.Value | Animated.AnimatedInterpolation<number>,
@@ -31,48 +31,6 @@ describe('pointOnCircle', () => {
 
     expect(result.x).toBeCloseTo(-3);
     expect(result.y).toBeCloseTo(0);
-  });
-
-  it('interpolates x and y when radius is Animated.Value', () => {
-    const result = pointOnCircle({
-      radius: new Animated.Value(2),
-      radians: Math.PI / 4,
-    });
-
-    expectListenerValue(
-      result.x as Animated.AnimatedInterpolation<number>,
-      1.414
-    );
-    expectListenerValue(
-      result.y as Animated.AnimatedInterpolation<number>,
-      1.414
-    );
-  });
-
-  it('interpolates x and y when radians is Animated.Value', () => {
-    const result = pointOnCircle({
-      radius: 4,
-      radians: new Animated.Value(Math.PI / 3),
-    });
-
-    expectListenerValue(result.x as Animated.AnimatedInterpolation<number>, 2);
-    expectListenerValue(
-      result.y as Animated.AnimatedInterpolation<number>,
-      3.464
-    );
-  });
-
-  it('interpolates x and y when both radius and radians are Animated.Value', () => {
-    const result = pointOnCircle({
-      radius: new Animated.Value(2),
-      radians: new Animated.Value(Math.PI / 6),
-    });
-
-    expectListenerValue(result.x as Animated.AnimatedInterpolation<number>, 1);
-    expectListenerValue(
-      result.y as Animated.AnimatedInterpolation<number>,
-      1.732
-    );
   });
 
   describe('edge cases', () => {
@@ -112,16 +70,65 @@ describe('pointOnCircle', () => {
       expect(result.x).toBeCloseTo(-3);
       expect(result.y).toBeCloseTo(0);
     });
+  });
+});
 
+describe('pointOnCircleAnimated', () => {
+  it('interpolates x and y when radius is Animated.Value', () => {
+    const result = pointOnCircleAnimated({
+      radius: new Animated.Value(2),
+      radians: Math.PI / 4,
+    });
+
+    expectListenerValue(
+      result.x as Animated.AnimatedInterpolation<number>,
+      1.414
+    );
+    expectListenerValue(
+      result.y as Animated.AnimatedInterpolation<number>,
+      1.414
+    );
+  });
+
+  it('interpolates x and y when radians is Animated.Value', () => {
+    const result = pointOnCircleAnimated({
+      radius: 4,
+      radians: new Animated.Value(Math.PI / 3),
+    });
+
+    expectListenerValue(result.x as Animated.AnimatedInterpolation<number>, 2);
+    expectListenerValue(
+      result.y as Animated.AnimatedInterpolation<number>,
+      3.464
+    );
+  });
+
+  it('interpolates x and y when both radius and radians are Animated.Value', () => {
+    const result = pointOnCircleAnimated({
+      radius: new Animated.Value(2),
+      radians: new Animated.Value(Math.PI / 6),
+    });
+
+    expectListenerValue(result.x as Animated.AnimatedInterpolation<number>, 1);
+    expectListenerValue(
+      result.y as Animated.AnimatedInterpolation<number>,
+      1.732
+    );
+  });
+
+  describe('edge cases', () => {
     it('does not throw when Animated.Value radians exceeds 2π (extrapolates)', () => {
       expect(() =>
-        pointOnCircle({ radius: 1, radians: new Animated.Value(3 * Math.PI) })
+        pointOnCircleAnimated({
+          radius: 1,
+          radians: new Animated.Value(3 * Math.PI),
+        })
       ).not.toThrow();
     });
 
     it('does not throw when Animated.Value radians is negative (extrapolates)', () => {
       expect(() =>
-        pointOnCircle({
+        pointOnCircleAnimated({
           radius: 1,
           radians: new Animated.Value(-Math.PI / 2),
         })
@@ -130,7 +137,10 @@ describe('pointOnCircle', () => {
 
     it('does not throw when Animated.Value radius is 0', () => {
       expect(() =>
-        pointOnCircle({ radius: new Animated.Value(0), radians: Math.PI / 4 })
+        pointOnCircleAnimated({
+          radius: new Animated.Value(0),
+          radians: Math.PI / 4,
+        })
       ).not.toThrow();
     });
   });
