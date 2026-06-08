@@ -11,6 +11,7 @@ type CircleLayoutProviderProps = Required<
     | 'centerComponentContainerStyle'
     | 'components'
     | 'animationProps'
+    | 'bgConfig'
   > & {
     componentLength: number;
   }

@@ -1,4 +1,4 @@
-import type { Animated } from 'react-native';
+import { Animated } from 'react-native';
 
 type InterpolationConfig = {
   /**
@@ -37,25 +37,21 @@ type InterpolationConfig = {
  * console.log(result.inputRange); // [0, 2, 4, 6, 8, 10]
  * console.log(result.outputRange); // [0, 4, 8, 12, 16, 20]
  */
-export const withFunction = (
-  callback: (value: number) => number,
+export const withFunction = <T extends number | string>(
+  callback: (value: number) => T,
   interpolationConfig?: InterpolationConfig
 ) => {
   const {
     startValue = 0,
     endValue = 1,
     totalIterations = 50,
-  } = interpolationConfig ?? {
-    startValue: 0,
-    endValue: 1,
-    totalIterations: 50,
-  };
+  } = interpolationConfig ?? {};
 
   if (totalIterations < 0)
     throw new Error('totalIterations cannot be negative');
 
   const inputRange: number[] = [];
-  const outputRange: number[] = [];
+  const outputRange: T[] = [];
 
   if (totalIterations === 0) return { inputRange, outputRange };
 
@@ -79,16 +75,16 @@ export const withFunction = (
  * @param animatedInterpolationConfig The configuration for the animated interpolation.
  * @returns Animated Interpolation value
  */
-export const interpolationWithFunction = (
-  value: Animated.Value,
-  callback: (value: number) => number,
+export const interpolationWithFunction = <T extends number | string>(
+  value: Animated.Value | Animated.AnimatedInterpolation<number>,
+  callback: (value: number) => T,
   interpolationConfig?: InterpolationConfig,
   animatedInterpolationConfig?: Omit<
     Animated.InterpolationConfig<number>,
     'inputRange' | 'outputRange'
   >
-) =>
-  value.interpolate<number>({
+): Animated.AnimatedInterpolation<T> =>
+  (value as Animated.Value).interpolate<T>({
     ...withFunction(callback, interpolationConfig),
     ...animatedInterpolationConfig,
   });

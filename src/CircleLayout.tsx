@@ -35,6 +35,7 @@ export const CircleLayout = ({
     containerStyle,
     centerComponentContainerStyle,
     animationProps,
+    bgConfig,
   } = validateProps(circleLayoutProps);
 
   return (
@@ -53,6 +54,7 @@ export const CircleLayout = ({
         containerStyle={containerStyle}
         centerComponentContainerStyle={centerComponentContainerStyle}
         sweepAngle={sweepAngle}
+        bgConfig={bgConfig}
       />
     </CircleLayoutProvider>
   );

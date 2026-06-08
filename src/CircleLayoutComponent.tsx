@@ -67,7 +67,7 @@ export const CircleLayoutComponent = ({
               translateX: Animated.multiply(
                 Animated.subtract(
                   position.x,
-                  layout.width / 2 - centerComponentLayout.width / 2
+                  (layout.width - centerComponentLayout.width) / 2
                 ),
                 -1
               ),
@@ -77,7 +77,7 @@ export const CircleLayoutComponent = ({
               translateY: Animated.multiply(
                 Animated.subtract(
                   position.y,
-                  layout.height / 2 - centerComponentLayout.height / 2
+                  (layout.height - centerComponentLayout.height) / 2
                 ),
                 -1
               ),
