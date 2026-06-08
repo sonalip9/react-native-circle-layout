@@ -2,8 +2,9 @@ import { useRef } from 'react';
 import { Text } from 'react-native';
 import { render, act, renderHook } from '@testing-library/react-native';
 
-import { CircleLayout, validateProps } from '../CircleLayout';
+import { CircleLayout } from '../CircleLayout';
 import type { CircleLayoutRef } from '../types';
+import { validateProps } from '../utils';
 
 const makeComponents = (n: number) =>
   Array.from({ length: n }, (_, i) => <Text key={i}>Item {i}</Text>);
