@@ -138,8 +138,8 @@ const Playground = () => {
             value={numberOfPoints}
           />
           <Switch
-            leftLabel="Parallel Animation"
-            rightLabel="Sequential Animation"
+            leftLabel="Sequential Animation"
+            rightLabel="Parallel Animation"
             value={isParallelAnimation}
             onValueChange={setIsParallelAnimation}
           />
