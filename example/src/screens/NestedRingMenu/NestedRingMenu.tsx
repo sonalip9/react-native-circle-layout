@@ -11,6 +11,7 @@ import {
 type Icon = keyof typeof AntDesign.glyphMap;
 
 const icons: Icon[] = ['edit', 'home', 'star', 'delete', 'search', 'setting'];
+const SECTION_ANGLE = (2 * Math.PI) / icons.length;
 const subIcons: Icon[] = ['group', 'idcard', 'phone', 'camera'];
 
 const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
@@ -26,42 +27,56 @@ const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
   }, [showCircleComponent]);
 
   return (
-    <CircleLayout
-      centerComponent={
-        <AntDesign.Button
-          backgroundColor="white"
-          borderRadius={100}
-          color="black"
-          style={{ justifyContent: 'center', height: 50, width: 50 }}
-          iconStyle={{ marginRight: 0 }}
-          name={icon}
-          onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
-        />
-      }
-      components={subIcons.map((subIcon) => (
-        <AntDesign.Button
-          key={subIcon}
-          backgroundColor="white"
-          borderRadius={100}
-          color="black"
-          style={{ justifyContent: 'center', height: 50, width: 50 }}
-          iconStyle={{ marginRight: 0 }}
-          name={subIcon}
-          onPress={() => {}}
-        />
-      ))}
-      animationProps={{
-        animationCombinationType: AnimationCombinationType.PARALLEL,
-        animationConfigs: {
-          [AnimationType.LINEAR]: { duration: 500 },
-          [AnimationType.OPACITY]: { duration: 500 },
-        },
-      }}
-      radius={80}
-      ref={circleLayoutRef}
-      startAngle={rotation}
-      sweepAngle={Math.PI}
-    />
+    <View style={{ transform: [{ rotate: `${rotation}rad` }] }}>
+      <CircleLayout
+        centerComponent={
+          <AntDesign.Button
+            backgroundColor="transparent"
+            borderRadius={100}
+            color="black"
+            style={{
+              justifyContent: 'center',
+              height: 50,
+              width: 50,
+              transform: [{ rotate: `${-rotation}rad` }],
+            }}
+            iconStyle={{ marginRight: 0 }}
+            name={icon}
+            onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
+          />
+        }
+        components={subIcons.map((subIcon) => (
+          <AntDesign.Button
+            key={subIcon}
+            backgroundColor="transparent"
+            borderRadius={100}
+            color="black"
+            style={{
+              justifyContent: 'center',
+              height: 30,
+              width: 30,
+              transform: [{ rotate: `${-rotation}rad` }],
+            }}
+            iconStyle={{ marginRight: 0 }}
+            name={subIcon}
+            onPress={() => {}}
+            size={12}
+          />
+        ))}
+        animationProps={{
+          animationCombinationType: AnimationCombinationType.PARALLEL,
+          animationConfigs: {
+            [AnimationType.LINEAR]: { duration: 500 },
+            [AnimationType.OPACITY]: { duration: 500 },
+          },
+        }}
+        radius={60}
+        ref={circleLayoutRef}
+        startAngle={SECTION_ANGLE / 2}
+        sweepAngle={SECTION_ANGLE * 2}
+        bgConfig={{ color: '#e8327b', outerRadius: 80, innerRadius: 40 }}
+      />
+    </View>
   );
 };
 
@@ -82,9 +97,9 @@ const NestedRingMenu = () => {
       <CircleLayout
         centerComponent={
           <AntDesign.Button
-            backgroundColor="white"
+            backgroundColor="black"
             borderRadius={100}
-            color="black"
+            color="white"
             style={{ justifyContent: 'center', height: 50, width: 50 }}
             iconStyle={{ marginRight: 0 }}
             name={showCircleComponent ? 'close' : 'appstore'}
@@ -92,8 +107,7 @@ const NestedRingMenu = () => {
           />
         }
         components={icons.map((icon, index) => {
-          const sectionAngle = (2 * Math.PI) / icons.length;
-          const rotation = index * sectionAngle - Math.PI / 2;
+          const rotation = index * SECTION_ANGLE - Math.PI / 2;
           return <Component key={icon} icon={icon} rotation={rotation} />;
         })}
         containerStyle={{ bottom: 10, left: 0, position: 'absolute', right: 0 }}
@@ -104,10 +118,11 @@ const NestedRingMenu = () => {
             [AnimationType.OPACITY]: { duration: 500 },
           },
         }}
-        radius={80}
+        radius={120}
         ref={circleLayoutRef}
         startAngle={0}
         sweepAngle={Math.PI * 2}
+        bgConfig={{ color: '#e8327bc0', innerRadius: 40, outerRadius: 120 }}
       />
     </View>
   );
