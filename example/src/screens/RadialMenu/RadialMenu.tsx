@@ -64,10 +64,10 @@ const RadialMenu = () => {
         }}
         animationProps={{
           animationCombinationType: AnimationCombinationType.PARALLEL,
-          animationConfigs: [
-            { config: { duration: 500 }, type: AnimationType.LINEAR },
-            { config: { duration: 500 }, type: AnimationType.OPACITY },
-          ],
+          animationConfigs: {
+            [AnimationType.LINEAR]: { duration: 500 },
+            [AnimationType.OPACITY]: { duration: 500 },
+          },
         }}
         radius={100}
         ref={circleLayoutRef}

@@ -71,9 +71,9 @@ describe('useCombinedAnimation', () => {
     const ctxWithOpacity: CircleLayoutContextType = {
       ...baseContext,
       animationProps: {
-        animationConfigs: [
-          { type: AnimationType.OPACITY, config: { duration: 300 } },
-        ],
+        animationConfigs: {
+          [AnimationType.OPACITY]: { duration: 300 },
+        },
         animationCombinationType: AnimationCombinationType.PARALLEL,
       },
     };
@@ -103,9 +103,9 @@ describe('useCombinedAnimation', () => {
     const ctxWithLinear: CircleLayoutContextType = {
       ...baseContext,
       animationProps: {
-        animationConfigs: [
-          { type: AnimationType.LINEAR, config: { duration: 300 } },
-        ],
+        animationConfigs: {
+          [AnimationType.LINEAR]: { duration: 300 },
+        },
         animationCombinationType: AnimationCombinationType.PARALLEL,
       },
     };
@@ -123,9 +123,9 @@ describe('useCombinedAnimation', () => {
     const ctxWithCircular: CircleLayoutContextType = {
       ...baseContext,
       animationProps: {
-        animationConfigs: [
-          { type: AnimationType.CIRCULAR, config: { duration: 300 } },
-        ],
+        animationConfigs: {
+          [AnimationType.CIRCULAR]: { duration: 300 },
+        },
         animationCombinationType: AnimationCombinationType.PARALLEL,
       },
     };
@@ -143,9 +143,9 @@ describe('useCombinedAnimation', () => {
     const ctxWithSequence: CircleLayoutContextType = {
       ...baseContext,
       animationProps: {
-        animationConfigs: [
-          { type: AnimationType.OPACITY, config: { duration: 200 } },
-        ],
+        animationConfigs: {
+          [AnimationType.OPACITY]: { duration: 200 },
+        },
         animationCombinationType: AnimationCombinationType.SEQUENCE,
         animationGap: 50,
       },
@@ -164,11 +164,11 @@ describe('useCombinedAnimation', () => {
   });
 
   describe('edge cases', () => {
-    it('handles empty animationConfigs array without throwing', () => {
+    it('handles empty animationConfigs object without throwing', () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationProps: {
-          animationConfigs: [],
+          animationConfigs: {},
           animationCombinationType: AnimationCombinationType.PARALLEL,
         },
       };
@@ -186,9 +186,9 @@ describe('useCombinedAnimation', () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationProps: {
-          animationConfigs: [
-            { type: AnimationType.CIRCULAR, config: { duration: 300 } },
-          ],
+          animationConfigs: {
+            [AnimationType.CIRCULAR]: { duration: 300 },
+          },
           animationCombinationType: AnimationCombinationType.PARALLEL,
         },
       };
@@ -204,9 +204,9 @@ describe('useCombinedAnimation', () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationProps: {
-          animationConfigs: [
-            { type: AnimationType.OPACITY, config: { duration: 300 } },
-          ],
+          animationConfigs: {
+            [AnimationType.OPACITY]: { duration: 300 },
+          },
           animationCombinationType: AnimationCombinationType.SEQUENCE,
           animationGap: 0,
         },
@@ -234,9 +234,9 @@ describe('useCombinedAnimation', () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationProps: {
-          animationConfigs: [
-            { type: AnimationType.OPACITY, config: { duration: 100 } },
-          ],
+          animationConfigs: {
+            [AnimationType.OPACITY]: { duration: 100 },
+          },
           animationCombinationType: AnimationCombinationType.SEQUENCE,
           animationGap: 50,
         },

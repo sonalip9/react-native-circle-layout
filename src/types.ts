@@ -41,49 +41,43 @@ export enum AnimationCombinationType {
   SEQUENCE = 'sequence',
 }
 
-export type AnimationConfig = {
-  /**
-   * The type of animation to be used for the entry and exit
-   * animations of the components.
-   * @see AnimationType
-   */
-  type: AnimationType;
-  /**
-   * The configuration for the animation.
-   * @default undefined
-   * @see https://reactnative.dev/docs/animated#timing
-   */
-  config?: Omit<Animated.TimingAnimationConfig, 'toValue' | 'useNativeDriver'>;
-};
+/**
+ * The configuration for the animation.
+ * @default undefined
+ * @see https://reactnative.dev/docs/animated#timing
+ */
+export type AnimationConfig = Omit<
+  Animated.TimingAnimationConfig,
+  'toValue' | 'useNativeDriver'
+>;
 
 type AnimationProps = {
   /**
-   * Array of animations to be performed on entry and exit of components.
+   * The configuration for the animation. The key of the record is the type of
+   * animation and the value is the configuration for that animation. If a particular
+   * animation type is not provided, then that animation will not be performed.
+   *
+   * The order of the animation is determined by the key order of the object.
+   * @see AnimationType
    * @see AnimationConfig
    * @example
-   * [
-   *  {
-   *   type: AnimationType.OPACITY,
-   *   config: {
+   * {
+   *  [AnimationType.OPACITY]: {
    *    duration: 500,
    *    easing: Easing.inOut(Easing.ease),
-   *   },
    *  },
-   *  {
-   *   type: AnimationType.LINEAR,
-   *   config: {
+   *  [AnimationType.LINEAR]: {
    *    duration: 500,
-   *   },
    *  },
-   * ]
+   * }
    */
-  animationConfigs: AnimationConfig[];
+  animationConfigs: Partial<Record<AnimationType, AnimationConfig>>;
   /**
    * The type of composition animation to be performed with
    * all the animation configs provided.
    *
    * For those composition which perform animation in a particular order,
-   * the order is picked by the order in the animationConfig array.
+   * the order is picked by the key order of the animationConfigs object.
    * @see AnimationCombinationType
    */
   animationCombinationType: AnimationCombinationType;
