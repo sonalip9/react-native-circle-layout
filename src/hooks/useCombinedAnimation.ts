@@ -15,6 +15,18 @@ type UseCombinedAnimation = {
    * The angle at which this component will be placed on the circle.
    */
   radians: number;
+  /**
+   * The angle from which the component will start its circular animation.
+   * Defaults to the starting angle of the context if not provided.
+   */
+  startAngle?: number;
+  /**
+   * The radius from which the component will end its linear animation.
+   * The component will start its linear animation from the center of the
+   * circle (radius 0) to this radius value.
+   * Defaults to context radius value if not provided.
+   */
+  radius?: number;
 };
 
 /**
@@ -23,15 +35,25 @@ type UseCombinedAnimation = {
  * @param props The props passed to the hook.
  * @param props.index The value of the component that is plotted.
  * @param props.radians The angle at which this component will be placed on the circle.
+ * @param props.startAngle The angle from which the component will start its circular animation.
+ * Defaults to the starting angle of the context if not provided.
+ * @param props.radius The radius from which the component will start its linear animation.
+ * Defaults to context radius value if not provided.
  * @returns An object containing animated value for the animation config passed,
  * the entry and exit functions and the visibility state of the component.
  */
 export const useCombinedAnimation = ({
   index,
   radians,
+  startAngle,
+  radius,
 }: UseCombinedAnimation) => {
-  const { totalParts, animationProps, radius, startAngle } =
-    React.use(CircleLayoutContext);
+  const {
+    totalParts,
+    animationProps,
+    radius: contextRadius,
+    startAngle: contextStartAngle,
+  } = React.use(CircleLayoutContext);
 
   const opacityAnimationConfig =
     animationProps?.animationConfigs[AnimationType.OPACITY];
@@ -75,13 +97,13 @@ export const useCombinedAnimation = ({
     exitAnimation: linearExitAnimation,
   } = useAnimation({
     initialValue: 0,
-    finalValue: radius,
+    finalValue: radius ?? contextRadius,
     entryAnimationConfig: linearAnimationConfig ?? {},
   });
   // The value of radius depending on the props of the component.
   const radiusValue = useMemo(
-    () => (linearAnimationConfig && animatedRadius) || radius,
-    [linearAnimationConfig, radius, animatedRadius]
+    () => (linearAnimationConfig && animatedRadius) || radius || contextRadius,
+    [linearAnimationConfig, radius, animatedRadius, contextRadius]
   );
 
   /**
@@ -94,7 +116,7 @@ export const useCombinedAnimation = ({
     entryAnimation: circularEntryAnimation,
     exitAnimation: circularExitAnimation,
   } = useAnimation({
-    initialValue: startAngle,
+    initialValue: startAngle ?? contextStartAngle,
     finalValue: radians,
     entryAnimationConfig: circularAnimationConfig ?? {},
   });
@@ -176,6 +198,8 @@ export const useCombinedAnimation = ({
           });
           break;
       }
+    } else {
+      setComponentVisible(false);
     }
   }, [animationProps?.animationCombinationType, exitAnimationList]);
 
@@ -196,8 +220,14 @@ export const useCombinedAnimation = ({
           });
           break;
       }
+    } else {
+      setComponentVisible(true);
     }
-  }, [animationProps?.animationCombinationType, entryAnimationList]);
+  }, [
+    animationProps?.animationCombinationType,
+    entryAnimationList,
+    setComponentVisible,
+  ]);
 
   return {
     opacityValue,
