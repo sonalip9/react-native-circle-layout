@@ -15,7 +15,6 @@ import {
 } from 'react-native-circle-layout';
 
 const Playground = () => {
-  const [showInitial, setShowInitial] = React.useState(false);
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
   const viewFlexDirection = React.useMemo(
     () => (windowHeight > windowWidth ? 'column' : 'row'),
@@ -130,7 +129,6 @@ const Playground = () => {
           />
           <SliderWithLabel
             label="Number of Points"
-            isDisabled={showInitial}
             maximumValue={20}
             minimumValue={2}
             onValueChange={setNumberOfPoints}
@@ -163,19 +161,17 @@ const Playground = () => {
         <View gap="s" width="90%">
           <Button
             onPress={() => {
-              setShowInitial(true);
               setShowCircle((oldValue) => !oldValue);
             }}
             label={showCircle ? 'Hide circle layout' : 'Show circle layout'}
           />
           <Button
             onPress={() => {
-              setShowInitial(false);
               setShowCircle(false);
               setRadius(100);
               setSweepAngle(2 * Math.PI);
               setStartAngle(0);
-              setNumberOfPoints(2);
+              setNumberOfPoints(10);
             }}
             label="Reset"
           />
