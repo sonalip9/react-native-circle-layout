@@ -97,7 +97,7 @@ export type BgConfig = {
   color?: string;
   /**
    * The stroke color for the divider lines in the background.
-   * @default #3d19e027
+   * @default color
    */
   strokeColor?: string;
   /**
