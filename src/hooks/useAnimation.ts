@@ -89,7 +89,7 @@ export const useAnimation = ({
   const entryAnimation = useCallback(
     () =>
       Animated.timing(value, {
-        useNativeDriver: true,
+        useNativeDriver: false,
         toValue: finalValue,
         ...entryAnimationConfig,
       }),
@@ -102,7 +102,7 @@ export const useAnimation = ({
   const exitAnimation = useCallback(
     () =>
       Animated.timing(value, {
-        useNativeDriver: true,
+        useNativeDriver: false,
         toValue: initialValue,
         ...exitAnimationConfig,
       }),
