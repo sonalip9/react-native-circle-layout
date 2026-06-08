@@ -1,16 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { ThemeProvider } from '@shopify/restyle';
 import * as React from 'react';
+import { StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AppContext, type AppContextValue } from './AppContext';
 import type { PopUpProps } from './design_system/molecules/PopUp/PopUp';
 import PopUp from './design_system/molecules/PopUp/PopUp';
-import { RootScreens, type RootStackParamList } from './navigation';
-import { Home, Playground, RadialMenu } from './screens';
-import { ThemeProvider } from '@shopify/restyle';
 import theme from './design_system/style';
-import { StatusBar } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { RootScreens, type RootStackParamList } from './navigation';
+import { Home, NestedRingMenu, Playground, RadialMenu } from './screens';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -39,6 +39,10 @@ const App = () => {
               <Stack.Screen
                 component={RadialMenu}
                 name={RootScreens.RADIAL_MENU}
+              />
+              <Stack.Screen
+                component={NestedRingMenu}
+                name={RootScreens.NESTED_RING_MENU}
               />
             </Stack.Navigator>
           </NavigationContainer>

@@ -6,6 +6,7 @@ export type RootStackParamList = {
   [RootScreens.PLAYGROUND]: undefined;
   [RootScreens.HOME]: undefined;
   [RootScreens.RADIAL_MENU]: undefined;
+  [RootScreens.NESTED_RING_MENU]: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
