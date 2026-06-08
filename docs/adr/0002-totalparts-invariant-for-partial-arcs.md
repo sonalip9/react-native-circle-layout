@@ -23,6 +23,6 @@ Using `totalParts = n` would place the last component one step short of the endp
 
 ## Consequences
 
-- This branching logic lives in `CircleLayout.tsx` (`totalParts` useMemo)
+- This branching logic lives in `CircleLayoutProvider.tsx` (`totalParts` useMemo)
 - Any code that computes per-component angles must use `totalParts` from context, not `components.length` directly
 - Adding or removing components changes `totalParts` and thus repositions all components — this is expected behaviour

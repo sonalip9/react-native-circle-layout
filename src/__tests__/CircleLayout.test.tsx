@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { Text } from 'react-native';
+import Svg from 'react-native-svg';
 import { render, act, renderHook } from '@testing-library/react-native';
 
 import { CircleLayout } from '../CircleLayout';
@@ -209,6 +210,59 @@ describe('CircleLayout', () => {
           />
         )
       ).not.toThrow();
+    });
+  });
+
+  describe('background (bgConfig)', () => {
+    it('does not render a background when bgConfig is not provided', () => {
+      const { UNSAFE_queryAllByType } = render(
+        <CircleLayout components={makeComponents(2)} radius={100} ref={null} />
+      );
+      expect(UNSAFE_queryAllByType(Svg)).toHaveLength(0);
+    });
+
+    it('renders one background sector per component when bgConfig is provided', () => {
+      const { UNSAFE_queryAllByType } = render(
+        <CircleLayout
+          components={makeComponents(3)}
+          radius={100}
+          bgConfig={{ color: 'red' }}
+          ref={null}
+        />
+      );
+      expect(UNSAFE_queryAllByType(Svg)).toHaveLength(3);
+    });
+
+    it('renders without throwing when innerRadius and outerRadius are set', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            bgConfig={{ innerRadius: 20, outerRadius: 150 }}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('shows the background when showComponents is called via ref', () => {
+      const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
+      const ref = result.current;
+      expect(() => {
+        render(
+          <CircleLayout
+            components={makeComponents(2)}
+            radius={100}
+            bgConfig={{ color: 'blue' }}
+            ref={ref}
+          />
+        );
+        act(() => {
+          ref.current?.showComponents();
+          ref.current?.hideComponents();
+        });
+      }).not.toThrow();
     });
   });
 

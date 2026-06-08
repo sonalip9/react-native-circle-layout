@@ -118,6 +118,14 @@ _type_: [AnimationProps](#animationprops-1)
 
 _description_: The properties to configure the entry and exit animation of the component.
 
+### `bgConfig`
+
+_type_: [BgConfig](#bgconfig)
+
+_default value_: `undefined`
+
+_description_: The configuration for the background sectors drawn behind each component on the circle. If this prop is not provided, then no background is shown.
+
 ## Methods
 
 These methods are available via the `ref` prop on `CircleLayout`.
@@ -145,15 +153,20 @@ Hides all circle-layout components. Triggers the exit animation on each componen
 ```ts
 export type AnimationProps = {
   /**
-   * Array of animations to be performed on entry and exit of components.
+   * The configuration for the animation. The key of the record is the type of
+   * animation and the value is the configuration for that animation. If a
+   * particular animation type is not provided, then that animation will not
+   * be performed.
+   *
+   * The order of the animation is determined by the key order of the object.
    */
-  animationConfigs: AnimationConfig[];
+  animationConfigs: Partial<Record<AnimationType, AnimationConfig>>;
   /**
    * The type of composition animation to be performed with
    * all the animation configs provided.
    *
    * For those composition which perform animation in a particular order,
-   * the order is picked by the order in the animationConfig array.
+   * the order is picked by the key order of the animationConfigs object.
    */
   animationCombinationType: AnimationCombinationType;
   /**
@@ -164,41 +177,33 @@ export type AnimationProps = {
 };
 ```
 
+```ts
+// Example
+{
+  animationConfigs: {
+    [AnimationType.OPACITY]: {
+      duration: 500,
+      easing: Easing.inOut(Easing.ease),
+    },
+    [AnimationType.LINEAR]: {
+      duration: 500,
+    },
+  },
+  animationCombinationType: AnimationCombinationType.PARALLEL,
+}
+```
+
 ### AnimationConfig
 
 ```ts
-export type AnimationConfig = {
-  /**
-   * The type of animation to be performed.
-   */
-  animationType: AnimationType;
-  /**
-   * The configuration for the animation.
-   */
-  config?: {
-    /**
-     * The duration of the animation in milliseconds.
-     * @default 500
-     */
-    duration?: number;
-    /**
-     * The delay before the animation starts in milliseconds.
-     * @default 0
-     */
-    delay?: number;
-    /**
-     * The easing function to be used for the animation.
-     * @default Easing.inOut(Easing.ease)
-     */
-    easing?: EasingFunction;
-    /**
-     * Flag to indicate if this animation creates an "interaction
-     * handle" on the InteractionManager.
-     * @default true.
-     */
-    isInteraction?: boolean | undefined;
-  };
-};
+/**
+ * The configuration for the animation.
+ * @see https://reactnative.dev/docs/animated#timing
+ */
+export type AnimationConfig = Omit<
+  Animated.TimingAnimationConfig,
+  'toValue' | 'useNativeDriver'
+>;
 ```
 
 ### AnimationType
@@ -208,16 +213,16 @@ export enum AnimationType {
   /**
    * The component will fade in on entry and fade out on exit.
    */
-  OPACITY = 'OPACITY',
+  OPACITY = 'opacityAnimationConfig',
   /**
    * The component will move from the center to its final position.
    */
-  LINEAR = 'LINEAR',
+  LINEAR = 'linearAnimationConfig',
   /**
    * The component will move along the circumference of the circle
    * from the position of the first component to its final position.
    */
-  CIRCULAR = 'CIRCULAR',
+  CIRCULAR = 'circularAnimationConfig',
 }
 ```
 
@@ -228,12 +233,48 @@ export enum AnimationCombinationType {
   /**
    * The animations will be performed in parallel.
    */
-  PARALLEL = 'PARALLEL',
+  PARALLEL = 'parallel',
   /**
    * The animations will be performed in sequence.
    */
-  SEQUENCE = 'SEQUENCE',
+  SEQUENCE = 'sequence',
 }
+```
+
+### BgConfig
+
+```ts
+export type BgConfig = {
+  /**
+   * The fill color for the background of the circle layout.
+   * @default '#3d19e0'
+   */
+  color?: string;
+  /**
+   * The stroke color for the divider lines in the background.
+   * @default color
+   */
+  strokeColor?: string;
+  /**
+   * The width of the stroke for the divider lines in the background.
+   * @default 1
+   */
+  strokeWidth?: number;
+  /**
+   * The radius of the inner circle in the background.
+   *
+   * If this prop is not provided, the background is a filled circle with
+   * the radius provided in CircleLayoutProps. If provided, the background
+   * is a donut shape between innerRadius and the outer radius.
+   * @default 0
+   */
+  innerRadius?: number;
+  /**
+   * The radius of the outer circle in the background.
+   * @default radius provided in CircleLayoutProps
+   */
+  outerRadius?: number;
+};
 ```
 
 ## Authors
