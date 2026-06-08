@@ -14,6 +14,7 @@ const baseContext: CircleLayoutContextType = {
   totalParts: 2,
   radius: 100,
   startAngle: 0,
+  sectorAngle: Math.PI,
 };
 
 const noopSetLayout = () => {};

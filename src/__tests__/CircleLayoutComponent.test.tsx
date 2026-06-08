@@ -16,6 +16,7 @@ const baseContext: CircleLayoutContextType = {
   totalParts: 3,
   radius: 100,
   startAngle: 0,
+  sectorAngle: (2 * Math.PI) / 3,
 };
 
 const zeroCenterLayout: Layout = { width: 0, height: 0 };
