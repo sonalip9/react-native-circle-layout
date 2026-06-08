@@ -237,10 +237,16 @@ describe('useAnimation', () => {
           exitAnimationConfig: { duration: 0 },
         })
       );
+      const entry = result.current.entryAnimation();
+      const exit = result.current.exitAnimation();
       expect(() => {
-        result.current.entryAnimation().start();
-        result.current.exitAnimation().start();
+        entry.start();
+        exit.start();
       }).not.toThrow();
+      // duration: 0 still schedules a requestAnimationFrame tick — stop it so
+      // it doesn't fire (and pull in the bezier easing module) after teardown.
+      entry.stop();
+      exit.stop();
     });
 
     it('exitAnimationConfig defaults to entryAnimationConfig when omitted', () => {
@@ -251,11 +257,18 @@ describe('useAnimation', () => {
           entryAnimationConfig: { duration: 400 },
         })
       );
+      const entry = result.current.entryAnimation();
+      const exit = result.current.exitAnimation();
       // Both must be callable without throwing
       expect(() => {
-        result.current.entryAnimation().start();
-        result.current.exitAnimation().start();
+        entry.start();
+        exit.start();
       }).not.toThrow();
+      // Stop immediately — a real 400ms timing animation left running fires
+      // its easing callback after Jest tears down the environment, crashing
+      // the worker (`_bezier is not a function`).
+      entry.stop();
+      exit.stop();
     });
   });
 });
