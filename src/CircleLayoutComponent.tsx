@@ -4,7 +4,7 @@ import { Animated } from 'react-native';
 import { useCombinedAnimation } from './hooks';
 import { circleComponentStyles } from './styles';
 import type { ComponentProps, ComponentRef, Layout } from './types';
-import { pointOnCircle } from './utils';
+import { pointOnCircle, pointOnCircleAnimated } from './utils';
 
 /**
  * A component that positions one component in the circle layout.
@@ -43,10 +43,10 @@ export const CircleLayoutComponent = ({
 
   // The position of the component.
   // This is animated if either linear or circular animation config is passed.
-  const position = pointOnCircle({
-    radians: radiansValue,
-    radius: radiusValue,
-  });
+  const position =
+    typeof radiansValue === 'number' && typeof radiusValue === 'number'
+      ? pointOnCircle({ radians: radiansValue, radius: radiusValue })
+      : pointOnCircleAnimated({ radians: radiansValue, radius: radiusValue });
 
   /**
    * The instance value that is exposed to parent components when using ref.

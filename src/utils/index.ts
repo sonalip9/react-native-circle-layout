@@ -1,4 +1,4 @@
 export { interpolationWithFunction } from './animation';
-export { pointOnCircle } from './circle';
-export type { PointOnCircle } from './circle';
+export { pointOnCircle, pointOnCircleAnimated } from './circle';
+export type { PointOnCircle, PointOnCircleAnimated } from './circle';
 export { validateProps } from './validation';
