@@ -1,10 +1,9 @@
-import React, { useMemo } from 'react';
-import { Animated, View } from 'react-native';
+import React from 'react';
 
-import CircleLayoutArray from './CircleLayoutArray';
-import type { CircleLayoutProps, CircleLayoutRef, Layout } from './types';
-import { validateProps } from './utils/validation';
+import { CircleLayoutContent } from './CircleLayoutContent';
 import { CircleLayoutProvider } from './CircleLayoutProvider';
+import type { CircleLayoutProps, CircleLayoutRef } from './types';
+import { validateProps } from './utils';
 
 /**
  * A component that places a list of components in a circular layout.
@@ -26,7 +25,7 @@ import { CircleLayoutProvider } from './CircleLayoutProvider';
 export const CircleLayout = ({
   ref,
   ...circleLayoutProps
-}: CircleLayoutProps & { ref: React.Ref<CircleLayoutRef> }) => {
+}: CircleLayoutProps & { ref?: React.Ref<CircleLayoutRef> }) => {
   const {
     components,
     radius,
@@ -38,65 +37,23 @@ export const CircleLayout = ({
     animationProps,
   } = validateProps(circleLayoutProps);
 
-  const isGreaterThanHalfCircle = useMemo(
-    () => sweepAngle >= Math.PI,
-    [sweepAngle]
-  );
-
-  const [minComponentLayout, setMinComponentLayout] = React.useState<Layout>({
-    height: 0,
-    width: 0,
-  });
-  const { minHeight, minWidth } = useMemo(() => {
-    const defaultMinDimension = isGreaterThanHalfCircle ? 2 * radius : radius;
-    return {
-      minHeight: defaultMinDimension + minComponentLayout.height,
-      minWidth: defaultMinDimension + minComponentLayout.width,
-    };
-  }, [minComponentLayout, radius, isGreaterThanHalfCircle]);
-
-  const [centerComponentLayout, setCenterComponentLayout] =
-    React.useState<Layout>({ width: 0, height: 0 });
-
   return (
     <CircleLayoutProvider
-      componentLength={components.length}
+      sweepAngle={sweepAngle}
       radius={radius}
       startAngle={startAngle}
-      sweepAngle={sweepAngle}
+      componentLength={components.length}
       animationProps={animationProps}
     >
-      <View
-        style={[
-          {
-            minHeight,
-            minWidth,
-            justifyContent: sweepAngle >= Math.PI ? 'center' : 'flex-end',
-            alignItems: 'center',
-          },
-          containerStyle,
-        ]}
-      >
-        <View>
-          {/* The list of components to be shown in the circle. */}
-          <CircleLayoutArray
-            ref={ref}
-            components={components}
-            sweepAngle={sweepAngle}
-            setMinComponentLayout={setMinComponentLayout}
-            centerComponentLayout={centerComponentLayout}
-          />
-          <Animated.View
-            style={[centerComponentContainerStyle]}
-            onLayout={(event) => {
-              const layout = event.nativeEvent.layout;
-              setCenterComponentLayout(layout);
-            }}
-          >
-            {centerComponent}
-          </Animated.View>
-        </View>
-      </View>
+      <CircleLayoutContent
+        ref={ref}
+        radius={radius}
+        components={components}
+        centerComponent={centerComponent}
+        containerStyle={containerStyle}
+        centerComponentContainerStyle={centerComponentContainerStyle}
+        sweepAngle={sweepAngle}
+      />
     </CircleLayoutProvider>
   );
 };
