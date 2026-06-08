@@ -2,14 +2,9 @@ import React, { useMemo } from 'react';
 import { Animated, View } from 'react-native';
 
 import CircleLayoutArray from './CircleLayoutArray';
-import { CircleLayoutContext } from './CircleLayoutContext';
-import type {
-  CircleLayoutContextType,
-  CircleLayoutProps,
-  CircleLayoutRef,
-  Layout,
-} from './types';
+import type { CircleLayoutProps, CircleLayoutRef, Layout } from './types';
 import { validateProps } from './utils/validation';
+import { CircleLayoutProvider } from './CircleLayoutProvider';
 
 /**
  * A component that places a list of components in a circular layout.
@@ -43,12 +38,10 @@ export const CircleLayout = ({
     animationProps,
   } = validateProps(circleLayoutProps);
 
-  const { isCompleteCircle, isGreaterThanHalfCircle } = useMemo(() => {
-    return {
-      isCompleteCircle: Math.abs(sweepAngle - 2 * Math.PI) < 0.001,
-      isGreaterThanHalfCircle: sweepAngle >= Math.PI,
-    };
-  }, [sweepAngle]);
+  const isGreaterThanHalfCircle = useMemo(
+    () => sweepAngle >= Math.PI,
+    [sweepAngle]
+  );
 
   const [minComponentLayout, setMinComponentLayout] = React.useState<Layout>({
     height: 0,
@@ -65,22 +58,14 @@ export const CircleLayout = ({
   const [centerComponentLayout, setCenterComponentLayout] =
     React.useState<Layout>({ width: 0, height: 0 });
 
-  // The total number of parts to divide the circle into
-  const totalParts = React.useMemo(
-    () => (isCompleteCircle ? components.length : components.length - 1),
-    [components.length, isCompleteCircle]
-  );
-
-  /**
-   * The value passed to the context of the circle layout.
-   */
-  const contextValue: CircleLayoutContextType = React.useMemo(
-    () => ({ totalParts, radius, startAngle, animationProps }),
-    [animationProps, radius, startAngle, totalParts]
-  );
-
   return (
-    <CircleLayoutContext value={contextValue}>
+    <CircleLayoutProvider
+      componentLength={components.length}
+      radius={radius}
+      startAngle={startAngle}
+      sweepAngle={sweepAngle}
+      animationProps={animationProps}
+    >
       <View
         style={[
           {
@@ -112,6 +97,6 @@ export const CircleLayout = ({
           </Animated.View>
         </View>
       </View>
-    </CircleLayoutContext>
+    </CircleLayoutProvider>
   );
 };
