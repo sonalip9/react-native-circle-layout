@@ -209,6 +209,11 @@ export type CircleLayoutContextType = {
    * @default undefined
    */
   animationProps?: AnimationProps | undefined;
+  /**
+   * The angle in radians between the position of 2 consecutive components on the circle.
+   * This value is calculated by dividing the sweepAngle by the total number of parts.
+   */
+  sectorAngle: number;
 };
 
 export type Layout = {

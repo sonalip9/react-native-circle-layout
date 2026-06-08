@@ -56,8 +56,9 @@ export const CircleLayoutProvider = ({
       radius,
       startAngle,
       animationProps,
+      sectorAngle: sweepAngle / totalParts,
     }),
-    [animationProps, radius, startAngle, totalParts]
+    [animationProps, radius, startAngle, sweepAngle, totalParts]
   );
 
   return (
