@@ -1,6 +1,7 @@
-import { useImperativeHandle, useState, type Ref } from 'react';
-import { Animated } from 'react-native';
+import React, { useImperativeHandle, useMemo, useState, type Ref } from 'react';
+import { View } from 'react-native';
 
+import { CircleLayoutContext } from './CircleLayoutContext';
 import { useCombinedAnimation } from './hooks';
 import { circleComponentStyles } from './styles';
 import type { ComponentProps, ComponentRef, Layout } from './types';
@@ -29,6 +30,14 @@ export const CircleLayoutComponent = ({
   centerComponentLayout,
   ref,
 }: ComponentProps & { ref: Ref<ComponentRef> }) => {
+  const { animationDriver: driver } = React.use(CircleLayoutContext);
+
+  /* eslint-disable react-hooks/static-components, @eslint-react/static-components -- AnimatedView is memoized on `driver` (a dynamic, pluggable prop), not a module-level constant, so it's necessarily defined inside the component; its identity stays stable across renders as long as `driver` doesn't change. */
+  const AnimatedView = useMemo(
+    () => driver.createAnimatedComponent(View),
+    [driver]
+  );
+
   const [layout, setLayout] = useState<Layout>({
     width: 0,
     height: 0,
@@ -46,7 +55,11 @@ export const CircleLayoutComponent = ({
   const position =
     typeof radiansValue === 'number' && typeof radiusValue === 'number'
       ? pointOnCircle({ radians: radiansValue, radius: radiusValue })
-      : pointOnCircleAnimated({ radians: radiansValue, radius: radiusValue });
+      : pointOnCircleAnimated({
+          driver,
+          radians: radiansValue,
+          radius: radiusValue,
+        });
 
   /**
    * The instance value that is exposed to parent components when using ref.
@@ -57,30 +70,30 @@ export const CircleLayoutComponent = ({
   }));
 
   return (
-    <Animated.View
+    <AnimatedView
       style={[
         circleComponentStyles.componentContainer,
         {
-          opacity,
+          opacity: opacity as unknown as number,
           transform: [
             {
-              translateX: Animated.multiply(
-                Animated.subtract(
+              translateX: driver.multiply(
+                driver.subtract(
                   position.x,
                   (layout.width - centerComponentLayout.width) / 2
                 ),
                 -1
-              ),
+              ) as unknown as number,
             },
 
             {
-              translateY: Animated.multiply(
-                Animated.subtract(
+              translateY: driver.multiply(
+                driver.subtract(
                   position.y,
                   (layout.height - centerComponentLayout.height) / 2
                 ),
                 -1
-              ),
+              ) as unknown as number,
             },
           ],
         },
@@ -92,6 +105,7 @@ export const CircleLayoutComponent = ({
       }}
     >
       {component}
-    </Animated.View>
+    </AnimatedView>
   );
+  /* eslint-enable react-hooks/static-components, @eslint-react/static-components -- end of the driver-dependent animated component region (see disable comment above AnimatedView). */
 };

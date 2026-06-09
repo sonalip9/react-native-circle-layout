@@ -1,12 +1,8 @@
 import Svg, { Defs, Mask, Path } from 'react-native-svg';
 import type { BgConfig, Layout } from './types';
-import { Animated } from 'react-native';
 import { use, useLayoutEffect, useMemo } from 'react';
 import { useAnimatedSectorPath, useCombinedAnimation } from './hooks';
 import { CircleLayoutContext } from './CircleLayoutContext';
-
-const AnimatedSvg = Animated.createAnimatedComponent(Svg);
-const AnimatedPath = Animated.createAnimatedComponent(Path);
 
 export const Bg = ({
   index,
@@ -26,7 +22,22 @@ export const Bg = ({
   centerComponentLayout: Layout;
   isVisible?: boolean;
 } & BgConfig) => {
-  const { startAngle, sectorAngle } = use(CircleLayoutContext);
+  const {
+    startAngle,
+    sectorAngle,
+    animationDriver: driver,
+  } = use(CircleLayoutContext);
+
+  /* eslint-disable react-hooks/static-components, @eslint-react/static-components -- AnimatedSvg/AnimatedPath are memoized on `driver` (a dynamic, pluggable prop), not module-level constants, so they're necessarily defined inside the component; their identity stays stable across renders as long as `driver` doesn't change. */
+  const AnimatedSvg = useMemo(
+    () => driver.createAnimatedComponent(Svg),
+    [driver]
+  );
+  const AnimatedPath = useMemo(
+    () => driver.createAnimatedComponent(Path),
+    [driver]
+  );
+
   const { startAngleInRadians, endAngleInRadians } = useMemo(() => {
     const angle = startAngle + index * sectorAngle;
     return {
@@ -71,7 +82,6 @@ export const Bg = ({
     radians: endAngleInRadians,
     startAngle: startAngleInRadians,
     radius: size / 2,
-    useNativeDriver: false,
   });
 
   useLayoutEffect(() => {
@@ -83,9 +93,18 @@ export const Bg = ({
   }, [hideComponent, isVisible, showComponent]);
 
   const path = useAnimatedSectorPath({
+    driver,
     radius: radiusValue,
     startAngle: startAngleInRadians,
     endAngle: radiansValue,
+    center,
+  });
+
+  const innerPath = useAnimatedSectorPath({
+    driver,
+    radius: innerRadius,
+    startAngle: startAngleInRadians,
+    endAngle: endAngleInRadians,
     center,
   });
 
@@ -105,14 +124,9 @@ export const Bg = ({
     >
       <Defs>
         <Mask id={`mask_${index}`}>
-          <AnimatedPath d={path} fill="white" />
+          <AnimatedPath d={path as unknown as string} fill="white" />
           <AnimatedPath
-            d={useAnimatedSectorPath({
-              radius: innerRadius,
-              startAngle: startAngleInRadians,
-              endAngle: endAngleInRadians,
-              center,
-            })}
+            d={innerPath as unknown as string}
             fill="black"
             stroke="black"
           />
@@ -120,13 +134,14 @@ export const Bg = ({
       </Defs>
       <AnimatedPath
         mask={`url(#mask_${index})`}
-        d={path}
+        d={path as unknown as string}
         fill={color}
         stroke={strokeColor ?? color}
         strokeOpacity={0.5}
         strokeWidth={strokeWidth}
-        opacity={opacityValue}
+        opacity={opacityValue as unknown as number}
       />
     </AnimatedSvg>
   );
+  /* eslint-enable react-hooks/static-components, @eslint-react/static-components -- end of the driver-dependent animated component region (see disable comment above AnimatedSvg/AnimatedPath). */
 };
