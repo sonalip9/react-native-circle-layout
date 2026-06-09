@@ -82,6 +82,7 @@ export const Bg = ({
     radians: endAngleInRadians,
     startAngle: startAngleInRadians,
     radius: size / 2,
+    useNativeDriver: false,
   });
 
   useLayoutEffect(() => {

@@ -41,7 +41,12 @@ export interface AnimationDriver<
    * Builds a runnable timing animation that animates `value` towards `toValue`
    * using the provided driver-specific configuration.
    */
-  timing(value: TValue, toValue: number, config: TConfig): TComposite;
+  timing(
+    value: TValue,
+    toValue: number,
+    config: TConfig,
+    useNativeDriver?: boolean
+  ): TComposite;
   /**
    * Composes a list of animations to run one after another.
    */
