@@ -133,31 +133,33 @@ export const useCombinedAnimation = ({
 
       const { entryList, exitList } = (
         Object.keys(animationProps.animationConfigs) as AnimationType[]
-      ).reduce(
-        ({ entryList: entry, exitList: exit }, type) => {
-          switch (type) {
-            case AnimationType.OPACITY:
-              entry.push(opacityEntryAnimation());
-              exit.unshift(opacityExitAnimation());
-              break;
-            case AnimationType.LINEAR:
-              entry.push(linearEntryAnimation());
-              exit.unshift(linearExitAnimation());
-              break;
-            case AnimationType.CIRCULAR:
-              entry.push(circularEntryAnimation());
-              exit.unshift(circularExitAnimation());
-              break;
-            default:
-              throw new Error('Unrecognized config type');
+      )
+        .filter((type) => animationProps.animationConfigs[type] !== undefined)
+        .reduce(
+          ({ entryList: entry, exitList: exit }, type) => {
+            switch (type) {
+              case AnimationType.OPACITY:
+                entry.push(opacityEntryAnimation());
+                exit.unshift(opacityExitAnimation());
+                break;
+              case AnimationType.LINEAR:
+                entry.push(linearEntryAnimation());
+                exit.unshift(linearExitAnimation());
+                break;
+              case AnimationType.CIRCULAR:
+                entry.push(circularEntryAnimation());
+                exit.unshift(circularExitAnimation());
+                break;
+              default:
+                throw new Error('Unrecognized config type');
+            }
+            return { entryList: entry, exitList: exit };
+          },
+          {
+            entryList: [] as Animated.CompositeAnimation[],
+            exitList: [] as Animated.CompositeAnimation[],
           }
-          return { entryList: entry, exitList: exit };
-        },
-        {
-          entryList: [] as Animated.CompositeAnimation[],
-          exitList: [] as Animated.CompositeAnimation[],
-        }
-      );
+        );
 
       entryList.unshift(
         Animated.delay(index * (animationProps.animationGap ?? 0))
