@@ -57,7 +57,9 @@ describe('useAnimation', () => {
     it('allows disabling native driver explicitly', () => {
       const timingSpy = jest.spyOn(Animated, 'timing');
 
-      const { result } = renderHook(() => useAnimation({ ...baseConfig }));
+      const { result } = renderHook(() =>
+        useAnimation({ ...baseConfig, useNativeDriver: false })
+      );
       result.current.entryAnimation();
       result.current.exitAnimation();
 

@@ -26,6 +26,11 @@ type UseCombinedAnimation = {
    * Defaults to context radius value if not provided.
    */
   radius?: number;
+  /**
+   * Whether to use the native animation driver for timing animations.
+   * @default true
+   */
+  useNativeDriver?: boolean;
 };
 
 /**
@@ -38,6 +43,7 @@ type UseCombinedAnimation = {
  * Defaults to the starting angle of the context if not provided.
  * @param props.radius The radius from which the component will start its linear animation.
  * Defaults to context radius value if not provided.
+ * @param props.useNativeDriver Whether to use the native animation driver. Defaults to true.
  * @returns An object containing animated value for the animation config passed,
  * the entry and exit functions and the visibility state of the component.
  */
@@ -46,6 +52,7 @@ export const useCombinedAnimation = ({
   radians,
   startAngle,
   radius,
+  useNativeDriver = true,
 }: UseCombinedAnimation) => {
   const {
     totalParts,
@@ -79,6 +86,7 @@ export const useCombinedAnimation = ({
     initialValue: 0,
     finalValue: 1,
     entryAnimationConfig: opacityAnimationConfig ?? {},
+    useNativeDriver,
   });
   // The value of opacity depending on the props of the component.
   const opacityValue = React.useMemo(
@@ -101,6 +109,7 @@ export const useCombinedAnimation = ({
     initialValue: 0,
     finalValue: radius ?? contextRadius,
     entryAnimationConfig: linearAnimationConfig ?? {},
+    useNativeDriver,
   });
   // The value of radius depending on the props of the component.
   const radiusValue = useMemo(
@@ -122,6 +131,7 @@ export const useCombinedAnimation = ({
     initialValue: startAngle ?? contextStartAngle,
     finalValue: radians,
     entryAnimationConfig: circularAnimationConfig ?? {},
+    useNativeDriver,
   });
   // The value of radians depending on the props of the component.
   const radiansValue = useMemo(

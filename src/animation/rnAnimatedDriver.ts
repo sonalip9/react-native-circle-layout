@@ -36,8 +36,8 @@ export const rnAnimatedDriver: AnimationDriver<
     return () => value.removeListener(listenerId);
   },
 
-  timing: (value, toValue, config) =>
-    Animated.timing(value, { useNativeDriver: true, toValue, ...config }),
+  timing: (value, toValue, config, useNativeDriver = true) =>
+    Animated.timing(value, { useNativeDriver, toValue, ...config }),
 
   sequence: (animations) => Animated.sequence(animations),
 
