@@ -1,6 +1,4 @@
-import { Animated } from 'react-native';
-
-type InterpolationConfig = {
+export type InterpolationConfig = {
   /**
    * The start value of the input range.
    * @default 0
@@ -65,26 +63,3 @@ export const withFunction = <T extends number | string>(
   }
   return { inputRange, outputRange };
 };
-
-/**
- * Interpolates the value before updating the property using the callback function.
- * @param value The animated value that needs to be interpolated.
- * @param callback The function to use to create an output range by interpolating
- * the input range values.
- * @param interpolationConfig The configuration to be passed to the callback function.
- * @param animatedInterpolationConfig The configuration for the animated interpolation.
- * @returns Animated Interpolation value
- */
-export const interpolationWithFunction = <T extends number | string>(
-  value: Animated.Value | Animated.AnimatedInterpolation<number>,
-  callback: (value: number) => T,
-  interpolationConfig?: InterpolationConfig,
-  animatedInterpolationConfig?: Omit<
-    Animated.InterpolationConfig<number>,
-    'inputRange' | 'outputRange'
-  >
-): Animated.AnimatedInterpolation<T> =>
-  (value as Animated.Value).interpolate<T>({
-    ...withFunction(callback, interpolationConfig),
-    ...animatedInterpolationConfig,
-  });

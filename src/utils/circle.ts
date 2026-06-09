@@ -1,15 +1,13 @@
-import { Animated } from 'react-native';
-
-import { interpolationWithFunction } from './animation';
+import type { AnimatedNode, AnimationDriver } from '../animation/types';
 
 type Point = {
   x: number;
   y: number;
 };
 
-type PointAnimated = {
-  x: Animated.AnimatedInterpolation<number>;
-  y: Animated.AnimatedInterpolation<number>;
+type PointAnimated<D extends AnimationDriver> = {
+  x: AnimatedNode<D>;
+  y: AnimatedNode<D>;
 };
 
 /**
@@ -66,65 +64,71 @@ export function pointOnCircle({ radius, radians }: PointOnCircle): Point {
 /**
  * The props of the polar co-ordinate of a point on the circle.
  */
-export type PointOnCircleAnimated = {
+export type PointOnCircleAnimated<D extends AnimationDriver> = {
+  /**
+   * The driver used to power the animated interpolations.
+   */
+  driver: D;
   /**
    * The radius of the circle.
    */
-  radius: number | Animated.Value;
+  radius: number | AnimatedNode<D>;
   /**
    * The angle of the point on the circle.
    */
-  radians: number | Animated.Value;
+  radians: number | AnimatedNode<D>;
 };
 
 /**
  * Converts the polar co-ordinates of a point on a circle to its Cartesian co-ordinate,
- * supporting `Animated.Value` for radius and/or radians.
+ * supporting animated nodes (produced by the given driver) for radius and/or radians.
  * x = r cos θ, y = r sin θ
  * @param props The property of the circle
- * @param props.radius The radius of the circle. Can be a number or an `Animated.Value`.
- * @param props.radians The angle of the point on the circle. Can be a number or an `Animated.Value`.
+ * @param props.driver The driver used to power the animated interpolations.
+ * @param props.radius The radius of the circle. Can be a number or an animated node.
+ * @param props.radians The angle of the point on the circle. Can be a number or an animated node.
  * @returns The Cartesian co-ordinates of the point of the circle, interpolated when animated.
- * @throws {Error}  If neither `radius` nor `radians` is an `Animated.Value`. Use `pointOnCircle` for static values.
+ * @throws {Error}  If neither `radius` nor `radians` is an animated node. Use `pointOnCircle` for static values.
  */
-export function pointOnCircleAnimated({
+export function pointOnCircleAnimated<D extends AnimationDriver>({
+  driver,
   radians,
   radius,
-}: PointOnCircleAnimated): PointAnimated {
+}: PointOnCircleAnimated<D>): PointAnimated<D> {
   if (typeof radians === 'number') {
     if (typeof radius === 'number') {
       throw new Error(
-        'At least one of radius and radians needs to be an Animated.Value.' +
+        'At least one of radius and radians needs to be an animated node.' +
           ' Use pointOnCircle for static values.'
       );
     } else {
       return {
-        x: interpolationWithFunction(radius, (r) =>
+        x: driver.interpolate(radius, (r) =>
           pointOnCircleX({ radius: r, radians })
-        ),
-        y: interpolationWithFunction(radius, (r) =>
+        ) as AnimatedNode<D>,
+        y: driver.interpolate(radius, (r) =>
           pointOnCircleY({ radius: r, radians })
-        ),
+        ) as AnimatedNode<D>,
       };
     }
   } else {
     return {
-      x: Animated.multiply(
-        interpolationWithFunction(
+      x: driver.multiply(
+        driver.interpolate(
           radians,
           (rad) => pointOnCircleX({ radius: 1, radians: rad }),
           { endValue: 2 * Math.PI }
         ),
         radius
-      ),
-      y: Animated.multiply(
-        interpolationWithFunction(
+      ) as AnimatedNode<D>,
+      y: driver.multiply(
+        driver.interpolate(
           radians,
           (rad) => pointOnCircleY({ radius: 1, radians: rad }),
           { endValue: 2 * Math.PI }
         ),
         radius
-      ),
+      ) as AnimatedNode<D>,
     };
   }
 }
