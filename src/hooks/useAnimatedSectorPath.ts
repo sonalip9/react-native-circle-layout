@@ -55,24 +55,26 @@ export const useAnimatedSectorPath = <D extends AnimationDriver>({
   endAngle,
   center,
 }: UseAnimatedSectorPath<D>) => {
-  const bothAnimated =
+  const radiusIsNumber = typeof radius === 'number';
+  const endAngleIsNumber = typeof endAngle === 'number';
+  const bothListenable =
     driver.isAnimatedValue(radius) && driver.isAnimatedValue(endAngle);
 
   const derivedPath = useMemo<AnimatedNode<D> | string | undefined>(() => {
-    if (bothAnimated) return undefined;
+    if (bothListenable) return undefined;
 
-    if (driver.isAnimatedValue(radius)) {
+    if (!radiusIsNumber && endAngleIsNumber) {
       return driver.interpolate(radius, (s) =>
         getSectorPath({
           radius: s,
           startAngle,
-          endAngle: endAngle as number,
+          endAngle: endAngle,
           center,
         })
       ) as AnimatedNode<D>;
     }
 
-    if (driver.isAnimatedValue(endAngle)) {
+    if (radiusIsNumber && !endAngleIsNumber) {
       return driver.interpolate(
         endAngle,
         (r) => getSectorPath({ radius, startAngle, endAngle: r, center }),
@@ -80,15 +82,31 @@ export const useAnimatedSectorPath = <D extends AnimationDriver>({
       ) as AnimatedNode<D>;
     }
 
+    if (!radiusIsNumber || !endAngleIsNumber) {
+      // Both are animated nodes but neither pair is fully listenable —
+      // addValueListener only supports TValue, so we can't drive a path
+      // from two derived nodes simultaneously.
+      return undefined;
+    }
+
     return getSectorPath({ radius, startAngle, endAngle, center });
-  }, [bothAnimated, driver, radius, endAngle, startAngle, center]);
+  }, [
+    bothListenable,
+    radiusIsNumber,
+    endAngleIsNumber,
+    driver,
+    radius,
+    endAngle,
+    startAngle,
+    center,
+  ]);
 
   const [listenerPath, setListenerPath] = useState('');
   const currentRadiusRef = useRef(0);
   const currentEndAngleRef = useRef(0);
 
   useEffect(() => {
-    if (!bothAnimated) return;
+    if (!bothListenable) return;
 
     const animatedRadius = radius as Parameters<
       typeof driver.addValueListener
@@ -127,7 +145,7 @@ export const useAnimatedSectorPath = <D extends AnimationDriver>({
       removeRadiusListener();
       removeEndAngleListener();
     };
-  }, [bothAnimated, driver, radius, endAngle, startAngle, center]);
+  }, [bothListenable, driver, radius, endAngle, startAngle, center]);
 
-  return bothAnimated ? listenerPath : (derivedPath ?? '');
+  return bothListenable ? listenerPath : (derivedPath ?? '');
 };
