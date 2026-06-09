@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { Animated } from 'react-native';
 
 import { CircleLayoutContext } from '../CircleLayoutContext';
 import { AnimationCombinationType, AnimationType } from '../types';
@@ -27,11 +26,6 @@ type UseCombinedAnimation = {
    * Defaults to context radius value if not provided.
    */
   radius?: number;
-  /**
-   * Whether to use the native animation driver for timing animations.
-   * @default true
-   */
-  useNativeDriver?: boolean;
 };
 
 /**
@@ -44,8 +38,6 @@ type UseCombinedAnimation = {
  * Defaults to the starting angle of the context if not provided.
  * @param props.radius The radius from which the component will start its linear animation.
  * Defaults to context radius value if not provided.
- * @param props.useNativeDriver Whether to use the native animation driver for timing animations.
- * Defaults to true.
  * @returns An object containing animated value for the animation config passed,
  * the entry and exit functions and the visibility state of the component.
  */
@@ -54,11 +46,11 @@ export const useCombinedAnimation = ({
   radians,
   startAngle,
   radius,
-  useNativeDriver = true,
 }: UseCombinedAnimation) => {
   const {
     totalParts,
     animationProps,
+    animationDriver: driver,
     radius: contextRadius,
     startAngle: contextStartAngle,
   } = React.use(CircleLayoutContext);
@@ -83,10 +75,10 @@ export const useCombinedAnimation = ({
     entryAnimation: opacityEntryAnimation,
     exitAnimation: opacityExitAnimation,
   } = useAnimation({
+    driver,
     initialValue: 0,
     finalValue: 1,
     entryAnimationConfig: opacityAnimationConfig ?? {},
-    useNativeDriver,
   });
   // The value of opacity depending on the props of the component.
   const opacityValue = React.useMemo(
@@ -105,10 +97,10 @@ export const useCombinedAnimation = ({
     entryAnimation: linearEntryAnimation,
     exitAnimation: linearExitAnimation,
   } = useAnimation({
+    driver,
     initialValue: 0,
     finalValue: radius ?? contextRadius,
     entryAnimationConfig: linearAnimationConfig ?? {},
-    useNativeDriver,
   });
   // The value of radius depending on the props of the component.
   const radiusValue = useMemo(
@@ -126,16 +118,18 @@ export const useCombinedAnimation = ({
     entryAnimation: circularEntryAnimation,
     exitAnimation: circularExitAnimation,
   } = useAnimation({
+    driver,
     initialValue: startAngle ?? contextStartAngle,
     finalValue: radians,
     entryAnimationConfig: circularAnimationConfig ?? {},
-    useNativeDriver,
   });
   // The value of radians depending on the props of the component.
   const radiansValue = useMemo(
     () => (circularAnimationConfig && animatedRadians) || radians,
     [circularAnimationConfig, radians, animatedRadians]
   );
+
+  type Composite = ReturnType<typeof driver.delay>;
 
   const { entryList: entryAnimationList, exitList: exitAnimationList } =
     React.useMemo(() => {
@@ -167,16 +161,16 @@ export const useCombinedAnimation = ({
             return { entryList: entry, exitList: exit };
           },
           {
-            entryList: [] as Animated.CompositeAnimation[],
-            exitList: [] as Animated.CompositeAnimation[],
+            entryList: [] as Composite[],
+            exitList: [] as Composite[],
           }
         );
 
       entryList.unshift(
-        Animated.delay(index * (animationProps.animationGap ?? 0))
+        driver.delay(index * (animationProps.animationGap ?? 0))
       );
       exitList.unshift(
-        Animated.delay(
+        driver.delay(
           (totalParts - index - 1) * (animationProps.animationGap ?? 0)
         )
       );
@@ -186,6 +180,7 @@ export const useCombinedAnimation = ({
       animationProps,
       circularEntryAnimation,
       circularExitAnimation,
+      driver,
       index,
       linearEntryAnimation,
       linearExitAnimation,
@@ -201,12 +196,12 @@ export const useCombinedAnimation = ({
     if (exitAnimationList) {
       switch (animationProps?.animationCombinationType) {
         case AnimationCombinationType.SEQUENCE:
-          Animated.sequence(exitAnimationList).start(() => {
+          driver.start(driver.sequence(exitAnimationList), () => {
             setComponentVisible(false);
           });
           break;
         default:
-          Animated.parallel(exitAnimationList).start(() => {
+          driver.start(driver.parallel(exitAnimationList), () => {
             setComponentVisible(false);
           });
           break;
@@ -214,7 +209,7 @@ export const useCombinedAnimation = ({
     } else {
       setComponentVisible(false);
     }
-  }, [animationProps?.animationCombinationType, exitAnimationList]);
+  }, [animationProps?.animationCombinationType, driver, exitAnimationList]);
 
   /**
    * Function to show the component by performing the animation configs passed.
@@ -223,12 +218,12 @@ export const useCombinedAnimation = ({
     if (entryAnimationList) {
       switch (animationProps?.animationCombinationType) {
         case AnimationCombinationType.SEQUENCE:
-          Animated.sequence(entryAnimationList).start(() => {
+          driver.start(driver.sequence(entryAnimationList), () => {
             setComponentVisible(true);
           });
           break;
         default:
-          Animated.parallel(entryAnimationList).start(() => {
+          driver.start(driver.parallel(entryAnimationList), () => {
             setComponentVisible(true);
           });
           break;
@@ -238,6 +233,7 @@ export const useCombinedAnimation = ({
     }
   }, [
     animationProps?.animationCombinationType,
+    driver,
     entryAnimationList,
     setComponentVisible,
   ]);
