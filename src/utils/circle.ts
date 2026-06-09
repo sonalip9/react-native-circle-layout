@@ -178,6 +178,7 @@ export function getSectorPath({
     -startPoint.y + cy,
     'A',
     ...arc,
+    'Z',
   ].join(' ');
 }
 
