@@ -1,7 +1,7 @@
 import Svg, { Defs, Mask, Path } from 'react-native-svg';
 import type { BgConfig, Layout } from './types';
 import { Animated } from 'react-native';
-import { use, useEffect, useMemo } from 'react';
+import { use, useLayoutEffect, useMemo } from 'react';
 import { useAnimatedSectorPath, useCombinedAnimation } from './hooks';
 import { CircleLayoutContext } from './CircleLayoutContext';
 
@@ -73,7 +73,7 @@ export const Bg = ({
     radius: size / 2,
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isVisible) {
       showComponent();
     } else {
