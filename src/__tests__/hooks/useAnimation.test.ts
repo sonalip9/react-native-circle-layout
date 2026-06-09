@@ -1,11 +1,15 @@
 import { renderHook, act } from '@testing-library/react-native';
 import { Animated } from 'react-native';
 
+import { rnAnimatedDriver } from '../../animation/rnAnimatedDriver';
 import { useAnimation } from '../../hooks/useAnimation';
 
-type AnimationConfig = Parameters<typeof useAnimation>[0];
+type AnimationConfig = Parameters<
+  typeof useAnimation<typeof rnAnimatedDriver>
+>[0];
 
 const baseConfig: AnimationConfig = {
+  driver: rnAnimatedDriver,
   initialValue: 0,
   finalValue: 1,
   entryAnimationConfig: { duration: 300 },
@@ -53,9 +57,7 @@ describe('useAnimation', () => {
     it('allows disabling native driver explicitly', () => {
       const timingSpy = jest.spyOn(Animated, 'timing');
 
-      const { result } = renderHook(() =>
-        useAnimation({ ...baseConfig, useNativeDriver: false })
-      );
+      const { result } = renderHook(() => useAnimation({ ...baseConfig }));
       result.current.entryAnimation();
       result.current.exitAnimation();
 
@@ -106,7 +108,7 @@ describe('useAnimation', () => {
   describe('value sync when initial/final props change', () => {
     it('snaps to new finalValue when value is at old finalValue', () => {
       const { result, rerender } = renderHook<
-        ReturnType<typeof useAnimation>,
+        ReturnType<typeof useAnimation<typeof rnAnimatedDriver>>,
         AnimationConfig
       >((props) => useAnimation(props), { initialProps: baseConfig });
 
@@ -129,7 +131,7 @@ describe('useAnimation', () => {
 
     it('snaps to new initialValue when value is at old initialValue', () => {
       const { result, rerender } = renderHook<
-        ReturnType<typeof useAnimation>,
+        ReturnType<typeof useAnimation<typeof rnAnimatedDriver>>,
         AnimationConfig
       >((props) => useAnimation(props), { initialProps: baseConfig });
 
@@ -151,7 +153,7 @@ describe('useAnimation', () => {
 
     it('does not snap when value is between initial and final', () => {
       const { result, rerender } = renderHook<
-        ReturnType<typeof useAnimation>,
+        ReturnType<typeof useAnimation<typeof rnAnimatedDriver>>,
         AnimationConfig
       >((props) => useAnimation(props), { initialProps: baseConfig });
 
@@ -174,7 +176,7 @@ describe('useAnimation', () => {
 
     it('does not snap when neither initial nor final changed', () => {
       const { result, rerender } = renderHook<
-        ReturnType<typeof useAnimation>,
+        ReturnType<typeof useAnimation<typeof rnAnimatedDriver>>,
         AnimationConfig
       >((props) => useAnimation(props), { initialProps: baseConfig });
 
@@ -193,7 +195,7 @@ describe('useAnimation', () => {
 
     it('does not snap when only exitAnimationConfig changes', () => {
       const { result, rerender } = renderHook<
-        ReturnType<typeof useAnimation>,
+        ReturnType<typeof useAnimation<typeof rnAnimatedDriver>>,
         AnimationConfig
       >((props) => useAnimation(props), { initialProps: baseConfig });
 
@@ -219,6 +221,7 @@ describe('useAnimation', () => {
     it('handles initialValue equal to finalValue without error', () => {
       const { result } = renderHook(() =>
         useAnimation({
+          driver: rnAnimatedDriver,
           initialValue: 1,
           finalValue: 1,
           entryAnimationConfig: { duration: 300 },
@@ -235,6 +238,7 @@ describe('useAnimation', () => {
     it('handles negative initialValue and finalValue', () => {
       const { result } = renderHook(() =>
         useAnimation({
+          driver: rnAnimatedDriver,
           initialValue: -1,
           finalValue: 0,
           entryAnimationConfig: { duration: 300 },
@@ -250,7 +254,7 @@ describe('useAnimation', () => {
 
     it('does not throw when both initialValue and finalValue change simultaneously', () => {
       const { result, rerender } = renderHook<
-        ReturnType<typeof useAnimation>,
+        ReturnType<typeof useAnimation<typeof rnAnimatedDriver>>,
         AnimationConfig
       >((props) => useAnimation(props), { initialProps: baseConfig });
 
@@ -273,6 +277,7 @@ describe('useAnimation', () => {
     it('entry and exit animations do not throw when duration is 0', () => {
       const { result } = renderHook(() =>
         useAnimation({
+          driver: rnAnimatedDriver,
           initialValue: 0,
           finalValue: 1,
           entryAnimationConfig: { duration: 0 },
@@ -294,6 +299,7 @@ describe('useAnimation', () => {
     it('exitAnimationConfig defaults to entryAnimationConfig when omitted', () => {
       const { result } = renderHook(() =>
         useAnimation({
+          driver: rnAnimatedDriver,
           initialValue: 0,
           finalValue: 1,
           entryAnimationConfig: { duration: 400 },

@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Text } from 'react-native';
 import { render, act, renderHook } from '@testing-library/react-native';
 
+import { rnAnimatedDriver } from '../animation/rnAnimatedDriver';
 import { CircleLayoutComponent } from '../CircleLayoutComponent';
 import { CircleLayoutContext } from '../CircleLayoutContext';
 import {
@@ -17,6 +18,7 @@ const baseContext: CircleLayoutContextType = {
   radius: 100,
   startAngle: 0,
   sectorAngle: (2 * Math.PI) / 3,
+  animationDriver: rnAnimatedDriver,
 };
 
 const zeroCenterLayout: Layout = { width: 0, height: 0 };
