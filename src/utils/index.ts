@@ -1,4 +1,3 @@
-export { interpolationWithFunction } from './animation';
 export {
   getArcPath,
   getSectorPath,

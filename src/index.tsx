@@ -6,3 +6,10 @@ export type {
   CircleLayoutProps,
   CircleLayoutRef,
 } from './types';
+export { rnAnimatedDriver } from './animation';
+export type {
+  AnimatedNode,
+  AnimationDriver,
+  DriverConfig,
+  RNAnimationConfig,
+} from './animation';
