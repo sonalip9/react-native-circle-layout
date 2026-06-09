@@ -35,6 +35,7 @@ export const CircleLayout = ({
     containerStyle,
     centerComponentContainerStyle,
     animationProps,
+    animationDriver,
     bgConfig,
   } = validateProps(circleLayoutProps);
 
@@ -45,6 +46,7 @@ export const CircleLayout = ({
       startAngle={startAngle}
       componentLength={components.length}
       animationProps={animationProps}
+      animationDriver={animationDriver}
     >
       <CircleLayoutContent
         ref={ref}
