@@ -1,10 +1,8 @@
 import type { ReactNode } from 'react';
-import type {
-  Animated,
-  LayoutChangeEvent,
-  StyleProp,
-  ViewStyle,
-} from 'react-native';
+import type { LayoutChangeEvent, StyleProp, ViewStyle } from 'react-native';
+
+import type { AnimationDriver, DriverConfig } from './animation/types';
+import { rnAnimatedDriver } from './animation/rnAnimatedDriver';
 
 export enum AnimationType {
   /**
@@ -42,16 +40,18 @@ export enum AnimationCombinationType {
 }
 
 /**
- * The configuration for the animation.
+ * The configuration for the animation. The shape of this type is determined
+ * by the {@link AnimationDriver} in use — by default (the React Native
+ * `Animated`-backed driver) it mirrors `Animated.TimingAnimationConfig`.
  * @default undefined
+ * @see AnimationDriver
  * @see https://reactnative.dev/docs/animated#timing
  */
-export type AnimationConfig = Omit<
-  Animated.TimingAnimationConfig,
-  'toValue' | 'useNativeDriver'
->;
+export type AnimationConfig<
+  D extends AnimationDriver = typeof rnAnimatedDriver,
+> = DriverConfig<D>;
 
-type AnimationProps = {
+type AnimationProps<D extends AnimationDriver = typeof rnAnimatedDriver> = {
   /**
    * The configuration for the animation. The key of the record is the type of
    * animation and the value is the configuration for that animation. If a particular
@@ -71,7 +71,7 @@ type AnimationProps = {
    *  },
    * }
    */
-  animationConfigs: Partial<Record<AnimationType, AnimationConfig>>;
+  animationConfigs: Partial<Record<AnimationType, AnimationConfig<D>>>;
   /**
    * The type of composition animation to be performed with
    * all the animation configs provided.
@@ -127,7 +127,9 @@ export type BgConfig = {
   outerRadius?: number;
 };
 
-export type CircleLayoutProps = {
+export type CircleLayoutProps<
+  D extends AnimationDriver = typeof rnAnimatedDriver,
+> = {
   /**
    * The list of components that needs to be placed in the circle.
    */
@@ -169,13 +171,22 @@ export type CircleLayoutProps = {
    * @default undefined
    * @see AnimationProps
    */
-  animationProps?: AnimationProps;
+  animationProps?: AnimationProps<D>;
   /**
    * The fill color for the background of the circle layout.
    * If this prop is not provided, then the background will not be shown.
    * @default undefined
    */
   bgConfig?: BgConfig | undefined;
+  /**
+   * The animation driver used to power entry/exit and background animations.
+   * Defaults to a driver backed by React Native's core `Animated` API. Pass a
+   * custom driver to power animations with a different animation library
+   * (e.g. Reanimated, Moti).
+   * @default rnAnimatedDriver
+   * @see AnimationDriver
+   */
+  animationDriver?: D;
 };
 
 export type CircleLayoutRef = {
@@ -233,7 +244,9 @@ export type ComponentRef = {
   hideComponent: () => void;
 };
 
-export type CircleLayoutContextType = {
+export type CircleLayoutContextType<
+  D extends AnimationDriver = typeof rnAnimatedDriver,
+> = {
   /**
    * The total number of parts the circle is divided into.
    */
@@ -252,7 +265,11 @@ export type CircleLayoutContextType = {
    * The props for the animation.
    * @default undefined
    */
-  animationProps?: AnimationProps | undefined;
+  animationProps?: AnimationProps<D> | undefined;
+  /**
+   * The animation driver used to power entry/exit and background animations.
+   */
+  animationDriver: D;
   /**
    * The angle in radians between the position of 2 consecutive components on the circle.
    * This value is calculated by dividing the sweepAngle by the total number of parts.
