@@ -1,9 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated } from 'react-native';
 
-import type { AnimationConfig } from '../types';
+import type {
+  AnimationDriver,
+  DriverComposite,
+  DriverConfig,
+  DriverValue,
+} from '../animation/types';
 
-interface AnimationArgs {
+interface AnimationArgs<D extends AnimationDriver> {
+  /**
+   * The driver used to power the animation.
+   */
+  driver: D;
   /**
    * The start value of the animated value.
    */
@@ -15,16 +23,12 @@ interface AnimationArgs {
   /**
    * The configuration for the entry animation.
    */
-  entryAnimationConfig: AnimationConfig;
+  entryAnimationConfig: DriverConfig<D>;
   /**
    * The configuration for the exit animation.
+   * Defaults to the entry animation config if not provided.
    */
-  exitAnimationConfig?: AnimationConfig;
-  /**
-   * Whether to use the native animation driver.
-   * @default true
-   */
-  useNativeDriver?: boolean;
+  exitAnimationConfig?: DriverConfig<D>;
 }
 
 const EPSILON = 0.0001;
@@ -33,22 +37,24 @@ const EPSILON = 0.0001;
  * A hook that creates entry and exit animations based on
  * the config.
  * @param props The configuration to create the animation.
+ * @param props.driver The driver used to power the animation.
  * @param props.initialValue The start value of the animated value.
  * @param props.finalValue The end value of the animated value.
  * @param props.entryAnimationConfig The configuration for the entry animation.
  * @param props.exitAnimationConfig The configuration for the exit animation.
- * @param props.useNativeDriver Whether to use the native animation driver. Defaults to true.
  * @returns The an object containing the animated value on which
  * the animation will be performed, the entry and exit animation function.
  */
-export const useAnimation = ({
+export const useAnimation = <D extends AnimationDriver>({
+  driver,
   initialValue,
   finalValue,
   entryAnimationConfig,
   exitAnimationConfig = entryAnimationConfig,
-  useNativeDriver = true,
-}: AnimationArgs) => {
-  const [value] = useState(() => new Animated.Value(initialValue));
+}: AnimationArgs<D>) => {
+  const [value] = useState(
+    () => driver.createValue(initialValue) as DriverValue<D>
+  );
 
   const currentValueRef = useRef(initialValue);
   const previousInitialValueRef = useRef(initialValue);
@@ -56,14 +62,10 @@ export const useAnimation = ({
 
   // Keep track of the current animated value.
   useEffect(() => {
-    const listenerId = value.addListener(({ value: currentValue }) => {
+    return driver.addValueListener(value, (currentValue) => {
       currentValueRef.current = currentValue;
     });
-
-    return () => {
-      value.removeListener(listenerId);
-    };
-  }, [value]);
+  }, [driver, value]);
 
   useEffect(() => {
     const previousInitialValue = previousInitialValueRef.current;
@@ -81,26 +83,26 @@ export const useAnimation = ({
     const finalChanged = finalValue !== previousFinalValue;
 
     if (isAtPreviousFinal && finalChanged) {
-      value.setValue(finalValue);
+      driver.setValue(value, finalValue);
     } else if (isAtPreviousInitial && initialChanged) {
-      value.setValue(initialValue);
+      driver.setValue(value, initialValue);
     }
 
     previousInitialValueRef.current = initialValue;
     previousFinalValueRef.current = finalValue;
-  }, [initialValue, finalValue, value]);
+  }, [driver, initialValue, finalValue, value]);
 
   /**
    * Function to create a fade-in entry animation.
    */
   const entryAnimation = useCallback(
     () =>
-      Animated.timing(value, {
-        toValue: finalValue,
-        ...entryAnimationConfig,
-        useNativeDriver,
-      }),
-    [entryAnimationConfig, finalValue, useNativeDriver, value]
+      driver.timing(
+        value,
+        finalValue,
+        entryAnimationConfig
+      ) as DriverComposite<D>,
+    [driver, entryAnimationConfig, finalValue, value]
   );
 
   /**
@@ -108,12 +110,12 @@ export const useAnimation = ({
    */
   const exitAnimation = useCallback(
     () =>
-      Animated.timing(value, {
-        toValue: initialValue,
-        ...exitAnimationConfig,
-        useNativeDriver,
-      }),
-    [exitAnimationConfig, initialValue, useNativeDriver, value]
+      driver.timing(
+        value,
+        initialValue,
+        exitAnimationConfig
+      ) as DriverComposite<D>,
+    [driver, exitAnimationConfig, initialValue, value]
   );
 
   return { value, entryAnimation, exitAnimation };
