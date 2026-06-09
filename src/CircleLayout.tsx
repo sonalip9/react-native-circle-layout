@@ -1,5 +1,6 @@
 import React from 'react';
 
+import type { AnimationDriver } from './animation/types';
 import { CircleLayoutContent } from './CircleLayoutContent';
 import { CircleLayoutProvider } from './CircleLayoutProvider';
 import type { CircleLayoutProps, CircleLayoutRef } from './types';
@@ -22,10 +23,10 @@ import { validateProps } from './utils';
  * @see CircleLayoutRef
  * @returns A component that places the passed components in a circular view.
  */
-export const CircleLayout = ({
+export const CircleLayout = <D extends AnimationDriver>({
   ref,
   ...circleLayoutProps
-}: CircleLayoutProps & { ref?: React.Ref<CircleLayoutRef> }) => {
+}: CircleLayoutProps<D> & { ref?: React.Ref<CircleLayoutRef> }) => {
   const {
     components,
     radius,
@@ -37,7 +38,7 @@ export const CircleLayout = ({
     animationProps,
     animationDriver,
     bgConfig,
-  } = validateProps(circleLayoutProps);
+  } = validateProps<D>(circleLayoutProps);
 
   return (
     <CircleLayoutProvider

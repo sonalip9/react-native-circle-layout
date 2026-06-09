@@ -1,3 +1,4 @@
+import type { AnimationDriver } from '../animation/types';
 import type { CircleLayoutProps } from '../types';
 
 /**
@@ -6,7 +7,9 @@ import type { CircleLayoutProps } from '../types';
  * @param props The properties passed to the component
  * @returns The validated properties
  */
-export function validateProps(props: CircleLayoutProps): CircleLayoutProps & {
+export function validateProps<D extends AnimationDriver>(
+  props: CircleLayoutProps<D>
+): CircleLayoutProps<D> & {
   sweepAngle: number;
   startAngle: number;
 } {

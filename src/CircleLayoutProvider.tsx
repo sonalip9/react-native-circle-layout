@@ -1,12 +1,13 @@
 import React, { useMemo } from 'react';
 
+import type { AnimationDriver } from './animation/types';
 import { rnAnimatedDriver } from './animation/rnAnimatedDriver';
 import { CircleLayoutContext } from './CircleLayoutContext';
 import type { CircleLayoutContextType, CircleLayoutProps } from './types';
 
 type CircleLayoutProviderProps = Required<
   Omit<
-    CircleLayoutProps,
+    CircleLayoutProps<AnimationDriver>,
     | 'centerComponent'
     | 'containerStyle'
     | 'centerComponentContainerStyle'
@@ -18,7 +19,10 @@ type CircleLayoutProviderProps = Required<
     componentLength: number;
   }
 > &
-  Pick<CircleLayoutProps, 'animationProps' | 'animationDriver'>;
+  Pick<
+    CircleLayoutProps<AnimationDriver>,
+    'animationProps' | 'animationDriver'
+  >;
 /**
  * A component that places a list of components in a circular layout.
  * @param props The properties passed to the component
@@ -55,7 +59,7 @@ export const CircleLayoutProvider = ({
   /**
    * The value passed to the context of the circle layout.
    */
-  const contextValue: CircleLayoutContextType = React.useMemo(
+  const contextValue: CircleLayoutContextType<AnimationDriver> = React.useMemo(
     () => ({
       totalParts,
       radius,
