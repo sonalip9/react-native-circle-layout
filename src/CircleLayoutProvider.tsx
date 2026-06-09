@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 
+import { rnAnimatedDriver } from './animation/rnAnimatedDriver';
 import { CircleLayoutContext } from './CircleLayoutContext';
 import type { CircleLayoutContextType, CircleLayoutProps } from './types';
 
@@ -12,11 +13,12 @@ type CircleLayoutProviderProps = Required<
     | 'components'
     | 'animationProps'
     | 'bgConfig'
+    | 'animationDriver'
   > & {
     componentLength: number;
   }
 > &
-  Pick<CircleLayoutProps, 'animationProps'>;
+  Pick<CircleLayoutProps, 'animationProps' | 'animationDriver'>;
 /**
  * A component that places a list of components in a circular layout.
  * @param props The properties passed to the component
@@ -26,6 +28,7 @@ type CircleLayoutProviderProps = Required<
  * @param props.componentLength The number of components to be placed in the circle layout.
  * @param props.children The child components to be rendered inside the circle layout.
  * @param props.animationProps The props for the animation.
+ * @param props.animationDriver The animation driver used to power animations. Defaults to {@link rnAnimatedDriver}.
  * @see AnimationProps
  * @returns A component that places the passed components in a circular view.
  */
@@ -36,6 +39,7 @@ export const CircleLayoutProvider = ({
   componentLength,
   children,
   animationProps,
+  animationDriver = rnAnimatedDriver,
 }: React.PropsWithChildren<CircleLayoutProviderProps>) => {
   const isCompleteCircle = useMemo(
     () => Math.abs(sweepAngle - 2 * Math.PI) < 0.001,
@@ -57,9 +61,17 @@ export const CircleLayoutProvider = ({
       radius,
       startAngle,
       animationProps,
+      animationDriver,
       sectorAngle: sweepAngle / totalParts,
     }),
-    [animationProps, radius, startAngle, sweepAngle, totalParts]
+    [
+      animationDriver,
+      animationProps,
+      radius,
+      startAngle,
+      sweepAngle,
+      totalParts,
+    ]
   );
 
   return (
