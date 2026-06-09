@@ -1,5 +1,6 @@
 import { act, renderHook } from '@testing-library/react-native';
 
+import { rnAnimatedDriver } from '../../animation/rnAnimatedDriver';
 import { CircleLayoutContext } from '../../CircleLayoutContext';
 import { useCombinedAnimation } from '../../hooks/useCombinedAnimation';
 import {
@@ -19,6 +20,7 @@ const baseContext: CircleLayoutContextType = {
   radius: 100,
   startAngle: 0,
   sectorAngle: (2 * Math.PI) / 3,
+  animationDriver: rnAnimatedDriver,
 };
 
 describe('useCombinedAnimation', () => {

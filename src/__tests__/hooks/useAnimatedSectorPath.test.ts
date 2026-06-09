@@ -1,6 +1,7 @@
 import { renderHook, act } from '@testing-library/react-native';
 import { Animated } from 'react-native';
 
+import { rnAnimatedDriver } from '../../animation/rnAnimatedDriver';
 import { useAnimatedSectorPath } from '../../hooks/useAnimatedSectorPath';
 import { getSectorPath } from '../../utils/circle';
 
@@ -12,6 +13,7 @@ describe('useAnimatedSectorPath', () => {
     it('returns the same path as getSectorPath', () => {
       const { result } = renderHook(() =>
         useAnimatedSectorPath({
+          driver: rnAnimatedDriver,
           radius: 40,
           startAngle,
           endAngle: Math.PI / 2,
@@ -30,6 +32,7 @@ describe('useAnimatedSectorPath', () => {
       const radius = new Animated.Value(40);
       const { result } = renderHook(() =>
         useAnimatedSectorPath({
+          driver: rnAnimatedDriver,
           radius,
           startAngle,
           endAngle: Math.PI / 2,
@@ -46,6 +49,7 @@ describe('useAnimatedSectorPath', () => {
       const endAngle = new Animated.Value(0);
       const { result } = renderHook(() =>
         useAnimatedSectorPath({
+          driver: rnAnimatedDriver,
           radius: 40,
           startAngle,
           endAngle,
@@ -62,7 +66,13 @@ describe('useAnimatedSectorPath', () => {
       const radius = new Animated.Value(40);
       const endAngle = new Animated.Value(0);
       const { result } = renderHook(() =>
-        useAnimatedSectorPath({ radius, startAngle, endAngle, center })
+        useAnimatedSectorPath({
+          driver: rnAnimatedDriver,
+          radius,
+          startAngle,
+          endAngle,
+          center,
+        })
       );
 
       expect(result.current).toBe('');
@@ -72,7 +82,13 @@ describe('useAnimatedSectorPath', () => {
       const radius = new Animated.Value(40);
       const endAngle = new Animated.Value(0);
       const { result } = renderHook(() =>
-        useAnimatedSectorPath({ radius, startAngle, endAngle, center })
+        useAnimatedSectorPath({
+          driver: rnAnimatedDriver,
+          radius,
+          startAngle,
+          endAngle,
+          center,
+        })
       );
 
       act(() => {
@@ -97,7 +113,13 @@ describe('useAnimatedSectorPath', () => {
       const removeEndAngleListener = jest.spyOn(endAngle, 'removeListener');
 
       const { unmount } = renderHook(() =>
-        useAnimatedSectorPath({ radius, startAngle, endAngle, center })
+        useAnimatedSectorPath({
+          driver: rnAnimatedDriver,
+          radius,
+          startAngle,
+          endAngle,
+          center,
+        })
       );
       unmount();
 

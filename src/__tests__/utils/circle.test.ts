@@ -1,5 +1,6 @@
 import { Animated } from 'react-native';
 
+import { rnAnimatedDriver } from '../../animation/rnAnimatedDriver';
 import {
   getArcPath,
   getSectorPath,
@@ -93,6 +94,7 @@ describe('pointOnCircle', () => {
 describe('pointOnCircleAnimated', () => {
   it('interpolates x and y when radius is Animated.Value', () => {
     const result = pointOnCircleAnimated({
+      driver: rnAnimatedDriver,
       radius: new Animated.Value(2),
       radians: Math.PI / 4,
     });
@@ -109,6 +111,7 @@ describe('pointOnCircleAnimated', () => {
 
   it('interpolates x and y when radians is Animated.Value', () => {
     const result = pointOnCircleAnimated({
+      driver: rnAnimatedDriver,
       radius: 4,
       radians: new Animated.Value(Math.PI / 3),
     });
@@ -122,6 +125,7 @@ describe('pointOnCircleAnimated', () => {
 
   it('interpolates x and y when both radius and radians are Animated.Value', () => {
     const result = pointOnCircleAnimated({
+      driver: rnAnimatedDriver,
       radius: new Animated.Value(2),
       radians: new Animated.Value(Math.PI / 6),
     });
@@ -137,6 +141,7 @@ describe('pointOnCircleAnimated', () => {
     it('does not throw when Animated.Value radians exceeds 2π (extrapolates)', () => {
       expect(() =>
         pointOnCircleAnimated({
+          driver: rnAnimatedDriver,
           radius: 1,
           radians: new Animated.Value(3 * Math.PI),
         })
@@ -146,6 +151,7 @@ describe('pointOnCircleAnimated', () => {
     it('does not throw when Animated.Value radians is negative (extrapolates)', () => {
       expect(() =>
         pointOnCircleAnimated({
+          driver: rnAnimatedDriver,
           radius: 1,
           radians: new Animated.Value(-Math.PI / 2),
         })
@@ -155,6 +161,7 @@ describe('pointOnCircleAnimated', () => {
     it('does not throw when Animated.Value radius is 0', () => {
       expect(() =>
         pointOnCircleAnimated({
+          driver: rnAnimatedDriver,
           radius: new Animated.Value(0),
           radians: Math.PI / 4,
         })
