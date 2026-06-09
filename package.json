@@ -99,7 +99,7 @@
     "react-native": "*",
     "react-native-svg": "^15.15.5"
   },
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@11.5.2",
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",
