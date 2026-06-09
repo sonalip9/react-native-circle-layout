@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-native';
+import { act, renderHook } from '@testing-library/react-native';
 
 import { CircleLayoutContext } from '../../CircleLayoutContext';
 import { useCombinedAnimation } from '../../hooks/useCombinedAnimation';
@@ -62,8 +62,12 @@ describe('useCombinedAnimation', () => {
         { wrapper: makeWrapper(baseContext) }
       );
       expect(() => {
-        result.current.hideComponent();
-        result.current.showComponent();
+        act(() => {
+          result.current.hideComponent();
+        });
+        act(() => {
+          result.current.showComponent();
+        });
       }).not.toThrow();
     });
   });
@@ -94,8 +98,12 @@ describe('useCombinedAnimation', () => {
         { wrapper: makeWrapper(ctxWithOpacity) }
       );
       expect(() => {
-        result.current.hideComponent();
-        result.current.showComponent();
+        act(() => {
+          result.current.hideComponent();
+        });
+        act(() => {
+          result.current.showComponent();
+        });
       }).not.toThrow();
     });
   });
@@ -158,8 +166,12 @@ describe('useCombinedAnimation', () => {
         { wrapper: makeWrapper(ctxWithSequence) }
       );
       expect(() => {
-        result.current.hideComponent();
-        result.current.showComponent();
+        act(() => {
+          result.current.hideComponent();
+        });
+        act(() => {
+          result.current.showComponent();
+        });
       }).not.toThrow();
     });
   });
@@ -178,8 +190,12 @@ describe('useCombinedAnimation', () => {
         { wrapper: makeWrapper(ctx) }
       );
       expect(() => {
-        result.current.hideComponent();
-        result.current.showComponent();
+        act(() => {
+          result.current.hideComponent();
+        });
+        act(() => {
+          result.current.showComponent();
+        });
       }).not.toThrow();
     });
 
@@ -217,8 +233,12 @@ describe('useCombinedAnimation', () => {
         { wrapper: makeWrapper(ctx) }
       );
       expect(() => {
-        result.current.hideComponent();
-        result.current.showComponent();
+        act(() => {
+          result.current.hideComponent();
+        });
+        act(() => {
+          result.current.showComponent();
+        });
       }).not.toThrow();
     });
 
@@ -242,14 +262,23 @@ describe('useCombinedAnimation', () => {
           animationGap: 50,
         },
       };
+      jest.useFakeTimers();
       expect(() => {
         const { result } = renderHook(
           () => useCombinedAnimation({ index: 999, radians: 0 }),
           { wrapper: makeWrapper(ctx) }
         );
-        result.current.showComponent();
-        result.current.hideComponent();
+        act(() => {
+          result.current.showComponent();
+        });
+        act(() => {
+          result.current.hideComponent();
+        });
+        act(() => {
+          jest.runOnlyPendingTimers();
+        });
       }).not.toThrow();
+      jest.useRealTimers();
     });
 
     it('returns static values when no animationProps provided with non-zero radians', () => {
