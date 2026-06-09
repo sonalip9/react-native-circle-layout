@@ -37,8 +37,8 @@ export function CircleLayoutContent({
   radius: number;
   components: React.ReactNode[];
   centerComponent?: React.ReactNode;
-  containerStyle?: StyleProp<ViewStyle> | undefined | undefined;
-  centerComponentContainerStyle?: StyleProp<ViewStyle> | undefined | undefined;
+  containerStyle?: StyleProp<ViewStyle> | undefined;
+  centerComponentContainerStyle?: StyleProp<ViewStyle> | undefined;
   sweepAngle: number;
   bgConfig?: BgConfig;
 } & React.RefAttributes<CircleLayoutRef>) {
