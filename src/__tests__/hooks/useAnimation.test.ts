@@ -30,6 +30,48 @@ const trackAnimatedValue = (v: Animated.Value, initialValue: number) => {
 };
 
 describe('useAnimation', () => {
+  describe('native driver configuration', () => {
+    it('uses native driver by default', () => {
+      const timingSpy = jest.spyOn(Animated, 'timing');
+
+      const { result } = renderHook(() => useAnimation(baseConfig));
+      result.current.entryAnimation();
+      result.current.exitAnimation();
+
+      const entryCallConfig = timingSpy.mock.calls[0]?.[1] as
+        | Animated.TimingAnimationConfig
+        | undefined;
+      const exitCallConfig = timingSpy.mock.calls[1]?.[1] as
+        | Animated.TimingAnimationConfig
+        | undefined;
+
+      expect(entryCallConfig?.useNativeDriver).toBe(true);
+      expect(exitCallConfig?.useNativeDriver).toBe(true);
+      timingSpy.mockRestore();
+    });
+
+    it('allows disabling native driver explicitly', () => {
+      const timingSpy = jest.spyOn(Animated, 'timing');
+
+      const { result } = renderHook(() =>
+        useAnimation({ ...baseConfig, useNativeDriver: false })
+      );
+      result.current.entryAnimation();
+      result.current.exitAnimation();
+
+      const entryCallConfig = timingSpy.mock.calls[0]?.[1] as
+        | Animated.TimingAnimationConfig
+        | undefined;
+      const exitCallConfig = timingSpy.mock.calls[1]?.[1] as
+        | Animated.TimingAnimationConfig
+        | undefined;
+
+      expect(entryCallConfig?.useNativeDriver).toBe(false);
+      expect(exitCallConfig?.useNativeDriver).toBe(false);
+      timingSpy.mockRestore();
+    });
+  });
+
   describe('initial state', () => {
     it('initializes Animated.Value at initialValue', () => {
       const { result } = renderHook(() => useAnimation(baseConfig));

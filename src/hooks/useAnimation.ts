@@ -20,6 +20,11 @@ interface AnimationArgs {
    * The configuration for the exit animation.
    */
   exitAnimationConfig?: AnimationConfig;
+  /**
+   * Whether to use the native animation driver.
+   * @default true
+   */
+  useNativeDriver?: boolean;
 }
 
 const EPSILON = 0.0001;
@@ -32,6 +37,7 @@ const EPSILON = 0.0001;
  * @param props.finalValue The end value of the animated value.
  * @param props.entryAnimationConfig The configuration for the entry animation.
  * @param props.exitAnimationConfig The configuration for the exit animation.
+ * @param props.useNativeDriver Whether to use the native animation driver. Defaults to true.
  * @returns The an object containing the animated value on which
  * the animation will be performed, the entry and exit animation function.
  */
@@ -40,6 +46,7 @@ export const useAnimation = ({
   finalValue,
   entryAnimationConfig,
   exitAnimationConfig = entryAnimationConfig,
+  useNativeDriver = true,
 }: AnimationArgs) => {
   const [value] = useState(() => new Animated.Value(initialValue));
 
@@ -89,11 +96,11 @@ export const useAnimation = ({
   const entryAnimation = useCallback(
     () =>
       Animated.timing(value, {
-        useNativeDriver: false,
         toValue: finalValue,
         ...entryAnimationConfig,
+        useNativeDriver,
       }),
-    [entryAnimationConfig, finalValue, value]
+    [entryAnimationConfig, finalValue, useNativeDriver, value]
   );
 
   /**
@@ -102,11 +109,11 @@ export const useAnimation = ({
   const exitAnimation = useCallback(
     () =>
       Animated.timing(value, {
-        useNativeDriver: false,
         toValue: initialValue,
         ...exitAnimationConfig,
+        useNativeDriver,
       }),
-    [exitAnimationConfig, initialValue, value]
+    [exitAnimationConfig, initialValue, useNativeDriver, value]
   );
 
   return { value, entryAnimation, exitAnimation };
