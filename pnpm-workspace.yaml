@@ -2,5 +2,6 @@ packages:
   - '.'
   - 'example'
 allowBuilds:
+  dtrace-provider: false
   lefthook: true
   msgpackr-extract: true
