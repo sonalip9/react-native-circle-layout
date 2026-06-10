@@ -30,7 +30,7 @@ jobs:
       - name: Build example for Web
         run: cd example && npx expo export --platform web
         env:
-          EXPO_BASE_URL: /react-native-circle-layout
+          EXPO_BASE_URL: /${{ github.event.repository.name }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
