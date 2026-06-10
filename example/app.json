@@ -26,6 +26,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "302fa176-6d99-4b4f-8d62-df606496d447"
+      }
+    },
+    "owner": "sonaliparekh"
   }
 }
