@@ -8,9 +8,9 @@ import {
   type CircleLayoutRef,
 } from 'react-native-circle-layout';
 
-import { AppContext } from '../../AppContext';
+import { AppContext } from '../AppContext';
 
-import { View } from '../../design_system/atoms';
+import { View } from '../design_system/atoms';
 
 type Icon = 'delete' | 'edit' | 'home' | 'star';
 
