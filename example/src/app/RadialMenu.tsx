@@ -1,4 +1,4 @@
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from '@react-native-vector-icons/ant-design';
 import * as React from 'react';
 
 import {
@@ -10,6 +10,7 @@ import {
 
 import { AppContext } from '../AppContext';
 
+import { TouchableOpacity } from 'react-native';
 import { View } from '../design_system/atoms';
 
 type Icon = 'delete' | 'edit' | 'home' | 'star';
@@ -32,22 +33,26 @@ const RadialMenu = () => {
     <View flex={1}>
       <CircleLayout
         centerComponent={
-          <AntDesign.Button
-            backgroundColor="white"
-            borderRadius={100}
-            color="black"
-            iconStyle={{ marginRight: 0 }}
-            name={showCircleComponent ? 'close' : 'appstore'}
+          <TouchableOpacity
+            style={{
+              backgroundColor: 'black',
+              borderRadius: 100,
+              padding: 12,
+            }}
             onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
-          />
+          >
+            <AntDesign
+              color="white"
+              name={showCircleComponent ? 'close' : 'appstore'}
+              size={32}
+            />
+          </TouchableOpacity>
         }
         components={icons.map((icon) => (
-          <AntDesign.Button
+          <AntDesign
             key={icon}
-            backgroundColor="white"
-            borderRadius={100}
             color="black"
-            iconStyle={{ marginRight: 0 }}
+            style={{ backgroundColor: 'white', borderRadius: 100, padding: 12 }}
             name={icon}
             onPress={() =>
               showPopUp({ message: `The ${icon} button was clicked.` })

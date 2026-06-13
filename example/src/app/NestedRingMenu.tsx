@@ -1,5 +1,9 @@
-import { AntDesign } from '@expo/vector-icons';
+import {
+  AntDesign,
+  type AntDesignIconName,
+} from '@react-native-vector-icons/ant-design';
 import * as React from 'react';
+import { TouchableOpacity } from 'react-native';
 import {
   AnimationCombinationType,
   AnimationType,
@@ -9,7 +13,7 @@ import {
 
 import { View } from '../design_system/atoms';
 
-type Icon = keyof typeof AntDesign.glyphMap;
+type Icon = AntDesignIconName;
 
 const icons: Icon[] = ['edit', 'home', 'star', 'delete', 'search', 'setting'];
 const SECTION_ANGLE = (2 * Math.PI) / icons.length;
@@ -31,36 +35,27 @@ const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
     <View style={{ transform: [{ rotate: `${rotation}rad` }] }}>
       <CircleLayout
         centerComponent={
-          <AntDesign.Button
-            backgroundColor="transparent"
-            borderRadius={100}
-            color="black"
-            style={{
-              justifyContent: 'center',
-              height: 50,
-              width: 50,
-              transform: [{ rotate: `${-rotation}rad` }],
-            }}
-            iconStyle={{ marginRight: 0 }}
-            name={icon}
-            onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
-          />
+          <TouchableOpacity>
+            <AntDesign
+              style={{
+                borderRadius: 100,
+                transform: [{ rotate: `${-rotation}rad` }],
+                padding: 12,
+                backgroundColor: 'white',
+              }}
+              color="black"
+              name={icon}
+              size={24}
+              onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
+            />
+          </TouchableOpacity>
         }
         components={subIcons.map((subIcon) => (
-          <AntDesign.Button
+          <AntDesign
             key={subIcon}
-            backgroundColor="transparent"
-            borderRadius={100}
             color="black"
-            style={{
-              justifyContent: 'center',
-              height: 30,
-              width: 30,
-              transform: [{ rotate: `${-rotation}rad` }],
-            }}
-            iconStyle={{ marginRight: 0 }}
+            style={{ transform: [{ rotate: `${-rotation}rad` }], padding: 8 }}
             name={subIcon}
-            onPress={() => {}}
             size={12}
           />
         ))}
@@ -97,12 +92,15 @@ const NestedRingMenu = () => {
     <View style={{ flex: 1 }}>
       <CircleLayout
         centerComponent={
-          <AntDesign.Button
-            backgroundColor="black"
-            borderRadius={100}
+          <AntDesign
             color="white"
-            style={{ justifyContent: 'center', height: 50, width: 50 }}
-            iconStyle={{ marginRight: 0 }}
+            style={{
+              justifyContent: 'center',
+              backgroundColor: 'black',
+              borderRadius: 100,
+              padding: 12,
+            }}
+            size={24}
             name={showCircleComponent ? 'close' : 'appstore'}
             onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
           />
