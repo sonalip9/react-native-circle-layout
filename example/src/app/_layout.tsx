@@ -1,12 +1,12 @@
 import { Drawer } from 'expo-router/drawer';
 
 import { ThemeProvider } from '@shopify/restyle';
+import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { StatusBar } from 'react-native';
 
 import { AppContext, type AppContextValue } from '../AppContext';
-import type { PopUpProps } from '../design_system/molecules/PopUp/PopUp';
-import PopUp from '../design_system/molecules/PopUp/PopUp';
+import { PopUp } from '../design_system/molecules';
+import type { PopUpProps } from '../design_system/molecules/';
 import theme from '../design_system/style';
 
 const App = () => {
