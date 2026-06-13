@@ -1,0 +1,507 @@
+{
+  "/Users/sonali/code/packages/react-native-circle-layout/.claude/settings.json": {
+    "mtime": 1781363707.4349194,
+    "ast_hash": "e1073342e958ac9f00716938c8f165e3",
+    "semantic_hash": "e1073342e958ac9f00716938c8f165e3"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/babel.config.js": {
+    "mtime": 1779900372.046987,
+    "ast_hash": "4f826051d1d4fd4455158bcd9b1f1631",
+    "semantic_hash": "4f826051d1d4fd4455158bcd9b1f1631"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/eslint.config.mjs": {
+    "mtime": 1780823301.281393,
+    "ast_hash": "6b7d4d83f53a2cad285a420b502f4c6c",
+    "semantic_hash": "6b7d4d83f53a2cad285a420b502f4c6c"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/app.json": {
+    "mtime": 1781363368.6909957,
+    "ast_hash": "06fff9fac1329e3d97d8da8899072535",
+    "semantic_hash": "06fff9fac1329e3d97d8da8899072535"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/babel.config.js": {
+    "mtime": 1780823301.2815454,
+    "ast_hash": "5a306d05e7addcfbe032242df952c664",
+    "semantic_hash": "5a306d05e7addcfbe032242df952c664"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/eas.json": {
+    "mtime": 1781088411.113429,
+    "ast_hash": "287d6e9a51a34628496d0f28b4b46493",
+    "semantic_hash": "287d6e9a51a34628496d0f28b4b46493"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/index.js": {
+    "mtime": 1781363368.6912858,
+    "ast_hash": "3e2b19f001cb88c5bcc6d4fc46b0ca48",
+    "semantic_hash": "3e2b19f001cb88c5bcc6d4fc46b0ca48"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/metro.config.js": {
+    "mtime": 1780823301.2816815,
+    "ast_hash": "9bdf2dea387b88c9a879289209b61e0a",
+    "semantic_hash": "9bdf2dea387b88c9a879289209b61e0a"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/package.json": {
+    "mtime": 1781363368.6915102,
+    "ast_hash": "a3777178a4f284d405e7566b11596815",
+    "semantic_hash": "a3777178a4f284d405e7566b11596815"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/App.tsx": {
+    "mtime": 1781363368.6916943,
+    "ast_hash": "94f25b8543abf0833107f9142a2f89cc",
+    "semantic_hash": "94f25b8543abf0833107f9142a2f89cc"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/AppContext.ts": {
+    "mtime": 1781090994.950435,
+    "ast_hash": "5852a2d77382c78104eefba72a405279",
+    "semantic_hash": "5852a2d77382c78104eefba72a405279"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/atoms/Button/Button.tsx": {
+    "mtime": 1781091154.3745973,
+    "ast_hash": "0de5005385f62c5c94a34d6065278043",
+    "semantic_hash": "0de5005385f62c5c94a34d6065278043"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/atoms/Button/index.ts": {
+    "mtime": 1781091154.3751125,
+    "ast_hash": "d0e35057a17da9425a79a5b945463e4d",
+    "semantic_hash": "d0e35057a17da9425a79a5b945463e4d"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/atoms/Text/Text.tsx": {
+    "mtime": 1781091154.3754332,
+    "ast_hash": "b34a06db342dfb84afd324d22da61d19",
+    "semantic_hash": "b34a06db342dfb84afd324d22da61d19"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/atoms/Text/index.ts": {
+    "mtime": 1781091154.3756492,
+    "ast_hash": "44d5ad1b15411846c47d44b42e29b564",
+    "semantic_hash": "44d5ad1b15411846c47d44b42e29b564"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/atoms/View/View.tsx": {
+    "mtime": 1781091154.3759096,
+    "ast_hash": "765b282b3ea9d15772ba31ec6acc8c22",
+    "semantic_hash": "765b282b3ea9d15772ba31ec6acc8c22"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/atoms/View/index.ts": {
+    "mtime": 1781091154.3760226,
+    "ast_hash": "37e4991014bccc0ff01b64bcb4ef01b3",
+    "semantic_hash": "37e4991014bccc0ff01b64bcb4ef01b3"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/atoms/index.ts": {
+    "mtime": 1781091154.37629,
+    "ast_hash": "fdb1227988d07918426e5ff94666f8b4",
+    "semantic_hash": "fdb1227988d07918426e5ff94666f8b4"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/molecules/Dropdown/Dropdown.tsx": {
+    "mtime": 1781362763.8347464,
+    "ast_hash": "f8bcd09466657a40f0b18f2988c8a906",
+    "semantic_hash": "f8bcd09466657a40f0b18f2988c8a906"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/molecules/Dropdown/index.ts": {
+    "mtime": 1781091154.3768067,
+    "ast_hash": "446c6b25cf8d31351cb41d5ecc227d4e",
+    "semantic_hash": "446c6b25cf8d31351cb41d5ecc227d4e"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/molecules/PopUp/PopUp.tsx": {
+    "mtime": 1781091154.377069,
+    "ast_hash": "55ce5740b1f769136fd7b9cf9c932c96",
+    "semantic_hash": "55ce5740b1f769136fd7b9cf9c932c96"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/molecules/PopUp/index.ts": {
+    "mtime": 1781091154.3771844,
+    "ast_hash": "41c7912e16a1b1469d431187a4216c5f",
+    "semantic_hash": "41c7912e16a1b1469d431187a4216c5f"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/molecules/SliderWithLabel/SliderWithLabel.tsx": {
+    "mtime": 1781362763.834961,
+    "ast_hash": "04659c922c862539031caec4cecc4467",
+    "semantic_hash": "04659c922c862539031caec4cecc4467"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/molecules/SliderWithLabel/index.ts": {
+    "mtime": 1781091154.3775084,
+    "ast_hash": "bfbb85610a45967a03607d4bb78aa5d3",
+    "semantic_hash": "bfbb85610a45967a03607d4bb78aa5d3"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/molecules/Switch/Switch.tsx": {
+    "mtime": 1781362763.8351896,
+    "ast_hash": "0060a59fefd3a0757928e07e1ddfdf3b",
+    "semantic_hash": "0060a59fefd3a0757928e07e1ddfdf3b"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/molecules/Switch/index.ts": {
+    "mtime": 1781091154.377919,
+    "ast_hash": "ba77bbaaa7d1935db813591d3b80afd4",
+    "semantic_hash": "ba77bbaaa7d1935db813591d3b80afd4"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/molecules/index.ts": {
+    "mtime": 1781091154.3780222,
+    "ast_hash": "33507edc2f2b1c9deea5d25187f276ff",
+    "semantic_hash": "33507edc2f2b1c9deea5d25187f276ff"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/design_system/style/index.ts": {
+    "mtime": 1781091154.3782778,
+    "ast_hash": "1ac0d45ba86d1bf85c67bb0a9896b1ea",
+    "semantic_hash": "1ac0d45ba86d1bf85c67bb0a9896b1ea"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/navigation/constants.ts": {
+    "mtime": 1781363368.6919901,
+    "ast_hash": "28cf1b7341ef61736013506580e2d1cd",
+    "semantic_hash": "28cf1b7341ef61736013506580e2d1cd"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/navigation/index.ts": {
+    "mtime": 1781363368.6921015,
+    "ast_hash": "0fc9e34f7a6094220e5b8d558835b534",
+    "semantic_hash": "0fc9e34f7a6094220e5b8d558835b534"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/navigation/types.ts": {
+    "mtime": 1781363368.6922565,
+    "ast_hash": "ce7c6628580b29882c69f137efe8067f",
+    "semantic_hash": "ce7c6628580b29882c69f137efe8067f"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/screens/Home/Home.tsx": {
+    "mtime": 1781363368.6925538,
+    "ast_hash": "68c2d7a9ed13f6940b8393ef8f036f50",
+    "semantic_hash": "68c2d7a9ed13f6940b8393ef8f036f50"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/screens/NestedRingMenu/NestedRingMenu.tsx": {
+    "mtime": 1781363368.6929858,
+    "ast_hash": "8d9e8c50ac6c6c77f68a228f191924ea",
+    "semantic_hash": "8d9e8c50ac6c6c77f68a228f191924ea"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/screens/Playground/Playground.tsx": {
+    "mtime": 1781363368.6932147,
+    "ast_hash": "c71d807f5abc9ed6834ecbbd530157b1",
+    "semantic_hash": "c71d807f5abc9ed6834ecbbd530157b1"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/screens/RadialMenu/RadialMenu.tsx": {
+    "mtime": 1781363368.693352,
+    "ast_hash": "4383a2c3d81662a4f340b3f7294d2cad",
+    "semantic_hash": "4383a2c3d81662a4f340b3f7294d2cad"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/screens/index.ts": {
+    "mtime": 1781363368.693482,
+    "ast_hash": "e2b4a04101c2e4ac3be246aea2897b99",
+    "semantic_hash": "e2b4a04101c2e4ac3be246aea2897b99"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/src/utils/resolveStyles.ts": {
+    "mtime": 1781091189.181098,
+    "ast_hash": "4efd848b2bf63848813f65c9f11dc0ae",
+    "semantic_hash": "4efd848b2bf63848813f65c9f11dc0ae"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/tsconfig.json": {
+    "mtime": 1781363368.693753,
+    "ast_hash": "c0abdac6ded1f327354a28c986243063",
+    "semantic_hash": "c0abdac6ded1f327354a28c986243063"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/jest.setup.ts": {
+    "mtime": 1781020523.5142238,
+    "ast_hash": "f4f8ece5df28035d7b29cd2845e965cf",
+    "semantic_hash": "f4f8ece5df28035d7b29cd2845e965cf"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/package.json": {
+    "mtime": 1781362763.8356311,
+    "ast_hash": "5ad151e7af0611bb3f90a3108b803a5c",
+    "semantic_hash": "5ad151e7af0611bb3f90a3108b803a5c"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/Bg.tsx": {
+    "mtime": 1781340058.0564485,
+    "ast_hash": "8e4f108221ac8b462230727735bf13fa",
+    "semantic_hash": "8e4f108221ac8b462230727735bf13fa"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/CircleLayout.tsx": {
+    "mtime": 1781024086.426496,
+    "ast_hash": "9212357196a910daa1849460adf1f0c4",
+    "semantic_hash": "9212357196a910daa1849460adf1f0c4"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/CircleLayoutArray.tsx": {
+    "mtime": 1781020523.5160444,
+    "ast_hash": "dc18a1010898b5654be6635fd8c31a1a",
+    "semantic_hash": "dc18a1010898b5654be6635fd8c31a1a"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/CircleLayoutComponent.tsx": {
+    "mtime": 1781022261.8250308,
+    "ast_hash": "46162491ce31a8bca3e6210f4f6f2afb",
+    "semantic_hash": "46162491ce31a8bca3e6210f4f6f2afb"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/CircleLayoutContent.tsx": {
+    "mtime": 1781022261.8252149,
+    "ast_hash": "15e11b398e89aa04a01df2b4ae93b478",
+    "semantic_hash": "15e11b398e89aa04a01df2b4ae93b478"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/CircleLayoutContext.tsx": {
+    "mtime": 1781024203.082951,
+    "ast_hash": "40561b459d8ebe9ee3cb975851c03b9e",
+    "semantic_hash": "40561b459d8ebe9ee3cb975851c03b9e"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/CircleLayoutProvider.tsx": {
+    "mtime": 1781024178.8521206,
+    "ast_hash": "32cee4ed8fb54ddbde5f8059b0f23d18",
+    "semantic_hash": "32cee4ed8fb54ddbde5f8059b0f23d18"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/__tests__/CircleLayout.test.tsx": {
+    "mtime": 1781020523.5167143,
+    "ast_hash": "1c670eace0f416c7d1b19aa926ced959",
+    "semantic_hash": "1c670eace0f416c7d1b19aa926ced959"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/__tests__/CircleLayoutArray.test.tsx": {
+    "mtime": 1781020595.053329,
+    "ast_hash": "011b21cc8a0c6f9f89b1f98511cdc773",
+    "semantic_hash": "011b21cc8a0c6f9f89b1f98511cdc773"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/__tests__/CircleLayoutComponent.test.tsx": {
+    "mtime": 1781020595.053494,
+    "ast_hash": "4cf2076015c13d7227cb776e6b2f7aca",
+    "semantic_hash": "4cf2076015c13d7227cb776e6b2f7aca"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/__tests__/animation/rnAnimatedDriver.test.ts": {
+    "mtime": 1781020595.0536618,
+    "ast_hash": "64529f6831a4234c523c2541cbe1a4f4",
+    "semantic_hash": "64529f6831a4234c523c2541cbe1a4f4"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/__tests__/hooks/useAnimatedSectorPath.test.ts": {
+    "mtime": 1781020595.053768,
+    "ast_hash": "5489de6761f4f39c1b6ad1bac1abe1bf",
+    "semantic_hash": "5489de6761f4f39c1b6ad1bac1abe1bf"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/__tests__/hooks/useAnimation.test.ts": {
+    "mtime": 1781020600.1325047,
+    "ast_hash": "c374ca90625200d4bb0c914e3e9a75f0",
+    "semantic_hash": "c374ca90625200d4bb0c914e3e9a75f0"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/__tests__/hooks/useCombinedAnimation.test.tsx": {
+    "mtime": 1781022261.8256419,
+    "ast_hash": "4a21f40b535a01a0d49221d0c02f75bc",
+    "semantic_hash": "4a21f40b535a01a0d49221d0c02f75bc"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/__tests__/index.test.tsx": {
+    "mtime": 1780823301.2885785,
+    "ast_hash": "1fbb9be2c18869af92a1e549429cd172",
+    "semantic_hash": "1fbb9be2c18869af92a1e549429cd172"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/__tests__/utils/animation.test.ts": {
+    "mtime": 1780823301.288713,
+    "ast_hash": "3333ef41f9779ca8876213940249d76a",
+    "semantic_hash": "3333ef41f9779ca8876213940249d76a"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/__tests__/utils/circle.test.ts": {
+    "mtime": 1781022261.8257551,
+    "ast_hash": "fa832aad5fca055782e3a87729504c3b",
+    "semantic_hash": "fa832aad5fca055782e3a87729504c3b"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/animation/index.ts": {
+    "mtime": 1781020559.6957824,
+    "ast_hash": "5b7083eb4250695b80decc223bfdcac6",
+    "semantic_hash": "5b7083eb4250695b80decc223bfdcac6"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/animation/rnAnimatedDriver.ts": {
+    "mtime": 1781020600.1326516,
+    "ast_hash": "48405c38e58be606d080b10a84b2cc0a",
+    "semantic_hash": "48405c38e58be606d080b10a84b2cc0a"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/animation/types.ts": {
+    "mtime": 1781020600.13286,
+    "ast_hash": "6e7a68370ef8cf6ebbb27629d1445fd0",
+    "semantic_hash": "6e7a68370ef8cf6ebbb27629d1445fd0"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/hooks/index.ts": {
+    "mtime": 1781020523.5178318,
+    "ast_hash": "badd37aa6c609f31f69fb540c5010c56",
+    "semantic_hash": "badd37aa6c609f31f69fb540c5010c56"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/hooks/useAnimatedSectorPath.ts": {
+    "mtime": 1781340058.0566123,
+    "ast_hash": "caeb235ea31da1bb47e623fd87b0ee7c",
+    "semantic_hash": "caeb235ea31da1bb47e623fd87b0ee7c"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/hooks/useAnimation.ts": {
+    "mtime": 1781020600.1329837,
+    "ast_hash": "9492d6690476667f15dc992a6112f547",
+    "semantic_hash": "9492d6690476667f15dc992a6112f547"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/hooks/useCombinedAnimation.ts": {
+    "mtime": 1781022261.8258824,
+    "ast_hash": "15a95ecc959d1a74da1e3be3e90da8b4",
+    "semantic_hash": "15a95ecc959d1a74da1e3be3e90da8b4"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/index.tsx": {
+    "mtime": 1781022261.82597,
+    "ast_hash": "46527dc1564e3f374e795e5fe851b6cb",
+    "semantic_hash": "46527dc1564e3f374e795e5fe851b6cb"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/styles.ts": {
+    "mtime": 1780823301.2891095,
+    "ast_hash": "4a60305ba39dbb6dc85e6171383dcd0c",
+    "semantic_hash": "4a60305ba39dbb6dc85e6171383dcd0c"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/types.ts": {
+    "mtime": 1781022261.8260732,
+    "ast_hash": "9706a086bffdea016a705cddeb0fed8b",
+    "semantic_hash": "9706a086bffdea016a705cddeb0fed8b"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/utils/animation.ts": {
+    "mtime": 1781022261.8261664,
+    "ast_hash": "174ca8c4ef5894cc6a6558908e93cf57",
+    "semantic_hash": "174ca8c4ef5894cc6a6558908e93cf57"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/utils/circle.ts": {
+    "mtime": 1781022261.8263168,
+    "ast_hash": "cbc5e2d5ac82a277b5e9c61919d210c6",
+    "semantic_hash": "cbc5e2d5ac82a277b5e9c61919d210c6"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/utils/index.ts": {
+    "mtime": 1781022261.826434,
+    "ast_hash": "e9e4c5f45e1f19cf8bb41099f7398831",
+    "semantic_hash": "e9e4c5f45e1f19cf8bb41099f7398831"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/src/utils/validation.ts": {
+    "mtime": 1781024049.947062,
+    "ast_hash": "6c707d558dfc7df1d55fb06fc6983a2c",
+    "semantic_hash": "6c707d558dfc7df1d55fb06fc6983a2c"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/tsconfig.build.json": {
+    "mtime": 1779900372.0543673,
+    "ast_hash": "6a727dee50030664ce0b99262afaf57b",
+    "semantic_hash": "6a727dee50030664ce0b99262afaf57b"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/tsconfig.json": {
+    "mtime": 1781361635.3672695,
+    "ast_hash": "7ce3a17824b69432f1b146011a37a876",
+    "semantic_hash": "7ce3a17824b69432f1b146011a37a876"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/turbo.json": {
+    "mtime": 1779900372.0545955,
+    "ast_hash": "c0e9d2e9b09127f122cf42d5a670654c",
+    "semantic_hash": "c0e9d2e9b09127f122cf42d5a670654c"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/.github/ISSUE_TEMPLATE/bug_report.yml": {
+    "mtime": 1779900372.0444727,
+    "ast_hash": "e445945770adebc4cdf747c93a86d4db",
+    "semantic_hash": "e445945770adebc4cdf747c93a86d4db"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/.github/ISSUE_TEMPLATE/config.yml": {
+    "mtime": 1779900372.0445867,
+    "ast_hash": "9e8858fb9c2c53164adfab0d23bd903b",
+    "semantic_hash": "9e8858fb9c2c53164adfab0d23bd903b"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/.github/actions/setup/action.yml": {
+    "mtime": 1781016277.857244,
+    "ast_hash": "50107dff3e30306cd5be9247ed0605db",
+    "semantic_hash": "50107dff3e30306cd5be9247ed0605db"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/.github/copilot-instructions.md": {
+    "mtime": 1781363550.047436,
+    "ast_hash": "ec2dc0dc7bef63488889f34de2f5584d",
+    "semantic_hash": "ec2dc0dc7bef63488889f34de2f5584d"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/.github/workflows/ci.yml": {
+    "mtime": 1780823301.2803698,
+    "ast_hash": "58a4fdcbf8a0b32bb435dd9311682a17",
+    "semantic_hash": "58a4fdcbf8a0b32bb435dd9311682a17"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/.github/workflows/deploy-pages.yml": {
+    "mtime": 1781088411.112603,
+    "ast_hash": "c06585facaffb950b14a4108f1b10823",
+    "semantic_hash": "c06585facaffb950b14a4108f1b10823"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/.github/workflows/eas-build.yml": {
+    "mtime": 1781088411.112873,
+    "ast_hash": "5ede946ba101620a461e046b1e5455c3",
+    "semantic_hash": "5ede946ba101620a461e046b1e5455c3"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/.github/workflows/npm-publish.yml": {
+    "mtime": 1779900372.0453162,
+    "ast_hash": "0c78366751e0cd9a9aae61199ccaf790",
+    "semantic_hash": "0c78366751e0cd9a9aae61199ccaf790"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/AGENTS.md": {
+    "mtime": 1781364206.2845824,
+    "ast_hash": "6b18206b6bd32899b2896d03756ae627",
+    "semantic_hash": "6b18206b6bd32899b2896d03756ae627"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/CLAUDE.md": {
+    "mtime": 1781364209.0208771,
+    "ast_hash": "d8fbd6f064a37776a5aacd999eef8ce9",
+    "semantic_hash": "d8fbd6f064a37776a5aacd999eef8ce9"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/CODE_OF_CONDUCT.md": {
+    "mtime": 1779900372.0460393,
+    "ast_hash": "e0ea1993609a4ac4465b2bf1e33d4c42",
+    "semantic_hash": "e0ea1993609a4ac4465b2bf1e33d4c42"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/CONTEXT.md": {
+    "mtime": 1780823969.8065615,
+    "ast_hash": "210187b7d1f7875cf520c6da6a3535be",
+    "semantic_hash": "210187b7d1f7875cf520c6da6a3535be"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/CONTRIBUTING.md": {
+    "mtime": 1779900372.0464234,
+    "ast_hash": "7d7fa6996b560fcf258524b0b8dc44b3",
+    "semantic_hash": "7d7fa6996b560fcf258524b0b8dc44b3"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/README.md": {
+    "mtime": 1781020523.5130594,
+    "ast_hash": "c004ce1cb03fd08ea4d45134d192a9cb",
+    "semantic_hash": "c004ce1cb03fd08ea4d45134d192a9cb"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/docs/adr/0001-imperative-ref-api.md": {
+    "mtime": 1779900372.0472312,
+    "ast_hash": "340ce2a9ac8304b5c8ac357d62970198",
+    "semantic_hash": "340ce2a9ac8304b5c8ac357d62970198"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/docs/adr/0002-totalparts-invariant-for-partial-arcs.md": {
+    "mtime": 1781020523.5131886,
+    "ast_hash": "757c6352cc41bc34d0add604e6145484",
+    "semantic_hash": "757c6352cc41bc34d0add604e6145484"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/docs/agents/domain.md": {
+    "mtime": 1779900372.0475142,
+    "ast_hash": "477d9959972912279da5677825ef61c3",
+    "semantic_hash": "477d9959972912279da5677825ef61c3"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/docs/agents/issue-tracker.md": {
+    "mtime": 1779900372.0476096,
+    "ast_hash": "b3268117bb0bb6b731632d35d6a1369a",
+    "semantic_hash": "b3268117bb0bb6b731632d35d6a1369a"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/docs/agents/triage-labels.md": {
+    "mtime": 1779900372.0477135,
+    "ast_hash": "22add54cb98451c55b20e6b7992d4a85",
+    "semantic_hash": "22add54cb98451c55b20e6b7992d4a85"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/lefthook.yml": {
+    "mtime": 1780823301.2858577,
+    "ast_hash": "efc5a6411e866be3e5d95d8ef52559b7",
+    "semantic_hash": "efc5a6411e866be3e5d95d8ef52559b7"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/pnpm-workspace.yaml": {
+    "mtime": 1781088411.116151,
+    "ast_hash": "45aae808c588bfe06d7092454ec876ac",
+    "semantic_hash": "45aae808c588bfe06d7092454ec876ac"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/assets/android-icon-background.png": {
+    "mtime": 1781110032.4346452,
+    "ast_hash": "2d65569cc0e2afdcea0af9f9902d4173",
+    "semantic_hash": "2d65569cc0e2afdcea0af9f9902d4173"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/assets/android-icon-foreground.png": {
+    "mtime": 1781110032.4349718,
+    "ast_hash": "72e71a9c846c6aa4ae32476641a00e18",
+    "semantic_hash": "72e71a9c846c6aa4ae32476641a00e18"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/assets/android-icon-monochrome.png": {
+    "mtime": 1781110032.4351134,
+    "ast_hash": "1e097dab989759fc0b69440092ca22cd",
+    "semantic_hash": "1e097dab989759fc0b69440092ca22cd"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/assets/favicon.png": {
+    "mtime": 1781110032.4352033,
+    "ast_hash": "d9f444efbdfbe7931aa93beada07318a",
+    "semantic_hash": "d9f444efbdfbe7931aa93beada07318a"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/assets/icon.png": {
+    "mtime": 1781110032.4358487,
+    "ast_hash": "cb975bba2216ce10a60e6c0ffe9941a2",
+    "semantic_hash": "cb975bba2216ce10a60e6c0ffe9941a2"
+  },
+  "/Users/sonali/code/packages/react-native-circle-layout/example/assets/splash-icon.png": {
+    "mtime": 1781110032.4360318,
+    "ast_hash": "97dae5a0e62ad8551d8a31897b425e63",
+    "semantic_hash": "97dae5a0e62ad8551d8a31897b425e63"
+  }
+}
