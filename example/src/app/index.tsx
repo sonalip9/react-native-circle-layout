@@ -1,11 +1,5 @@
 import * as React from 'react';
 import { ScrollView, useWindowDimensions } from 'react-native';
-import { Text, View, Button } from '../../design_system/atoms';
-import {
-  Dropdown,
-  SliderWithLabel,
-  Switch,
-} from '../../design_system/molecules';
 import {
   AnimationCombinationType,
   AnimationType,
@@ -13,6 +7,8 @@ import {
   type AnimationConfig,
   type CircleLayoutRef,
 } from 'react-native-circle-layout';
+import { Button, Text, View } from '../design_system/atoms';
+import { Dropdown, SliderWithLabel, Switch } from '../design_system/molecules';
 
 const Playground = () => {
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
@@ -146,10 +142,12 @@ const Playground = () => {
               setAnimationTypeList(value as AnimationType[])
             }
             label="Animation Types"
-            options={Object.values(AnimationType).map((animationType) => ({
-              label: animationType,
-              value: animationType,
-            }))}
+            options={Object.values(AnimationType).map(
+              (animationType: AnimationType) => ({
+                label: animationType,
+                value: animationType,
+              })
+            )}
             placeholder="Select animation types"
             value={animationTypeList}
             variant="multiple"

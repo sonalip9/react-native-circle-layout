@@ -1,12 +1,13 @@
 import { AntDesign } from '@expo/vector-icons';
 import * as React from 'react';
-import { View } from 'react-native';
 import {
   AnimationCombinationType,
   AnimationType,
   CircleLayout,
   type CircleLayoutRef,
 } from 'react-native-circle-layout';
+
+import { View } from '../design_system/atoms';
 
 type Icon = keyof typeof AntDesign.glyphMap;
 
