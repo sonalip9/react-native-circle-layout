@@ -1,5 +1,12 @@
+import { AppContext } from '@/AppContext';
 import * as React from 'react';
-import { ScrollView, useWindowDimensions } from 'react-native';
+import { use } from 'react';
+import {
+  Platform,
+  ScrollView,
+  TouchableOpacity,
+  useWindowDimensions,
+} from 'react-native';
 import {
   AnimationCombinationType,
   AnimationType,
@@ -7,15 +14,19 @@ import {
   type AnimationConfig,
   type CircleLayoutRef,
 } from 'react-native-circle-layout';
+
 import { Button, Text, View } from '../design_system/atoms';
 import { Dropdown, SliderWithLabel, Switch } from '../design_system/molecules';
+import theme from '../design_system/style';
 
 const Playground = () => {
+  const { showPopUp } = use(AppContext);
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
-  const viewFlexDirection = React.useMemo(
-    () => (windowHeight > windowWidth ? 'column' : 'row'),
-    [windowHeight, windowWidth]
+  const maxRadius = React.useMemo(
+    () => Number((Math.min(windowWidth, windowHeight) * 0.4).toFixed(0)),
+    [windowWidth, windowHeight]
   );
+  const [isCenterClickable, setIsCenterClickable] = React.useState(false);
   const [showCircle, setShowCircle] = React.useState(false);
   const [radius, setRadius] = React.useState(100);
   const [sweepAngle, setSweepAngle] = React.useState(2 * Math.PI);
@@ -53,13 +64,14 @@ const Playground = () => {
   return (
     <ScrollView
       contentContainerStyle={{
-        flexDirection: viewFlexDirection,
+        flexDirection: Platform.select({ web: 'row', default: 'column' }),
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         minHeight: '100%',
         padding: 24,
         gap: 24,
       }}
+      style={{ flex: 1 }}
     >
       <CircleLayout
         animationProps={{
@@ -77,10 +89,27 @@ const Playground = () => {
           ),
         }}
         centerComponent={
-          <View bg="purplePrimary" borderRadius={'xl'} height={25} width={25} />
+          <TouchableOpacity
+            style={{
+              backgroundColor: theme.colors.purplePrimary,
+              borderRadius: theme.borderRadii.xl,
+              height: 25,
+              width: 25,
+            }}
+            disabled={!isCenterClickable}
+            onPress={() => {
+              setShowCircle((oldValue) => !oldValue);
+            }}
+          ></TouchableOpacity>
         }
         components={createComponents(numberOfPoints)}
-        containerStyle={{ width: '100%' }}
+        containerStyle={{
+          height: maxRadius * 2.2,
+          width: maxRadius * 2.2,
+          borderWidth: 1,
+          borderColor: 'grey',
+          borderRadius: 12,
+        }}
         radius={radius}
         ref={circleLayoutRef}
         startAngle={startAngle}
@@ -89,7 +118,6 @@ const Playground = () => {
 
       <View
         gap="xl"
-        width="100%"
         alignItems="center"
         borderWidth={1}
         borderColor="grey"
@@ -97,10 +125,15 @@ const Playground = () => {
         borderRadius="m"
       >
         <View gap="s">
+          <Switch
+            leftLabel="Center Clickable"
+            value={isCenterClickable}
+            onValueChange={setIsCenterClickable}
+          />
           <SliderWithLabel
             label="Radius"
-            maximumValue={Number(((windowWidth * 0.85) / 2).toFixed(0))}
-            minimumValue={0}
+            maximumValue={maxRadius}
+            minimumValue={1}
             onValueChange={setRadius}
             step={1}
             value={radius}
@@ -159,7 +192,14 @@ const Playground = () => {
         <View gap="s" width="90%">
           <Button
             onPress={() => {
-              setShowCircle((oldValue) => !oldValue);
+              if (isCenterClickable) {
+                showPopUp({
+                  message:
+                    "Click the center component's circle to toggle the layout!",
+                });
+              } else {
+                setShowCircle((oldValue) => !oldValue);
+              }
             }}
             label={showCircle ? 'Hide circle layout' : 'Show circle layout'}
           />
