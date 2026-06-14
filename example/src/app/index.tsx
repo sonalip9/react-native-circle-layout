@@ -17,7 +17,14 @@ import {
 
 import { Button, Text, View } from '../design_system/atoms';
 import { Dropdown, SliderWithLabel, Switch } from '../design_system/molecules';
-import theme from '../design_system/style';
+import theme, { palette } from '../design_system/style';
+
+const colorOptions = Object.entries(palette)
+  .filter(([name]) => name !== 'transparent')
+  .map(([name, value]) => ({ label: name, value }));
+
+const DEFAULT_OUTER_RADIUS = 100;
+const DEFAULT_BG_COLOR = palette.purplePrimary;
 
 const Playground = () => {
   const { showPopUp } = use(AppContext);
@@ -36,6 +43,22 @@ const Playground = () => {
   const [animationTypeList, setAnimationTypeList] = React.useState<
     AnimationType[]
   >([AnimationType.OPACITY, AnimationType.LINEAR, AnimationType.CIRCULAR]);
+  const [animationDuration, setAnimationDuration] = React.useState(500);
+  const [animationGap, setAnimationGap] = React.useState(0);
+  const [animationDelay, setAnimationDelay] = React.useState(0);
+
+  const [showBackground, setShowBackground] = React.useState(false);
+  const [bgColor, setBgColor] = React.useState(DEFAULT_BG_COLOR);
+  const [strokeColor, setStrokeColor] = React.useState(DEFAULT_BG_COLOR);
+  const [strokeWidth, setStrokeWidth] = React.useState(1);
+  const [innerRadius, setInnerRadius] = React.useState(0);
+  const [outerRadius, setOuterRadius] = React.useState(DEFAULT_OUTER_RADIUS);
+
+  const [showContainerBackground, setShowContainerBackground] =
+    React.useState(false);
+  const [highlightCenterComponent, setHighlightCenterComponent] =
+    React.useState(false);
+
   const circleLayoutRef = React.useRef<CircleLayoutRef>(null);
 
   React.useEffect(() => {
@@ -78,16 +101,31 @@ const Playground = () => {
           animationCombinationType: isParallelAnimation
             ? AnimationCombinationType.PARALLEL
             : AnimationCombinationType.SEQUENCE,
+          animationGap,
           animationConfigs: animationTypeList.reduce<
             Partial<Record<AnimationType, AnimationConfig>>
           >(
             (acc, animationType) => ({
               ...acc,
-              [animationType]: { duration: 500 },
+              [animationType]: {
+                duration: animationDuration,
+                delay: animationDelay,
+              },
             }),
             {}
           ),
         }}
+        bgConfig={
+          showBackground
+            ? {
+                color: bgColor,
+                strokeColor,
+                strokeWidth,
+                innerRadius,
+                outerRadius,
+              }
+            : undefined
+        }
         centerComponent={
           <TouchableOpacity
             style={{
@@ -102,6 +140,15 @@ const Playground = () => {
             }}
           ></TouchableOpacity>
         }
+        centerComponentContainerStyle={
+          highlightCenterComponent
+            ? {
+                borderWidth: 2,
+                borderColor: palette.greenPrimary,
+                borderRadius: 999,
+              }
+            : undefined
+        }
         components={createComponents(numberOfPoints)}
         containerStyle={{
           height: maxRadius * 2.2,
@@ -109,6 +156,9 @@ const Playground = () => {
           borderWidth: 1,
           borderColor: 'grey',
           borderRadius: 12,
+          backgroundColor: showContainerBackground
+            ? palette.disabled
+            : 'transparent',
         }}
         radius={radius}
         ref={circleLayoutRef}
@@ -125,6 +175,7 @@ const Playground = () => {
         borderRadius="m"
       >
         <View gap="s">
+          <Text fontWeight="bold">Layout</Text>
           <Switch
             leftLabel="Center Clickable"
             value={isCenterClickable}
@@ -165,6 +216,79 @@ const Playground = () => {
             value={numberOfPoints}
           />
           <Switch
+            leftLabel="Container background off"
+            rightLabel="Container background on"
+            value={showContainerBackground}
+            onValueChange={setShowContainerBackground}
+          />
+          <Switch
+            leftLabel="Center component plain"
+            rightLabel="Center component highlighted"
+            value={highlightCenterComponent}
+            onValueChange={setHighlightCenterComponent}
+          />
+        </View>
+
+        <View gap="s">
+          <Text fontWeight="bold">Background</Text>
+          <Switch
+            leftLabel="Background off"
+            rightLabel="Background on"
+            value={showBackground}
+            onValueChange={setShowBackground}
+          />
+          <Dropdown
+            onValueChange={(value) => setBgColor(value)}
+            label="Background Color"
+            options={colorOptions}
+            placeholder="Select a color"
+            value={bgColor}
+            variant="single"
+            isDisabled={!showBackground}
+            width={'100%'}
+          />
+          <Dropdown
+            onValueChange={(value) => setStrokeColor(value)}
+            label="Stroke Color"
+            options={colorOptions}
+            placeholder="Select a color"
+            value={strokeColor}
+            variant="single"
+            isDisabled={!showBackground}
+            width={'100%'}
+          />
+          <SliderWithLabel
+            label="Stroke Width"
+            maximumValue={10}
+            minimumValue={0}
+            onValueChange={setStrokeWidth}
+            step={1}
+            value={strokeWidth}
+            isDisabled={!showBackground}
+          />
+          <SliderWithLabel
+            label="Inner Radius"
+            maximumValue={maxRadius}
+            minimumValue={0}
+            onValueChange={setInnerRadius}
+            step={1}
+            value={innerRadius}
+            isDisabled={!showBackground}
+          />
+          <SliderWithLabel
+            label="Outer Radius"
+            maximumValue={maxRadius}
+            minimumValue={0}
+            onValueChange={setOuterRadius}
+            step={1}
+            value={outerRadius}
+            isDisabled={!showBackground}
+          />
+        </View>
+
+        <View gap="s">
+          <Text fontWeight="bold">Animation</Text>
+          <Switch
             leftLabel="Sequential Animation"
             rightLabel="Parallel Animation"
             value={isParallelAnimation}
@@ -186,6 +310,33 @@ const Playground = () => {
             variant="multiple"
             maintainSelectionOrder
             width={'100%'}
+          />
+          <SliderWithLabel
+            label="Animation Duration"
+            maximumValue={2000}
+            minimumValue={0}
+            onValueChange={setAnimationDuration}
+            step={100}
+            value={animationDuration}
+            unit="ms"
+          />
+          <SliderWithLabel
+            label="Animation Gap"
+            maximumValue={300}
+            minimumValue={0}
+            onValueChange={setAnimationGap}
+            step={10}
+            value={animationGap}
+            unit="ms"
+          />
+          <SliderWithLabel
+            label="Animation Delay"
+            maximumValue={1000}
+            minimumValue={0}
+            onValueChange={setAnimationDelay}
+            step={50}
+            value={animationDelay}
+            unit="ms"
           />
         </View>
 
@@ -210,6 +361,24 @@ const Playground = () => {
               setSweepAngle(2 * Math.PI);
               setStartAngle(0);
               setNumberOfPoints(10);
+              setIsParallelAnimation(false);
+              setAnimationTypeList([
+                AnimationType.OPACITY,
+                AnimationType.LINEAR,
+                AnimationType.CIRCULAR,
+              ]);
+              setAnimationDuration(500);
+              setAnimationGap(0);
+              setAnimationDelay(0);
+              setShowBackground(false);
+              setBgColor(DEFAULT_BG_COLOR);
+              setStrokeColor(DEFAULT_BG_COLOR);
+              setStrokeWidth(1);
+              setInnerRadius(0);
+              setOuterRadius(DEFAULT_OUTER_RADIUS);
+              setShowContainerBackground(false);
+              setHighlightCenterComponent(false);
+              setIsCenterClickable(false);
             }}
             label="Reset"
           />
