@@ -35,30 +35,31 @@ const SwitchComponent = ({
 
   return (
     <View
-      style={containerStyle}
       alignItems="center"
+      style={containerStyle}
       flexDirection="row"
-      justifyContent="space-between"
-      width="100%"
       gap="s"
     >
-      <View flex={1} flexGrow={1} flexDirection="row" justifyContent="flex-end">
-        <Text flexWrap={1} textAlign="right">
+      <View flex={1} flexDirection="row" justifyContent="flex-end">
+        <Text flexWrap={'wrap'} textAlign="right">
           {leftLabel}
         </Text>
       </View>
+
       <RNSwitch
         value={value}
         onValueChange={onValueChange}
         disabled={isDisabled}
         trackColor={{ false: palette.disabled, true: palette.purplePrimary }}
         thumbColor={value ? palette.purpleLight : palette.white}
+        style={{ alignSelf: 'center' }}
       />
-      {rightLabel && (
-        <View flex={1} flexGrow={1} flexDirection="row">
-          <Text flexWrap={1}>{rightLabel}</Text>
+
+      {
+        <View flex={1} flexDirection="row">
+          <Text flexWrap={'wrap'}>{rightLabel}</Text>
         </View>
-      )}
+      }
     </View>
   );
 };
