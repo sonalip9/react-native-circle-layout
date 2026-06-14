@@ -165,9 +165,6 @@ importers:
       eas-cli:
         specifier: ^20.1.0
         version: 20.1.0(@types/node@25.9.3)(supports-color@8.1.1)(typescript@6.0.3)
-      react-native-builder-bob:
-        specifier: ^0.42.1
-        version: 0.42.1
       react-native-monorepo-config:
         specifier: ^0.3.5
         version: 0.3.5
