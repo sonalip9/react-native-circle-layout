@@ -6,7 +6,7 @@ import {
   type ColorProps,
   type SpacingProps,
 } from '@shopify/restyle';
-import type { ViewStyle } from 'react-native';
+import { Platform, type ViewStyle } from 'react-native';
 
 import { palette, type Theme } from '../../style';
 import { Text } from '../../atoms/Text';
@@ -52,7 +52,7 @@ const SliderWithLabelComponent = ({
       gap="s"
     >
       <View flex={1} flexGrow={1} flexDirection="row" justifyContent="flex-end">
-        <Text textAlign="right" flexWrap={1}>
+        <Text textAlign="right" flexWrap={'wrap'}>
           {label}
         </Text>
       </View>
@@ -65,6 +65,11 @@ const SliderWithLabelComponent = ({
         style={{ width: '50%', height: 40 }}
         disabled={isDisabled}
         minimumTrackTintColor={containerStyle.color ?? palette.purpleLight}
+        thumbTintColor={Platform.select({
+          web: containerStyle.color ?? palette.purpleLight,
+          android: containerStyle.color ?? palette.purpleLight,
+          default: undefined,
+        })}
         tapToSeek={tapToSeek}
       />
       <Text flex={1}>{`${value.toFixed(2)}${unit ?? ''}`}</Text>
