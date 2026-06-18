@@ -1,4 +1,4 @@
-import Svg, { Defs, Mask, Path } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import type { BgConfig, Layout } from './types';
 import { use, useLayoutEffect, useMemo } from 'react';
 import { useAnimatedSectorPath, useCombinedAnimation } from './hooks';
@@ -99,14 +99,7 @@ export const Bg = ({
     startAngle: startAngleInRadians,
     endAngle: radiansValue,
     center,
-  });
-
-  const innerPath = useAnimatedSectorPath({
-    driver,
-    radius: innerRadius,
-    startAngle: startAngleInRadians,
-    endAngle: endAngleInRadians,
-    center,
+    innerRadius,
   });
 
   return (
@@ -123,24 +116,13 @@ export const Bg = ({
       width={size}
       height={size}
     >
-      <Defs>
-        <Mask id={`mask_${index}`}>
-          <AnimatedPath d={path as unknown as string} fill="white" />
-          <AnimatedPath
-            d={innerPath as unknown as string}
-            fill="black"
-            stroke="black"
-          />
-        </Mask>
-      </Defs>
       <AnimatedPath
-        mask={`url(#mask_${index})`}
-        d={path as unknown as string}
+        d={path as string}
         fill={color}
         stroke={strokeColor ?? color}
         strokeOpacity={0.5}
         strokeWidth={strokeWidth}
-        opacity={opacityValue as unknown as number}
+        opacity={opacityValue as number}
       />
     </AnimatedSvg>
   );

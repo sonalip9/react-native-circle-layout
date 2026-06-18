@@ -187,6 +187,71 @@ export function getSectorPath({
 }
 
 /**
+ * Creates an SVG path for an annular sector (donut slice) bounded by an outer
+ * and inner radius. When innerRadius is 0 or negative the result is identical
+ * to getSectorPath.
+ * @param props The properties of the annular sector.
+ * @param props.radius The outer radius of the annular sector.
+ * @param props.innerRadius The inner radius of the annular sector.
+ * @param props.startAngle The angle at which the annular sector starts. The value needs to be in radians.
+ * @param props.endAngle The angle at which the annular sector ends. The value needs to be in radians.
+ * @param props.isClockwise Whether the annular sector is drawn in a clockwise direction or not. The default value is true.
+ * @param props.center The center point of the circle on which the annular sector is drawn. The default value is { x: 0, y: 0 }.
+ * @param props.center.x The x-coordinate of the center point.
+ * @param props.center.y The y-coordinate of the center point.
+ * @returns The SVG path for the annular sector.
+ */
+export function getDonutSectorPath({
+  radius,
+  innerRadius,
+  startAngle,
+  endAngle,
+  isClockwise = true,
+  center: { x: cx, y: cy } = { x: 0, y: 0 },
+}: CirclePathProps & { innerRadius: number }): string {
+  if (innerRadius <= 0) {
+    return getSectorPath({
+      radius,
+      startAngle,
+      endAngle,
+      isClockwise,
+      center: { x: cx, y: cy },
+    });
+  }
+
+  const { startPoint: outerStart, arc: outerArc } = getArc({
+    radius,
+    startAngle,
+    endAngle,
+    isClockwise,
+    center: { x: cx, y: cy },
+  });
+
+  // Reverse: inner arc goes endAngle→startAngle in opposite winding
+  const { startPoint: innerEnd, arc: innerArc } = getArc({
+    radius: innerRadius,
+    startAngle: endAngle,
+    endAngle: startAngle,
+    isClockwise: !isClockwise,
+    center: { x: cx, y: cy },
+  });
+
+  return [
+    'M',
+    -outerStart.x + cx,
+    -outerStart.y + cy,
+    'A',
+    ...outerArc,
+    'L',
+    -innerEnd.x + cx,
+    -innerEnd.y + cy,
+    'A',
+    ...innerArc,
+    'Z',
+  ].join(' ');
+}
+
+/**
  * Creates an SVG path for an arc of a circle based on the provided properties.
  * The path is created using the format:
  * M startPoint.x startPoint.y A radius radius 0 largeArcFlag sweepFlag endPoint.x endPoint.y

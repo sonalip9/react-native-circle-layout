@@ -1,5 +1,6 @@
 export {
   getArcPath,
+  getDonutSectorPath,
   getSectorPath,
   pointOnCircle,
   pointOnCircleAnimated,
