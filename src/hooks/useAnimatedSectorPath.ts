@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { AnimatedNode, AnimationDriver } from '../animation/types';
-import { getSectorPath } from '../utils';
+import { getDonutSectorPath, getSectorPath } from '../utils';
 
 type UseAnimatedSectorPath<D extends AnimationDriver> = {
   /**
@@ -24,6 +24,11 @@ type UseAnimatedSectorPath<D extends AnimationDriver> = {
    * The center point of the circle on which the sector is drawn.
    */
   center: { x: number; y: number };
+  /**
+   * When provided and > 0, the path describes an annular sector (donut slice)
+   * instead of a full sector pie slice.
+   */
+  innerRadius?: number;
 };
 
 /**
@@ -46,6 +51,7 @@ type UseAnimatedSectorPath<D extends AnimationDriver> = {
  * @param props.startAngle The angle at which the sector starts, in radians.
  * @param props.endAngle The angle at which the sector ends. Can be a static number or an animated node.
  * @param props.center The center point of the circle on which the sector is drawn.
+ * @param props.innerRadius When provided and > 0, the path describes an annular sector (donut slice) instead of a full sector pie slice.
  * @returns The animated (or static) SVG path for the sector.
  */
 export const useAnimatedSectorPath = <D extends AnimationDriver>({
@@ -54,7 +60,21 @@ export const useAnimatedSectorPath = <D extends AnimationDriver>({
   startAngle,
   endAngle,
   center,
-}: UseAnimatedSectorPath<D>) => {
+  innerRadius,
+}: UseAnimatedSectorPath<D>): AnimatedNode<D> | string => {
+  const buildPath = useCallback(
+    (r: number, a: number) =>
+      innerRadius && innerRadius > 0
+        ? getDonutSectorPath({
+            radius: r,
+            innerRadius,
+            startAngle,
+            endAngle: a,
+            center,
+          })
+        : getSectorPath({ radius: r, startAngle, endAngle: a, center }),
+    [innerRadius, startAngle, center]
+  );
   const radiusIsNumber = typeof radius === 'number';
   const endAngleIsNumber = typeof endAngle === 'number';
   const bothListenable =
@@ -65,21 +85,14 @@ export const useAnimatedSectorPath = <D extends AnimationDriver>({
 
     if (!radiusIsNumber && endAngleIsNumber) {
       return driver.interpolate(radius, (s) =>
-        getSectorPath({
-          radius: s,
-          startAngle,
-          endAngle: endAngle,
-          center,
-        })
+        buildPath(s, endAngle)
       ) as AnimatedNode<D>;
     }
 
     if (radiusIsNumber && !endAngleIsNumber) {
-      return driver.interpolate(
-        endAngle,
-        (r) => getSectorPath({ radius, startAngle, endAngle: r, center }),
-        { endValue: Math.PI * 2 }
-      ) as AnimatedNode<D>;
+      return driver.interpolate(endAngle, (a) => buildPath(radius, a), {
+        endValue: Math.PI * 2,
+      }) as AnimatedNode<D>;
     }
 
     if (!radiusIsNumber || !endAngleIsNumber) {
@@ -89,7 +102,7 @@ export const useAnimatedSectorPath = <D extends AnimationDriver>({
       return undefined;
     }
 
-    return getSectorPath({ radius, startAngle, endAngle, center });
+    return buildPath(radius, endAngle);
   }, [
     bothListenable,
     radiusIsNumber,
@@ -97,8 +110,7 @@ export const useAnimatedSectorPath = <D extends AnimationDriver>({
     driver,
     radius,
     endAngle,
-    startAngle,
-    center,
+    buildPath,
   ]);
 
   const [listenerPath, setListenerPath] = useState('');
@@ -108,21 +120,12 @@ export const useAnimatedSectorPath = <D extends AnimationDriver>({
   useEffect(() => {
     if (!bothListenable) return;
 
-    const animatedRadius = radius as Parameters<
-      typeof driver.addValueListener
-    >[0];
-    const animatedEndAngle = endAngle as Parameters<
-      typeof driver.addValueListener
-    >[0];
+    const animatedRadius = radius;
+    const animatedEndAngle = endAngle;
 
     const recalculatePath = () => {
       setListenerPath(
-        getSectorPath({
-          radius: currentRadiusRef.current,
-          startAngle,
-          endAngle: currentEndAngleRef.current,
-          center,
-        })
+        buildPath(currentRadiusRef.current, currentEndAngleRef.current)
       );
     };
 
@@ -145,7 +148,7 @@ export const useAnimatedSectorPath = <D extends AnimationDriver>({
       removeRadiusListener();
       removeEndAngleListener();
     };
-  }, [bothListenable, driver, radius, endAngle, startAngle, center]);
+  }, [bothListenable, driver, radius, endAngle, startAngle, center, buildPath]);
 
   return bothListenable ? listenerPath : (derivedPath ?? '');
 };
