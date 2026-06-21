@@ -70,7 +70,7 @@ const NestedRingMenu = () => {
   const [showCircleComponent, setShowCircleComponent] = useState(false);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View flex={1} alignItems="center" justifyContent="center">
       <CircleLayout
         visible={showCircleComponent}
         centerComponent={
