@@ -51,6 +51,7 @@ const theme = createTheme({
     m: 8,
     l: 16,
     xl: 24,
+    full: 9999,
   },
   textVariants: {
     defaults: {
