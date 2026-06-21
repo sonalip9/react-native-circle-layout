@@ -74,7 +74,7 @@ export const CircleLayoutComponent = ({
       style={[
         circleComponentStyles.componentContainer,
         {
-          opacity: opacity as unknown as number,
+          opacity: opacity as number,
           transform: [
             {
               translateX: driver.multiply(
@@ -83,9 +83,8 @@ export const CircleLayoutComponent = ({
                   (layout.width - centerComponentLayout.width) / 2
                 ),
                 -1
-              ) as unknown as number,
+              ) as number,
             },
-
             {
               translateY: driver.multiply(
                 driver.subtract(
@@ -93,7 +92,7 @@ export const CircleLayoutComponent = ({
                   (layout.height - centerComponentLayout.height) / 2
                 ),
                 -1
-              ) as unknown as number,
+              ) as number,
             },
           ],
         },
