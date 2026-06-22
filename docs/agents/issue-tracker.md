@@ -20,3 +20,13 @@ Create a GitHub issue.
 ## When a skill says "fetch the relevant ticket"
 
 Run `gh issue view <number> --comments`.
+
+## Triggers that should create an issue
+
+When work is deferred rather than done now, file it as a GitHub issue (don't leave it as an ephemeral chip or a loose TODO). Treat these as triggers:
+
+- "do this as a future update" / "save for a future update"
+- "add this to tech debt" / "that's tech debt"
+- "consider this for a future enhancement" / "future enhancement"
+
+For each, run `gh issue create --title "..." --body "..."` capturing the deferred work, with enough context to act on it cold. Label appropriately (e.g. `ready-for-agent` if fully specified, `needs-triage` otherwise — see `triage-labels.md`).
