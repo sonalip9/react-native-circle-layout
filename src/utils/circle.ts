@@ -31,7 +31,7 @@ export type PointOnCircle = {
  * @param props.radians The angle of the point on the circle.
  * @returns The x co-ordinate of the point on the circle.
  */
-function pointOnCircleX({ radius, radians }: PointOnCircle): number {
+export function pointOnCircleX({ radius, radians }: PointOnCircle): number {
   return radius * Math.cos(radians);
 }
 
@@ -42,7 +42,7 @@ function pointOnCircleX({ radius, radians }: PointOnCircle): number {
  * @param props.radians The angle of the point on the circle.
  * @returns The y co-ordinate of the point on the circle.
  */
-function pointOnCircleY({ radius, radians }: PointOnCircle): number {
+export function pointOnCircleY({ radius, radians }: PointOnCircle): number {
   return radius * Math.sin(radians);
 }
 
