@@ -14,6 +14,7 @@ export type {
   BgConfig,
   CircleLayoutProps,
   CircleLayoutRef,
+  ResolvedBgConfig,
 } from './types';
 export { pointOnCircle, pointOnCircleX, pointOnCircleY } from './utils';
 export type { PointOnCircle } from './utils';

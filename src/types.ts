@@ -92,19 +92,25 @@ type AnimationProps<D extends AnimationDriver = typeof rnAnimatedDriver> = {
 export type BgConfig = {
   /**
    * The fill color for the background of the circle layout.
+   * A single value applies to all sectors. An array or function
+   * provides per-sector styling (length must match components).
    * @default #3d19e0
    */
-  color?: string;
+  color?: string | string[] | ((index: number) => string);
   /**
    * The stroke color for the divider lines in the background.
+   * A single value applies to all sectors. An array or function
+   * provides per-sector styling (length must match components).
    * @default color
    */
-  strokeColor?: string;
+  strokeColor?: string | string[] | ((index: number) => string);
   /**
    * The width of the stroke for the divider lines in the background.
+   * A single value applies to all sectors. An array or function
+   * provides per-sector styling (length must match components).
    * @default 1
    */
-  strokeWidth?: number;
+  strokeWidth?: number | number[] | ((index: number) => number);
   /**
    * The radius of the inner circle in the background.
    * If this prop is not provided, then there will be no inner circle in
@@ -124,6 +130,14 @@ export type BgConfig = {
    * @see CircleLayoutProps.radius
    * @see BgConfig.innerRadius
    */
+  outerRadius?: number;
+};
+
+export type ResolvedBgConfig = {
+  color?: string;
+  strokeColor?: string;
+  strokeWidth?: number;
+  innerRadius?: number;
   outerRadius?: number;
 };
 

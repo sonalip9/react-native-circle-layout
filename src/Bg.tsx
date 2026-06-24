@@ -1,5 +1,5 @@
 import Svg, { Path } from 'react-native-svg';
-import type { BgConfig, Layout } from './types';
+import type { ResolvedBgConfig, Layout } from './types';
 import { use, useLayoutEffect, useMemo } from 'react';
 import { useAnimatedSectorPath, useCombinedAnimation } from './hooks';
 import { CircleLayoutContext } from './CircleLayoutContext';
@@ -21,7 +21,7 @@ export const Bg = ({
   minComponentLayout: Layout;
   centerComponentLayout: Layout;
   isVisible?: boolean;
-} & BgConfig) => {
+} & ResolvedBgConfig) => {
   const {
     sectorAngles,
     componentAngles,

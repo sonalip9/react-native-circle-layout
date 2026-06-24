@@ -1,9 +1,49 @@
 import { useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { type StyleProp, type ViewStyle, Animated, View } from 'react-native';
 import CircleLayoutArray from './CircleLayoutArray';
-import type { BgConfig, CircleLayoutRef, Layout } from './types';
+import type {
+  BgConfig,
+  CircleLayoutRef,
+  Layout,
+  ResolvedBgConfig,
+} from './types';
 import React from 'react';
 import { Bg } from './Bg';
+
+/**
+ * Resolves a per-sector style value from a scalar, array, or function.
+ * @param value The value to resolve — a single value, per-index array, or index function
+ * @param index The sector index to resolve for
+ * @returns The resolved scalar value for the given index
+ */
+function resolveValue<T>(
+  value: T | T[] | ((index: number) => T) | undefined,
+  index: number
+): T | undefined {
+  if (typeof value === 'function') {
+    return (value as (index: number) => T)(index);
+  }
+  if (Array.isArray(value)) {
+    return value[index];
+  }
+  return value;
+}
+
+/**
+ * Resolves a BgConfig with possible per-sector overrides into scalar values for one sector.
+ * @param bgConfig The raw BgConfig which may contain arrays or functions
+ * @param index The sector index to resolve for
+ * @returns A ResolvedBgConfig with scalar values only
+ */
+function resolveBgConfig(bgConfig: BgConfig, index: number): ResolvedBgConfig {
+  return {
+    color: resolveValue(bgConfig.color, index),
+    strokeColor: resolveValue(bgConfig.strokeColor, index),
+    strokeWidth: resolveValue(bgConfig.strokeWidth, index),
+    innerRadius: bgConfig.innerRadius,
+    outerRadius: bgConfig.outerRadius,
+  };
+}
 
 /**
  * The content of the CircleLayout component. This is separated from the main
@@ -100,7 +140,7 @@ export function CircleLayoutContent({
               centerComponentLayout={centerComponentLayout}
               radius={radius}
               isVisible={componentVisible}
-              {...bgConfig}
+              {...resolveBgConfig(bgConfig, index)}
             />
           ))}
         {/* The list of components to be shown in the circle. */}

@@ -154,6 +154,65 @@ describe('validateProps', () => {
       ).not.toThrow();
     });
   });
+
+  describe('bgConfig array validation', () => {
+    it('passes when color is a single string', () => {
+      expect(() =>
+        validateProps({ ...baseProps, bgConfig: { color: 'red' } })
+      ).not.toThrow();
+    });
+
+    it('passes when color array length matches components', () => {
+      expect(() =>
+        validateProps({
+          ...baseProps,
+          bgConfig: { color: ['red', 'blue'] },
+        })
+      ).not.toThrow();
+    });
+
+    it('throws when color array length mismatches components', () => {
+      expect(() =>
+        validateProps({
+          ...baseProps,
+          bgConfig: { color: ['red'] },
+        })
+      ).toThrow(
+        'bgConfig.color array length (1) must match components length (2)'
+      );
+    });
+
+    it('throws when strokeColor array length mismatches components', () => {
+      expect(() =>
+        validateProps({
+          ...baseProps,
+          bgConfig: { strokeColor: ['red', 'blue', 'green'] },
+        })
+      ).toThrow(
+        'bgConfig.strokeColor array length (3) must match components length (2)'
+      );
+    });
+
+    it('throws when strokeWidth array length mismatches components', () => {
+      expect(() =>
+        validateProps({
+          ...baseProps,
+          bgConfig: { strokeWidth: [1] },
+        })
+      ).toThrow(
+        'bgConfig.strokeWidth array length (1) must match components length (2)'
+      );
+    });
+
+    it('passes when color is a function', () => {
+      expect(() =>
+        validateProps({
+          ...baseProps,
+          bgConfig: { color: (i: number) => (i === 0 ? 'red' : 'blue') },
+        })
+      ).not.toThrow();
+    });
+  });
 });
 
 describe('weights validation', () => {
@@ -267,6 +326,47 @@ describe('CircleLayout', () => {
         />
       );
       expect(UNSAFE_queryAllByType(Svg)).toHaveLength(3);
+    });
+
+    it('renders without throwing when color is a per-sector array', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            bgConfig={{ color: ['red', 'green', 'blue'] }}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('renders without throwing when color is a function', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            bgConfig={{ color: (i: number) => ['red', 'green', 'blue'][i]! }}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('throws when bgConfig color array length mismatches components', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            bgConfig={{ color: ['red', 'blue'] }}
+            ref={null}
+          />
+        )
+      ).toThrow(
+        'bgConfig.color array length (2) must match components length (3)'
+      );
     });
 
     it('renders without throwing when innerRadius and outerRadius are set', () => {

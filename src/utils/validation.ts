@@ -36,6 +36,26 @@ export function validateProps<D extends AnimationDriver>(
     }
   }
 
+  if (props.bgConfig) {
+    const count = props.components.length;
+    const { color, strokeColor, strokeWidth } = props.bgConfig;
+    if (Array.isArray(color) && color.length !== count) {
+      errors.push(
+        `bgConfig.color array length (${color.length}) must match components length (${count})`
+      );
+    }
+    if (Array.isArray(strokeColor) && strokeColor.length !== count) {
+      errors.push(
+        `bgConfig.strokeColor array length (${strokeColor.length}) must match components length (${count})`
+      );
+    }
+    if (Array.isArray(strokeWidth) && strokeWidth.length !== count) {
+      errors.push(
+        `bgConfig.strokeWidth array length (${strokeWidth.length}) must match components length (${count})`
+      );
+    }
+  }
+
   if (errors.length > 0) {
     throw new Error(errors.join('\n'));
   }
