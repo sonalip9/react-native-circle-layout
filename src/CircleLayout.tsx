@@ -38,6 +38,7 @@ export const CircleLayout = <D extends AnimationDriver>({
     animationProps,
     animationDriver,
     bgConfig,
+    weights,
   } = validateProps<D>(circleLayoutProps);
 
   return (
@@ -48,6 +49,7 @@ export const CircleLayout = <D extends AnimationDriver>({
       componentLength={components.length}
       animationProps={animationProps}
       animationDriver={animationDriver}
+      weights={weights}
     >
       <CircleLayoutContent
         ref={ref}

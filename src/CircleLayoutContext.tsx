@@ -13,6 +13,7 @@ export const CircleLayoutContext = React.createContext<
   totalParts: 0,
   radius: 0,
   startAngle: 0,
-  sectorAngle: 0,
+  sectorAngles: [],
+  componentAngles: [],
   animationDriver: rnAnimatedDriver,
 });
