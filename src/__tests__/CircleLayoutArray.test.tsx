@@ -11,12 +11,19 @@ import type {
   Layout,
 } from '../types';
 
-const baseContext: CircleLayoutContextType = {
-  totalParts: 2,
-  radius: 100,
-  startAngle: 0,
-  sectorAngle: Math.PI,
-  animationDriver: rnAnimatedDriver,
+const makeContext = (n: number): CircleLayoutContextType => {
+  const sectorAngle = (2 * Math.PI) / n;
+  return {
+    totalParts: n,
+    radius: 100,
+    startAngle: 0,
+    sectorAngles: Array<number>(n).fill(sectorAngle),
+    componentAngles: Array.from(
+      { length: n },
+      (_, i) => (sectorAngle * i) % (2 * Math.PI)
+    ),
+    animationDriver: rnAnimatedDriver,
+  };
 };
 
 const noopSetLayout = () => {};
@@ -27,15 +34,16 @@ const makeComponents = (n: number) =>
 
 const renderArray = (
   components: React.ReactNode[],
-  ctx: CircleLayoutContextType = baseContext,
+  ctx?: CircleLayoutContextType,
   props: Partial<{
     setMinComponentLayout: React.Dispatch<React.SetStateAction<Layout>>;
     centerComponentLayout: Layout;
     ref: React.Ref<CircleLayoutRef>;
   }> = {}
-) =>
-  render(
-    <CircleLayoutContext value={ctx}>
+) => {
+  const context = ctx ?? makeContext(components.length);
+  return render(
+    <CircleLayoutContext value={context}>
       <View>
         <CircleLayoutArray
           components={components}
@@ -49,6 +57,7 @@ const renderArray = (
       </View>
     </CircleLayoutContext>
   );
+};
 
 describe('CircleLayoutArray', () => {
   describe('rendering', () => {
@@ -78,7 +87,7 @@ describe('CircleLayoutArray', () => {
         <Text key="B">B</Text>,
       ]);
       rerender(
-        <CircleLayoutContext value={baseContext}>
+        <CircleLayoutContext value={makeContext(3)}>
           <View>
             <CircleLayoutArray
               components={[
@@ -104,7 +113,7 @@ describe('CircleLayoutArray', () => {
         <Text key="C">C</Text>,
       ]);
       rerender(
-        <CircleLayoutContext value={baseContext}>
+        <CircleLayoutContext value={makeContext(2)}>
           <View>
             <CircleLayoutArray
               components={[<Text key="A">A</Text>, <Text key="B">B</Text>]}
@@ -124,7 +133,7 @@ describe('CircleLayoutArray', () => {
     it('exposes showComponents and hideComponents via ref', () => {
       const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
       const ref = result.current;
-      renderArray(makeComponents(3), baseContext, { ref });
+      renderArray(makeComponents(3), makeContext(3), { ref });
       expect(typeof ref.current?.showComponents).toBe('function');
       expect(typeof ref.current?.hideComponents).toBe('function');
     });
@@ -132,7 +141,7 @@ describe('CircleLayoutArray', () => {
     it('showComponents and hideComponents execute without throwing', () => {
       const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
       const ref = result.current;
-      renderArray(makeComponents(3), baseContext, { ref });
+      renderArray(makeComponents(3), makeContext(3), { ref });
       expect(() => {
         act(() => {
           ref.current?.hideComponents();
@@ -145,7 +154,7 @@ describe('CircleLayoutArray', () => {
   describe('setMinComponentLayout callback', () => {
     it('calls setMinComponentLayout with layout dimensions after render', () => {
       const setMinComponentLayout = jest.fn();
-      renderArray(makeComponents(3), baseContext, { setMinComponentLayout });
+      renderArray(makeComponents(3), makeContext(3), { setMinComponentLayout });
       expect(setMinComponentLayout).toHaveBeenCalled();
     });
   });
@@ -162,7 +171,7 @@ describe('CircleLayoutArray', () => {
     it('renders with sweepAngle < 2π (quarter-circle)', () => {
       expect(() =>
         render(
-          <CircleLayoutContext value={baseContext}>
+          <CircleLayoutContext value={makeContext(4)}>
             <View>
               <CircleLayoutArray
                 components={makeComponents(4)}
@@ -179,7 +188,7 @@ describe('CircleLayoutArray', () => {
 
     it('renders with non-zero centerComponentLayout without throwing', () => {
       expect(() =>
-        renderArray(makeComponents(3), baseContext, {
+        renderArray(makeComponents(3), makeContext(3), {
           centerComponentLayout: { width: 50, height: 50 },
         })
       ).not.toThrow();
@@ -187,12 +196,12 @@ describe('CircleLayoutArray', () => {
 
     it('calls setMinComponentLayout again when components grow', () => {
       const setMinComponentLayout = jest.fn();
-      const { rerender } = renderArray(makeComponents(3), baseContext, {
+      const { rerender } = renderArray(makeComponents(3), makeContext(3), {
         setMinComponentLayout,
       });
       const callsBefore = setMinComponentLayout.mock.calls.length;
       rerender(
-        <CircleLayoutContext value={baseContext}>
+        <CircleLayoutContext value={makeContext(5)}>
           <View>
             <CircleLayoutArray
               components={makeComponents(5)}
@@ -212,7 +221,7 @@ describe('CircleLayoutArray', () => {
     it('rapid hide then show via ref does not throw', () => {
       const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
       const ref = result.current;
-      renderArray(makeComponents(3), baseContext, { ref });
+      renderArray(makeComponents(3), makeContext(3), { ref });
       expect(() => {
         act(() => {
           ref.current?.hideComponents();

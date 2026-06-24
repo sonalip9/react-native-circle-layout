@@ -156,6 +156,42 @@ describe('validateProps', () => {
   });
 });
 
+describe('weights validation', () => {
+  it('throws when weights length does not match components length', () => {
+    expect(() => validateProps({ ...baseProps, weights: [1, 2, 3] })).toThrow(
+      'Weights length (3) must match components length (2)'
+    );
+  });
+
+  it('throws when any weight is 0', () => {
+    expect(() => validateProps({ ...baseProps, weights: [1, 0] })).toThrow(
+      'All weights must be greater than 0'
+    );
+  });
+
+  it('throws when any weight is negative', () => {
+    expect(() => validateProps({ ...baseProps, weights: [1, -1] })).toThrow(
+      'All weights must be greater than 0'
+    );
+  });
+
+  it('does not throw when weights are valid', () => {
+    expect(() =>
+      validateProps({ ...baseProps, weights: [1, 2] })
+    ).not.toThrow();
+  });
+
+  it('does not throw when weights are omitted', () => {
+    expect(() => validateProps(baseProps)).not.toThrow();
+  });
+
+  it('collects weights error with other errors', () => {
+    expect(() =>
+      validateProps({ components: [null], radius: -1, weights: [0] })
+    ).toThrow(/At least two.*\nRadius.*\nAll weights/s);
+  });
+});
+
 // ─── CircleLayout integration tests ─────────────────────────────────────────
 
 describe('CircleLayout', () => {
@@ -460,6 +496,73 @@ describe('CircleLayout', () => {
         />
       );
       expect(queryByText('C')).toBeNull();
+    });
+  });
+
+  describe('weighted angles', () => {
+    it('renders with equal weights (same as no weights)', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            weights={[1, 1, 1]}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('renders with uneven weights', () => {
+      const { getAllByText } = render(
+        <CircleLayout
+          components={makeComponents(3)}
+          radius={100}
+          weights={[3, 1, 1]}
+          ref={null}
+        />
+      );
+      expect(getAllByText(/^Item \d$/)).toHaveLength(3);
+    });
+
+    it('renders with weights and bgConfig', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            weights={[2, 1, 1]}
+            bgConfig={{ color: 'red' }}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('throws when weights length mismatches components', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            weights={[1, 2]}
+            ref={null}
+          />
+        )
+      ).toThrow('Weights length (2) must match components length (3)');
+    });
+
+    it('throws when a weight is zero', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(2)}
+            radius={100}
+            weights={[1, 0]}
+            ref={null}
+          />
+        )
+      ).toThrow('All weights must be greater than 0');
     });
   });
 });

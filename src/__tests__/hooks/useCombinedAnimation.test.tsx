@@ -19,7 +19,8 @@ const baseContext: CircleLayoutContextType = {
   totalParts: 3,
   radius: 100,
   startAngle: 0,
-  sectorAngle: (2 * Math.PI) / 3,
+  sectorAngles: Array(3).fill((2 * Math.PI) / 3),
+  componentAngles: [0, (2 * Math.PI) / 3, (4 * Math.PI) / 3],
   animationDriver: rnAnimatedDriver,
 };
 
