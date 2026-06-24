@@ -42,8 +42,8 @@ export const Bg = ({
     const angle = componentAngles[index]!;
     const sector = sectorAngles[index]!;
     return {
-      startAngleInRadians: angle - sector / 2,
-      endAngleInRadians: angle + sector / 2,
+      startAngleInRadians: angle,
+      endAngleInRadians: angle + sector,
     };
   }, [componentAngles, sectorAngles, index]);
 

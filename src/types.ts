@@ -298,7 +298,9 @@ export type CircleLayoutContextType<
    */
   componentAngles: number[];
   /**
-   * The angular width (in radians) of each component's sector.
+   * The angular span (in radians) from each component's placement angle to the
+   * next component. For complete circles the last entry spans from the last
+   * component back to the first; for partial arcs it covers the remaining arc.
    * Length equals the number of components.
    */
   sectorAngles: number[];
