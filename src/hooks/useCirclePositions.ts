@@ -14,6 +14,12 @@ export type CirclePositionsConfig = {
   sweepAngle?: number;
 };
 
+/** Normalizes multiples of 2π back to 2π, matching validateProps behavior. */
+function normalizeSweepAngle(sweepAngle: number): number {
+  const mod = sweepAngle % (2 * Math.PI);
+  return mod === 0 ? 2 * Math.PI : mod;
+}
+
 /**
  * Computes the position of a point on a circle.
  * @param index - The index of the point.
@@ -51,9 +57,10 @@ export function useCirclePositions({
   return useMemo(() => {
     if (count <= 0) return [];
 
-    const isCompleteCircle = Math.abs(sweepAngle - 2 * Math.PI) < 0.001;
+    const normalized = normalizeSweepAngle(sweepAngle);
+    const isCompleteCircle = Math.abs(normalized - 2 * Math.PI) < 0.001;
     const totalParts = isCompleteCircle ? count : count - 1;
-    const sectorAngle = totalParts > 0 ? sweepAngle / totalParts : 0;
+    const sectorAngle = totalParts > 0 ? normalized / totalParts : 0;
 
     return Array.from({ length: count }, (_, index) =>
       computePosition(index, sectorAngle, startAngle, radius)
@@ -79,9 +86,10 @@ export function useCirclePosition({
   sweepAngle = 2 * Math.PI,
 }: CirclePositionsConfig & { index: number }): CirclePosition {
   return useMemo(() => {
-    const isCompleteCircle = Math.abs(sweepAngle - 2 * Math.PI) < 0.001;
+    const normalized = normalizeSweepAngle(sweepAngle);
+    const isCompleteCircle = Math.abs(normalized - 2 * Math.PI) < 0.001;
     const totalParts = isCompleteCircle ? count : count - 1;
-    const sectorAngle = totalParts > 0 ? sweepAngle / totalParts : 0;
+    const sectorAngle = totalParts > 0 ? normalized / totalParts : 0;
 
     return computePosition(index, sectorAngle, startAngle, radius);
   }, [index, count, radius, startAngle, sweepAngle]);
