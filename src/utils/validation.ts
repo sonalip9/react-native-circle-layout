@@ -31,7 +31,7 @@ export function validateProps<D extends AnimationDriver>(
         `Weights length (${props.weights.length}) must match components length (${props.components.length})`
       );
     }
-    if (props.weights.some((w) => w <= 0)) {
+    if (props.weights.some((w) => w <= 0 && Number.isFinite(w))) {
       errors.push('All weights must be greater than 0');
     }
   }
