@@ -108,7 +108,13 @@ function CircleLayoutArray({
         componentRef?.hideComponent()
       );
     }
-  }, [startAngle, sweepAngle, totalParts, isComponentsVisible]);
+  }, [
+    startAngle,
+    sweepAngle,
+    totalParts,
+    isComponentsVisible,
+    componentAngles,
+  ]);
 
   return components.map((component, index) => {
     const angle = componentAngles[index]!;

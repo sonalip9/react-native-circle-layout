@@ -62,11 +62,17 @@ export const CircleLayoutProvider = ({
   const { sectorAngles, componentAngles } = React.useMemo(() => {
     if (weights && weights.length === componentLength) {
       const totalWeight = weights.reduce((sum, w) => sum + w, 0);
-      const sectors = weights.map((w) => (w / totalWeight) * sweepAngle);
+      const effectiveSweep = isCompleteCircle
+        ? sweepAngle
+        : (sweepAngle * totalWeight) /
+          (totalWeight - weights[weights.length - 1]!);
+      const sectors = weights.map((w) => (w / totalWeight) * effectiveSweep);
       let cumulative = startAngle;
-      const angles = sectors.map((s) => {
-        const angle = (cumulative + s / 2) % (2 * Math.PI);
-        cumulative += s;
+      const angles = sectors.map((s, i) => {
+        const angle = cumulative % (2 * Math.PI);
+        if (i < sectors.length - 1 || isCompleteCircle) {
+          cumulative += s;
+        }
         return angle;
       });
       return { sectorAngles: sectors, componentAngles: angles };
@@ -78,7 +84,14 @@ export const CircleLayoutProvider = ({
       (_, i) => (startAngle + uniformSector * i) % (2 * Math.PI)
     );
     return { sectorAngles: sectors, componentAngles: angles };
-  }, [weights, componentLength, sweepAngle, startAngle, totalParts]);
+  }, [
+    weights,
+    componentLength,
+    sweepAngle,
+    startAngle,
+    totalParts,
+    isCompleteCircle,
+  ]);
 
   /**
    * The value passed to the context of the circle layout.
