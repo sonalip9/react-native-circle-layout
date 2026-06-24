@@ -1,9 +1,11 @@
-import { useRef } from 'react';
+import { use, useRef } from 'react';
 import { Text } from 'react-native';
 import Svg from 'react-native-svg';
 import { render, act, renderHook } from '@testing-library/react-native';
 
 import { CircleLayout } from '../CircleLayout';
+import { CircleLayoutContext } from '../CircleLayoutContext';
+import { CircleLayoutProvider } from '../CircleLayoutProvider';
 import type { CircleLayoutRef } from '../types';
 import { validateProps } from '../utils';
 
@@ -224,13 +226,13 @@ describe('weights validation', () => {
 
   it('throws when any weight is 0', () => {
     expect(() => validateProps({ ...baseProps, weights: [1, 0] })).toThrow(
-      'All weights must be greater than 0'
+      'All weights must be finite numbers greater than 0'
     );
   });
 
   it('throws when any weight is negative', () => {
     expect(() => validateProps({ ...baseProps, weights: [1, -1] })).toThrow(
-      'All weights must be greater than 0'
+      'All weights must be finite numbers greater than 0'
     );
   });
 
@@ -242,6 +244,24 @@ describe('weights validation', () => {
 
   it('does not throw when weights are omitted', () => {
     expect(() => validateProps(baseProps)).not.toThrow();
+  });
+
+  it('throws when any weight is NaN', () => {
+    expect(() => validateProps({ ...baseProps, weights: [1, NaN] })).toThrow(
+      'All weights must be finite numbers greater than 0'
+    );
+  });
+
+  it('throws when any weight is Infinity', () => {
+    expect(() =>
+      validateProps({ ...baseProps, weights: [1, Infinity] })
+    ).toThrow('All weights must be finite numbers greater than 0');
+  });
+
+  it('throws when any weight is -Infinity', () => {
+    expect(() =>
+      validateProps({ ...baseProps, weights: [1, -Infinity] })
+    ).toThrow('All weights must be finite numbers greater than 0');
   });
 
   it('collects weights error with other errors', () => {
@@ -662,7 +682,88 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).toThrow('All weights must be greater than 0');
+      ).toThrow('All weights must be finite numbers greater than 0');
     });
+  });
+});
+
+// ─── Weighted angle computation tests ─────────────────────────────────────────
+
+describe('CircleLayoutProvider weighted angles', () => {
+  let capturedContext: { componentAngles: number[]; sectorAngles: number[] };
+
+  const ContextCapture = () => {
+    const ctx = use(CircleLayoutContext);
+    capturedContext = {
+      componentAngles: ctx.componentAngles,
+      sectorAngles: ctx.sectorAngles,
+    };
+    return null;
+  };
+
+  const renderProvider = (
+    count: number,
+    sweepAngle = 2 * Math.PI,
+    weights?: number[]
+  ) => {
+    render(
+      <CircleLayoutProvider
+        sweepAngle={sweepAngle}
+        radius={100}
+        startAngle={0}
+        componentLength={count}
+        weights={weights}
+      >
+        <ContextCapture />
+      </CircleLayoutProvider>
+    );
+    return capturedContext;
+  };
+
+  it('equal weights produce same angles as uniform (full circle)', () => {
+    const uniform = renderProvider(3);
+    const weighted = renderProvider(3, 2 * Math.PI, [1, 1, 1]);
+
+    uniform.componentAngles.forEach((angle, i) => {
+      expect(weighted.componentAngles[i]).toBeCloseTo(angle, 5);
+    });
+    uniform.sectorAngles.forEach((sector, i) => {
+      expect(weighted.sectorAngles[i]).toBeCloseTo(sector, 5);
+    });
+  });
+
+  it('equal weights produce same angles as uniform (partial arc)', () => {
+    const sweep = Math.PI;
+    const uniform = renderProvider(3, sweep);
+    const weighted = renderProvider(3, sweep, [1, 1, 1]);
+
+    uniform.componentAngles.forEach((angle, i) => {
+      expect(weighted.componentAngles[i]).toBeCloseTo(angle, 5);
+    });
+  });
+
+  it('first component placed at startAngle with weights (full circle)', () => {
+    const ctx = renderProvider(3, 2 * Math.PI, [3, 1, 1]);
+    expect(ctx.componentAngles[0]).toBeCloseTo(0, 5);
+  });
+
+  it('last component at startAngle + sweepAngle (partial arc)', () => {
+    const sweep = Math.PI;
+    const ctx = renderProvider(3, sweep, [2, 1, 1]);
+    expect(ctx.componentAngles[ctx.componentAngles.length - 1]).toBeCloseTo(
+      sweep,
+      5
+    );
+  });
+
+  it('sector angles are proportional to weights', () => {
+    const ctx = renderProvider(2, 2 * Math.PI, [2, 1]);
+    expect(ctx.sectorAngles[0]! / ctx.sectorAngles[1]!).toBeCloseTo(2, 5);
+  });
+
+  it('sector angles sum to sweepAngle (full circle)', () => {
+    const ctx = renderProvider(3, 2 * Math.PI, [3, 1, 2]);
+    const sum = ctx.sectorAngles.reduce((a, b) => a + b, 0);
+    expect(sum).toBeCloseTo(2 * Math.PI, 5);
   });
 });
