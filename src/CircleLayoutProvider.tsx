@@ -15,13 +15,14 @@ type CircleLayoutProviderProps = Required<
     | 'animationProps'
     | 'bgConfig'
     | 'animationDriver'
+    | 'weights'
   > & {
     componentLength: number;
   }
 > &
   Pick<
     CircleLayoutProps<AnimationDriver>,
-    'animationProps' | 'animationDriver'
+    'animationProps' | 'animationDriver' | 'weights'
   >;
 /**
  * A component that places a list of components in a circular layout.
@@ -33,6 +34,7 @@ type CircleLayoutProviderProps = Required<
  * @param props.children The child components to be rendered inside the circle layout.
  * @param props.animationProps The props for the animation.
  * @param props.animationDriver The animation driver used to power animations. Defaults to {@link rnAnimatedDriver}.
+ * @param props.weights Optional weights for data-proportional angular placement.
  * @see AnimationProps
  * @returns A component that places the passed components in a circular view.
  */
@@ -44,6 +46,7 @@ export const CircleLayoutProvider = ({
   children,
   animationProps,
   animationDriver = rnAnimatedDriver,
+  weights,
 }: React.PropsWithChildren<CircleLayoutProviderProps>) => {
   const isCompleteCircle = useMemo(
     () => Math.abs(sweepAngle - 2 * Math.PI) < 0.001,
@@ -56,6 +59,27 @@ export const CircleLayoutProvider = ({
     [componentLength, isCompleteCircle]
   );
 
+  const { sectorAngles, componentAngles } = React.useMemo(() => {
+    if (weights && weights.length === componentLength) {
+      const totalWeight = weights.reduce((sum, w) => sum + w, 0);
+      const sectors = weights.map((w) => (w / totalWeight) * sweepAngle);
+      let cumulative = startAngle;
+      const angles = sectors.map((s) => {
+        const angle = (cumulative + s / 2) % (2 * Math.PI);
+        cumulative += s;
+        return angle;
+      });
+      return { sectorAngles: sectors, componentAngles: angles };
+    }
+    const uniformSector = sweepAngle / totalParts;
+    const sectors = Array<number>(componentLength).fill(uniformSector);
+    const angles = Array.from(
+      { length: componentLength },
+      (_, i) => (startAngle + uniformSector * i) % (2 * Math.PI)
+    );
+    return { sectorAngles: sectors, componentAngles: angles };
+  }, [weights, componentLength, sweepAngle, startAngle, totalParts]);
+
   /**
    * The value passed to the context of the circle layout.
    */
@@ -66,15 +90,17 @@ export const CircleLayoutProvider = ({
       startAngle,
       animationProps,
       animationDriver,
-      sectorAngle: sweepAngle / totalParts,
+      sectorAngles,
+      componentAngles,
     }),
     [
       animationDriver,
       animationProps,
       radius,
       startAngle,
-      sweepAngle,
       totalParts,
+      sectorAngles,
+      componentAngles,
     ]
   );
 

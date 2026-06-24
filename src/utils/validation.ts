@@ -25,6 +25,17 @@ export function validateProps<D extends AnimationDriver>(
     errors.push('Sweep angle cannot be 0');
   }
 
+  if (props.weights !== undefined) {
+    if (props.weights.length !== props.components.length) {
+      errors.push(
+        `Weights length (${props.weights.length}) must match components length (${props.components.length})`
+      );
+    }
+    if (props.weights.some((w) => w <= 0)) {
+      errors.push('All weights must be greater than 0');
+    }
+  }
+
   if (errors.length > 0) {
     throw new Error(errors.join('\n'));
   }

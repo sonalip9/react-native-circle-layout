@@ -187,6 +187,14 @@ export type CircleLayoutProps<
    * @see AnimationDriver
    */
   animationDriver?: D;
+  /**
+   * Optional weights for data-proportional angular placement. Each weight
+   * controls the angular share of the corresponding component. When omitted,
+   * all components receive equal spacing. Length must match `components`.
+   * All values must be greater than 0.
+   * @default undefined
+   */
+  weights?: number[];
 };
 
 export type CircleLayoutRef = {
@@ -271,10 +279,15 @@ export type CircleLayoutContextType<
    */
   animationDriver: D;
   /**
-   * The angle in radians between the position of 2 consecutive components on the circle.
-   * This value is calculated by dividing the sweepAngle by the total number of parts.
+   * The absolute angle (in radians) at which each component is placed.
+   * Length equals the number of components.
    */
-  sectorAngle: number;
+  componentAngles: number[];
+  /**
+   * The angular width (in radians) of each component's sector.
+   * Length equals the number of components.
+   */
+  sectorAngles: number[];
 };
 
 export type Layout = {

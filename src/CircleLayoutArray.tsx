@@ -78,7 +78,7 @@ function CircleLayoutArray({
     setMinComponentLayout(minLayout);
   }, [componentLayouts, setMinComponentLayout, sweepAngle]);
 
-  const { startAngle, totalParts, sectorAngle } = use(CircleLayoutContext);
+  const { startAngle, totalParts, componentAngles } = use(CircleLayoutContext);
 
   /**
    * The instance value that is exposed to parent components when using ref.
@@ -111,7 +111,7 @@ function CircleLayoutArray({
   }, [startAngle, sweepAngle, totalParts, isComponentsVisible]);
 
   return components.map((component, index) => {
-    const angle = (startAngle + sectorAngle * index) % (2 * Math.PI);
+    const angle = componentAngles[index]!;
     return (
       <CircleLayoutComponent
         component={component}

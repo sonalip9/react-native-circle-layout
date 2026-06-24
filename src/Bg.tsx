@@ -23,8 +23,8 @@ export const Bg = ({
   isVisible?: boolean;
 } & BgConfig) => {
   const {
-    startAngle,
-    sectorAngle,
+    sectorAngles,
+    componentAngles,
     animationDriver: driver,
   } = use(CircleLayoutContext);
 
@@ -39,12 +39,13 @@ export const Bg = ({
   );
 
   const { startAngleInRadians, endAngleInRadians } = useMemo(() => {
-    const angle = startAngle + index * sectorAngle;
+    const angle = componentAngles[index]!;
+    const sector = sectorAngles[index]!;
     return {
-      startAngleInRadians: angle - sectorAngle / 2,
-      endAngleInRadians: angle + sectorAngle / 2,
+      startAngleInRadians: angle - sector / 2,
+      endAngleInRadians: angle + sector / 2,
     };
-  }, [startAngle, sectorAngle, index]);
+  }, [componentAngles, sectorAngles, index]);
 
   const { size, center } = useMemo(() => {
     const padding = 0;
