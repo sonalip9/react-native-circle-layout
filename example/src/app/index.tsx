@@ -1,4 +1,3 @@
-import { AppContext } from '@/AppContext';
 import * as React from 'react';
 import { use } from 'react';
 import {
@@ -15,6 +14,7 @@ import {
   type CircleLayoutRef,
 } from 'react-native-circle-layout';
 
+import { AppContext } from '../AppContext';
 import { Button, Text, View } from '../design_system/atoms';
 import { Dropdown, SliderWithLabel, Switch } from '../design_system/molecules';
 import theme, { palette } from '../design_system/style';
