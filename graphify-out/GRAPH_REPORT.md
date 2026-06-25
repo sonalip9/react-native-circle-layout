@@ -1,16 +1,16 @@
 # Graph Report - react-native-circle-layout  (2026-06-25)
 
 ## Corpus Check
-- 83 files · ~46,523 words
+- 83 files · ~46,525 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 607 nodes · 861 edges · 52 communities (37 shown, 15 thin omitted)
+- 608 nodes · 862 edges · 48 communities (33 shown, 15 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `56d18a30`
+- Built from commit: `9947b1dc`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,12 +31,8 @@
 - [[_COMMUNITY_Architecture Decisions|Architecture Decisions]]
 - [[_COMMUNITY_Agent Architecture Refs|Agent Architecture Refs]]
 - [[_COMMUNITY_Metro Bundler Config|Metro Bundler Config]]
-- [[_COMMUNITY_Agent Type Definitions|Agent Type Definitions]]
-- [[_COMMUNITY_Domain Glossary|Domain Glossary]]
 - [[_COMMUNITY_Package Scripts|Package Scripts]]
-- [[_COMMUNITY_README API Types|README API Types]]
 - [[_COMMUNITY_TotalParts Invariant|TotalParts Invariant]]
-- [[_COMMUNITY_Agent Component Docs|Agent Component Docs]]
 - [[_COMMUNITY_Grid-to-Circle Morph|Grid-to-Circle Morph]]
 - [[_COMMUNITY_Agent Issue System|Agent Issue System]]
 - [[_COMMUNITY_Prettier Config|Prettier Config]]
@@ -95,7 +91,7 @@
 - **Animation Hook Pipeline** — agents_circlelayoutcomponent, agents_useanimation, agents_usecombinedanimation, agents_useanimatedsectorpath [EXTRACTED 1.00]
 - **Agent Skills System** — agents_issue_tracker, agents_triage_labels, agents_domain_docs, agents_github_issues [EXTRACTED 1.00]
 
-## Communities (52 total, 15 thin omitted)
+## Communities (48 total, 15 thin omitted)
 
 ### Community 0 - "Example App Screens"
 Cohesion: 0.08
@@ -103,15 +99,15 @@ Nodes (25): AnimationCombinationType, AnimationConfig, `animationProps`, Animati
 
 ### Community 1 - "Core Layout & Animation"
 Cohesion: 0.06
-Nodes (50): rnAnimatedDriver, RNAnimationConfig, AnimatedNode, AnimationDriver, DriverComposite, DriverConfig, DriverValue, colorOptions (+42 more)
+Nodes (48): rnAnimatedDriver, RNAnimationConfig, AnimationDriver, DriverComposite, DriverConfig, DriverValue, Icon, icons (+40 more)
 
 ### Community 2 - "Design System Components"
 Cohesion: 0.07
-Nodes (36): Button, ButtonComponent(), ButtonComponentProps, ButtonProps, Props, ResolvedStyle, RestyleProps, Dropdown (+28 more)
+Nodes (37): colorOptions, Button, ButtonComponent(), ButtonComponentProps, ButtonProps, Props, ResolvedStyle, RestyleProps (+29 more)
 
 ### Community 3 - "Dev Dependencies & Turbo"
-Cohesion: 0.04
-Nodes (44): devDependencies, commitlint, @commitlint/config-conventional, del-cli, eslint, @eslint-community/eslint-plugin-eslint-comments, @eslint/compat, eslint-config-prettier (+36 more)
+Cohesion: 0.06
+Nodes (32): devDependencies, commitlint, @commitlint/config-conventional, del-cli, eslint, @eslint-community/eslint-plugin-eslint-comments, @eslint/compat, eslint-config-prettier (+24 more)
 
 ### Community 4 - "Example App Dependencies"
 Cohesion: 0.06
@@ -122,8 +118,8 @@ Cohesion: 0.06
 Nodes (30): backgroundColor, backgroundImage, foregroundImage, monochromeImage, adaptiveIcon, package, predictiveBackGestureEnabled, projectId (+22 more)
 
 ### Community 6 - "Circle Math & Geometry"
-Cohesion: 0.15
-Nodes (18): center, UseAnimatedSectorPath, CirclePosition, CirclePositionsConfig, computePosition(), useCirclePosition(), useCirclePositions(), CirclePathProps (+10 more)
+Cohesion: 0.14
+Nodes (19): AnimatedNode, center, UseAnimatedSectorPath, CirclePosition, CirclePositionsConfig, computePosition(), useCirclePosition(), useCirclePositions() (+11 more)
 
 ### Community 7 - "TypeScript Config"
 Cohesion: 0.07
@@ -150,40 +146,24 @@ Cohesion: 0.17
 Nodes (12): commitMessage, tagName, release, publish, @release-it/conventional-changelog, name, release-it, preset (+4 more)
 
 ### Community 14 - "Architecture Decisions"
-Cohesion: 0.20
-Nodes (11): ADR-0001: Imperative ref API for show/hide, Consequences, Decision, Rationale, entry animation, exit animation, CircleLayout (exported component), CircleLayoutRef (type) (+3 more)
+Cohesion: 0.08
+Nodes (28): ADR-0001: Imperative ref API for show/hide, Consequences, Decision, Rationale, src/utils/circle.ts, animation gap, center component, circle layout (glossary term) (+20 more)
 
 ### Community 15 - "Agent Architecture Refs"
-Cohesion: 0.33
-Nodes (6): CircleLayout Component, Polar-to-Cartesian Conversion, Public API Surface, useAnimation Hook, useCombinedAnimation Hook, pnpm Workspace Config
+Cohesion: 0.14
+Nodes (13): turbo, env, inputs, outputs, env, inputs, outputs, globalDependencies (+5 more)
 
 ### Community 16 - "Metro Bundler Config"
 Cohesion: 0.33
 Nodes (5): config, { getDefaultConfig }, path, root, { withMetroConfig }
 
-### Community 17 - "Agent Type Definitions"
-Cohesion: 0.25
-Nodes (8): AnimationCombinationType, AnimationConfig, AnimationType, BgConfig, CircleLayoutProps, CircleLayoutRef, src/index.tsx (public API), animation combination type (glossary)
-
-### Community 18 - "Domain Glossary"
-Cohesion: 0.18
-Nodes (11): src/utils/circle.ts, animation gap, center component, circle layout (glossary term), Domain Context - react-native-circle-layout, polar-to-Cartesian, start angle, sweep angle (+3 more)
-
 ### Community 19 - "Package Scripts"
 Cohesion: 0.25
 Nodes (8): scripts, clean, example, lint, prepare, release, test, typecheck
 
-### Community 20 - "README API Types"
-Cohesion: 0.33
-Nodes (6): AnimationCombinationType (enum, README), AnimationConfig (type, README), AnimationProps (type), AnimationType (enum, README), BgConfig (type, README), CircleLayoutProps (type)
-
 ### Community 21 - "TotalParts Invariant"
-Cohesion: 0.20
-Nodes (10): ADR-0002: totalParts invariant for partial arcs, Consequences, Decision, Rationale, ADR 0002 - totalParts Invariant for Partial Arcs, CircleLayoutProvider, React Context for Shared Props, totalParts invariant (+2 more)
-
-### Community 22 - "Agent Component Docs"
-Cohesion: 0.20
-Nodes (10): Bg (Background Sector), Bg[] (background sectors), CircleLayoutArray, CircleLayoutComponent (wrapper), CircleLayoutContent, CircleLayoutContext, useAnimatedSectorPath, useAnimation (+2 more)
+Cohesion: 0.06
+Nodes (34): ADR-0002: totalParts invariant for partial arcs, Consequences, Decision, Rationale, ADR 0002 - totalParts Invariant for Partial Arcs, AnimationCombinationType, AnimationConfig, AnimationType (+26 more)
 
 ### Community 23 - "Grid-to-Circle Morph"
 Cohesion: 0.29
@@ -226,24 +206,24 @@ Cohesion: 0.67
 Nodes (3): repository, type, url
 
 ## Knowledge Gaps
-- **341 isolated node(s):** `flatCompat`, `name`, `slug`, `version`, `orientation` (+336 more)
+- **342 isolated node(s):** `name`, `version`, `description`, `main`, `source` (+337 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **15 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Domain Context - react-native-circle-layout` connect `Domain Glossary` to `CI/CD & Workflows`, `Agent Documentation`, `Architecture Decisions`, `Agent Type Definitions`, `TotalParts Invariant`?**
-  _High betweenness centrality (0.026) - this node is a cross-community bridge._
-- **Why does `devDependencies` connect `Dev Dependencies & Turbo` to `Package Metadata`?**
+- **Why does `Domain Context - react-native-circle-layout` connect `Architecture Decisions` to `CI/CD & Workflows`, `Agent Documentation`, `TotalParts Invariant`?**
+  _High betweenness centrality (0.025) - this node is a cross-community bridge._
+- **Why does `devDependencies` connect `Dev Dependencies & Turbo` to `Package Metadata`, `Agent Architecture Refs`?**
+  _High betweenness centrality (0.022) - this node is a cross-community bridge._
+- **Why does `react-native-circle-layout` connect `Agent Documentation` to `TotalParts Invariant`, `Architecture Decisions`?**
   _High betweenness centrality (0.021) - this node is a cross-community bridge._
-- **Why does `react-native-circle-layout` connect `Agent Documentation` to `Domain Glossary`, `TotalParts Invariant`?**
-  _High betweenness centrality (0.021) - this node is a cross-community bridge._
-- **What connects `flatCompat`, `name`, `slug` to the rest of the system?**
-  _343 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `name`, `version`, `description` to the rest of the system?**
+  _344 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Example App Screens` be split into smaller, more focused modules?**
   _Cohesion score 0.07692307692307693 - nodes in this community are weakly interconnected._
 - **Should `Core Layout & Animation` be split into smaller, more focused modules?**
-  _Cohesion score 0.0602655771195097 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06330532212885154 - nodes in this community are weakly interconnected._
 - **Should `Design System Components` be split into smaller, more focused modules?**
-  _Cohesion score 0.0677555958862674 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06557377049180328 - nodes in this community are weakly interconnected._
