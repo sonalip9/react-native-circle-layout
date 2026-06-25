@@ -2,13 +2,12 @@ import {
   AntDesign,
   type AntDesignIconName,
 } from '@react-native-vector-icons/ant-design';
-import * as React from 'react';
+import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import {
   AnimationCombinationType,
   AnimationType,
   CircleLayout,
-  type CircleLayoutRef,
 } from 'react-native-circle-layout';
 
 import { View } from '../design_system/atoms';
@@ -20,20 +19,12 @@ const SECTION_ANGLE = (2 * Math.PI) / icons.length;
 const subIcons: Icon[] = ['group', 'idcard', 'phone', 'camera'];
 
 const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
-  const circleLayoutRef = React.useRef<CircleLayoutRef>(null);
-  const [showCircleComponent, setShowCircleComponent] = React.useState(false);
-
-  React.useEffect(() => {
-    if (showCircleComponent) {
-      circleLayoutRef.current?.showComponents();
-    } else {
-      circleLayoutRef.current?.hideComponents();
-    }
-  }, [showCircleComponent]);
+  const [showCircleComponent, setShowCircleComponent] = useState(false);
 
   return (
     <View style={{ transform: [{ rotate: `${rotation}rad` }] }}>
       <CircleLayout
+        visible={showCircleComponent}
         centerComponent={
           <TouchableOpacity>
             <AntDesign
@@ -67,7 +58,6 @@ const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
           },
         }}
         radius={60}
-        ref={circleLayoutRef}
         startAngle={SECTION_ANGLE / 2}
         sweepAngle={SECTION_ANGLE * 2}
         bgConfig={{ color: '#e8327b', outerRadius: 80, innerRadius: 40 }}
@@ -77,20 +67,12 @@ const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
 };
 
 const NestedRingMenu = () => {
-  const [showCircleComponent, setShowCircleComponent] = React.useState(false);
-  const circleLayoutRef = React.useRef<CircleLayoutRef>(null);
-
-  React.useEffect(() => {
-    if (showCircleComponent) {
-      circleLayoutRef.current?.showComponents();
-    } else {
-      circleLayoutRef.current?.hideComponents();
-    }
-  }, [showCircleComponent]);
+  const [showCircleComponent, setShowCircleComponent] = useState(false);
 
   return (
     <View style={{ flex: 1 }}>
       <CircleLayout
+        visible={showCircleComponent}
         centerComponent={
           <AntDesign
             color="white"
@@ -118,7 +100,6 @@ const NestedRingMenu = () => {
           },
         }}
         radius={120}
-        ref={circleLayoutRef}
         startAngle={0}
         sweepAngle={Math.PI * 2}
         bgConfig={{ color: '#e8327bc0', innerRadius: 40, outerRadius: 120 }}

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import {
   color,
   createRestyleComponent,
@@ -48,7 +48,7 @@ const DropdownComponent = ({
   label,
   ...variantProps
 }: DropdownComponentProps) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const containerStyle = resolveStyles(style);
 
   const handleSelect = (optionValue: string) => {

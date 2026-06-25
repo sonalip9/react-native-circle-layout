@@ -1,11 +1,10 @@
 import { AntDesign } from '@react-native-vector-icons/ant-design';
-import * as React from 'react';
+import { use, useState } from 'react';
 
 import {
   AnimationCombinationType,
   AnimationType,
   CircleLayout,
-  type CircleLayoutRef,
 } from 'react-native-circle-layout';
 
 import { AppContext } from '../AppContext';
@@ -17,21 +16,13 @@ type Icon = 'delete' | 'edit' | 'home' | 'star';
 
 const RadialMenu = () => {
   const icons: Icon[] = ['edit', 'home', 'star', 'delete'];
-  const [showCircleComponent, setShowCircleComponent] = React.useState(false);
-  const circleLayoutRef = React.useRef<CircleLayoutRef>(null);
-  const { showPopUp } = React.use(AppContext);
-
-  React.useEffect(() => {
-    if (showCircleComponent) {
-      circleLayoutRef.current?.showComponents();
-    } else {
-      circleLayoutRef.current?.hideComponents();
-    }
-  }, [showCircleComponent]);
+  const [showCircleComponent, setShowCircleComponent] = useState(false);
+  const { showPopUp } = use(AppContext);
 
   return (
     <View flex={1}>
       <CircleLayout
+        visible={showCircleComponent}
         centerComponent={
           <TouchableOpacity
             style={{
@@ -75,7 +66,6 @@ const RadialMenu = () => {
           },
         }}
         radius={100}
-        ref={circleLayoutRef}
         startAngle={0}
         sweepAngle={Math.PI}
       />
