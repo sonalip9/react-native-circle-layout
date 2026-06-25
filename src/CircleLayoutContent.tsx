@@ -1,4 +1,10 @@
-import { useImperativeHandle, useMemo, useRef, useState } from 'react';
+import {
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { type StyleProp, type ViewStyle, Animated, View } from 'react-native';
 import CircleLayoutArray from './CircleLayoutArray';
 import type {
@@ -58,6 +64,7 @@ function resolveBgConfig(bgConfig: BgConfig, index: number): ResolvedBgConfig {
  * @param props.bgConfig The configuration for the background of the circle layout.
  * @param props.sweepAngle The distance in radians to be covered from the starting point. The
  * value needs to be in radians.
+ * @param props.visible Declarative visibility control. When defined, overrides imperative ref API.
  * @param props.ref The ref that is used to expose the show and hide function of the
  * component to parent components.
  * @returns The content of the CircleLayout component which contains the
@@ -72,6 +79,7 @@ export function CircleLayoutContent({
   centerComponentContainerStyle,
   sweepAngle,
   bgConfig,
+  visible,
   ref,
 }: {
   radius: number;
@@ -81,9 +89,11 @@ export function CircleLayoutContent({
   centerComponentContainerStyle?: StyleProp<ViewStyle> | undefined;
   sweepAngle: number;
   bgConfig?: BgConfig;
+  visible?: boolean;
 } & React.RefAttributes<CircleLayoutRef>) {
   const componentLayoutArrayRef = useRef<CircleLayoutRef>(null);
-  const [componentVisible, setComponentVisible] = useState(false);
+  const [imperativeVisible, setImperativeVisible] = useState(false);
+  const componentVisible = visible ?? imperativeVisible;
 
   const [minComponentLayout, setMinComponentLayout] = React.useState<Layout>({
     height: 0,
@@ -108,15 +118,24 @@ export function CircleLayoutContent({
     () => ({
       hideComponents: () => {
         componentLayoutArrayRef.current?.hideComponents();
-        setComponentVisible(false);
+        setImperativeVisible(false);
       },
       showComponents: () => {
         componentLayoutArrayRef.current?.showComponents();
-        setComponentVisible(true);
+        setImperativeVisible(true);
       },
     }),
-    [setComponentVisible]
+    [setImperativeVisible]
   );
+
+  useEffect(() => {
+    if (visible === undefined) return;
+    if (visible) {
+      componentLayoutArrayRef.current?.showComponents();
+    } else {
+      componentLayoutArrayRef.current?.hideComponents();
+    }
+  }, [visible]);
 
   return (
     <View

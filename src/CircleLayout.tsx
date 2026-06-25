@@ -39,6 +39,7 @@ export const CircleLayout = <D extends AnimationDriver>({
     animationDriver,
     bgConfig,
     weights,
+    visible,
   } = validateProps<D>(circleLayoutProps);
 
   return (
@@ -60,6 +61,7 @@ export const CircleLayout = <D extends AnimationDriver>({
         centerComponentContainerStyle={centerComponentContainerStyle}
         sweepAngle={sweepAngle}
         bgConfig={bgConfig}
+        visible={visible}
       />
     </CircleLayoutProvider>
   );

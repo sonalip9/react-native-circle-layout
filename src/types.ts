@@ -209,6 +209,14 @@ export type CircleLayoutProps<
    * @default undefined
    */
   weights?: number[];
+  /**
+   * Declarative visibility control for the circle layout components.
+   * When `true`, components are shown (animated in); when `false`, they
+   * are hidden (animated out). When `undefined`, visibility is controlled
+   * imperatively via the ref's `showComponents`/`hideComponents` methods.
+   * @default undefined
+   */
+  visible?: boolean;
 };
 
 export type CircleLayoutRef = {

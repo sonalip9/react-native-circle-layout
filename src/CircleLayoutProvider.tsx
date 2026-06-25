@@ -16,6 +16,7 @@ type CircleLayoutProviderProps = Required<
     | 'bgConfig'
     | 'animationDriver'
     | 'weights'
+    | 'visible'
   > & {
     componentLength: number;
   }
