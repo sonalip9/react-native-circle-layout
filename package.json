@@ -88,6 +88,7 @@
     "react-native": "0.85.3",
     "react-native-builder-bob": "^0.42.1",
     "react-native-svg": "^15.15.5",
+    "react-test-renderer": "19.2.6",
     "release-it": "^20.2.0",
     "turbo": "^2.9.18",
     "typescript": "^6.0.3",
