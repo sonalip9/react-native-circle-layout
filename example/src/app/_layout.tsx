@@ -2,7 +2,7 @@ import { Drawer } from 'expo-router/drawer';
 
 import { ThemeProvider } from '@shopify/restyle';
 import { StatusBar } from 'expo-status-bar';
-import * as React from 'react';
+import { useMemo, useState } from 'react';
 
 import { AppContext, type AppContextValue } from '../AppContext';
 import { PopUp } from '../design_system/molecules';
@@ -10,8 +10,8 @@ import type { PopUpProps } from '../design_system/molecules/';
 import theme from '../design_system/style';
 
 const App = () => {
-  const [popUp, setPopUp] = React.useState<PopUpProps | undefined>();
-  const contextValue: AppContextValue = React.useMemo(
+  const [popUp, setPopUp] = useState<PopUpProps | undefined>();
+  const contextValue: AppContextValue = useMemo(
     () => ({
       closePopUp: () => setPopUp(undefined),
       showPopUp: (popUpProps: PopUpProps) => setPopUp(popUpProps),

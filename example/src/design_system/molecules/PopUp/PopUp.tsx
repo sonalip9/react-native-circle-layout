@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { use, useEffect } from 'react';
 
 import { AppContext } from '../../../AppContext';
 import { Text } from '../../atoms/Text';
@@ -9,9 +9,9 @@ export type PopUpProps = {
 };
 
 const PopUp = ({ message }: PopUpProps) => {
-  const { closePopUp } = React.use(AppContext);
+  const { closePopUp } = use(AppContext);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const id = setTimeout(() => {
       closePopUp();
     }, 1000 * 5);
