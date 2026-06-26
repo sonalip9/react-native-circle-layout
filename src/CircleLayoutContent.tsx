@@ -117,15 +117,17 @@ export function CircleLayoutContent({
     ref,
     () => ({
       hideComponents: () => {
+        if (visible !== undefined) return;
         componentLayoutArrayRef.current?.hideComponents();
         setImperativeVisible(false);
       },
       showComponents: () => {
+        if (visible !== undefined) return;
         componentLayoutArrayRef.current?.showComponents();
         setImperativeVisible(true);
       },
     }),
-    [setImperativeVisible]
+    [visible, setImperativeVisible]
   );
 
   useEffect(() => {

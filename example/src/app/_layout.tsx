@@ -6,7 +6,7 @@ import { useMemo, useState } from 'react';
 
 import { AppContext, type AppContextValue } from '../AppContext';
 import { PopUp } from '../design_system/molecules';
-import type { PopUpProps } from '../design_system/molecules/';
+import type { PopUpProps } from '../design_system/molecules';
 import theme from '../design_system/style';
 
 const App = () => {
