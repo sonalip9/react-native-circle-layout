@@ -15,7 +15,7 @@
     "semantic_hash": "6b7d4d83f53a2cad285a420b502f4c6c"
   },
   "example/app.json": {
-    "mtime": 1782361890.1638296,
+    "mtime": 1782488684.6069305,
     "ast_hash": "8f1199a1677f21137b8f1de6a0fa0b15",
     "semantic_hash": "8f1199a1677f21137b8f1de6a0fa0b15"
   },
@@ -28,11 +28,6 @@
     "mtime": 1782360001.4785404,
     "ast_hash": "287d6e9a51a34628496d0f28b4b46493",
     "semantic_hash": "287d6e9a51a34628496d0f28b4b46493"
-  },
-  "example/index.js": {
-    "mtime": 1782361882.8699977,
-    "ast_hash": "f1bc12b5bbd3720e98c959425ff86c6e",
-    "semantic_hash": "f1bc12b5bbd3720e98c959425ff86c6e"
   },
   "example/metro.config.js": {
     "mtime": 1782361882.8445935,
@@ -175,8 +170,8 @@
     "semantic_hash": "a0b3824435f13d9feebac2f62a10db6e"
   },
   "src/CircleLayoutContent.tsx": {
-    "mtime": 1782364665.5271883,
-    "ast_hash": "2320372c885c924ddd4601c59c5a820c",
+    "mtime": 1782487681.4663343,
+    "ast_hash": "b73506a125c965d1c8cd8a5185ec70f7",
     "semantic_hash": ""
   },
   "src/CircleLayoutContext.tsx": {
@@ -190,8 +185,8 @@
     "semantic_hash": ""
   },
   "src/__tests__/CircleLayout.test.tsx": {
-    "mtime": 1782360170.7743962,
-    "ast_hash": "2d4333e7b411b19208b77ccde65a5cba",
+    "mtime": 1782487746.5299103,
+    "ast_hash": "14ad7fd6eff244df06681b83c8fa4a13",
     "semantic_hash": ""
   },
   "src/__tests__/CircleLayoutArray.test.tsx": {
@@ -470,8 +465,8 @@
     "semantic_hash": ""
   },
   "example/src/app/_layout.tsx": {
-    "mtime": 1782364416.4923372,
-    "ast_hash": "aa23bf95446b93d3c7c6ac64e929f817",
+    "mtime": 1782487688.1901577,
+    "ast_hash": "775d8c29cf38cd0f7675bbd62b519c54",
     "semantic_hash": ""
   },
   "example/src/app/index.tsx": {

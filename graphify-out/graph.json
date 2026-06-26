@@ -56,9 +56,9 @@
       "source_file": "example/src/app/NestedRingMenu.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "app_nestedringmenu",
       "community": 1,
-      "norm_label": "nestedringmenu.tsx"
+      "norm_label": "nestedringmenu.tsx",
+      "id": "app_nestedringmenu"
     },
     {
       "label": "Icon",
@@ -66,9 +66,9 @@
       "source_file": "example/src/app/NestedRingMenu.tsx",
       "source_location": "L15",
       "_origin": "ast",
-      "id": "app_nestedringmenu_icon",
       "community": 1,
-      "norm_label": "icon"
+      "norm_label": "icon",
+      "id": "app_nestedringmenu_icon"
     },
     {
       "label": "icons",
@@ -76,9 +76,9 @@
       "source_file": "example/src/app/NestedRingMenu.tsx",
       "source_location": "L17",
       "_origin": "ast",
-      "id": "app_nestedringmenu_icons",
       "community": 1,
-      "norm_label": "icons"
+      "norm_label": "icons",
+      "id": "app_nestedringmenu_icons"
     },
     {
       "label": "subIcons",
@@ -86,9 +86,9 @@
       "source_file": "example/src/app/NestedRingMenu.tsx",
       "source_location": "L19",
       "_origin": "ast",
-      "id": "app_nestedringmenu_subicons",
       "community": 1,
-      "norm_label": "subicons"
+      "norm_label": "subicons",
+      "id": "app_nestedringmenu_subicons"
     },
     {
       "label": "Component()",
@@ -96,9 +96,9 @@
       "source_file": "example/src/app/NestedRingMenu.tsx",
       "source_location": "L21",
       "_origin": "ast",
-      "id": "app_nestedringmenu_component",
       "community": 1,
-      "norm_label": "component()"
+      "norm_label": "component()",
+      "id": "app_nestedringmenu_component"
     },
     {
       "label": "NestedRingMenu()",
@@ -106,9 +106,9 @@
       "source_file": "example/src/app/NestedRingMenu.tsx",
       "source_location": "L69",
       "_origin": "ast",
-      "id": "app_nestedringmenu_nestedringmenu",
       "community": 1,
-      "norm_label": "nestedringmenu()"
+      "norm_label": "nestedringmenu()",
+      "id": "app_nestedringmenu_nestedringmenu"
     },
     {
       "label": "RadialMenu.tsx",
@@ -116,9 +116,9 @@
       "source_file": "example/src/app/RadialMenu.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "app_radialmenu",
       "community": 1,
-      "norm_label": "radialmenu.tsx"
+      "norm_label": "radialmenu.tsx",
+      "id": "app_radialmenu"
     },
     {
       "label": "Icon",
@@ -126,9 +126,9 @@
       "source_file": "example/src/app/RadialMenu.tsx",
       "source_location": "L15",
       "_origin": "ast",
-      "id": "app_radialmenu_icon",
       "community": 1,
-      "norm_label": "icon"
+      "norm_label": "icon",
+      "id": "app_radialmenu_icon"
     },
     {
       "label": "RadialMenu()",
@@ -136,9 +136,9 @@
       "source_file": "example/src/app/RadialMenu.tsx",
       "source_location": "L17",
       "_origin": "ast",
-      "id": "app_radialmenu_radialmenu",
       "community": 1,
-      "norm_label": "radialmenu()"
+      "norm_label": "radialmenu()",
+      "id": "app_radialmenu_radialmenu"
     },
     {
       "label": "_layout.tsx",
@@ -146,9 +146,9 @@
       "source_file": "example/src/app/_layout.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "app_layout",
       "community": 2,
-      "norm_label": "_layout.tsx"
+      "norm_label": "_layout.tsx",
+      "id": "app_layout"
     },
     {
       "label": "App()",
@@ -156,9 +156,9 @@
       "source_file": "example/src/app/_layout.tsx",
       "source_location": "L12",
       "_origin": "ast",
-      "id": "app_layout_app",
       "community": 2,
-      "norm_label": "app()"
+      "norm_label": "app()",
+      "id": "app_layout_app"
     },
     {
       "label": "index.tsx",
@@ -166,9 +166,9 @@
       "source_file": "example/src/app/index.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "app_index",
       "community": 2,
-      "norm_label": "index.tsx"
+      "norm_label": "index.tsx",
+      "id": "app_index"
     },
     {
       "label": "colorOptions",
@@ -176,9 +176,9 @@
       "source_file": "example/src/app/index.tsx",
       "source_location": "L20",
       "_origin": "ast",
-      "id": "app_index_coloroptions",
       "community": 2,
-      "norm_label": "coloroptions"
+      "norm_label": "coloroptions",
+      "id": "app_index_coloroptions"
     },
     {
       "label": "State",
@@ -186,9 +186,9 @@
       "source_file": "example/src/app/index.tsx",
       "source_location": "L27",
       "_origin": "ast",
-      "id": "app_index_state",
       "community": 2,
-      "norm_label": "state"
+      "norm_label": "state",
+      "id": "app_index_state"
     },
     {
       "label": "initialState",
@@ -196,9 +196,9 @@
       "source_file": "example/src/app/index.tsx",
       "source_location": "L49",
       "_origin": "ast",
-      "id": "app_index_initialstate",
       "community": 2,
-      "norm_label": "initialstate"
+      "norm_label": "initialstate",
+      "id": "app_index_initialstate"
     },
     {
       "label": "Action",
@@ -206,9 +206,9 @@
       "source_file": "example/src/app/index.tsx",
       "source_location": "L75",
       "_origin": "ast",
-      "id": "app_index_action",
       "community": 2,
-      "norm_label": "action"
+      "norm_label": "action",
+      "id": "app_index_action"
     },
     {
       "label": "reducer()",
@@ -216,9 +216,9 @@
       "source_file": "example/src/app/index.tsx",
       "source_location": "L80",
       "_origin": "ast",
-      "id": "app_index_reducer",
       "community": 2,
-      "norm_label": "reducer()"
+      "norm_label": "reducer()",
+      "id": "app_index_reducer"
     },
     {
       "label": "Playground()",
@@ -226,9 +226,9 @@
       "source_file": "example/src/app/index.tsx",
       "source_location": "L91",
       "_origin": "ast",
-      "id": "app_index_playground",
       "community": 2,
-      "norm_label": "playground()"
+      "norm_label": "playground()",
+      "id": "app_index_playground"
     },
     {
       "label": "Dropdown.tsx",
@@ -236,9 +236,9 @@
       "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "dropdown_dropdown",
       "community": 2,
-      "norm_label": "dropdown.tsx"
+      "norm_label": "dropdown.tsx",
+      "id": "dropdown_dropdown"
     },
     {
       "label": "DropdownOption",
@@ -246,9 +246,9 @@
       "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
       "source_location": "L15",
       "_origin": "ast",
-      "id": "dropdown_dropdown_dropdownoption",
       "community": 2,
-      "norm_label": "dropdownoption"
+      "norm_label": "dropdownoption",
+      "id": "dropdown_dropdown_dropdownoption"
     },
     {
       "label": "SingleSelectProps",
@@ -256,9 +256,9 @@
       "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
       "source_location": "L20",
       "_origin": "ast",
-      "id": "dropdown_dropdown_singleselectprops",
       "community": 2,
-      "norm_label": "singleselectprops"
+      "norm_label": "singleselectprops",
+      "id": "dropdown_dropdown_singleselectprops"
     },
     {
       "label": "MultipleSelectProps",
@@ -266,9 +266,9 @@
       "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
       "source_location": "L26",
       "_origin": "ast",
-      "id": "dropdown_dropdown_multipleselectprops",
       "community": 2,
-      "norm_label": "multipleselectprops"
+      "norm_label": "multipleselectprops",
+      "id": "dropdown_dropdown_multipleselectprops"
     },
     {
       "label": "DropdownOwnProps",
@@ -276,9 +276,9 @@
       "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
       "source_location": "L33",
       "_origin": "ast",
-      "id": "dropdown_dropdown_dropdownownprops",
       "community": 2,
-      "norm_label": "dropdownownprops"
+      "norm_label": "dropdownownprops",
+      "id": "dropdown_dropdown_dropdownownprops"
     },
     {
       "label": "DropdownComponentProps",
@@ -286,9 +286,9 @@
       "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
       "source_location": "L40",
       "_origin": "ast",
-      "id": "dropdown_dropdown_dropdowncomponentprops",
       "community": 2,
-      "norm_label": "dropdowncomponentprops"
+      "norm_label": "dropdowncomponentprops",
+      "id": "dropdown_dropdown_dropdowncomponentprops"
     },
     {
       "label": "DropdownComponent()",
@@ -296,9 +296,9 @@
       "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
       "source_location": "L43",
       "_origin": "ast",
-      "id": "dropdown_dropdown_dropdowncomponent",
       "community": 2,
-      "norm_label": "dropdowncomponent()"
+      "norm_label": "dropdowncomponent()",
+      "id": "dropdown_dropdown_dropdowncomponent"
     },
     {
       "label": "DropdownProps",
@@ -306,9 +306,9 @@
       "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
       "source_location": "L194",
       "_origin": "ast",
-      "id": "dropdown_dropdown_dropdownprops",
       "community": 2,
-      "norm_label": "dropdownprops"
+      "norm_label": "dropdownprops",
+      "id": "dropdown_dropdown_dropdownprops"
     },
     {
       "label": "Dropdown",
@@ -316,9 +316,9 @@
       "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
       "source_location": "L196",
       "_origin": "ast",
-      "id": "dropdown_dropdown_dropdown",
       "community": 2,
-      "norm_label": "dropdown"
+      "norm_label": "dropdown",
+      "id": "dropdown_dropdown_dropdown"
     },
     {
       "label": "PopUp.tsx",
@@ -326,9 +326,9 @@
       "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "popup_popup",
       "community": 2,
-      "norm_label": "popup.tsx"
+      "norm_label": "popup.tsx",
+      "id": "popup_popup"
     },
     {
       "label": "PopUpProps",
@@ -336,9 +336,9 @@
       "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "popup_popup_popupprops",
       "community": 2,
-      "norm_label": "popupprops"
+      "norm_label": "popupprops",
+      "id": "popup_popup_popupprops"
     },
     {
       "label": "PopUp()",
@@ -346,9 +346,9 @@
       "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "popup_popup_popup",
       "community": 2,
-      "norm_label": "popup()"
+      "norm_label": "popup()",
+      "id": "popup_popup_popup"
     },
     {
       "label": "CircleLayout.tsx",
@@ -1949,16 +1949,6 @@
       "community": 48,
       "norm_label": "babel.config.js",
       "id": "example_babel_config"
-    },
-    {
-      "label": "index.js",
-      "file_type": "code",
-      "source_file": "example/index.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 10,
-      "norm_label": "index.js",
-      "id": "example_index"
     },
     {
       "label": "metro.config.js",
@@ -6783,9 +6773,9 @@
       "source_file": "example/src/app/index.tsx",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_index",
-      "target": "app_index_action",
-      "confidence_score": 1.0
+      "target": "app_index_action"
     },
     {
       "relation": "contains",
@@ -6803,9 +6793,9 @@
       "source_file": "example/src/app/index.tsx",
       "source_location": "L49",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_index",
-      "target": "app_index_initialstate",
-      "confidence_score": 1.0
+      "target": "app_index_initialstate"
     },
     {
       "relation": "contains",
@@ -6823,9 +6813,9 @@
       "source_file": "example/src/app/index.tsx",
       "source_location": "L80",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_index",
-      "target": "app_index_reducer",
-      "confidence_score": 1.0
+      "target": "app_index_reducer"
     },
     {
       "relation": "contains",
@@ -6833,9 +6823,9 @@
       "source_file": "example/src/app/index.tsx",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_index",
-      "target": "app_index_state",
-      "confidence_score": 1.0
+      "target": "app_index_state"
     },
     {
       "relation": "imports_from",
@@ -15509,5 +15499,5 @@
       "source_file": "AGENTS.md"
     }
   ],
-  "built_at_commit": "6beb4b59be11826d7f469693f025cddaaf4f18e7"
+  "built_at_commit": "56cb652381cdf74477f6bed62c2e98cef23644a6"
 }
