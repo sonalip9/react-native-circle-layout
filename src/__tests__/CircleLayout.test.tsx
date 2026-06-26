@@ -484,6 +484,83 @@ describe('CircleLayout', () => {
     });
   });
 
+  describe('visible prop', () => {
+    it('renders with visible={false} without throwing', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            visible={false}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('renders with visible={true} without throwing', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            visible={true}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('toggles visibility when visible prop changes', () => {
+      const { rerender } = render(
+        <CircleLayout
+          components={makeComponents(3)}
+          radius={100}
+          visible={false}
+          ref={null}
+        />
+      );
+      expect(() =>
+        rerender(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            visible={true}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+      expect(() =>
+        rerender(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            visible={false}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('falls back to imperative API when visible is undefined', () => {
+      const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
+      const ref = result.current;
+      render(
+        <CircleLayout components={makeComponents(3)} radius={100} ref={ref} />
+      );
+      expect(() => {
+        act(() => {
+          ref.current?.showComponents();
+        });
+      }).not.toThrow();
+      expect(() => {
+        act(() => {
+          ref.current?.hideComponents();
+        });
+      }).not.toThrow();
+    });
+  });
+
   describe('edge cases', () => {
     it('renders with large number of components (20)', () => {
       expect(() =>
