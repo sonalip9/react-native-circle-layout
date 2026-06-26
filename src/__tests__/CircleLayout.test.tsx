@@ -542,6 +542,25 @@ describe('CircleLayout', () => {
       ).not.toThrow();
     });
 
+    it('imperative ref methods are no-op when visible is defined', () => {
+      const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
+      const ref = result.current;
+      render(
+        <CircleLayout
+          components={makeComponents(3)}
+          radius={100}
+          visible={false}
+          ref={ref}
+        />
+      );
+      expect(() => {
+        act(() => {
+          ref.current?.showComponents();
+          ref.current?.hideComponents();
+        });
+      }).not.toThrow();
+    });
+
     it('falls back to imperative API when visible is undefined', () => {
       const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
       const ref = result.current;
