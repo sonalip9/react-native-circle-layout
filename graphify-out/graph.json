@@ -51,14 +51,534 @@
   },
   "nodes": [
     {
+      "label": "NestedRingMenu.tsx",
+      "file_type": "code",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_nestedringmenu",
+      "community": 1,
+      "norm_label": "nestedringmenu.tsx"
+    },
+    {
+      "label": "Icon",
+      "file_type": "code",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "app_nestedringmenu_icon",
+      "community": 1,
+      "norm_label": "icon"
+    },
+    {
+      "label": "icons",
+      "file_type": "code",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "app_nestedringmenu_icons",
+      "community": 1,
+      "norm_label": "icons"
+    },
+    {
+      "label": "subIcons",
+      "file_type": "code",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "app_nestedringmenu_subicons",
+      "community": 1,
+      "norm_label": "subicons"
+    },
+    {
+      "label": "Component()",
+      "file_type": "code",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "app_nestedringmenu_component",
+      "community": 1,
+      "norm_label": "component()"
+    },
+    {
+      "label": "NestedRingMenu()",
+      "file_type": "code",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L69",
+      "_origin": "ast",
+      "id": "app_nestedringmenu_nestedringmenu",
+      "community": 1,
+      "norm_label": "nestedringmenu()"
+    },
+    {
+      "label": "RadialMenu.tsx",
+      "file_type": "code",
+      "source_file": "example/src/app/RadialMenu.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_radialmenu",
+      "community": 1,
+      "norm_label": "radialmenu.tsx"
+    },
+    {
+      "label": "Icon",
+      "file_type": "code",
+      "source_file": "example/src/app/RadialMenu.tsx",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "app_radialmenu_icon",
+      "community": 1,
+      "norm_label": "icon"
+    },
+    {
+      "label": "RadialMenu()",
+      "file_type": "code",
+      "source_file": "example/src/app/RadialMenu.tsx",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "app_radialmenu_radialmenu",
+      "community": 1,
+      "norm_label": "radialmenu()"
+    },
+    {
+      "label": "_layout.tsx",
+      "file_type": "code",
+      "source_file": "example/src/app/_layout.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_layout",
+      "community": 2,
+      "norm_label": "_layout.tsx"
+    },
+    {
+      "label": "App()",
+      "file_type": "code",
+      "source_file": "example/src/app/_layout.tsx",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "app_layout_app",
+      "community": 2,
+      "norm_label": "app()"
+    },
+    {
+      "label": "index.tsx",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_index",
+      "community": 2,
+      "norm_label": "index.tsx"
+    },
+    {
+      "label": "colorOptions",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "app_index_coloroptions",
+      "community": 2,
+      "norm_label": "coloroptions"
+    },
+    {
+      "label": "State",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "app_index_state",
+      "community": 2,
+      "norm_label": "state"
+    },
+    {
+      "label": "initialState",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "app_index_initialstate",
+      "community": 2,
+      "norm_label": "initialstate"
+    },
+    {
+      "label": "Action",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "app_index_action",
+      "community": 2,
+      "norm_label": "action"
+    },
+    {
+      "label": "reducer()",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "app_index_reducer",
+      "community": 2,
+      "norm_label": "reducer()"
+    },
+    {
+      "label": "Playground()",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L91",
+      "_origin": "ast",
+      "id": "app_index_playground",
+      "community": 2,
+      "norm_label": "playground()"
+    },
+    {
+      "label": "Dropdown.tsx",
+      "file_type": "code",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "dropdown_dropdown",
+      "community": 2,
+      "norm_label": "dropdown.tsx"
+    },
+    {
+      "label": "DropdownOption",
+      "file_type": "code",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "dropdown_dropdown_dropdownoption",
+      "community": 2,
+      "norm_label": "dropdownoption"
+    },
+    {
+      "label": "SingleSelectProps",
+      "file_type": "code",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "dropdown_dropdown_singleselectprops",
+      "community": 2,
+      "norm_label": "singleselectprops"
+    },
+    {
+      "label": "MultipleSelectProps",
+      "file_type": "code",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "dropdown_dropdown_multipleselectprops",
+      "community": 2,
+      "norm_label": "multipleselectprops"
+    },
+    {
+      "label": "DropdownOwnProps",
+      "file_type": "code",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "dropdown_dropdown_dropdownownprops",
+      "community": 2,
+      "norm_label": "dropdownownprops"
+    },
+    {
+      "label": "DropdownComponentProps",
+      "file_type": "code",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "dropdown_dropdown_dropdowncomponentprops",
+      "community": 2,
+      "norm_label": "dropdowncomponentprops"
+    },
+    {
+      "label": "DropdownComponent()",
+      "file_type": "code",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "dropdown_dropdown_dropdowncomponent",
+      "community": 2,
+      "norm_label": "dropdowncomponent()"
+    },
+    {
+      "label": "DropdownProps",
+      "file_type": "code",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L194",
+      "_origin": "ast",
+      "id": "dropdown_dropdown_dropdownprops",
+      "community": 2,
+      "norm_label": "dropdownprops"
+    },
+    {
+      "label": "Dropdown",
+      "file_type": "code",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L196",
+      "_origin": "ast",
+      "id": "dropdown_dropdown_dropdown",
+      "community": 2,
+      "norm_label": "dropdown"
+    },
+    {
+      "label": "PopUp.tsx",
+      "file_type": "code",
+      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "popup_popup",
+      "community": 2,
+      "norm_label": "popup.tsx"
+    },
+    {
+      "label": "PopUpProps",
+      "file_type": "code",
+      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "popup_popup_popupprops",
+      "community": 2,
+      "norm_label": "popupprops"
+    },
+    {
+      "label": "PopUp()",
+      "file_type": "code",
+      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "popup_popup_popup",
+      "community": 2,
+      "norm_label": "popup()"
+    },
+    {
+      "label": "CircleLayout.tsx",
+      "file_type": "code",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "circlelayout.tsx",
+      "id": "src_circlelayout"
+    },
+    {
+      "label": "CircleLayout()",
+      "file_type": "code",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L26",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "circlelayout()",
+      "id": "src_circlelayout_circlelayout"
+    },
+    {
+      "label": "CircleLayoutContent.tsx",
+      "file_type": "code",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "circlelayoutcontent.tsx",
+      "id": "src_circlelayoutcontent"
+    },
+    {
+      "label": "resolveValue()",
+      "file_type": "code",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L25",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "resolvevalue()",
+      "id": "src_circlelayoutcontent_resolvevalue"
+    },
+    {
+      "label": "resolveBgConfig()",
+      "file_type": "code",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L44",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "resolvebgconfig()",
+      "id": "src_circlelayoutcontent_resolvebgconfig"
+    },
+    {
+      "label": "CircleLayoutContent()",
+      "file_type": "code",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L74",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "circlelayoutcontent()",
+      "id": "src_circlelayoutcontent_circlelayoutcontent"
+    },
+    {
+      "label": "CircleLayoutProvider.tsx",
+      "file_type": "code",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "circlelayoutprovider.tsx",
+      "id": "src_circlelayoutprovider"
+    },
+    {
+      "label": "CircleLayoutProviderProps",
+      "file_type": "code",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "circlelayoutproviderprops",
+      "id": "src_circlelayoutprovider_circlelayoutproviderprops"
+    },
+    {
+      "label": "CircleLayoutProvider()",
+      "file_type": "code",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L42",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "circlelayoutprovider()",
+      "id": "src_circlelayoutprovider_circlelayoutprovider"
+    },
+    {
+      "label": "types.ts",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "types.ts",
+      "id": "src_types"
+    },
+    {
+      "label": "AnimationType",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "animationtype",
+      "id": "src_types_animationtype"
+    },
+    {
+      "label": "AnimationCombinationType",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L31",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "animationcombinationtype",
+      "id": "src_types_animationcombinationtype"
+    },
+    {
+      "label": "AnimationConfig",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L50",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "animationconfig",
+      "id": "src_types_animationconfig"
+    },
+    {
+      "label": "AnimationProps",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L54",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "animationprops",
+      "id": "src_types_animationprops"
+    },
+    {
+      "label": "BgConfig",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L92",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "bgconfig",
+      "id": "src_types_bgconfig"
+    },
+    {
+      "label": "ResolvedBgConfig",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L136",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "resolvedbgconfig",
+      "id": "src_types_resolvedbgconfig"
+    },
+    {
+      "label": "CircleLayoutProps",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L144",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "circlelayoutprops",
+      "id": "src_types_circlelayoutprops"
+    },
+    {
+      "label": "CircleLayoutRef",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L222",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "circlelayoutref",
+      "id": "src_types_circlelayoutref"
+    },
+    {
+      "label": "ComponentProps",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L235",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "componentprops",
+      "id": "src_types_componentprops"
+    },
+    {
+      "label": "ComponentRef",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L264",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "componentref",
+      "id": "src_types_componentref"
+    },
+    {
+      "label": "CircleLayoutContextType",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L277",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "circlelayoutcontexttype",
+      "id": "src_types_circlelayoutcontexttype"
+    },
+    {
+      "label": "Layout",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L317",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "layout",
+      "id": "src_types_layout"
+    },
+    {
       "label": "package.json",
       "file_type": "code",
       "source_file": "package.json",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "package",
       "community": 11,
-      "norm_label": "package.json"
+      "norm_label": "package.json",
+      "id": "package"
     },
     {
       "label": "name",
@@ -66,9 +586,9 @@
       "source_file": "package.json",
       "source_location": "L2",
       "_origin": "ast",
-      "id": "package_name",
       "community": 11,
-      "norm_label": "name"
+      "norm_label": "name",
+      "id": "package_name"
     },
     {
       "label": "version",
@@ -76,9 +596,9 @@
       "source_file": "package.json",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "package_version",
       "community": 11,
-      "norm_label": "version"
+      "norm_label": "version",
+      "id": "package_version"
     },
     {
       "label": "description",
@@ -86,9 +606,9 @@
       "source_file": "package.json",
       "source_location": "L4",
       "_origin": "ast",
-      "id": "package_description",
       "community": 11,
-      "norm_label": "description"
+      "norm_label": "description",
+      "id": "package_description"
     },
     {
       "label": "main",
@@ -96,9 +616,9 @@
       "source_file": "package.json",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "package_main",
       "community": 11,
-      "norm_label": "main"
+      "norm_label": "main",
+      "id": "package_main"
     },
     {
       "label": "types",
@@ -106,9 +626,9 @@
       "source_file": "package.json",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "package_types",
       "community": 28,
-      "norm_label": "types"
+      "norm_label": "types",
+      "id": "package_types"
     },
     {
       "label": "exports",
@@ -116,9 +636,9 @@
       "source_file": "package.json",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "package_exports",
       "community": 28,
-      "norm_label": "exports"
+      "norm_label": "exports",
+      "id": "package_exports"
     },
     {
       "label": "source",
@@ -126,9 +646,9 @@
       "source_file": "package.json",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "package_source",
       "community": 28,
-      "norm_label": "source"
+      "norm_label": "source",
+      "id": "package_source"
     },
     {
       "label": "default",
@@ -136,9 +656,9 @@
       "source_file": "package.json",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "package_default",
       "community": 28,
-      "norm_label": "default"
+      "norm_label": "default",
+      "id": "package_default"
     },
     {
       "label": "./package.json",
@@ -146,9 +666,9 @@
       "source_file": "package.json",
       "source_location": "L13",
       "_origin": "ast",
-      "id": "package_exports_package_json",
       "community": 28,
-      "norm_label": "./package.json"
+      "norm_label": "./package.json",
+      "id": "package_exports_package_json"
     },
     {
       "label": "files",
@@ -156,9 +676,9 @@
       "source_file": "package.json",
       "source_location": "L15",
       "_origin": "ast",
-      "id": "package_files",
       "community": 11,
-      "norm_label": "files"
+      "norm_label": "files",
+      "id": "package_files"
     },
     {
       "label": "scripts",
@@ -166,9 +686,9 @@
       "source_file": "package.json",
       "source_location": "L33",
       "_origin": "ast",
-      "id": "package_scripts",
       "community": 19,
-      "norm_label": "scripts"
+      "norm_label": "scripts",
+      "id": "package_scripts"
     },
     {
       "label": "test",
@@ -176,9 +696,9 @@
       "source_file": "package.json",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "package_scripts_test",
       "community": 19,
-      "norm_label": "test"
+      "norm_label": "test",
+      "id": "package_scripts_test"
     },
     {
       "label": "typecheck",
@@ -186,9 +706,9 @@
       "source_file": "package.json",
       "source_location": "L35",
       "_origin": "ast",
-      "id": "package_scripts_typecheck",
       "community": 19,
-      "norm_label": "typecheck"
+      "norm_label": "typecheck",
+      "id": "package_scripts_typecheck"
     },
     {
       "label": "lint",
@@ -196,9 +716,9 @@
       "source_file": "package.json",
       "source_location": "L36",
       "_origin": "ast",
-      "id": "package_scripts_lint",
       "community": 19,
-      "norm_label": "lint"
+      "norm_label": "lint",
+      "id": "package_scripts_lint"
     },
     {
       "label": "prepare",
@@ -206,9 +726,9 @@
       "source_file": "package.json",
       "source_location": "L37",
       "_origin": "ast",
-      "id": "package_scripts_prepare",
       "community": 19,
-      "norm_label": "prepare"
+      "norm_label": "prepare",
+      "id": "package_scripts_prepare"
     },
     {
       "label": "release",
@@ -216,9 +736,9 @@
       "source_file": "package.json",
       "source_location": "L38",
       "_origin": "ast",
-      "id": "package_scripts_release",
       "community": 19,
-      "norm_label": "release"
+      "norm_label": "release",
+      "id": "package_scripts_release"
     },
     {
       "label": "example",
@@ -226,9 +746,9 @@
       "source_file": "package.json",
       "source_location": "L39",
       "_origin": "ast",
-      "id": "package_scripts_example",
       "community": 19,
-      "norm_label": "example"
+      "norm_label": "example",
+      "id": "package_scripts_example"
     },
     {
       "label": "clean",
@@ -236,9 +756,9 @@
       "source_file": "package.json",
       "source_location": "L40",
       "_origin": "ast",
-      "id": "package_scripts_clean",
       "community": 19,
-      "norm_label": "clean"
+      "norm_label": "clean",
+      "id": "package_scripts_clean"
     },
     {
       "label": "keywords",
@@ -246,9 +766,9 @@
       "source_file": "package.json",
       "source_location": "L42",
       "_origin": "ast",
-      "id": "package_keywords",
       "community": 11,
-      "norm_label": "keywords"
+      "norm_label": "keywords",
+      "id": "package_keywords"
     },
     {
       "label": "repository",
@@ -256,9 +776,9 @@
       "source_file": "package.json",
       "source_location": "L49",
       "_origin": "ast",
-      "id": "package_repository",
       "community": 33,
-      "norm_label": "repository"
+      "norm_label": "repository",
+      "id": "package_repository"
     },
     {
       "label": "type",
@@ -266,9 +786,9 @@
       "source_file": "package.json",
       "source_location": "L50",
       "_origin": "ast",
-      "id": "package_repository_type",
       "community": 33,
-      "norm_label": "type"
+      "norm_label": "type",
+      "id": "package_repository_type"
     },
     {
       "label": "url",
@@ -276,9 +796,9 @@
       "source_file": "package.json",
       "source_location": "L51",
       "_origin": "ast",
-      "id": "package_repository_url",
       "community": 33,
-      "norm_label": "url"
+      "norm_label": "url",
+      "id": "package_repository_url"
     },
     {
       "label": "author",
@@ -286,9 +806,9 @@
       "source_file": "package.json",
       "source_location": "L53",
       "_origin": "ast",
-      "id": "package_author",
       "community": 11,
-      "norm_label": "author"
+      "norm_label": "author",
+      "id": "package_author"
     },
     {
       "label": "license",
@@ -296,9 +816,9 @@
       "source_file": "package.json",
       "source_location": "L54",
       "_origin": "ast",
-      "id": "package_license",
       "community": 11,
-      "norm_label": "license"
+      "norm_label": "license",
+      "id": "package_license"
     },
     {
       "label": "bugs",
@@ -306,9 +826,9 @@
       "source_file": "package.json",
       "source_location": "L55",
       "_origin": "ast",
-      "id": "package_bugs",
       "community": 11,
-      "norm_label": "bugs"
+      "norm_label": "bugs",
+      "id": "package_bugs"
     },
     {
       "label": "url",
@@ -316,9 +836,9 @@
       "source_file": "package.json",
       "source_location": "L56",
       "_origin": "ast",
-      "id": "package_bugs_url",
       "community": 11,
-      "norm_label": "url"
+      "norm_label": "url",
+      "id": "package_bugs_url"
     },
     {
       "label": "homepage",
@@ -326,9 +846,9 @@
       "source_file": "package.json",
       "source_location": "L58",
       "_origin": "ast",
-      "id": "package_homepage",
       "community": 11,
-      "norm_label": "homepage"
+      "norm_label": "homepage",
+      "id": "package_homepage"
     },
     {
       "label": "publishConfig",
@@ -336,9 +856,9 @@
       "source_file": "package.json",
       "source_location": "L59",
       "_origin": "ast",
-      "id": "package_publishconfig",
       "community": 32,
-      "norm_label": "publishconfig"
+      "norm_label": "publishconfig",
+      "id": "package_publishconfig"
     },
     {
       "label": "access",
@@ -346,9 +866,9 @@
       "source_file": "package.json",
       "source_location": "L60",
       "_origin": "ast",
-      "id": "package_publishconfig_access",
       "community": 32,
-      "norm_label": "access"
+      "norm_label": "access",
+      "id": "package_publishconfig_access"
     },
     {
       "label": "registry",
@@ -356,9 +876,9 @@
       "source_file": "package.json",
       "source_location": "L61",
       "_origin": "ast",
-      "id": "package_publishconfig_registry",
       "community": 32,
-      "norm_label": "registry"
+      "norm_label": "registry",
+      "id": "package_publishconfig_registry"
     },
     {
       "label": "devDependencies",
@@ -366,9 +886,9 @@
       "source_file": "package.json",
       "source_location": "L63",
       "_origin": "ast",
-      "id": "package_devdependencies",
       "community": 3,
-      "norm_label": "devdependencies"
+      "norm_label": "devdependencies",
+      "id": "package_devdependencies"
     },
     {
       "label": "@commitlint/config-conventional",
@@ -376,9 +896,9 @@
       "source_file": "package.json",
       "source_location": "L64",
       "_origin": "ast",
-      "id": "package_devdependencies_commitlint_config_conventional",
       "community": 3,
-      "norm_label": "@commitlint/config-conventional"
+      "norm_label": "@commitlint/config-conventional",
+      "id": "package_devdependencies_commitlint_config_conventional"
     },
     {
       "label": "@eslint-community/eslint-plugin-eslint-comments",
@@ -386,9 +906,9 @@
       "source_file": "package.json",
       "source_location": "L65",
       "_origin": "ast",
-      "id": "package_devdependencies_eslint_community_eslint_plugin_eslint_comments",
       "community": 3,
-      "norm_label": "@eslint-community/eslint-plugin-eslint-comments"
+      "norm_label": "@eslint-community/eslint-plugin-eslint-comments",
+      "id": "package_devdependencies_eslint_community_eslint_plugin_eslint_comments"
     },
     {
       "label": "@eslint-react/eslint-plugin",
@@ -396,9 +916,9 @@
       "source_file": "package.json",
       "source_location": "L66",
       "_origin": "ast",
-      "id": "package_devdependencies_eslint_react_eslint_plugin",
       "community": 3,
-      "norm_label": "@eslint-react/eslint-plugin"
+      "norm_label": "@eslint-react/eslint-plugin",
+      "id": "package_devdependencies_eslint_react_eslint_plugin"
     },
     {
       "label": "@eslint/compat",
@@ -406,9 +926,9 @@
       "source_file": "package.json",
       "source_location": "L67",
       "_origin": "ast",
-      "id": "package_devdependencies_eslint_compat",
       "community": 3,
-      "norm_label": "@eslint/compat"
+      "norm_label": "@eslint/compat",
+      "id": "package_devdependencies_eslint_compat"
     },
     {
       "label": "@eslint/eslintrc",
@@ -416,9 +936,9 @@
       "source_file": "package.json",
       "source_location": "L68",
       "_origin": "ast",
-      "id": "package_devdependencies_eslint_eslintrc",
       "community": 3,
-      "norm_label": "@eslint/eslintrc"
+      "norm_label": "@eslint/eslintrc",
+      "id": "package_devdependencies_eslint_eslintrc"
     },
     {
       "label": "@eslint/js",
@@ -426,9 +946,9 @@
       "source_file": "package.json",
       "source_location": "L69",
       "_origin": "ast",
-      "id": "package_devdependencies_eslint_js",
       "community": 3,
-      "norm_label": "@eslint/js"
+      "norm_label": "@eslint/js",
+      "id": "package_devdependencies_eslint_js"
     },
     {
       "label": "@react-native/babel-preset",
@@ -436,9 +956,9 @@
       "source_file": "package.json",
       "source_location": "L70",
       "_origin": "ast",
-      "id": "package_devdependencies_react_native_babel_preset",
       "community": 3,
-      "norm_label": "@react-native/babel-preset"
+      "norm_label": "@react-native/babel-preset",
+      "id": "package_devdependencies_react_native_babel_preset"
     },
     {
       "label": "@react-native/jest-preset",
@@ -446,9 +966,9 @@
       "source_file": "package.json",
       "source_location": "L71",
       "_origin": "ast",
-      "id": "package_devdependencies_react_native_jest_preset",
       "community": 3,
-      "norm_label": "@react-native/jest-preset"
+      "norm_label": "@react-native/jest-preset",
+      "id": "package_devdependencies_react_native_jest_preset"
     },
     {
       "label": "@release-it/conventional-changelog",
@@ -456,9 +976,9 @@
       "source_file": "package.json",
       "source_location": "L72",
       "_origin": "ast",
-      "id": "package_devdependencies_release_it_conventional_changelog",
       "community": 3,
-      "norm_label": "@release-it/conventional-changelog"
+      "norm_label": "@release-it/conventional-changelog",
+      "id": "package_devdependencies_release_it_conventional_changelog"
     },
     {
       "label": "@testing-library/react-native",
@@ -466,9 +986,9 @@
       "source_file": "package.json",
       "source_location": "L73",
       "_origin": "ast",
-      "id": "package_devdependencies_testing_library_react_native",
       "community": 3,
-      "norm_label": "@testing-library/react-native"
+      "norm_label": "@testing-library/react-native",
+      "id": "package_devdependencies_testing_library_react_native"
     },
     {
       "label": "@types/jest",
@@ -476,9 +996,9 @@
       "source_file": "package.json",
       "source_location": "L74",
       "_origin": "ast",
-      "id": "package_devdependencies_types_jest",
       "community": 3,
-      "norm_label": "@types/jest"
+      "norm_label": "@types/jest",
+      "id": "package_devdependencies_types_jest"
     },
     {
       "label": "@types/react",
@@ -486,9 +1006,9 @@
       "source_file": "package.json",
       "source_location": "L75",
       "_origin": "ast",
-      "id": "package_devdependencies_types_react",
       "community": 3,
-      "norm_label": "@types/react"
+      "norm_label": "@types/react",
+      "id": "package_devdependencies_types_react"
     },
     {
       "label": "commitlint",
@@ -496,9 +1016,9 @@
       "source_file": "package.json",
       "source_location": "L76",
       "_origin": "ast",
-      "id": "package_devdependencies_commitlint",
       "community": 3,
-      "norm_label": "commitlint"
+      "norm_label": "commitlint",
+      "id": "package_devdependencies_commitlint"
     },
     {
       "label": "del-cli",
@@ -506,9 +1026,9 @@
       "source_file": "package.json",
       "source_location": "L77",
       "_origin": "ast",
-      "id": "package_devdependencies_del_cli",
       "community": 3,
-      "norm_label": "del-cli"
+      "norm_label": "del-cli",
+      "id": "package_devdependencies_del_cli"
     },
     {
       "label": "eslint",
@@ -516,9 +1036,9 @@
       "source_file": "package.json",
       "source_location": "L78",
       "_origin": "ast",
-      "id": "package_devdependencies_eslint",
       "community": 3,
-      "norm_label": "eslint"
+      "norm_label": "eslint",
+      "id": "package_devdependencies_eslint"
     },
     {
       "label": "eslint-config-prettier",
@@ -526,9 +1046,9 @@
       "source_file": "package.json",
       "source_location": "L79",
       "_origin": "ast",
-      "id": "package_devdependencies_eslint_config_prettier",
       "community": 3,
-      "norm_label": "eslint-config-prettier"
+      "norm_label": "eslint-config-prettier",
+      "id": "package_devdependencies_eslint_config_prettier"
     },
     {
       "label": "eslint-plugin-jest",
@@ -536,9 +1056,9 @@
       "source_file": "package.json",
       "source_location": "L80",
       "_origin": "ast",
-      "id": "package_devdependencies_eslint_plugin_jest",
       "community": 3,
-      "norm_label": "eslint-plugin-jest"
+      "norm_label": "eslint-plugin-jest",
+      "id": "package_devdependencies_eslint_plugin_jest"
     },
     {
       "label": "eslint-plugin-jsdoc",
@@ -546,9 +1066,9 @@
       "source_file": "package.json",
       "source_location": "L81",
       "_origin": "ast",
-      "id": "package_devdependencies_eslint_plugin_jsdoc",
       "community": 3,
-      "norm_label": "eslint-plugin-jsdoc"
+      "norm_label": "eslint-plugin-jsdoc",
+      "id": "package_devdependencies_eslint_plugin_jsdoc"
     },
     {
       "label": "eslint-plugin-prettier",
@@ -556,9 +1076,9 @@
       "source_file": "package.json",
       "source_location": "L82",
       "_origin": "ast",
-      "id": "package_devdependencies_eslint_plugin_prettier",
       "community": 3,
-      "norm_label": "eslint-plugin-prettier"
+      "norm_label": "eslint-plugin-prettier",
+      "id": "package_devdependencies_eslint_plugin_prettier"
     },
     {
       "label": "eslint-plugin-react-hooks",
@@ -566,9 +1086,9 @@
       "source_file": "package.json",
       "source_location": "L83",
       "_origin": "ast",
-      "id": "package_devdependencies_eslint_plugin_react_hooks",
       "community": 3,
-      "norm_label": "eslint-plugin-react-hooks"
+      "norm_label": "eslint-plugin-react-hooks",
+      "id": "package_devdependencies_eslint_plugin_react_hooks"
     },
     {
       "label": "jest",
@@ -576,9 +1096,9 @@
       "source_file": "package.json",
       "source_location": "L84",
       "_origin": "ast",
-      "id": "package_devdependencies_jest",
       "community": 3,
-      "norm_label": "jest"
+      "norm_label": "jest",
+      "id": "package_devdependencies_jest"
     },
     {
       "label": "lefthook",
@@ -586,9 +1106,9 @@
       "source_file": "package.json",
       "source_location": "L85",
       "_origin": "ast",
-      "id": "package_devdependencies_lefthook",
       "community": 3,
-      "norm_label": "lefthook"
+      "norm_label": "lefthook",
+      "id": "package_devdependencies_lefthook"
     },
     {
       "label": "prettier",
@@ -596,9 +1116,9 @@
       "source_file": "package.json",
       "source_location": "L86",
       "_origin": "ast",
-      "id": "package_devdependencies_prettier",
       "community": 3,
-      "norm_label": "prettier"
+      "norm_label": "prettier",
+      "id": "package_devdependencies_prettier"
     },
     {
       "label": "react",
@@ -606,9 +1126,9 @@
       "source_file": "package.json",
       "source_location": "L87",
       "_origin": "ast",
-      "id": "package_devdependencies_react",
       "community": 3,
-      "norm_label": "react"
+      "norm_label": "react",
+      "id": "package_devdependencies_react"
     },
     {
       "label": "react-native",
@@ -616,9 +1136,9 @@
       "source_file": "package.json",
       "source_location": "L88",
       "_origin": "ast",
-      "id": "package_devdependencies_react_native",
       "community": 3,
-      "norm_label": "react-native"
+      "norm_label": "react-native",
+      "id": "package_devdependencies_react_native"
     },
     {
       "label": "react-native-builder-bob",
@@ -626,9 +1146,9 @@
       "source_file": "package.json",
       "source_location": "L89",
       "_origin": "ast",
-      "id": "package_devdependencies_react_native_builder_bob",
       "community": 3,
-      "norm_label": "react-native-builder-bob"
+      "norm_label": "react-native-builder-bob",
+      "id": "package_devdependencies_react_native_builder_bob"
     },
     {
       "label": "react-native-svg",
@@ -636,9 +1156,9 @@
       "source_file": "package.json",
       "source_location": "L90",
       "_origin": "ast",
-      "id": "package_devdependencies_react_native_svg",
       "community": 3,
-      "norm_label": "react-native-svg"
+      "norm_label": "react-native-svg",
+      "id": "package_devdependencies_react_native_svg"
     },
     {
       "label": "react-test-renderer",
@@ -646,9 +1166,9 @@
       "source_file": "package.json",
       "source_location": "L91",
       "_origin": "ast",
-      "id": "package_devdependencies_react_test_renderer",
       "community": 3,
-      "norm_label": "react-test-renderer"
+      "norm_label": "react-test-renderer",
+      "id": "package_devdependencies_react_test_renderer"
     },
     {
       "label": "release-it",
@@ -656,9 +1176,9 @@
       "source_file": "package.json",
       "source_location": "L92",
       "_origin": "ast",
-      "id": "package_devdependencies_release_it",
       "community": 3,
-      "norm_label": "release-it"
+      "norm_label": "release-it",
+      "id": "package_devdependencies_release_it"
     },
     {
       "label": "turbo",
@@ -666,9 +1186,9 @@
       "source_file": "package.json",
       "source_location": "L93",
       "_origin": "ast",
-      "id": "package_devdependencies_turbo",
-      "community": 15,
-      "norm_label": "turbo"
+      "community": 3,
+      "norm_label": "turbo",
+      "id": "package_devdependencies_turbo"
     },
     {
       "label": "typescript",
@@ -676,9 +1196,9 @@
       "source_file": "package.json",
       "source_location": "L94",
       "_origin": "ast",
-      "id": "package_devdependencies_typescript",
       "community": 3,
-      "norm_label": "typescript"
+      "norm_label": "typescript",
+      "id": "package_devdependencies_typescript"
     },
     {
       "label": "typescript-eslint",
@@ -686,9 +1206,9 @@
       "source_file": "package.json",
       "source_location": "L95",
       "_origin": "ast",
-      "id": "package_devdependencies_typescript_eslint",
       "community": 3,
-      "norm_label": "typescript-eslint"
+      "norm_label": "typescript-eslint",
+      "id": "package_devdependencies_typescript_eslint"
     },
     {
       "label": "peerDependencies",
@@ -696,9 +1216,9 @@
       "source_file": "package.json",
       "source_location": "L97",
       "_origin": "ast",
-      "id": "package_peerdependencies",
       "community": 30,
-      "norm_label": "peerdependencies"
+      "norm_label": "peerdependencies",
+      "id": "package_peerdependencies"
     },
     {
       "label": "react",
@@ -706,9 +1226,9 @@
       "source_file": "package.json",
       "source_location": "L98",
       "_origin": "ast",
-      "id": "package_peerdependencies_react",
       "community": 30,
-      "norm_label": "react"
+      "norm_label": "react",
+      "id": "package_peerdependencies_react"
     },
     {
       "label": "react-native",
@@ -716,9 +1236,9 @@
       "source_file": "package.json",
       "source_location": "L99",
       "_origin": "ast",
-      "id": "package_peerdependencies_react_native",
       "community": 30,
-      "norm_label": "react-native"
+      "norm_label": "react-native",
+      "id": "package_peerdependencies_react_native"
     },
     {
       "label": "react-native-svg",
@@ -726,9 +1246,9 @@
       "source_file": "package.json",
       "source_location": "L100",
       "_origin": "ast",
-      "id": "package_peerdependencies_react_native_svg",
       "community": 30,
-      "norm_label": "react-native-svg"
+      "norm_label": "react-native-svg",
+      "id": "package_peerdependencies_react_native_svg"
     },
     {
       "label": "packageManager",
@@ -736,9 +1256,9 @@
       "source_file": "package.json",
       "source_location": "L102",
       "_origin": "ast",
-      "id": "package_packagemanager",
       "community": 11,
-      "norm_label": "packagemanager"
+      "norm_label": "packagemanager",
+      "id": "package_packagemanager"
     },
     {
       "label": "react-native-builder-bob",
@@ -746,9 +1266,9 @@
       "source_file": "package.json",
       "source_location": "L103",
       "_origin": "ast",
-      "id": "package_react_native_builder_bob",
       "community": 31,
-      "norm_label": "react-native-builder-bob"
+      "norm_label": "react-native-builder-bob",
+      "id": "package_react_native_builder_bob"
     },
     {
       "label": "source",
@@ -756,9 +1276,9 @@
       "source_file": "package.json",
       "source_location": "L104",
       "_origin": "ast",
-      "id": "package_react_native_builder_bob_source",
       "community": 31,
-      "norm_label": "source"
+      "norm_label": "source",
+      "id": "package_react_native_builder_bob_source"
     },
     {
       "label": "output",
@@ -766,9 +1286,9 @@
       "source_file": "package.json",
       "source_location": "L105",
       "_origin": "ast",
-      "id": "package_react_native_builder_bob_output",
       "community": 31,
-      "norm_label": "output"
+      "norm_label": "output",
+      "id": "package_react_native_builder_bob_output"
     },
     {
       "label": "targets",
@@ -776,9 +1296,9 @@
       "source_file": "package.json",
       "source_location": "L106",
       "_origin": "ast",
-      "id": "package_react_native_builder_bob_targets",
       "community": 31,
-      "norm_label": "targets"
+      "norm_label": "targets",
+      "id": "package_react_native_builder_bob_targets"
     },
     {
       "label": "jest",
@@ -786,9 +1306,9 @@
       "source_file": "package.json",
       "source_location": "L121",
       "_origin": "ast",
-      "id": "package_jest",
       "community": 29,
-      "norm_label": "jest"
+      "norm_label": "jest",
+      "id": "package_jest"
     },
     {
       "label": "preset",
@@ -796,9 +1316,9 @@
       "source_file": "package.json",
       "source_location": "L122",
       "_origin": "ast",
-      "id": "package_jest_preset",
       "community": 29,
-      "norm_label": "preset"
+      "norm_label": "preset",
+      "id": "package_jest_preset"
     },
     {
       "label": "setupFilesAfterEnv",
@@ -806,9 +1326,9 @@
       "source_file": "package.json",
       "source_location": "L123",
       "_origin": "ast",
-      "id": "package_jest_setupfilesafterenv",
       "community": 29,
-      "norm_label": "setupfilesafterenv"
+      "norm_label": "setupfilesafterenv",
+      "id": "package_jest_setupfilesafterenv"
     },
     {
       "label": "modulePathIgnorePatterns",
@@ -816,9 +1336,9 @@
       "source_file": "package.json",
       "source_location": "L126",
       "_origin": "ast",
-      "id": "package_jest_modulepathignorepatterns",
       "community": 29,
-      "norm_label": "modulepathignorepatterns"
+      "norm_label": "modulepathignorepatterns",
+      "id": "package_jest_modulepathignorepatterns"
     },
     {
       "label": "transformIgnorePatterns",
@@ -826,9 +1346,9 @@
       "source_file": "package.json",
       "source_location": "L130",
       "_origin": "ast",
-      "id": "package_jest_transformignorepatterns",
       "community": 29,
-      "norm_label": "transformignorepatterns"
+      "norm_label": "transformignorepatterns",
+      "id": "package_jest_transformignorepatterns"
     },
     {
       "label": "commitlint",
@@ -836,9 +1356,9 @@
       "source_file": "package.json",
       "source_location": "L134",
       "_origin": "ast",
-      "id": "package_commitlint",
       "community": 11,
-      "norm_label": "commitlint"
+      "norm_label": "commitlint",
+      "id": "package_commitlint"
     },
     {
       "label": "extends",
@@ -846,9 +1366,9 @@
       "source_file": "package.json",
       "source_location": "L135",
       "_origin": "ast",
-      "id": "package_commitlint_extends",
       "community": 11,
-      "norm_label": "extends"
+      "norm_label": "extends",
+      "id": "package_commitlint_extends"
     },
     {
       "label": "release-it",
@@ -856,9 +1376,9 @@
       "source_file": "package.json",
       "source_location": "L139",
       "_origin": "ast",
-      "id": "package_release_it",
       "community": 13,
-      "norm_label": "release-it"
+      "norm_label": "release-it",
+      "id": "package_release_it"
     },
     {
       "label": "git",
@@ -866,9 +1386,9 @@
       "source_file": "package.json",
       "source_location": "L140",
       "_origin": "ast",
-      "id": "package_release_it_git",
       "community": 13,
-      "norm_label": "git"
+      "norm_label": "git",
+      "id": "package_release_it_git"
     },
     {
       "label": "commitMessage",
@@ -876,9 +1396,9 @@
       "source_file": "package.json",
       "source_location": "L141",
       "_origin": "ast",
-      "id": "package_git_commitmessage",
       "community": 13,
-      "norm_label": "commitmessage"
+      "norm_label": "commitmessage",
+      "id": "package_git_commitmessage"
     },
     {
       "label": "tagName",
@@ -886,9 +1406,9 @@
       "source_file": "package.json",
       "source_location": "L142",
       "_origin": "ast",
-      "id": "package_git_tagname",
       "community": 13,
-      "norm_label": "tagname"
+      "norm_label": "tagname",
+      "id": "package_git_tagname"
     },
     {
       "label": "npm",
@@ -896,9 +1416,9 @@
       "source_file": "package.json",
       "source_location": "L144",
       "_origin": "ast",
-      "id": "package_release_it_npm",
       "community": 13,
-      "norm_label": "npm"
+      "norm_label": "npm",
+      "id": "package_release_it_npm"
     },
     {
       "label": "publish",
@@ -906,9 +1426,9 @@
       "source_file": "package.json",
       "source_location": "L145",
       "_origin": "ast",
-      "id": "package_npm_publish",
       "community": 13,
-      "norm_label": "publish"
+      "norm_label": "publish",
+      "id": "package_npm_publish"
     },
     {
       "label": "github",
@@ -916,9 +1436,9 @@
       "source_file": "package.json",
       "source_location": "L147",
       "_origin": "ast",
-      "id": "package_release_it_github",
       "community": 13,
-      "norm_label": "github"
+      "norm_label": "github",
+      "id": "package_release_it_github"
     },
     {
       "label": "release",
@@ -926,9 +1446,9 @@
       "source_file": "package.json",
       "source_location": "L148",
       "_origin": "ast",
-      "id": "package_github_release",
       "community": 13,
-      "norm_label": "release"
+      "norm_label": "release",
+      "id": "package_github_release"
     },
     {
       "label": "plugins",
@@ -936,9 +1456,9 @@
       "source_file": "package.json",
       "source_location": "L150",
       "_origin": "ast",
-      "id": "package_release_it_plugins",
       "community": 13,
-      "norm_label": "plugins"
+      "norm_label": "plugins",
+      "id": "package_release_it_plugins"
     },
     {
       "label": "@release-it/conventional-changelog",
@@ -946,9 +1466,9 @@
       "source_file": "package.json",
       "source_location": "L151",
       "_origin": "ast",
-      "id": "package_plugins_release_it_conventional_changelog",
       "community": 13,
-      "norm_label": "@release-it/conventional-changelog"
+      "norm_label": "@release-it/conventional-changelog",
+      "id": "package_plugins_release_it_conventional_changelog"
     },
     {
       "label": "preset",
@@ -956,9 +1476,9 @@
       "source_file": "package.json",
       "source_location": "L152",
       "_origin": "ast",
-      "id": "package_release_it_conventional_changelog_preset",
       "community": 13,
-      "norm_label": "preset"
+      "norm_label": "preset",
+      "id": "package_release_it_conventional_changelog_preset"
     },
     {
       "label": "name",
@@ -966,9 +1486,9 @@
       "source_file": "package.json",
       "source_location": "L153",
       "_origin": "ast",
-      "id": "package_preset_name",
       "community": 13,
-      "norm_label": "name"
+      "norm_label": "name",
+      "id": "package_preset_name"
     },
     {
       "label": "prettier",
@@ -976,9 +1496,9 @@
       "source_file": "package.json",
       "source_location": "L158",
       "_origin": "ast",
-      "id": "package_prettier",
       "community": 25,
-      "norm_label": "prettier"
+      "norm_label": "prettier",
+      "id": "package_prettier"
     },
     {
       "label": "quoteProps",
@@ -986,9 +1506,9 @@
       "source_file": "package.json",
       "source_location": "L159",
       "_origin": "ast",
-      "id": "package_prettier_quoteprops",
       "community": 25,
-      "norm_label": "quoteprops"
+      "norm_label": "quoteprops",
+      "id": "package_prettier_quoteprops"
     },
     {
       "label": "singleQuote",
@@ -996,9 +1516,9 @@
       "source_file": "package.json",
       "source_location": "L160",
       "_origin": "ast",
-      "id": "package_prettier_singlequote",
       "community": 25,
-      "norm_label": "singlequote"
+      "norm_label": "singlequote",
+      "id": "package_prettier_singlequote"
     },
     {
       "label": "tabWidth",
@@ -1006,9 +1526,9 @@
       "source_file": "package.json",
       "source_location": "L161",
       "_origin": "ast",
-      "id": "package_prettier_tabwidth",
       "community": 25,
-      "norm_label": "tabwidth"
+      "norm_label": "tabwidth",
+      "id": "package_prettier_tabwidth"
     },
     {
       "label": "trailingComma",
@@ -1016,9 +1536,9 @@
       "source_file": "package.json",
       "source_location": "L162",
       "_origin": "ast",
-      "id": "package_prettier_trailingcomma",
       "community": 25,
-      "norm_label": "trailingcomma"
+      "norm_label": "trailingcomma",
+      "id": "package_prettier_trailingcomma"
     },
     {
       "label": "useTabs",
@@ -1026,9 +1546,9 @@
       "source_file": "package.json",
       "source_location": "L163",
       "_origin": "ast",
-      "id": "package_prettier_usetabs",
       "community": 25,
-      "norm_label": "usetabs"
+      "norm_label": "usetabs",
+      "id": "package_prettier_usetabs"
     },
     {
       "label": "create-react-native-library",
@@ -1036,9 +1556,9 @@
       "source_file": "package.json",
       "source_location": "L165",
       "_origin": "ast",
-      "id": "package_create_react_native_library",
       "community": 27,
-      "norm_label": "create-react-native-library"
+      "norm_label": "create-react-native-library",
+      "id": "package_create_react_native_library"
     },
     {
       "label": "type",
@@ -1046,9 +1566,9 @@
       "source_file": "package.json",
       "source_location": "L166",
       "_origin": "ast",
-      "id": "package_create_react_native_library_type",
       "community": 27,
-      "norm_label": "type"
+      "norm_label": "type",
+      "id": "package_create_react_native_library_type"
     },
     {
       "label": "languages",
@@ -1056,9 +1576,9 @@
       "source_file": "package.json",
       "source_location": "L167",
       "_origin": "ast",
-      "id": "package_create_react_native_library_languages",
       "community": 27,
-      "norm_label": "languages"
+      "norm_label": "languages",
+      "id": "package_create_react_native_library_languages"
     },
     {
       "label": "tools",
@@ -1066,9 +1586,9 @@
       "source_file": "package.json",
       "source_location": "L168",
       "_origin": "ast",
-      "id": "package_create_react_native_library_tools",
       "community": 27,
-      "norm_label": "tools"
+      "norm_label": "tools",
+      "id": "package_create_react_native_library_tools"
     },
     {
       "label": "version",
@@ -1076,9 +1596,9 @@
       "source_file": "package.json",
       "source_location": "L174",
       "_origin": "ast",
-      "id": "package_create_react_native_library_version",
       "community": 27,
-      "norm_label": "version"
+      "norm_label": "version",
+      "id": "package_create_react_native_library_version"
     },
     {
       "label": "babel.config.js",
@@ -1871,146 +2391,6 @@
       "id": "src_appcontext_appcontext"
     },
     {
-      "label": "NestedRingMenu.tsx",
-      "file_type": "code",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "nestedringmenu.tsx",
-      "id": "app_nestedringmenu"
-    },
-    {
-      "label": "Icon",
-      "file_type": "code",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L16",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "icon",
-      "id": "app_nestedringmenu_icon"
-    },
-    {
-      "label": "icons",
-      "file_type": "code",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L18",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "icons",
-      "id": "app_nestedringmenu_icons"
-    },
-    {
-      "label": "subIcons",
-      "file_type": "code",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L20",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "subicons",
-      "id": "app_nestedringmenu_subicons"
-    },
-    {
-      "label": "Component()",
-      "file_type": "code",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L22",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "component()",
-      "id": "app_nestedringmenu_component"
-    },
-    {
-      "label": "NestedRingMenu()",
-      "file_type": "code",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L79",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "nestedringmenu()",
-      "id": "app_nestedringmenu_nestedringmenu"
-    },
-    {
-      "label": "RadialMenu.tsx",
-      "file_type": "code",
-      "source_file": "example/src/app/RadialMenu.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "radialmenu.tsx",
-      "id": "app_radialmenu"
-    },
-    {
-      "label": "Icon",
-      "file_type": "code",
-      "source_file": "example/src/app/RadialMenu.tsx",
-      "source_location": "L16",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "icon",
-      "id": "app_radialmenu_icon"
-    },
-    {
-      "label": "RadialMenu()",
-      "file_type": "code",
-      "source_file": "example/src/app/RadialMenu.tsx",
-      "source_location": "L18",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "radialmenu()",
-      "id": "app_radialmenu_radialmenu"
-    },
-    {
-      "label": "_layout.tsx",
-      "file_type": "code",
-      "source_file": "example/src/app/_layout.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "_layout.tsx",
-      "id": "app_layout"
-    },
-    {
-      "label": "App()",
-      "file_type": "code",
-      "source_file": "example/src/app/_layout.tsx",
-      "source_location": "L12",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "app()",
-      "id": "app_layout_app"
-    },
-    {
-      "label": "index.tsx",
-      "file_type": "code",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "index.tsx",
-      "id": "app_index"
-    },
-    {
-      "label": "colorOptions",
-      "file_type": "code",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L22",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "coloroptions",
-      "id": "app_index_coloroptions"
-    },
-    {
-      "label": "Playground()",
-      "file_type": "code",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L29",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "playground()",
-      "id": "app_index_playground"
-    },
-    {
       "label": "Button.tsx",
       "file_type": "code",
       "source_file": "example/src/design_system/atoms/Button/Button.tsx",
@@ -2191,96 +2571,6 @@
       "id": "atoms_index"
     },
     {
-      "label": "Dropdown.tsx",
-      "file_type": "code",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "dropdown.tsx",
-      "id": "dropdown_dropdown"
-    },
-    {
-      "label": "DropdownOption",
-      "file_type": "code",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L15",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "dropdownoption",
-      "id": "dropdown_dropdown_dropdownoption"
-    },
-    {
-      "label": "SingleSelectProps",
-      "file_type": "code",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L20",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "singleselectprops",
-      "id": "dropdown_dropdown_singleselectprops"
-    },
-    {
-      "label": "MultipleSelectProps",
-      "file_type": "code",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L26",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "multipleselectprops",
-      "id": "dropdown_dropdown_multipleselectprops"
-    },
-    {
-      "label": "DropdownOwnProps",
-      "file_type": "code",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L33",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "dropdownownprops",
-      "id": "dropdown_dropdown_dropdownownprops"
-    },
-    {
-      "label": "DropdownComponentProps",
-      "file_type": "code",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L40",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "dropdowncomponentprops",
-      "id": "dropdown_dropdown_dropdowncomponentprops"
-    },
-    {
-      "label": "DropdownComponent()",
-      "file_type": "code",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L43",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "dropdowncomponent()",
-      "id": "dropdown_dropdown_dropdowncomponent"
-    },
-    {
-      "label": "DropdownProps",
-      "file_type": "code",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L194",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "dropdownprops",
-      "id": "dropdown_dropdown_dropdownprops"
-    },
-    {
-      "label": "Dropdown",
-      "file_type": "code",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L196",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "dropdown",
-      "id": "dropdown_dropdown_dropdown"
-    },
-    {
       "label": "index.ts",
       "file_type": "code",
       "source_file": "example/src/design_system/molecules/Dropdown/index.ts",
@@ -2289,36 +2579,6 @@
       "community": 2,
       "norm_label": "index.ts",
       "id": "dropdown_index"
-    },
-    {
-      "label": "PopUp.tsx",
-      "file_type": "code",
-      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "popup.tsx",
-      "id": "popup_popup"
-    },
-    {
-      "label": "PopUpProps",
-      "file_type": "code",
-      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
-      "source_location": "L7",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "popupprops",
-      "id": "popup_popup_popupprops"
-    },
-    {
-      "label": "PopUp()",
-      "file_type": "code",
-      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
-      "source_location": "L11",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "popup()",
-      "id": "popup_popup_popup"
     },
     {
       "label": "index.ts",
@@ -2781,26 +3041,6 @@
       "id": "src_bg_bg"
     },
     {
-      "label": "CircleLayout.tsx",
-      "file_type": "code",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "circlelayout.tsx",
-      "id": "src_circlelayout"
-    },
-    {
-      "label": "CircleLayout()",
-      "file_type": "code",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L26",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "circlelayout()",
-      "id": "src_circlelayout_circlelayout"
-    },
-    {
       "label": "CircleLayoutArray.tsx",
       "file_type": "code",
       "source_file": "src/CircleLayoutArray.tsx",
@@ -2841,46 +3081,6 @@
       "id": "src_circlelayoutcomponent_circlelayoutcomponent"
     },
     {
-      "label": "CircleLayoutContent.tsx",
-      "file_type": "code",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "circlelayoutcontent.tsx",
-      "id": "src_circlelayoutcontent"
-    },
-    {
-      "label": "resolveValue()",
-      "file_type": "code",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L19",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "resolvevalue()",
-      "id": "src_circlelayoutcontent_resolvevalue"
-    },
-    {
-      "label": "resolveBgConfig()",
-      "file_type": "code",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L38",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "resolvebgconfig()",
-      "id": "src_circlelayoutcontent_resolvebgconfig"
-    },
-    {
-      "label": "CircleLayoutContent()",
-      "file_type": "code",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L67",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "circlelayoutcontent()",
-      "id": "src_circlelayoutcontent_circlelayoutcontent"
-    },
-    {
       "label": "CircleLayoutContext.tsx",
       "file_type": "code",
       "source_file": "src/CircleLayoutContext.tsx",
@@ -2899,36 +3099,6 @@
       "community": 1,
       "norm_label": "circlelayoutcontext",
       "id": "src_circlelayoutcontext_circlelayoutcontext"
-    },
-    {
-      "label": "CircleLayoutProvider.tsx",
-      "file_type": "code",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "circlelayoutprovider.tsx",
-      "id": "src_circlelayoutprovider"
-    },
-    {
-      "label": "CircleLayoutProviderProps",
-      "file_type": "code",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L8",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "circlelayoutproviderprops",
-      "id": "src_circlelayoutprovider_circlelayoutproviderprops"
-    },
-    {
-      "label": "CircleLayoutProvider()",
-      "file_type": "code",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L41",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "circlelayoutprovider()",
-      "id": "src_circlelayoutprovider_circlelayoutprovider"
     },
     {
       "label": "CircleLayout.test.tsx",
@@ -3286,7 +3456,7 @@
       "source_file": "src/animation/types.ts",
       "source_location": "L108",
       "_origin": "ast",
-      "community": 6,
+      "community": 1,
       "norm_label": "animatednode",
       "id": "animation_types_animatednode"
     },
@@ -3499,136 +3669,6 @@
       "community": 1,
       "norm_label": "circlecomponentstyles",
       "id": "src_styles_circlecomponentstyles"
-    },
-    {
-      "label": "types.ts",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "types.ts",
-      "id": "src_types"
-    },
-    {
-      "label": "AnimationType",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L7",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "animationtype",
-      "id": "src_types_animationtype"
-    },
-    {
-      "label": "AnimationCombinationType",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L31",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "animationcombinationtype",
-      "id": "src_types_animationcombinationtype"
-    },
-    {
-      "label": "AnimationConfig",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L50",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "animationconfig",
-      "id": "src_types_animationconfig"
-    },
-    {
-      "label": "AnimationProps",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L54",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "animationprops",
-      "id": "src_types_animationprops"
-    },
-    {
-      "label": "BgConfig",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L92",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "bgconfig",
-      "id": "src_types_bgconfig"
-    },
-    {
-      "label": "ResolvedBgConfig",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L136",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "resolvedbgconfig",
-      "id": "src_types_resolvedbgconfig"
-    },
-    {
-      "label": "CircleLayoutProps",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L144",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "circlelayoutprops",
-      "id": "src_types_circlelayoutprops"
-    },
-    {
-      "label": "CircleLayoutRef",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L214",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "circlelayoutref",
-      "id": "src_types_circlelayoutref"
-    },
-    {
-      "label": "ComponentProps",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L227",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "componentprops",
-      "id": "src_types_componentprops"
-    },
-    {
-      "label": "ComponentRef",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L256",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "componentref",
-      "id": "src_types_componentref"
-    },
-    {
-      "label": "CircleLayoutContextType",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L269",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "circlelayoutcontexttype",
-      "id": "src_types_circlelayoutcontexttype"
-    },
-    {
-      "label": "Layout",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L309",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "layout",
-      "id": "src_types_layout"
     },
     {
       "label": "animation.ts",
@@ -4126,7 +4166,7 @@
       "source_file": "turbo.json",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 15,
+      "community": 3,
       "norm_label": "turbo.json",
       "id": "turbo"
     },
@@ -4136,7 +4176,7 @@
       "source_file": "turbo.json",
       "source_location": "L2",
       "_origin": "ast",
-      "community": 15,
+      "community": 3,
       "norm_label": "$schema",
       "id": "turbo_schema"
     },
@@ -4146,7 +4186,7 @@
       "source_file": "turbo.json",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 15,
+      "community": 3,
       "norm_label": "globaldependencies",
       "id": "turbo_globaldependencies"
     },
@@ -4156,7 +4196,7 @@
       "source_file": "turbo.json",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 15,
+      "community": 3,
       "norm_label": "globalenv",
       "id": "turbo_globalenv"
     },
@@ -4166,7 +4206,7 @@
       "source_file": "turbo.json",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 15,
+      "community": 3,
       "norm_label": "tasks",
       "id": "turbo_tasks"
     },
@@ -4176,7 +4216,7 @@
       "source_file": "turbo.json",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 15,
+      "community": 3,
       "norm_label": "build:android",
       "id": "turbo_tasks_build_android"
     },
@@ -4186,7 +4226,7 @@
       "source_file": "turbo.json",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 15,
+      "community": 3,
       "norm_label": "env",
       "id": "turbo_build_android_env"
     },
@@ -4196,7 +4236,7 @@
       "source_file": "turbo.json",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 15,
+      "community": 3,
       "norm_label": "inputs",
       "id": "turbo_build_android_inputs"
     },
@@ -4206,7 +4246,7 @@
       "source_file": "turbo.json",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 15,
+      "community": 3,
       "norm_label": "outputs",
       "id": "turbo_build_android_outputs"
     },
@@ -4216,7 +4256,7 @@
       "source_file": "turbo.json",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 15,
+      "community": 3,
       "norm_label": "build:ios",
       "id": "turbo_tasks_build_ios"
     },
@@ -4226,7 +4266,7 @@
       "source_file": "turbo.json",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 15,
+      "community": 3,
       "norm_label": "env",
       "id": "turbo_build_ios_env"
     },
@@ -4236,7 +4276,7 @@
       "source_file": "turbo.json",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 15,
+      "community": 3,
       "norm_label": "inputs",
       "id": "turbo_build_ios_inputs"
     },
@@ -4246,7 +4286,7 @@
       "source_file": "turbo.json",
       "source_location": "L40",
       "_origin": "ast",
-      "community": 15,
+      "community": 3,
       "norm_label": "outputs",
       "id": "turbo_build_ios_outputs"
     },
@@ -6440,6 +6480,1954 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_nestedringmenu",
+      "target": "app_nestedringmenu_component"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_nestedringmenu",
+      "target": "app_nestedringmenu_icon"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_nestedringmenu",
+      "target": "app_nestedringmenu_icons"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L79",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_nestedringmenu",
+      "target": "app_nestedringmenu_nestedringmenu"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_nestedringmenu",
+      "target": "app_nestedringmenu_subicons"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_nestedringmenu",
+      "target": "atoms_index"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_nestedringmenu",
+      "target": "src_circlelayout_circlelayout"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_nestedringmenu",
+      "target": "src_index"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_nestedringmenu",
+      "target": "src_types_animationcombinationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_nestedringmenu",
+      "target": "src_types_animationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/NestedRingMenu.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_nestedringmenu",
+      "target": "src_types_circlelayoutref"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/RadialMenu.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_radialmenu",
+      "target": "app_radialmenu_icon"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/RadialMenu.tsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_radialmenu",
+      "target": "app_radialmenu_radialmenu"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/RadialMenu.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_radialmenu",
+      "target": "atoms_index"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/RadialMenu.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_radialmenu",
+      "target": "src_appcontext"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/RadialMenu.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_radialmenu",
+      "target": "src_appcontext_appcontext"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/RadialMenu.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_radialmenu",
+      "target": "src_circlelayout_circlelayout"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/RadialMenu.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_radialmenu",
+      "target": "src_index"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/RadialMenu.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_radialmenu",
+      "target": "src_types_animationcombinationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/RadialMenu.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_radialmenu",
+      "target": "src_types_animationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/RadialMenu.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_radialmenu",
+      "target": "src_types_circlelayoutref"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/_layout.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_layout",
+      "target": "app_layout_app"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/_layout.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_layout",
+      "target": "molecules_index"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/_layout.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_layout",
+      "target": "popup_popup_popupprops"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/_layout.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_layout",
+      "target": "src_appcontext"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/_layout.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_layout",
+      "target": "src_appcontext_appcontext"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/_layout.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_layout",
+      "target": "src_appcontext_appcontextvalue"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/_layout.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_layout",
+      "target": "style_index"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "app_index",
+      "target": "app_index_action",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "app_index_coloroptions"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "app_index",
+      "target": "app_index_initialstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "app_index_playground"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "app_index",
+      "target": "app_index_reducer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "app_index",
+      "target": "app_index_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "atoms_index"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "molecules_index"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_appcontext"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_appcontext_appcontext"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_circlelayout_circlelayout"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_index"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_types_animationcombinationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_types_animationconfig"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_types_animationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_types_circlelayoutref"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "style_index"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "style_index_palette"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L196",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "dropdown_dropdown_dropdown"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L43",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "dropdown_dropdown_dropdowncomponent"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "dropdown_dropdown_dropdowncomponentprops"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "dropdown_dropdown_dropdownoption"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "dropdown_dropdown_dropdownownprops"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L194",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "dropdown_dropdown_dropdownprops"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "dropdown_dropdown_multipleselectprops"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "dropdown_dropdown_singleselectprops"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "style_index"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "style_index_palette"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "style_index_theme"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "text_index"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "utils_resolvestyles"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "utils_resolvestyles_resolvestyles"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "view_index"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_dropdown",
+      "target": "view_index_viewprops"
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/index.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_index",
+      "target": "dropdown_dropdown"
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/index.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_index",
+      "target": "dropdown_dropdown_dropdownoption"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "dropdown_dropdown_dropdowncomponent",
+      "target": "utils_resolvestyles_resolvestyles"
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/Dropdown/index.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dropdown_index",
+      "target": "dropdown_dropdown_dropdownprops"
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/PopUp/index.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "popup_index",
+      "target": "popup_popup"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "popup_popup",
+      "target": "popup_popup_popup"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "popup_popup",
+      "target": "popup_popup_popupprops"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "popup_popup",
+      "target": "src_appcontext"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "popup_popup",
+      "target": "src_appcontext_appcontext"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "popup_popup",
+      "target": "text_index"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "popup_popup",
+      "target": "view_index"
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/design_system/molecules/PopUp/index.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "popup_index",
+      "target": "popup_popup_popupprops"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/AppContext.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_appcontext",
+      "target": "popup_popup_popupprops"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "example/assets/android-icon-background.png",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "assets_android_icon_background",
+      "target": "src_circlelayout"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "animation_types"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "animation_types_animationdriver"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "src_circlelayout_circlelayout"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "src_circlelayoutcontent"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "src_circlelayoutcontent_circlelayoutcontent"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "src_circlelayoutprovider"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "src_circlelayoutprovider_circlelayoutprovider"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "src_types_circlelayoutprops"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "src_types_circlelayoutref"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "utils_index"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "utils_validation_validateprops"
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_index",
+      "target": "src_circlelayout"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "src_circlelayout"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "src_circlelayout_circlelayout",
+      "target": "utils_validation_validateprops"
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_index",
+      "target": "src_circlelayout_circlelayout"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "src_circlelayout_circlelayout"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/index.test.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_index_test",
+      "target": "src_circlelayout_circlelayout"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_bg"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_bg_bg"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_circlelayoutarray"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L67",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_circlelayoutcontent_circlelayoutcontent"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_circlelayoutcontent_resolvebgconfig"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_circlelayoutcontent_resolvevalue"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_types_bgconfig"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_types_circlelayoutref"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_types_layout"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_types_resolvedbgconfig"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent_resolvebgconfig",
+      "target": "src_circlelayoutcontent_resolvevalue"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutprovider",
+      "target": "animation_rnanimateddriver"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutprovider",
+      "target": "animation_rnanimateddriver_rnanimateddriver"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutprovider",
+      "target": "animation_types"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutprovider",
+      "target": "animation_types_animationdriver"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutprovider",
+      "target": "src_circlelayoutcontext"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutprovider",
+      "target": "src_circlelayoutcontext_circlelayoutcontext"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L41",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutprovider",
+      "target": "src_circlelayoutprovider_circlelayoutprovider"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutprovider",
+      "target": "src_circlelayoutprovider_circlelayoutproviderprops"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutprovider",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutprovider",
+      "target": "src_types_circlelayoutcontexttype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutProvider.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutprovider",
+      "target": "src_types_circlelayoutprops"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "src_circlelayoutprovider"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "src_circlelayoutprovider_circlelayoutprovider"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/hooks/useCombinedAnimation.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "hooks_usecombinedanimation",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/hooks/useCombinedAnimation.test.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "hooks_usecombinedanimation_test",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Bg.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_bg",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutArray.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutarray",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutComponent.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcomponent",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContext.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontext",
+      "target": "src_types"
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_index",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "animation_rnanimateddriver"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "animation_rnanimateddriver_rnanimateddriver"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "animation_types"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "animation_types_animationdriver"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "animation_types_driverconfig"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "src_types_animationcombinationtype"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "src_types_animationconfig"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L54",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "src_types_animationprops"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "src_types_animationtype"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L92",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "src_types_bgconfig"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L269",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "src_types_circlelayoutcontexttype"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L144",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "src_types_circlelayoutprops"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L214",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "src_types_circlelayoutref"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L227",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "src_types_componentprops"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L256",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "src_types_componentref"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L307",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "src_types_layout"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L136",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_types",
+      "target": "src_types_resolvedbgconfig"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayoutArray.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayoutarray_test",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayoutcomponent_test",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/utils/validation.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "utils_validation",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/hooks/useCombinedAnimation.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "hooks_usecombinedanimation",
+      "target": "src_types_animationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/hooks/useCombinedAnimation.test.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "hooks_usecombinedanimation_test",
+      "target": "src_types_animationtype"
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_index",
+      "target": "src_types_animationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayoutcomponent_test",
+      "target": "src_types_animationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/index.test.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_index_test",
+      "target": "src_types_animationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/hooks/useCombinedAnimation.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "hooks_usecombinedanimation",
+      "target": "src_types_animationcombinationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/hooks/useCombinedAnimation.test.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "hooks_usecombinedanimation_test",
+      "target": "src_types_animationcombinationtype"
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_index",
+      "target": "src_types_animationcombinationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayoutcomponent_test",
+      "target": "src_types_animationcombinationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/index.test.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_index_test",
+      "target": "src_types_animationcombinationtype"
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_index",
+      "target": "src_types_animationconfig"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Bg.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_bg",
+      "target": "src_types_bgconfig"
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_index",
+      "target": "src_types_bgconfig"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Bg.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_bg",
+      "target": "src_types_resolvedbgconfig"
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_index",
+      "target": "src_types_resolvedbgconfig"
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_index",
+      "target": "src_types_circlelayoutprops"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/utils/validation.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "utils_validation",
+      "target": "src_types_circlelayoutprops"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutArray.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutarray",
+      "target": "src_types_circlelayoutref"
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_index",
+      "target": "src_types_circlelayoutref"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "src_types_circlelayoutref"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayoutArray.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayoutarray_test",
+      "target": "src_types_circlelayoutref"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutComponent.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcomponent",
+      "target": "src_types_componentprops"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutArray.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutarray",
+      "target": "src_types_componentref"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutComponent.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcomponent",
+      "target": "src_types_componentref"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayoutcomponent_test",
+      "target": "src_types_componentref"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/hooks/useCombinedAnimation.test.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "hooks_usecombinedanimation_test",
+      "target": "src_types_circlelayoutcontexttype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContext.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontext",
+      "target": "src_types_circlelayoutcontexttype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayoutArray.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayoutarray_test",
+      "target": "src_types_circlelayoutcontexttype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayoutcomponent_test",
+      "target": "src_types_circlelayoutcontexttype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Bg.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_bg",
+      "target": "src_types_layout"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutArray.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutarray",
+      "target": "src_types_layout"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutComponent.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcomponent",
+      "target": "src_types_layout"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayoutArray.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayoutarray_test",
+      "target": "src_types_layout"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayoutcomponent_test",
+      "target": "src_types_layout"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "package.json",
       "source_location": "L53",
       "weight": 1.0,
@@ -7073,9 +9061,9 @@
       "source_file": "package.json",
       "source_location": "L91",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_devdependencies",
-      "target": "package_devdependencies_react_test_renderer",
-      "confidence_score": 1.0
+      "target": "package_devdependencies_react_test_renderer"
     },
     {
       "relation": "contains",
@@ -8169,61 +10157,6 @@
       "target": "example_package_devdependencies_react_native_monorepo_config"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_appcontext"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/_layout.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_layout",
-      "target": "src_appcontext"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/RadialMenu.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_radialmenu",
-      "target": "src_appcontext"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "popup_popup",
-      "target": "src_appcontext"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/AppContext.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_appcontext",
-      "target": "popup_popup_popupprops"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "example/src/AppContext.ts",
@@ -8242,436 +10175,6 @@
       "confidence_score": 1.0,
       "source": "src_appcontext",
       "target": "src_appcontext_appcontextvalue"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/_layout.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_layout",
-      "target": "src_appcontext_appcontextvalue"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_appcontext_appcontext"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/_layout.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_layout",
-      "target": "src_appcontext_appcontext"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/RadialMenu.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_radialmenu",
-      "target": "src_appcontext_appcontext"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "popup_popup",
-      "target": "src_appcontext_appcontext"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L22",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_nestedringmenu",
-      "target": "app_nestedringmenu_component"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L16",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_nestedringmenu",
-      "target": "app_nestedringmenu_icon"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_nestedringmenu",
-      "target": "app_nestedringmenu_icons"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L79",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_nestedringmenu",
-      "target": "app_nestedringmenu_nestedringmenu"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_nestedringmenu",
-      "target": "app_nestedringmenu_subicons"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L14",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_nestedringmenu",
-      "target": "atoms_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_nestedringmenu",
-      "target": "src_circlelayout_circlelayout"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_nestedringmenu",
-      "target": "src_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_nestedringmenu",
-      "target": "src_types_animationcombinationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_nestedringmenu",
-      "target": "src_types_animationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/NestedRingMenu.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_nestedringmenu",
-      "target": "src_types_circlelayoutref"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/RadialMenu.tsx",
-      "source_location": "L16",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_radialmenu",
-      "target": "app_radialmenu_icon"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/RadialMenu.tsx",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_radialmenu",
-      "target": "app_radialmenu_radialmenu"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/RadialMenu.tsx",
-      "source_location": "L14",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_radialmenu",
-      "target": "atoms_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/RadialMenu.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_radialmenu",
-      "target": "src_circlelayout_circlelayout"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/RadialMenu.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_radialmenu",
-      "target": "src_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/RadialMenu.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_radialmenu",
-      "target": "src_types_animationcombinationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/RadialMenu.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_radialmenu",
-      "target": "src_types_animationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/RadialMenu.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_radialmenu",
-      "target": "src_types_circlelayoutref"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/_layout.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_layout",
-      "target": "app_layout_app"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/_layout.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_layout",
-      "target": "molecules_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/_layout.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_layout",
-      "target": "popup_popup_popupprops"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/_layout.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_layout",
-      "target": "style_index"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L22",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "app_index_coloroptions"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L29",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "app_index_playground"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "atoms_index"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L19",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "molecules_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_circlelayout_circlelayout"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_types_animationcombinationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_types_animationconfig"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_types_animationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_types_circlelayoutref"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "style_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "style_index_palette"
     },
     {
       "relation": "contains",
@@ -8922,28 +10425,6 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "text_index"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "popup_popup",
-      "target": "text_index"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "example/src/design_system/molecules/SliderWithLabel/SliderWithLabel.tsx",
       "source_location": "L12",
       "weight": 1.0,
@@ -9052,28 +10533,6 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "view_index"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "popup_popup",
-      "target": "view_index"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "example/src/design_system/molecules/SliderWithLabel/SliderWithLabel.tsx",
       "source_location": "L13",
       "weight": 1.0,
@@ -9128,17 +10587,6 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "view_index_viewprops"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "example/src/design_system/molecules/SliderWithLabel/SliderWithLabel.tsx",
       "source_location": "L13",
       "weight": 1.0,
@@ -9156,185 +10604,6 @@
       "confidence_score": 1.0,
       "source": "switch_switch",
       "target": "view_index_viewprops"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L196",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "dropdown_dropdown_dropdown"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L43",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "dropdown_dropdown_dropdowncomponent"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L40",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "dropdown_dropdown_dropdowncomponentprops"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "dropdown_dropdown_dropdownoption"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L33",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "dropdown_dropdown_dropdownownprops"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L194",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "dropdown_dropdown_dropdownprops"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L26",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "dropdown_dropdown_multipleselectprops"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "dropdown_dropdown_singleselectprops"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "style_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "style_index_palette"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "style_index_theme"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "utils_resolvestyles"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_dropdown",
-      "target": "utils_resolvestyles_resolvestyles"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/index.ts",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_index",
-      "target": "dropdown_dropdown"
-    },
-    {
-      "relation": "re_exports",
-      "context": "re-export",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/index.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_index",
-      "target": "dropdown_dropdown_dropdownoption"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "example/src/design_system/molecules/Dropdown/Dropdown.tsx",
-      "source_location": "L52",
-      "weight": 1.0,
-      "source": "dropdown_dropdown_dropdowncomponent",
-      "target": "utils_resolvestyles_resolvestyles"
-    },
-    {
-      "relation": "re_exports",
-      "context": "re-export",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/Dropdown/index.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dropdown_index",
-      "target": "dropdown_dropdown_dropdownprops"
     },
     {
       "relation": "re_exports",
@@ -9346,48 +10615,6 @@
       "confidence_score": 1.0,
       "source": "molecules_index",
       "target": "dropdown_index"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/PopUp/index.ts",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "popup_index",
-      "target": "popup_popup"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "popup_popup",
-      "target": "popup_popup_popup"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/PopUp/PopUp.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "popup_popup",
-      "target": "popup_popup_popupprops"
-    },
-    {
-      "relation": "re_exports",
-      "context": "re-export",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/design_system/molecules/PopUp/index.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "popup_index",
-      "target": "popup_popup_popupprops"
     },
     {
       "relation": "re_exports",
@@ -9982,61 +11209,6 @@
       "target": "src_circlelayoutcontext_circlelayoutcontext"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Bg.tsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_bg",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Bg.tsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_bg",
-      "target": "src_types_bgconfig"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Bg.tsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_bg",
-      "target": "src_types_layout"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Bg.tsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_bg",
-      "target": "src_types_resolvedbgconfig"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_bg"
-    },
-    {
       "relation": "calls",
       "context": "call",
       "confidence": "INFERRED",
@@ -10057,224 +11229,6 @@
       "weight": 1.0,
       "source": "src_bg_bg",
       "target": "hooks_usecombinedanimation_usecombinedanimation"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_bg_bg"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.65,
-      "source_file": "example/assets/android-icon-background.png",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "assets_android_icon_background",
-      "target": "src_circlelayout"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "animation_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "animation_types_animationdriver"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L26",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "src_circlelayout_circlelayout"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "src_circlelayoutcontent"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "src_circlelayoutcontent_circlelayoutcontent"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "src_circlelayoutprovider"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "src_circlelayoutprovider_circlelayoutprovider"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "src_types_circlelayoutprops"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "src_types_circlelayoutref"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "utils_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "utils_validation_validateprops"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/index.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_index",
-      "target": "src_circlelayout"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_circlelayout"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L42",
-      "weight": 1.0,
-      "source": "src_circlelayout_circlelayout",
-      "target": "utils_validation_validateprops"
-    },
-    {
-      "relation": "re_exports",
-      "context": "re-export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/index.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_index",
-      "target": "src_circlelayout_circlelayout"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_circlelayout_circlelayout"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/index.test.tsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_index_test",
-      "target": "src_circlelayout_circlelayout"
     },
     {
       "relation": "contains",
@@ -10329,61 +11283,6 @@
       "confidence_score": 1.0,
       "source": "src_circlelayoutarray",
       "target": "src_circlelayoutcontext_circlelayoutcontext"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutArray.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutarray",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutArray.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutarray",
-      "target": "src_types_circlelayoutref"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutArray.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutarray",
-      "target": "src_types_componentref"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutArray.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutarray",
-      "target": "src_types_layout"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_circlelayoutarray"
     },
     {
       "relation": "imports_from",
@@ -10462,50 +11361,6 @@
       "target": "src_styles_circlecomponentstyles"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutComponent.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcomponent",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutComponent.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcomponent",
-      "target": "src_types_componentprops"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutComponent.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcomponent",
-      "target": "src_types_componentref"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutComponent.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcomponent",
-      "target": "src_types_layout"
-    },
-    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -10572,102 +11427,6 @@
       "target": "src_circlelayoutcomponent_circlelayoutcomponent"
     },
     {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L67",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_circlelayoutcontent_circlelayoutcontent"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L38",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_circlelayoutcontent_resolvebgconfig"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L19",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_circlelayoutcontent_resolvevalue"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_types_bgconfig"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_types_circlelayoutref"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_types_layout"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_types_resolvedbgconfig"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L40",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent_resolvebgconfig",
-      "target": "src_circlelayoutcontent_resolvevalue"
-    },
-    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -10747,39 +11506,6 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContext.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontext",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContext.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontext",
-      "target": "src_types_circlelayoutcontexttype"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutprovider",
-      "target": "src_circlelayoutcontext"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "src/__tests__/CircleLayout.test.tsx",
       "source_location": "L7",
       "weight": 1.0,
@@ -10835,17 +11561,6 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutprovider",
-      "target": "src_circlelayoutcontext_circlelayoutcontext"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "src/__tests__/CircleLayout.test.tsx",
       "source_location": "L7",
       "weight": 1.0,
@@ -10874,147 +11589,6 @@
       "confidence_score": 1.0,
       "source": "tests_circlelayoutcomponent_test",
       "target": "src_circlelayoutcontext_circlelayoutcontext"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutprovider",
-      "target": "animation_rnanimateddriver"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutprovider",
-      "target": "animation_rnanimateddriver_rnanimateddriver"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutprovider",
-      "target": "animation_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutprovider",
-      "target": "animation_types_animationdriver"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L41",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutprovider",
-      "target": "src_circlelayoutprovider_circlelayoutprovider"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutprovider",
-      "target": "src_circlelayoutprovider_circlelayoutproviderprops"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutprovider",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutprovider",
-      "target": "src_types_circlelayoutcontexttype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutProvider.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutprovider",
-      "target": "src_types_circlelayoutprops"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_circlelayoutprovider"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_circlelayoutprovider_circlelayoutprovider"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_types_circlelayoutref"
     },
     {
       "relation": "contains",
@@ -11079,50 +11653,6 @@
       "confidence_score": 1.0,
       "source": "tests_circlelayoutarray_test",
       "target": "animation_rnanimateddriver_rnanimateddriver"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayoutArray.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayoutarray_test",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayoutArray.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayoutarray_test",
-      "target": "src_types_circlelayoutcontexttype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayoutArray.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayoutarray_test",
-      "target": "src_types_circlelayoutref"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayoutArray.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayoutarray_test",
-      "target": "src_types_layout"
     },
     {
       "relation": "contains",
@@ -11206,72 +11736,6 @@
       "confidence_score": 1.0,
       "source": "tests_circlelayoutcomponent_test",
       "target": "animation_rnanimateddriver_rnanimateddriver"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayoutcomponent_test",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayoutcomponent_test",
-      "target": "src_types_animationcombinationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayoutcomponent_test",
-      "target": "src_types_animationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayoutcomponent_test",
-      "target": "src_types_circlelayoutcontexttype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayoutcomponent_test",
-      "target": "src_types_componentref"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayoutcomponent_test",
-      "target": "src_types_layout"
     },
     {
       "relation": "contains",
@@ -11576,78 +12040,12 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/hooks/useCombinedAnimation.test.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "hooks_usecombinedanimation_test",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/hooks/useCombinedAnimation.test.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "hooks_usecombinedanimation_test",
-      "target": "src_types_animationcombinationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/hooks/useCombinedAnimation.test.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "hooks_usecombinedanimation_test",
-      "target": "src_types_animationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/hooks/useCombinedAnimation.test.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "hooks_usecombinedanimation_test",
-      "target": "src_types_circlelayoutcontexttype"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "src/__tests__/index.test.tsx",
       "source_location": "L1",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "tests_index_test",
       "target": "src_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/index.test.tsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_index_test",
-      "target": "src_types_animationcombinationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/index.test.tsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_index_test",
-      "target": "src_types_animationtype"
     },
     {
       "relation": "imports_from",
@@ -11921,28 +12319,6 @@
       "target": "utils_animation_withfunction"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "animation_rnanimateddriver"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "animation_rnanimateddriver_rnanimateddriver"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/animation/types.ts",
@@ -12040,17 +12416,6 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "animation_types"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "src/utils/circle.ts",
       "source_location": "L1",
       "weight": 1.0,
@@ -12089,17 +12454,6 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "hooks_useanimation",
-      "target": "animation_types_animationdriver"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
       "target": "animation_types_animationdriver"
     },
     {
@@ -12166,17 +12520,6 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "hooks_useanimation_animationargs",
-      "target": "animation_types_driverconfig"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
       "target": "animation_types_driverconfig"
     },
     {
@@ -12533,127 +12876,6 @@
       "target": "hooks_usecombinedanimation_usecombinedanimation"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/hooks/useCombinedAnimation.ts",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "hooks_usecombinedanimation",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/hooks/useCombinedAnimation.ts",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "hooks_usecombinedanimation",
-      "target": "src_types_animationcombinationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/hooks/useCombinedAnimation.ts",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "hooks_usecombinedanimation",
-      "target": "src_types_animationtype"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/index.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_index",
-      "target": "src_types"
-    },
-    {
-      "relation": "re_exports",
-      "context": "re-export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/index.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_index",
-      "target": "src_types_animationcombinationtype"
-    },
-    {
-      "relation": "re_exports",
-      "context": "re-export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/index.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_index",
-      "target": "src_types_animationconfig"
-    },
-    {
-      "relation": "re_exports",
-      "context": "re-export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/index.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_index",
-      "target": "src_types_animationtype"
-    },
-    {
-      "relation": "re_exports",
-      "context": "re-export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/index.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_index",
-      "target": "src_types_bgconfig"
-    },
-    {
-      "relation": "re_exports",
-      "context": "re-export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/index.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_index",
-      "target": "src_types_circlelayoutprops"
-    },
-    {
-      "relation": "re_exports",
-      "context": "re-export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/index.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_index",
-      "target": "src_types_circlelayoutref"
-    },
-    {
-      "relation": "re_exports",
-      "context": "re-export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/index.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_index",
-      "target": "src_types_resolvedbgconfig"
-    },
-    {
       "relation": "re_exports",
       "context": "export",
       "confidence": "EXTRACTED",
@@ -12673,148 +12895,6 @@
       "confidence_score": 1.0,
       "source": "src_styles",
       "target": "src_styles_circlecomponentstyles"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L31",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "src_types_animationcombinationtype"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L50",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "src_types_animationconfig"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L54",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "src_types_animationprops"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "src_types_animationtype"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L92",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "src_types_bgconfig"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L269",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "src_types_circlelayoutcontexttype"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L144",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "src_types_circlelayoutprops"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L214",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "src_types_circlelayoutref"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L227",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "src_types_componentprops"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L256",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "src_types_componentref"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L307",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "src_types_layout"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/types.ts",
-      "source_location": "L136",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_types",
-      "target": "src_types_resolvedbgconfig"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/utils/validation.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "utils_validation",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/utils/validation.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "utils_validation",
-      "target": "src_types_circlelayoutprops"
     },
     {
       "relation": "contains",
@@ -15429,5 +15509,5 @@
       "source_file": "AGENTS.md"
     }
   ],
-  "built_at_commit": "9947b1dc925c557074455c34a96bc5a8020dbc32"
+  "built_at_commit": "6beb4b59be11826d7f469693f025cddaaf4f18e7"
 }

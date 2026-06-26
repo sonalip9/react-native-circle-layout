@@ -1,16 +1,16 @@
 # Graph Report - react-native-circle-layout  (2026-06-25)
 
 ## Corpus Check
-- 83 files · ~46,525 words
+- 83 files · ~46,632 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 608 nodes · 862 edges · 48 communities (33 shown, 15 thin omitted)
+- 612 nodes · 866 edges · 47 communities (32 shown, 15 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9947b1dc`
+- Built from commit: `6beb4b59`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -29,7 +29,6 @@
 - [[_COMMUNITY_Agent Documentation|Agent Documentation]]
 - [[_COMMUNITY_Release Configuration|Release Configuration]]
 - [[_COMMUNITY_Architecture Decisions|Architecture Decisions]]
-- [[_COMMUNITY_Agent Architecture Refs|Agent Architecture Refs]]
 - [[_COMMUNITY_Metro Bundler Config|Metro Bundler Config]]
 - [[_COMMUNITY_Package Scripts|Package Scripts]]
 - [[_COMMUNITY_TotalParts Invariant|TotalParts Invariant]]
@@ -67,8 +66,8 @@
 5. `rnAnimatedDriver` - 12 edges
 6. `react-native-circle-layout` - 12 edges
 7. `AnimationDriver` - 11 edges
-8. `CircleLayoutContext` - 10 edges
-9. `CircleLayoutRef` - 10 edges
+8. `CircleLayoutRef` - 10 edges
+9. `CircleLayoutContext` - 10 edges
 10. `Props` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
@@ -91,7 +90,7 @@
 - **Animation Hook Pipeline** — agents_circlelayoutcomponent, agents_useanimation, agents_usecombinedanimation, agents_useanimatedsectorpath [EXTRACTED 1.00]
 - **Agent Skills System** — agents_issue_tracker, agents_triage_labels, agents_domain_docs, agents_github_issues [EXTRACTED 1.00]
 
-## Communities (48 total, 15 thin omitted)
+## Communities (47 total, 15 thin omitted)
 
 ### Community 0 - "Example App Screens"
 Cohesion: 0.08
@@ -99,15 +98,15 @@ Nodes (25): AnimationCombinationType, AnimationConfig, `animationProps`, Animati
 
 ### Community 1 - "Core Layout & Animation"
 Cohesion: 0.06
-Nodes (48): rnAnimatedDriver, RNAnimationConfig, AnimationDriver, DriverComposite, DriverConfig, DriverValue, Icon, icons (+40 more)
+Nodes (48): rnAnimatedDriver, RNAnimationConfig, AnimatedNode, AnimationDriver, DriverComposite, DriverConfig, DriverValue, Icon (+40 more)
 
 ### Community 2 - "Design System Components"
-Cohesion: 0.07
-Nodes (37): colorOptions, Button, ButtonComponent(), ButtonComponentProps, ButtonProps, Props, ResolvedStyle, RestyleProps (+29 more)
+Cohesion: 0.06
+Nodes (41): Action, colorOptions, initialState, State, Button, ButtonComponent(), ButtonComponentProps, ButtonProps (+33 more)
 
 ### Community 3 - "Dev Dependencies & Turbo"
-Cohesion: 0.06
-Nodes (32): devDependencies, commitlint, @commitlint/config-conventional, del-cli, eslint, @eslint-community/eslint-plugin-eslint-comments, @eslint/compat, eslint-config-prettier (+24 more)
+Cohesion: 0.04
+Nodes (45): devDependencies, commitlint, @commitlint/config-conventional, del-cli, eslint, @eslint-community/eslint-plugin-eslint-comments, @eslint/compat, eslint-config-prettier (+37 more)
 
 ### Community 4 - "Example App Dependencies"
 Cohesion: 0.06
@@ -118,8 +117,8 @@ Cohesion: 0.06
 Nodes (30): backgroundColor, backgroundImage, foregroundImage, monochromeImage, adaptiveIcon, package, predictiveBackGestureEnabled, projectId (+22 more)
 
 ### Community 6 - "Circle Math & Geometry"
-Cohesion: 0.14
-Nodes (19): AnimatedNode, center, UseAnimatedSectorPath, CirclePosition, CirclePositionsConfig, computePosition(), useCirclePosition(), useCirclePositions() (+11 more)
+Cohesion: 0.15
+Nodes (18): center, UseAnimatedSectorPath, CirclePosition, CirclePositionsConfig, computePosition(), useCirclePosition(), useCirclePositions(), CirclePathProps (+10 more)
 
 ### Community 7 - "TypeScript Config"
 Cohesion: 0.07
@@ -148,10 +147,6 @@ Nodes (12): commitMessage, tagName, release, publish, @release-it/conventional-c
 ### Community 14 - "Architecture Decisions"
 Cohesion: 0.08
 Nodes (28): ADR-0001: Imperative ref API for show/hide, Consequences, Decision, Rationale, src/utils/circle.ts, animation gap, center component, circle layout (glossary term) (+20 more)
-
-### Community 15 - "Agent Architecture Refs"
-Cohesion: 0.14
-Nodes (13): turbo, env, inputs, outputs, env, inputs, outputs, globalDependencies (+5 more)
 
 ### Community 16 - "Metro Bundler Config"
 Cohesion: 0.33
@@ -206,7 +201,7 @@ Cohesion: 0.67
 Nodes (3): repository, type, url
 
 ## Knowledge Gaps
-- **342 isolated node(s):** `name`, `version`, `description`, `main`, `source` (+337 more)
+- **345 isolated node(s):** `Icon`, `icons`, `subIcons`, `Icon`, `colorOptions` (+340 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **15 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -215,15 +210,15 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Domain Context - react-native-circle-layout` connect `Architecture Decisions` to `CI/CD & Workflows`, `Agent Documentation`, `TotalParts Invariant`?**
   _High betweenness centrality (0.025) - this node is a cross-community bridge._
-- **Why does `devDependencies` connect `Dev Dependencies & Turbo` to `Package Metadata`, `Agent Architecture Refs`?**
+- **Why does `devDependencies` connect `Dev Dependencies & Turbo` to `Package Metadata`?**
   _High betweenness centrality (0.022) - this node is a cross-community bridge._
 - **Why does `react-native-circle-layout` connect `Agent Documentation` to `TotalParts Invariant`, `Architecture Decisions`?**
-  _High betweenness centrality (0.021) - this node is a cross-community bridge._
-- **What connects `name`, `version`, `description` to the rest of the system?**
-  _344 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+- **What connects `Icon`, `icons`, `subIcons` to the rest of the system?**
+  _347 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Example App Screens` be split into smaller, more focused modules?**
   _Cohesion score 0.07692307692307693 - nodes in this community are weakly interconnected._
 - **Should `Core Layout & Animation` be split into smaller, more focused modules?**
   _Cohesion score 0.06330532212885154 - nodes in this community are weakly interconnected._
 - **Should `Design System Components` be split into smaller, more focused modules?**
-  _Cohesion score 0.06557377049180328 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05827505827505827 - nodes in this community are weakly interconnected._
