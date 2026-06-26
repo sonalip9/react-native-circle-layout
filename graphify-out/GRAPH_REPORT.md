@@ -1,16 +1,16 @@
-# Graph Report - react-native-circle-layout  (2026-06-25)
+# Graph Report - react-native-circle-layout  (2026-06-26)
 
 ## Corpus Check
-- 83 files · ~46,632 words
+- 82 files · ~46,784 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 612 nodes · 866 edges · 47 communities (32 shown, 15 thin omitted)
+- 611 nodes · 866 edges · 46 communities (31 shown, 15 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6beb4b59`
+- Built from commit: `56cb6523`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -90,7 +90,7 @@
 - **Animation Hook Pipeline** — agents_circlelayoutcomponent, agents_useanimation, agents_usecombinedanimation, agents_useanimatedsectorpath [EXTRACTED 1.00]
 - **Agent Skills System** — agents_issue_tracker, agents_triage_labels, agents_domain_docs, agents_github_issues [EXTRACTED 1.00]
 
-## Communities (47 total, 15 thin omitted)
+## Communities (46 total, 15 thin omitted)
 
 ### Community 0 - "Example App Screens"
 Cohesion: 0.08
@@ -213,7 +213,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `devDependencies` connect `Dev Dependencies & Turbo` to `Package Metadata`?**
   _High betweenness centrality (0.022) - this node is a cross-community bridge._
 - **Why does `react-native-circle-layout` connect `Agent Documentation` to `TotalParts Invariant`, `Architecture Decisions`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
 - **What connects `Icon`, `icons`, `subIcons` to the rest of the system?**
   _347 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Example App Screens` be split into smaller, more focused modules?**
