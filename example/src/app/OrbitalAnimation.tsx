@@ -13,16 +13,13 @@ import {
   cancelAnimation,
 } from 'react-native-reanimated';
 
-import {
-  CircleLayout,
-  useCirclePositions,
-  type CircleLayoutRef,
-} from 'react-native-circle-layout';
+import { CircleLayout, useCirclePositions } from 'react-native-circle-layout';
 
 import { AnimView } from '../AnimatedComponents';
 
 import { View } from '../design_system/atoms';
 import { ScreenHeader } from '../design_system/molecules';
+import { useShowOnMount } from '../hooks/useShowOnMount';
 
 type OrbitalRing = {
   radius: number;
@@ -98,12 +95,7 @@ const OrbitRing = ({
     transform: [{ rotate: `${-rotation.value}rad` }],
   }));
 
-  const circleLayoutRef = React.useRef<CircleLayoutRef>(null);
-  React.useEffect(() => {
-    if (circleLayoutRef.current) {
-      circleLayoutRef.current.showComponents();
-    }
-  }, []);
+  const circleLayoutRef = useShowOnMount();
 
   const pathMarkers = useCirclePositions({
     count: 16,

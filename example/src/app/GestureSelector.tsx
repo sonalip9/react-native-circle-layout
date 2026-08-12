@@ -13,12 +13,13 @@ import {
   runOnJS,
 } from 'react-native-reanimated';
 
-import { CircleLayout, type CircleLayoutRef } from 'react-native-circle-layout';
+import { CircleLayout } from 'react-native-circle-layout';
 
 import { AnimView } from '../AnimatedComponents';
 
 import { View } from '../design_system/atoms';
 import { ScreenHeader } from '../design_system/molecules';
+import { useShowOnMount } from '../hooks/useShowOnMount';
 
 const COLORS: { name: string; hex: string; icon: AntDesignIconName }[] = [
   { name: 'Red', hex: '#ef4444', icon: 'heart' },
@@ -57,11 +58,7 @@ const GestureSelector = () => {
   const rotation = useSharedValue(0);
   const savedRotation = useSharedValue(0);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const circleLayoutRef = React.useRef<CircleLayoutRef>(null);
-
-  React.useEffect(() => {
-    circleLayoutRef.current?.showComponents();
-  }, []);
+  const circleLayoutRef = useShowOnMount();
 
   const updateSelected = React.useCallback((index: number) => {
     setSelectedIndex(index);

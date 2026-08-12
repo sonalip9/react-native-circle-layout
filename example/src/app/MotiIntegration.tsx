@@ -14,7 +14,6 @@ import {
 
 import {
   CircleLayout,
-  type CircleLayoutRef,
   AnimationCombinationType,
   AnimationType,
 } from 'react-native-circle-layout';
@@ -22,12 +21,13 @@ import {
 import { AnimView } from '../AnimatedComponents';
 import { View } from '../design_system/atoms';
 import { ScreenHeader } from '../design_system/molecules';
+import { useCircleVisibilityRef } from '../hooks/useCircleVisibilityRef';
 
 const ICONS: { name: AntDesignIconName; color: string; label: string }[] = [
   { name: 'edit', color: '#f43f5e', label: 'Edit' },
   { name: 'camera', color: '#8b5cf6', label: 'Camera' },
   { name: 'heart', color: '#ec4899', label: 'Like' },
-  { name: 'sharealt', color: '#3b82f6', label: 'Share' },
+  { name: 'share-alt', color: '#3b82f6', label: 'Share' },
   { name: 'star', color: '#f59e0b', label: 'Favorite' },
   { name: 'setting', color: '#10b981', label: 'Settings' },
 ];
@@ -59,7 +59,7 @@ const MotiItem = ({
 const MotiIntegration = () => {
   const [visible, setVisible] = React.useState(false);
   const [selectedLabel, setSelectedLabel] = React.useState<string | null>(null);
-  const circleLayoutRef = React.useRef<CircleLayoutRef>(null);
+  const { ref: circleLayoutRef, show, hide } = useCircleVisibilityRef();
   const fabRotation = useSharedValue(0);
 
   const toggleMenu = () => {
@@ -70,9 +70,9 @@ const MotiIntegration = () => {
       stiffness: 100,
     });
     if (next) {
-      circleLayoutRef.current?.showComponents();
+      show();
     } else {
-      circleLayoutRef.current?.hideComponents();
+      hide();
     }
   };
 

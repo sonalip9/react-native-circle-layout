@@ -15,13 +15,13 @@ import {
   AnimationCombinationType,
   AnimationType,
   CircleLayout,
-  type CircleLayoutRef,
 } from 'react-native-circle-layout';
 
 import { AnimView } from '../AnimatedComponents';
 
 import { View } from '../design_system/atoms';
 import { ScreenHeader } from '../design_system/molecules';
+import { useCircleVisibilityRef } from '../hooks/useCircleVisibilityRef';
 
 const NAV_ITEMS: { icon: AntDesignIconName; label: string; color: string }[] = [
   { icon: 'home', label: 'Home', color: '#6366f1' },
@@ -36,7 +36,7 @@ const RADIUS = 140;
 const CircularNavMenu = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const expanded = useSharedValue(0);
-  const circleLayoutRef = React.useRef<CircleLayoutRef>(null);
+  const { ref: circleLayoutRef, show, hide } = useCircleVisibilityRef();
 
   const toggle = () => {
     const next = !isOpen;
@@ -47,9 +47,9 @@ const CircularNavMenu = () => {
       mass: 0.8,
     });
     if (next) {
-      circleLayoutRef.current?.showComponents();
+      show();
     } else {
-      circleLayoutRef.current?.hideComponents();
+      hide();
     }
   };
 
