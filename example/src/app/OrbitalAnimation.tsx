@@ -13,11 +13,16 @@ import {
   cancelAnimation,
 } from 'react-native-reanimated';
 
-import { CircleLayout, type CircleLayoutRef } from 'react-native-circle-layout';
+import {
+  CircleLayout,
+  useCirclePositions,
+  type CircleLayoutRef,
+} from 'react-native-circle-layout';
 
 import { AnimView } from '../AnimatedComponents';
 
 import { View } from '../design_system/atoms';
+import { ScreenHeader } from '../design_system/molecules';
 
 type OrbitalRing = {
   radius: number;
@@ -100,6 +105,11 @@ const OrbitRing = ({
     }
   }, []);
 
+  const pathMarkers = useCirclePositions({
+    count: 16,
+    radius: ring.radius,
+  });
+
   return (
     <RNView style={styles.ringWrapper}>
       <RNView
@@ -113,6 +123,18 @@ const OrbitRing = ({
           },
         ]}
       />
+      {pathMarkers.map((pos, i) => (
+        <RNView
+          key={i}
+          style={[
+            styles.pathDot,
+            {
+              backgroundColor: `${ring.color}20`,
+              transform: [{ translateX: pos.x }, { translateY: pos.y }],
+            },
+          ]}
+        />
+      ))}
       <AnimView style={ringStyle}>
         <CircleLayout
           ref={circleLayoutRef}
@@ -150,12 +172,10 @@ const OrbitalAnimation = () => {
 
   return (
     <View flex={1}>
-      <RNView style={styles.header}>
-        <Text style={styles.title}>Orbital System</Text>
-        <Text style={styles.subtitle}>
-          CircleLayout per ring · Different speeds · Tap to pause
-        </Text>
-      </RNView>
+      <ScreenHeader
+        title="Orbital System"
+        subtitle="CircleLayout per ring · useCirclePositions markers · Tap to pause"
+      />
 
       <View flex={1} alignItems="center" justifyContent="center">
         <RNView style={styles.solarSystem}>
@@ -190,14 +210,6 @@ const OrbitalAnimation = () => {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    padding: 16,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#0B0B0B',
-  },
   subtitle: {
     fontSize: 14,
     color: '#9E9E9E',
@@ -231,6 +243,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     borderWidth: 1,
     borderStyle: 'dashed',
+  },
+  pathDot: {
+    position: 'absolute',
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    marginLeft: -2,
+    marginTop: -2,
   },
   orbitItem: {
     width: 36,

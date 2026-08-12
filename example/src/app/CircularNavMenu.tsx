@@ -21,6 +21,7 @@ import {
 import { AnimView } from '../AnimatedComponents';
 
 import { View } from '../design_system/atoms';
+import { ScreenHeader } from '../design_system/molecules';
 
 const NAV_ITEMS: { icon: AntDesignIconName; label: string; color: string }[] = [
   { icon: 'home', label: 'Home', color: '#6366f1' },
@@ -66,18 +67,18 @@ const CircularNavMenu = () => {
 
   return (
     <View flex={1}>
-      <RNView style={styles.pageArea}>
-        <Text style={styles.title}>Circular Navigation</Text>
-        <Text style={styles.subtitle}>
-          CircleLayout half-circle fan-out from bottom
-        </Text>
+      <View flex={1}>
+        <ScreenHeader
+          title="Circular Navigation"
+          subtitle="CircleLayout half-circle fan-out from bottom"
+        />
 
         <RNView style={styles.pageContent}>
           <AntDesign name="home" size={48} color="#6366f1" />
           <Text style={styles.pageTitle}>Home</Text>
           <Text style={styles.subtitle}>Tap the + button below</Text>
         </RNView>
-      </RNView>
+      </View>
 
       {isOpen && (
         <AnimView style={[styles.backdrop, backdropStyle]}>
@@ -122,15 +123,6 @@ const CircularNavMenu = () => {
 };
 
 const styles = StyleSheet.create({
-  pageArea: {
-    flex: 1,
-    padding: 16,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#0B0B0B',
-  },
   subtitle: {
     fontSize: 14,
     color: '#9E9E9E',

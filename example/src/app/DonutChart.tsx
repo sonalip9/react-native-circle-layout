@@ -14,6 +14,7 @@ import {
 } from 'react-native-circle-layout';
 
 import { View } from '../design_system/atoms';
+import { ScreenHeader } from '../design_system/molecules';
 
 const DATA = [
   { label: 'React Native', value: 35, color: '#6366f1' },
@@ -59,12 +60,10 @@ const DonutChart = () => {
 
   return (
     <ScrollView style={{ flex: 1 }}>
-      <RNView style={styles.header}>
-        <Text style={styles.title}>Animated Donut Chart</Text>
-        <Text style={styles.subtitle}>
-          Tap sectors to expand · SVG path generation
-        </Text>
-      </RNView>
+      <ScreenHeader
+        title="Animated Donut Chart"
+        subtitle="Weighted sectors · Per-sector bgConfig · pointOnCircle labels"
+      />
 
       <View flex={1} alignItems="center" justifyContent="center">
         <RNView style={styles.chartContainer}>
@@ -147,18 +146,6 @@ const DonutChart = () => {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    padding: 16,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#0B0B0B',
-  },
-  subtitle: {
-    fontSize: 14,
-    color: '#9E9E9E',
-  },
   chartContainer: {
     width: SIZE,
     height: SIZE,

@@ -18,6 +18,7 @@ import { CircleLayout, type CircleLayoutRef } from 'react-native-circle-layout';
 import { AnimView } from '../AnimatedComponents';
 
 import { View } from '../design_system/atoms';
+import { ScreenHeader } from '../design_system/molecules';
 
 const COLORS: { name: string; hex: string; icon: AntDesignIconName }[] = [
   { name: 'Red', hex: '#ef4444', icon: 'heart' },
@@ -95,12 +96,10 @@ const GestureSelector = () => {
 
   return (
     <View flex={1}>
-      <RNView style={styles.headerSection}>
-        <Text style={styles.title}>Color Wheel Selector</Text>
-        <Text style={styles.subtitle}>
-          CircleLayout + gesture rotation · Snaps to nearest
-        </Text>
-      </RNView>
+      <ScreenHeader
+        title="Color Wheel Selector"
+        subtitle="CircleLayout + gesture rotation · Snaps to nearest"
+      />
 
       <View flex={1} alignItems="center" justifyContent="center">
         <RNView style={styles.selectionIndicator}>
@@ -138,18 +137,6 @@ const GestureSelector = () => {
 };
 
 const styles = StyleSheet.create({
-  headerSection: {
-    padding: 16,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#0B0B0B',
-  },
-  subtitle: {
-    fontSize: 14,
-    color: '#9E9E9E',
-  },
   wheel: {
     width: RADIUS * 2 + 84,
     height: RADIUS * 2 + 84,

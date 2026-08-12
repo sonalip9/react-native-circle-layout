@@ -21,6 +21,7 @@ import {
 
 import { AnimView } from '../AnimatedComponents';
 import { View } from '../design_system/atoms';
+import { ScreenHeader } from '../design_system/molecules';
 
 const ICONS: { name: AntDesignIconName; color: string; label: string }[] = [
   { name: 'edit', color: '#f43f5e', label: 'Edit' },
@@ -86,12 +87,10 @@ const MotiIntegration = () => {
 
   return (
     <View flex={1}>
-      <RNView style={styles.header}>
-        <Text style={styles.title}>Moti Integration</Text>
-        <Text style={styles.subtitle}>
-          CircleLayout + MotiPressable spring press interactions
-        </Text>
-      </RNView>
+      <ScreenHeader
+        title="Moti Integration"
+        subtitle="CircleLayout + MotiPressable spring press interactions"
+      />
 
       <View flex={1} alignItems="center" justifyContent="center">
         {selectedLabel && (
@@ -139,9 +138,6 @@ const MotiIntegration = () => {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    padding: 16,
-  },
   item: {
     width: 48,
     height: 48,
@@ -184,11 +180,6 @@ const styles = StyleSheet.create({
     padding: 16,
     alignItems: 'center',
     gap: 4,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#0B0B0B',
   },
   subtitle: {
     fontSize: 14,
