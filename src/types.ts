@@ -214,6 +214,11 @@ export type CircleLayoutProps<
    * When `true`, components are shown (animated in); when `false`, they
    * are hidden (animated out). When `undefined`, visibility is controlled
    * imperatively via the ref's `showComponents`/`hideComponents` methods.
+   *
+   * When set to a boolean (not `undefined`), it takes over as the sole
+   * source of truth for visibility: `CircleLayoutRef.showComponents` /
+   * `hideComponents` become no-ops for the lifetime of the prop being
+   * defined. See {@link CircleLayoutRef}.
    * @default undefined
    */
   visible?: boolean;
@@ -223,11 +228,17 @@ export type CircleLayoutRef = {
   /**
    * Function to show every component in the circle layout by
    * performing animation according to the passed config.
+   *
+   * No-op if the `visible` prop is set (not `undefined`) — in that mode
+   * the prop is the sole source of truth for visibility instead of the ref.
    */
   showComponents: () => void;
   /**
    * Function to hide every component in the circle layout by
    * performing animation according to the passed config.
+   *
+   * No-op if the `visible` prop is set (not `undefined`) — in that mode
+   * the prop is the sole source of truth for visibility instead of the ref.
    */
   hideComponents: () => void;
 };
