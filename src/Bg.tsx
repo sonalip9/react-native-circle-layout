@@ -82,7 +82,7 @@ export const Bg = ({
     index,
     radians: endAngleInRadians,
     startAngle: startAngleInRadians,
-    radius: size / 2,
+    radius: outerRadius ?? radius,
     useNativeDriver: false,
   });
 
