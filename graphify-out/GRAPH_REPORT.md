@@ -1,16 +1,16 @@
-# Graph Report - react-native-circle-layout  (2026-08-13)
+# Graph Report - issue-51-51ce39  (2026-08-13)
 
 ## Corpus Check
-- 83 files · ~46,823 words
+- 84 files · ~47,224 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 614 nodes · 869 edges · 51 communities (36 shown, 15 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.88)
+- 616 nodes · 865 edges · 61 communities (43 shown, 18 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e135b5a7`
+- Built from commit: `b06738ed`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -37,6 +37,7 @@
 - [[_COMMUNITY_Package Scripts|Package Scripts]]
 - [[_COMMUNITY_Community 20|Community 20]]
 - [[_COMMUNITY_Community 21|Community 21]]
+- [[_COMMUNITY_Community 22|Community 22]]
 - [[_COMMUNITY_Grid-to-Circle Morph|Grid-to-Circle Morph]]
 - [[_COMMUNITY_Agent Issue System|Agent Issue System]]
 - [[_COMMUNITY_Prettier Config|Prettier Config]]
@@ -62,18 +63,27 @@
 - [[_COMMUNITY_Deploy Pages Workflow|Deploy Pages Workflow]]
 - [[_COMMUNITY_EAS Build Workflow|EAS Build Workflow]]
 - [[_COMMUNITY_NPM Publish Workflow|NPM Publish Workflow]]
+- [[_COMMUNITY_Community 51|Community 51]]
+- [[_COMMUNITY_Community 52|Community 52]]
+- [[_COMMUNITY_Community 53|Community 53]]
+- [[_COMMUNITY_Community 54|Community 54]]
+- [[_COMMUNITY_Community 55|Community 55]]
+- [[_COMMUNITY_Community 56|Community 56]]
+- [[_COMMUNITY_Community 57|Community 57]]
+- [[_COMMUNITY_Community 58|Community 58]]
+- [[_COMMUNITY_Community 59|Community 59]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 26 edges
 2. `compilerOptions` - 16 edges
 3. `expo` - 15 edges
-4. `Domain Context - react-native-circle-layout` - 13 edges
-5. `rnAnimatedDriver` - 12 edges
-6. `react-native-circle-layout` - 12 edges
-7. `AnimationDriver` - 11 edges
-8. `CircleLayoutContext` - 10 edges
-9. `CircleLayoutRef` - 10 edges
-10. `Props` - 10 edges
+4. `rnAnimatedDriver` - 13 edges
+5. `CircleLayoutContext` - 11 edges
+6. `AnimationDriver` - 11 edges
+7. `Domain Context - react-native-circle-layout` - 11 edges
+8. `CircleLayoutRef` - 10 edges
+9. `Props` - 10 edges
+10. `Theme` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `ADR-0002: totalParts invariant for partial arcs` --conceptually_related_to--> `total parts`  [INFERRED]
@@ -82,10 +92,10 @@
   pnpm-workspace.yaml → CONTRIBUTING.md
 - `pnpm Workspace Config` --conceptually_related_to--> `CircleLayout Component`  [INFERRED]
   pnpm-workspace.yaml → AGENTS.md
-- `react-native-circle-layout` --references--> `ADR-0002: totalParts invariant for partial arcs`  [EXTRACTED]
-  AGENTS.md → docs/adr/0002-totalparts-invariant-for-partial-arcs.md
-- `react-native-circle-layout` --references--> `Domain Context - react-native-circle-layout`  [EXTRACTED]
-  AGENTS.md → CONTEXT.md
+- `ADR-0001: Imperative ref API for show/hide` --references--> `CircleLayoutRef (type)`  [INFERRED]
+  docs/adr/0001-imperative-ref-api.md → README.md
+- `hideComponents()` --conceptually_related_to--> `ADR-0001: Imperative ref API for show/hide`  [INFERRED]
+  README.md → docs/adr/0001-imperative-ref-api.md
 
 ## Import Cycles
 - None detected.
@@ -95,23 +105,23 @@
 - **Animation Hook Pipeline** — agents_circlelayoutcomponent, agents_useanimation, agents_usecombinedanimation, agents_useanimatedsectorpath [EXTRACTED 1.00]
 - **Agent Skills System** — agents_issue_tracker, agents_triage_labels, agents_domain_docs, agents_github_issues [EXTRACTED 1.00]
 
-## Communities (51 total, 15 thin omitted)
+## Communities (61 total, 18 thin omitted)
 
 ### Community 0 - "Example App Screens"
-Cohesion: 0.08
-Nodes (25): AnimationCombinationType, AnimationConfig, `animationProps`, AnimationProps, AnimationType, Authors, `bgConfig`, BgConfig (+17 more)
+Cohesion: 0.11
+Nodes (16): Action, colorOptions, initialState, State, Icon, icons, subIcons, Icon (+8 more)
 
 ### Community 1 - "Core Layout & Animation"
-Cohesion: 0.06
-Nodes (48): rnAnimatedDriver, RNAnimationConfig, AnimationDriver, DriverComposite, DriverConfig, DriverValue, Icon, icons (+40 more)
+Cohesion: 0.07
+Nodes (41): rnAnimatedDriver, RNAnimationConfig, AnimatedNode, AnimationDriver, DriverComposite, DriverConfig, DriverValue, Android Icon Background (+33 more)
 
 ### Community 2 - "Design System Components"
-Cohesion: 0.06
-Nodes (40): Action, colorOptions, initialState, State, Button, ButtonComponent(), ButtonComponentProps, ButtonProps (+32 more)
+Cohesion: 0.08
+Nodes (33): Button, ButtonComponent(), ButtonComponentProps, ButtonProps, Props, ResolvedStyle, RestyleProps, Dropdown (+25 more)
 
 ### Community 3 - "Dev Dependencies & Turbo"
-Cohesion: 0.04
-Nodes (45): devDependencies, commitlint, @commitlint/config-conventional, del-cli, eslint, @eslint-community/eslint-plugin-eslint-comments, @eslint/compat, eslint-config-prettier (+37 more)
+Cohesion: 0.06
+Nodes (33): devDependencies, commitlint, @commitlint/config-conventional, del-cli, eslint, @eslint-community/eslint-plugin-eslint-comments, @eslint/compat, eslint-config-prettier (+25 more)
 
 ### Community 4 - "Example App Dependencies"
 Cohesion: 0.06
@@ -122,16 +132,16 @@ Cohesion: 0.06
 Nodes (30): backgroundColor, backgroundImage, foregroundImage, monochromeImage, adaptiveIcon, package, predictiveBackGestureEnabled, projectId (+22 more)
 
 ### Community 6 - "Circle Math & Geometry"
-Cohesion: 0.14
-Nodes (19): AnimatedNode, center, UseAnimatedSectorPath, CirclePosition, CirclePositionsConfig, computePosition(), useCirclePosition(), useCirclePositions() (+11 more)
+Cohesion: 0.15
+Nodes (18): center, UseAnimatedSectorPath, CirclePosition, CirclePositionsConfig, computePosition(), useCirclePosition(), useCirclePositions(), CirclePathProps (+10 more)
 
 ### Community 7 - "TypeScript Config"
 Cohesion: 0.07
 Nodes (28): compilerOptions, allowUnreachableCode, allowUnusedLabels, customConditions, esModuleInterop, forceConsistentCasingInFileNames, jsx, lib (+20 more)
 
 ### Community 8 - "CI/CD & Workflows"
-Cohesion: 0.06
-Nodes (35): build-web job, CI Workflow, 1. Correction, 2. Warning, 3. Temporary Ban, 4. Permanent Ban, Attribution, Contributor Covenant Code of Conduct (+27 more)
+Cohesion: 0.13
+Nodes (18): build-web job, CI Workflow, Contributing Guide, Conventional Commits specification, example app, pnpm workspaces, release-it, build job (deploy-pages) (+10 more)
 
 ### Community 9 - "Example TypeScript Config"
 Cohesion: 0.10
@@ -142,16 +152,16 @@ Cohesion: 0.18
 Nodes (11): src/utils/circle.ts, animation gap, center component, circle layout (glossary term), Domain Context - react-native-circle-layout, polar-to-Cartesian, start angle, sweep angle (+3 more)
 
 ### Community 11 - "Package Metadata"
-Cohesion: 0.13
-Nodes (14): author, bugs, url, commitlint, extends, description, files, homepage (+6 more)
+Cohesion: 0.08
+Nodes (25): AnimationCombinationType, AnimationConfig, `animationProps`, AnimationProps, AnimationType, Authors, `bgConfig`, BgConfig (+17 more)
 
 ### Community 12 - "Agent Documentation"
-Cohesion: 0.07
-Nodes (28): Agent skills, Architecture, Commands, Domain docs, gh CLI for Issue Operations, GitHub Issues (sonalip9/react-native-circle-layout), graphify, Issue Tracker Agent Skill (+20 more)
+Cohesion: 0.33
+Nodes (6): needs-info label, needs-triage label, ready-for-agent label, ready-for-human label, Triage Labels mapping, wontfix label
 
 ### Community 13 - "Release Configuration"
-Cohesion: 0.17
-Nodes (12): commitMessage, tagName, release, publish, @release-it/conventional-changelog, name, release-it, preset (+4 more)
+Cohesion: 0.13
+Nodes (14): author, bugs, url, commitlint, extends, description, files, homepage (+6 more)
 
 ### Community 14 - "Architecture Decisions"
 Cohesion: 0.20
@@ -174,8 +184,8 @@ Cohesion: 0.25
 Nodes (8): AnimationCombinationType, AnimationConfig, AnimationType, BgConfig, CircleLayoutProps, CircleLayoutRef, src/index.tsx (public API), animation combination type (glossary)
 
 ### Community 19 - "Package Scripts"
-Cohesion: 0.25
-Nodes (8): scripts, clean, example, lint, prepare, release, test, typecheck
+Cohesion: 0.15
+Nodes (12): 1. Correction, 2. Warning, 3. Temporary Ban, 4. Permanent Ban, Attribution, Contributor Covenant Code of Conduct, Enforcement, Enforcement Guidelines (+4 more)
 
 ### Community 20 - "Community 20"
 Cohesion: 0.33
@@ -185,65 +195,93 @@ Nodes (6): CircleLayout Component, Polar-to-Cartesian Conversion, Public API Sur
 Cohesion: 0.33
 Nodes (6): AnimationCombinationType (enum, README), AnimationConfig (type, README), AnimationProps (type), AnimationType (enum, README), BgConfig (type, README), CircleLayoutProps (type)
 
+### Community 22 - "Community 22"
+Cohesion: 0.15
+Nodes (12): env, inputs, outputs, env, inputs, outputs, globalDependencies, globalEnv (+4 more)
+
 ### Community 23 - "Grid-to-Circle Morph"
-Cohesion: 0.29
-Nodes (6): Commit message convention, Contributing, Development workflow, Publishing to npm, Scripts, Sending a pull request
+Cohesion: 0.17
+Nodes (12): commitMessage, tagName, release, publish, @release-it/conventional-changelog, name, release-it, preset (+4 more)
 
 ### Community 24 - "Agent Issue System"
 Cohesion: 0.33
 Nodes (5): Before exploring, read these, Domain Docs, File structure, Flag ADR conflicts, Use the glossary's vocabulary
 
 ### Community 25 - "Prettier Config"
-Cohesion: 0.33
-Nodes (6): prettier, quoteProps, singleQuote, tabWidth, trailingComma, useTabs
+Cohesion: 0.22
+Nodes (8): Agent skills, Architecture, Commands, Domain docs, graphify, Issue tracker, react-native-circle-layout, Triage labels
 
 ### Community 27 - "Library Builder Config"
-Cohesion: 0.40
-Nodes (5): create-react-native-library, languages, tools, type, version
+Cohesion: 0.25
+Nodes (8): scripts, clean, example, lint, prepare, release, test, typecheck
 
 ### Community 28 - "Package Exports"
-Cohesion: 0.40
-Nodes (5): default, exports, ./package.json, source, types
+Cohesion: 0.29
+Nodes (6): Commit message convention, Contributing, Development workflow, Publishing to npm, Scripts, Sending a pull request
 
 ### Community 29 - "Jest Config"
 Cohesion: 0.33
-Nodes (6): jest, modulePathIgnorePatterns, preset, setupFilesAfterEnv, testPathIgnorePatterns, transformIgnorePatterns
+Nodes (5): Conventions, Issue tracker: GitHub, When a skill says "fetch the relevant ticket", When a skill says "publish to the issue tracker", gh CLI
 
 ### Community 30 - "Peer Dependencies"
+Cohesion: 0.33
+Nodes (5): Domain Context — react-native-circle-layout, Example app runtime, Glossary, Preferred terminology, What this library does NOT do
+
+### Community 31 - "Builder Bob Config"
+Cohesion: 0.33
+Nodes (6): jest, modulePathIgnorePatterns, preset, setupFilesAfterEnv, testPathIgnorePatterns, transformIgnorePatterns
+
+### Community 32 - "Publish Config"
+Cohesion: 0.33
+Nodes (6): prettier, quoteProps, singleQuote, tabWidth, trailingComma, useTabs
+
+### Community 33 - "Repository Info"
+Cohesion: 0.50
+Nodes (5): gh CLI for Issue Operations, GitHub Issues (sonalip9/react-native-circle-layout), Issue Tracker Agent Skill, Triage Labels, AGENTS.md - Project Documentation
+
+### Community 34 - "Build TypeScript Config"
+Cohesion: 0.40
+Nodes (5): create-react-native-library, languages, tools, type, version
+
+### Community 51 - "Community 51"
+Cohesion: 0.40
+Nodes (5): default, exports, ./package.json, source, types
+
+### Community 52 - "Community 52"
 Cohesion: 0.50
 Nodes (4): peerDependencies, react, react-native, react-native-svg
 
-### Community 31 - "Builder Bob Config"
+### Community 53 - "Community 53"
 Cohesion: 0.50
 Nodes (4): react-native-builder-bob, output, source, targets
 
-### Community 32 - "Publish Config"
+### Community 54 - "Community 54"
 Cohesion: 0.67
 Nodes (3): publishConfig, access, registry
 
-### Community 33 - "Repository Info"
+### Community 55 - "Community 55"
 Cohesion: 0.67
 Nodes (3): repository, type, url
 
 ## Knowledge Gaps
-- **348 isolated node(s):** `name`, `version`, `description`, `main`, `source` (+343 more)
+- **353 isolated node(s):** `flatCompat`, `name`, `slug`, `version`, `orientation` (+348 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **15 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Domain Context - react-native-circle-layout` connect `Community 10` to `CI/CD & Workflows`, `Agent Documentation`, `Architecture Decisions`, `Community 17`, `Community 18`?**
-  _High betweenness centrality (0.025) - this node is a cross-community bridge._
-- **Why does `devDependencies` connect `Dev Dependencies & Turbo` to `Package Metadata`?**
-  _High betweenness centrality (0.022) - this node is a cross-community bridge._
-- **Why does `react-native-circle-layout` connect `Agent Documentation` to `Community 17`, `Community 10`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
-- **What connects `name`, `version`, `description` to the rest of the system?**
-  _350 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `devDependencies` connect `Dev Dependencies & Turbo` to `Release Configuration`?**
+  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+- **Why does `CircleLayoutRef` connect `Example App Screens` to `Core Layout & Animation`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **Why does `palette` connect `Design System Components` to `Example App Screens`?**
+  _High betweenness centrality (0.007) - this node is a cross-community bridge._
+- **What connects `flatCompat`, `name`, `slug` to the rest of the system?**
+  _356 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Example App Screens` be split into smaller, more focused modules?**
-  _Cohesion score 0.07692307692307693 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11174242424242424 - nodes in this community are weakly interconnected._
 - **Should `Core Layout & Animation` be split into smaller, more focused modules?**
-  _Cohesion score 0.06330532212885154 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07316118935837246 - nodes in this community are weakly interconnected._
 - **Should `Design System Components` be split into smaller, more focused modules?**
-  _Cohesion score 0.05961538461538462 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0797872340425532 - nodes in this community are weakly interconnected._
