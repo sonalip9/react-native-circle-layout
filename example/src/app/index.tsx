@@ -1,4 +1,4 @@
-import { use, useMemo, useReducer, useCallback } from 'react';
+import { use, useCallback, useMemo, useReducer, useState } from 'react';
 import {
   Platform,
   ScrollView,
@@ -44,6 +44,7 @@ type State = {
   outerRadius: number;
   showContainerBackground: boolean;
   highlightCenterComponent: boolean;
+  weights?: number[];
 };
 
 const initialState: State = {
@@ -97,6 +98,7 @@ const Playground = () => {
   );
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [hasWeights, setHasWeights] = useState(false);
 
   const set = useCallback(
     <K extends keyof State>(field: K) =>
@@ -123,12 +125,14 @@ const Playground = () => {
   return (
     <ScrollView
       contentContainerStyle={{
-        flexDirection: Platform.select({ web: 'row', default: 'column' }),
+        flexDirection: windowWidth > windowHeight ? 'row' : 'column',
         alignItems: 'center',
         justifyContent: 'space-around',
         minHeight: '100%',
+        minWidth: '100%',
         padding: 24,
         gap: 24,
+        overflowX: Platform.select({ web: 'scroll', default: 'visible' }),
       }}
       style={{ flex: 1 }}
     >
@@ -198,6 +202,7 @@ const Playground = () => {
         radius={state.radius}
         startAngle={state.startAngle}
         sweepAngle={state.sweepAngle}
+        weights={state.weights}
       />
 
       <View
@@ -273,6 +278,47 @@ const Playground = () => {
             value={state.highlightCenterComponent}
             onValueChange={set('highlightCenterComponent')}
           />
+          <Switch
+            leftLabel="Weights off"
+            rightLabel="Weights on"
+            value={hasWeights}
+            onValueChange={(value) => {
+              setHasWeights(value);
+              if (value) {
+                const weights = Array.from(
+                  { length: state.numberOfPoints },
+                  () => Math.floor(Math.random() * 10) + 1
+                );
+                dispatch({ type: 'SET', field: 'weights', value: weights });
+              } else {
+                dispatch({ type: 'SET', field: 'weights', value: undefined });
+              }
+            }}
+          />
+          {hasWeights && (
+            <View gap="s">
+              <Text fontWeight="bold">Weights</Text>
+              {state.weights?.map((weight, index) => (
+                <SliderWithLabel
+                  key={index}
+                  label={`Weight ${index + 1}`}
+                  maximumValue={10}
+                  minimumValue={1}
+                  onValueChange={(value) => {
+                    const newWeights = [...(state.weights || [])];
+                    newWeights[index] = value;
+                    dispatch({
+                      type: 'SET',
+                      field: 'weights',
+                      value: newWeights,
+                    });
+                  }}
+                  step={1}
+                  value={weight}
+                />
+              ))}
+            </View>
+          )}
         </View>
 
         <View gap="s">
