@@ -39,11 +39,18 @@ export const Bg = ({
   );
 
   const { startAngleInRadians, endAngleInRadians } = useMemo(() => {
+    // Center the wedge on its own marker: the boundary with each neighbor
+    // sits at the angular midpoint between the two markers, so the wedge
+    // stays gapless/overlap-free even when neighboring sectors have
+    // different weights, while still centering on componentAngles[index]
+    // when all sectors are equal.
     const angle = componentAngles[index]!;
-    const sector = sectorAngles[index]!;
+    const nextGap = sectorAngles[index]!;
+    const prevIndex = (index - 1 + sectorAngles.length) % sectorAngles.length;
+    const prevGap = sectorAngles[prevIndex]!;
     return {
-      startAngleInRadians: angle,
-      endAngleInRadians: angle + sector,
+      startAngleInRadians: angle - prevGap / 2,
+      endAngleInRadians: angle + nextGap / 2,
     };
   }, [componentAngles, sectorAngles, index]);
 
