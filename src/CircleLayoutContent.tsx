@@ -1,10 +1,4 @@
-import {
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useImperativeHandle, useMemo, useState } from 'react';
 import { type StyleProp, type ViewStyle, Animated, View } from 'react-native';
 import CircleLayoutArray from './CircleLayoutArray';
 import type {
@@ -15,6 +9,7 @@ import type {
 } from './types';
 import React from 'react';
 import { Bg } from './Bg';
+import { VisibilityContext } from './VisibilityContext';
 
 /**
  * Resolves a per-sector style value from a scalar, array, or function.
@@ -91,7 +86,6 @@ export function CircleLayoutContent({
   bgConfig?: BgConfig;
   visible?: boolean;
 } & React.RefAttributes<CircleLayoutRef>) {
-  const componentLayoutArrayRef = useRef<CircleLayoutRef>(null);
   const [imperativeVisible, setImperativeVisible] = useState(false);
   const componentVisible = visible ?? imperativeVisible;
 
@@ -118,26 +112,15 @@ export function CircleLayoutContent({
     () => ({
       hideComponents: () => {
         if (visible !== undefined) return;
-        componentLayoutArrayRef.current?.hideComponents();
         setImperativeVisible(false);
       },
       showComponents: () => {
         if (visible !== undefined) return;
-        componentLayoutArrayRef.current?.showComponents();
         setImperativeVisible(true);
       },
     }),
     [visible, setImperativeVisible]
   );
-
-  useEffect(() => {
-    if (visible === undefined) return;
-    if (visible) {
-      componentLayoutArrayRef.current?.showComponents();
-    } else {
-      componentLayoutArrayRef.current?.hideComponents();
-    }
-  }, [visible]);
 
   return (
     <View
@@ -151,37 +134,37 @@ export function CircleLayoutContent({
         containerStyle,
       ]}
     >
-      <View>
-        {bgConfig &&
-          components.map((_, index) => (
-            <Bg
-              key={index}
-              index={index}
-              minComponentLayout={minComponentLayout}
-              centerComponentLayout={centerComponentLayout}
-              radius={radius}
-              isVisible={componentVisible}
-              {...resolveBgConfig(bgConfig, index)}
-            />
-          ))}
-        {/* The list of components to be shown in the circle. */}
-        <CircleLayoutArray
-          ref={componentLayoutArrayRef}
-          components={components}
-          sweepAngle={sweepAngle}
-          setMinComponentLayout={setMinComponentLayout}
-          centerComponentLayout={centerComponentLayout}
-        />
-        <Animated.View
-          style={[centerComponentContainerStyle]}
-          onLayout={(event) => {
-            const layout = event.nativeEvent.layout;
-            setCenterComponentLayout(layout);
-          }}
-        >
-          {centerComponent}
-        </Animated.View>
-      </View>
+      <VisibilityContext value={componentVisible}>
+        <View>
+          {bgConfig &&
+            components.map((_, index) => (
+              <Bg
+                key={index}
+                index={index}
+                minComponentLayout={minComponentLayout}
+                centerComponentLayout={centerComponentLayout}
+                radius={radius}
+                {...resolveBgConfig(bgConfig, index)}
+              />
+            ))}
+          {/* The list of components to be shown in the circle. */}
+          <CircleLayoutArray
+            components={components}
+            sweepAngle={sweepAngle}
+            setMinComponentLayout={setMinComponentLayout}
+            centerComponentLayout={centerComponentLayout}
+          />
+          <Animated.View
+            style={[centerComponentContainerStyle]}
+            onLayout={(event) => {
+              const layout = event.nativeEvent.layout;
+              setCenterComponentLayout(layout);
+            }}
+          >
+            {centerComponent}
+          </Animated.View>
+        </View>
+      </VisibilityContext>
     </View>
   );
 }
