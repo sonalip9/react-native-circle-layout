@@ -60,7 +60,11 @@ export const rnAnimatedDriver: AnimationDriver<
     ),
 
   interpolate: (value, callback, config) =>
-    (value as Animated.Value).interpolate(withFunction(callback, config)),
+    (value as Animated.Value).interpolate(
+      withFunction(callback, config) as Parameters<
+        Animated.Value['interpolate']
+      >[0]
+    ),
 
   isAnimatedValue: (value): value is Animated.Value =>
     value instanceof Animated.Value,
