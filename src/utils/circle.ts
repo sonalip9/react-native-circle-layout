@@ -134,6 +134,44 @@ export function pointOnCircleAnimated<D extends AnimationDriver>({
 }
 
 /**
+ * The result of dividing a circle (or arc) into equally-spaced sectors.
+ */
+export type SectorAngles = {
+  /**
+   * Whether the sweep angle is a full circle (as opposed to a partial arc).
+   */
+  isCompleteCircle: boolean;
+  /**
+   * The number of angular divisions used for spacing. `count` for full
+   * circles, `count - 1` for partial arcs — see ADR-0002.
+   */
+  totalParts: number;
+  /**
+   * The angle, in radians, between two consecutive components.
+   */
+  sectorAngle: number;
+};
+
+/**
+ * Computes the totalParts invariant (ADR-0002) and the resulting per-step
+ * sector angle for `count` components evenly spaced across `sweepAngle`.
+ * `sweepAngle` is expected to already be normalized (e.g. via `validateProps`
+ * or a caller-side equivalent) — this function does not normalize it.
+ * @param count The number of components to space around the circle.
+ * @param sweepAngle The normalized sweep angle, in radians, the components span.
+ * @returns The totalParts invariant and the resulting sector angle.
+ */
+export function computeSectorAngles(
+  count: number,
+  sweepAngle: number
+): SectorAngles {
+  const isCompleteCircle = Math.abs(sweepAngle - 2 * Math.PI) < 0.001;
+  const totalParts = isCompleteCircle ? count : count - 1;
+  const sectorAngle = totalParts > 0 ? sweepAngle / totalParts : 0;
+  return { isCompleteCircle, totalParts, sectorAngle };
+}
+
+/**
  * The properties for creating an SVG path of a circle.
  */
 type CirclePathProps = {
