@@ -107,7 +107,7 @@ const DropdownComponent = ({
           flexDirection="row"
           justifyContent="flex-end"
         >
-          <Text flexWrap={1} textAlign="right">
+          <Text flexWrap={'wrap'} textAlign="right">
             {label}
           </Text>
         </View>
