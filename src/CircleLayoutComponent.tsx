@@ -1,10 +1,11 @@
-import React, { useImperativeHandle, useMemo, useState, type Ref } from 'react';
+import { use, useLayoutEffect, useMemo, useState } from 'react';
 import { View } from 'react-native';
 
 import { CircleLayoutContext } from './CircleLayoutContext';
+import { VisibilityContext } from './VisibilityContext';
 import { useCombinedAnimation } from './hooks';
 import { circleComponentStyles } from './styles';
-import type { ComponentProps, ComponentRef, Layout } from './types';
+import type { ComponentProps, Layout } from './types';
 import { pointOnCircle, pointOnCircleAnimated } from './utils';
 
 /**
@@ -18,8 +19,6 @@ import { pointOnCircle, pointOnCircleAnimated } from './utils';
  * which can be used to calculate the position of the component on the circle.
  * @param props.centerComponentLayout The layout of the center component which is used to
  * calculate the position of the components on the circle.
- * @param props.ref The ref that is used to expose the show and hide function of the
- * component to parent components.
  * @returns A component that is placed at a point on the circle.
  */
 export const CircleLayoutComponent = ({
@@ -28,9 +27,9 @@ export const CircleLayoutComponent = ({
   radians,
   onLayout,
   centerComponentLayout,
-  ref,
-}: ComponentProps & { ref: Ref<ComponentRef> }) => {
-  const { animationDriver: driver } = React.use(CircleLayoutContext);
+}: ComponentProps) => {
+  const { animationDriver: driver } = use(CircleLayoutContext);
+  const isVisible = use(VisibilityContext);
 
   /* eslint-disable react-hooks/static-components, @eslint-react/static-components -- AnimatedView is memoized on `driver` (a dynamic, pluggable prop), not a module-level constant, so it's necessarily defined inside the component; its identity stays stable across renders as long as `driver` doesn't change. */
   const AnimatedView = useMemo(
@@ -61,13 +60,13 @@ export const CircleLayoutComponent = ({
           radius: radiusValue,
         });
 
-  /**
-   * The instance value that is exposed to parent components when using ref.
-   */
-  useImperativeHandle(ref, () => ({
-    showComponent,
-    hideComponent,
-  }));
+  useLayoutEffect(() => {
+    if (isVisible) {
+      showComponent();
+    } else {
+      hideComponent();
+    }
+  }, [hideComponent, isVisible, showComponent]);
 
   return (
     <AnimatedView

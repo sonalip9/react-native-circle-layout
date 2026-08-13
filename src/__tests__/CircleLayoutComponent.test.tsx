@@ -1,15 +1,14 @@
-import { useRef } from 'react';
 import { Text } from 'react-native';
-import { render, act, renderHook } from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 
 import { rnAnimatedDriver } from '../animation/rnAnimatedDriver';
 import { CircleLayoutComponent } from '../CircleLayoutComponent';
 import { CircleLayoutContext } from '../CircleLayoutContext';
+import { VisibilityContext } from '../VisibilityContext';
 import {
   AnimationCombinationType,
   AnimationType,
   type CircleLayoutContextType,
-  type ComponentRef,
   type Layout,
 } from '../types';
 
@@ -31,23 +30,24 @@ const renderComponent = (
     radians: number;
     centerComponentLayout: Layout;
     onLayout: (event: import('react-native').LayoutChangeEvent) => void;
-    ref: React.Ref<ComponentRef>;
     ctx: CircleLayoutContextType;
+    visible: boolean;
   }> = {}
 ) => {
   const ctx = overrides.ctx ?? baseContext;
   return render(
     <CircleLayoutContext value={ctx}>
-      <CircleLayoutComponent
-        component={overrides.component ?? <Text>Node</Text>}
-        index={overrides.index ?? 0}
-        radians={overrides.radians ?? 0}
-        centerComponentLayout={
-          overrides.centerComponentLayout ?? zeroCenterLayout
-        }
-        onLayout={overrides.onLayout}
-        ref={overrides.ref ?? null}
-      />
+      <VisibilityContext value={overrides.visible ?? true}>
+        <CircleLayoutComponent
+          component={overrides.component ?? <Text>Node</Text>}
+          index={overrides.index ?? 0}
+          radians={overrides.radians ?? 0}
+          centerComponentLayout={
+            overrides.centerComponentLayout ?? zeroCenterLayout
+          }
+          onLayout={overrides.onLayout}
+        />
+      </VisibilityContext>
     </CircleLayoutContext>
   );
 };
@@ -79,25 +79,50 @@ describe('CircleLayoutComponent', () => {
     });
   });
 
-  describe('ref methods', () => {
-    it('exposes showComponent and hideComponent via ref', () => {
-      const { result } = renderHook(() => useRef<ComponentRef>(null));
-      const ref = result.current;
-      renderComponent({ ref });
-      expect(typeof ref.current?.showComponent).toBe('function');
-      expect(typeof ref.current?.hideComponent).toBe('function');
+  describe('visibility (via VisibilityContext)', () => {
+    it('renders the passed component when VisibilityContext is true', () => {
+      const { getByText } = renderComponent({
+        component: <Text>Hello</Text>,
+        visible: true,
+      });
+      expect(getByText('Hello')).toBeTruthy();
     });
 
-    it('showComponent and hideComponent execute without throwing', () => {
-      const { result } = renderHook(() => useRef<ComponentRef>(null));
-      const ref = result.current;
-      renderComponent({ ref });
-      expect(() => {
-        act(() => {
-          ref.current?.hideComponent();
-          ref.current?.showComponent();
-        });
-      }).not.toThrow();
+    it('still mounts the component when VisibilityContext is false (hidden via animation, not unmount)', () => {
+      const { getByText } = renderComponent({
+        component: <Text>Hello</Text>,
+        visible: false,
+      });
+      expect(getByText('Hello')).toBeTruthy();
+    });
+
+    it('does not throw when VisibilityContext value changes after mount', () => {
+      const { rerender } = render(
+        <CircleLayoutContext value={baseContext}>
+          <VisibilityContext value={true}>
+            <CircleLayoutComponent
+              component={<Text>Node</Text>}
+              index={0}
+              radians={0}
+              centerComponentLayout={zeroCenterLayout}
+            />
+          </VisibilityContext>
+        </CircleLayoutContext>
+      );
+      expect(() =>
+        rerender(
+          <CircleLayoutContext value={baseContext}>
+            <VisibilityContext value={false}>
+              <CircleLayoutComponent
+                component={<Text>Node</Text>}
+                index={0}
+                radians={0}
+                centerComponentLayout={zeroCenterLayout}
+              />
+            </VisibilityContext>
+          </CircleLayoutContext>
+        )
+      ).not.toThrow();
     });
   });
 
@@ -149,9 +174,27 @@ describe('CircleLayoutComponent', () => {
   });
 
   describe('with animation context', () => {
+    // CircleLayoutComponent now self-triggers showComponent()/hideComponent() on
+    // mount (driven by VisibilityContext), which for these configs schedules a
+    // real Animated.timing(..., { useNativeDriver: true }) run. Under a full
+    // react-test-renderer tree that hits a pre-existing react/react-native
+    // version mismatch in this environment (unrelated to this component's
+    // logic — see Bg's identical mount-time pattern, which only avoids it by
+    // passing useNativeDriver: false). Stub `driver.start` so these tests
+    // exercise the real config-threading/render path without invoking that
+    // native-driver internals.
+    const nonNativeDriver = {
+      ...rnAnimatedDriver,
+      start: (
+        _animation: ReturnType<typeof rnAnimatedDriver.sequence>,
+        onComplete?: () => void
+      ) => onComplete?.(),
+    };
+
     it('positions component with OPACITY animation context', () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
+        animationDriver: nonNativeDriver,
         animationProps: {
           animationConfigs: {
             [AnimationType.OPACITY]: { duration: 300 },
@@ -165,6 +208,7 @@ describe('CircleLayoutComponent', () => {
     it('positions component with LINEAR animation context', () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
+        animationDriver: nonNativeDriver,
         animationProps: {
           animationConfigs: {
             [AnimationType.LINEAR]: { duration: 300 },
@@ -178,6 +222,7 @@ describe('CircleLayoutComponent', () => {
     it('positions component with CIRCULAR animation context', () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
+        animationDriver: nonNativeDriver,
         animationProps: {
           animationConfigs: {
             [AnimationType.CIRCULAR]: { duration: 300 },
@@ -191,6 +236,7 @@ describe('CircleLayoutComponent', () => {
     it('positions component with all animation types and SEQUENCE combination', () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
+        animationDriver: nonNativeDriver,
         animationProps: {
           animationConfigs: {
             [AnimationType.OPACITY]: { duration: 300 },

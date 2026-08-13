@@ -272,19 +272,6 @@ export type ComponentProps = {
   centerComponentLayout: Layout;
 };
 
-export type ComponentRef = {
-  /**
-   * Function to show the component in the circle layout by
-   * performing animation according to the passed config.
-   */
-  showComponent: () => void;
-  /**
-   * Function to hide component in the circle layout by
-   * performing animation according to the passed config.
-   */
-  hideComponent: () => void;
-};
-
 export type CircleLayoutContextType<
   D extends AnimationDriver = typeof rnAnimatedDriver,
 > = {

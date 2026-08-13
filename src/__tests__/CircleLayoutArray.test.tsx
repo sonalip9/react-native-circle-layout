@@ -1,15 +1,11 @@
-import { useRef } from 'react';
 import { Text, View } from 'react-native';
-import { render, act, renderHook } from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 
 import { rnAnimatedDriver } from '../animation/rnAnimatedDriver';
 import CircleLayoutArray from '../CircleLayoutArray';
 import { CircleLayoutContext } from '../CircleLayoutContext';
-import type {
-  CircleLayoutContextType,
-  CircleLayoutRef,
-  Layout,
-} from '../types';
+import { VisibilityContext } from '../VisibilityContext';
+import type { CircleLayoutContextType, Layout } from '../types';
 
 const makeContext = (n: number): CircleLayoutContextType => {
   const sectorAngle = (2 * Math.PI) / n;
@@ -38,7 +34,6 @@ const renderArray = (
   props: Partial<{
     setMinComponentLayout: React.Dispatch<React.SetStateAction<Layout>>;
     centerComponentLayout: Layout;
-    ref: React.Ref<CircleLayoutRef>;
   }> = {}
 ) => {
   const context = ctx ?? makeContext(components.length);
@@ -52,7 +47,6 @@ const renderArray = (
           centerComponentLayout={
             props.centerComponentLayout ?? zeroCenterLayout
           }
-          ref={props.ref ?? null}
         />
       </View>
     </CircleLayoutContext>
@@ -98,7 +92,6 @@ describe('CircleLayoutArray', () => {
               sweepAngle={2 * Math.PI}
               setMinComponentLayout={noopSetLayout}
               centerComponentLayout={zeroCenterLayout}
-              ref={null}
             />
           </View>
         </CircleLayoutContext>
@@ -120,7 +113,6 @@ describe('CircleLayoutArray', () => {
               sweepAngle={2 * Math.PI}
               setMinComponentLayout={noopSetLayout}
               centerComponentLayout={zeroCenterLayout}
-              ref={null}
             />
           </View>
         </CircleLayoutContext>
@@ -129,25 +121,33 @@ describe('CircleLayoutArray', () => {
     });
   });
 
-  describe('ref methods', () => {
-    it('exposes showComponents and hideComponents via ref', () => {
-      const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
-      const ref = result.current;
-      renderArray(makeComponents(3), makeContext(3), { ref });
-      expect(typeof ref.current?.showComponents).toBe('function');
-      expect(typeof ref.current?.hideComponents).toBe('function');
+  describe('visibility (via VisibilityContext)', () => {
+    const renderArrayWithVisibility = (visible: boolean) => {
+      const context = makeContext(3);
+      return render(
+        <CircleLayoutContext value={context}>
+          <VisibilityContext value={visible}>
+            <View>
+              <CircleLayoutArray
+                components={makeComponents(3)}
+                sweepAngle={2 * Math.PI}
+                setMinComponentLayout={noopSetLayout}
+                centerComponentLayout={zeroCenterLayout}
+              />
+            </View>
+          </VisibilityContext>
+        </CircleLayoutContext>
+      );
+    };
+
+    it('renders components when VisibilityContext is true', () => {
+      const { getAllByText } = renderArrayWithVisibility(true);
+      expect(getAllByText(/^Item \d$/)).toHaveLength(3);
     });
 
-    it('showComponents and hideComponents execute without throwing', () => {
-      const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
-      const ref = result.current;
-      renderArray(makeComponents(3), makeContext(3), { ref });
-      expect(() => {
-        act(() => {
-          ref.current?.hideComponents();
-          ref.current?.showComponents();
-        });
-      }).not.toThrow();
+    it('still mounts components when VisibilityContext is false (hidden via animation, not unmount)', () => {
+      const { getAllByText } = renderArrayWithVisibility(false);
+      expect(getAllByText(/^Item \d$/)).toHaveLength(3);
     });
   });
 
@@ -178,7 +178,6 @@ describe('CircleLayoutArray', () => {
                 sweepAngle={Math.PI / 2}
                 setMinComponentLayout={noopSetLayout}
                 centerComponentLayout={zeroCenterLayout}
-                ref={null}
               />
             </View>
           </CircleLayoutContext>
@@ -208,7 +207,6 @@ describe('CircleLayoutArray', () => {
               sweepAngle={2 * Math.PI}
               setMinComponentLayout={setMinComponentLayout}
               centerComponentLayout={zeroCenterLayout}
-              ref={null}
             />
           </View>
         </CircleLayoutContext>
@@ -216,20 +214,6 @@ describe('CircleLayoutArray', () => {
       expect(setMinComponentLayout.mock.calls.length).toBeGreaterThanOrEqual(
         callsBefore
       );
-    });
-
-    it('rapid hide then show via ref does not throw', () => {
-      const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
-      const ref = result.current;
-      renderArray(makeComponents(3), makeContext(3), { ref });
-      expect(() => {
-        act(() => {
-          ref.current?.hideComponents();
-          ref.current?.hideComponents();
-          ref.current?.showComponents();
-          ref.current?.showComponents();
-        });
-      }).not.toThrow();
     });
   });
 });

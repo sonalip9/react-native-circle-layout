@@ -1,7 +1,7 @@
 import React, { useEffect, use } from 'react';
 import { CircleLayoutComponent } from './CircleLayoutComponent';
 import { CircleLayoutContext } from './CircleLayoutContext';
-import type { Layout, CircleLayoutRef, ComponentRef } from './types';
+import type { Layout } from './types';
 
 /**
  * A component that renders the components in the circle layout. This is used to
@@ -16,8 +16,6 @@ import type { Layout, CircleLayoutRef, ComponentRef } from './types';
  * of the circle layout.
  * @param props.centerComponentLayout The layout of the center component which is used
  * to calculate the position of the components on the circle.
- * @param props.ref The ref that is used to expose the show and hide function of the
- * component to parent components.
  * @returns A component that places the passed components in a circular view.
  */
 function CircleLayoutArray({
@@ -25,43 +23,35 @@ function CircleLayoutArray({
   sweepAngle,
   setMinComponentLayout,
   centerComponentLayout,
-  ref,
 }: {
   components: React.ReactNode[];
   sweepAngle: number;
   setMinComponentLayout: React.Dispatch<React.SetStateAction<Layout>>;
   centerComponentLayout: Layout;
-} & { ref?: React.Ref<CircleLayoutRef> }) {
+}) {
   /**
-   * Array of references for each of the circle components.
+   * Tracks the previous `components.length` so the layout-state resize
+   * effect below can compute a diff without depending on componentLayouts
+   * itself (which onLayout already grows independently).
    */
-  const componentListRef = React.useRef<(ComponentRef | null)[]>(
-    Array(components.length).fill(null) as null[]
-  );
-
-  const [isComponentsVisible, setIsComponentsVisible] = React.useState(false);
+  const previousLengthRef = React.useRef(components.length);
 
   const [componentLayouts, setComponentLayouts] = React.useState<Layout[]>([]);
 
   useEffect(() => {
-    const currentLength = componentListRef.current.length;
+    const currentLength = previousLengthRef.current;
     const diff = Math.abs(components.length - currentLength);
     if (currentLength < components.length) {
-      // New component added — extend ref array and layout state.
-      for (let i = 0; i < diff; i++) {
-        componentListRef.current.push(null);
-      }
-      // eslint-disable-next-line @eslint-react/set-state-in-effect -- We need to update the layout state to add the new components' layout.
+      // New component added — extend layout state.
       setComponentLayouts((prev) => [
         ...prev,
         ...Array<Layout>(diff).fill({ width: 0, height: 0 }),
       ]);
     } else if (currentLength > components.length) {
-      // Component removed — trim ref array and layout state.
-      componentListRef.current.splice(components.length, diff);
-      // eslint-disable-next-line @eslint-react/set-state-in-effect -- We need to update the layout state to remove the removed components' layout.
+      // Component removed — trim layout state.
       setComponentLayouts((prev) => prev.slice(0, components.length));
     }
+    previousLengthRef.current = components.length;
   }, [components.length]);
 
   useEffect(() => {
@@ -78,43 +68,7 @@ function CircleLayoutArray({
     setMinComponentLayout(minLayout);
   }, [componentLayouts, setMinComponentLayout, sweepAngle]);
 
-  const { startAngle, totalParts, componentAngles } = use(CircleLayoutContext);
-
-  /**
-   * The instance value that is exposed to parent components when using ref.
-   */
-  React.useImperativeHandle(ref, () => ({
-    hideComponents: () => {
-      componentListRef.current?.forEach((componentRef) =>
-        componentRef?.hideComponent()
-      );
-      setIsComponentsVisible(false);
-    },
-    showComponents: () => {
-      componentListRef.current?.forEach((componentRef) => {
-        componentRef?.showComponent();
-      });
-      setIsComponentsVisible(true);
-    },
-  }));
-
-  useEffect(() => {
-    if (isComponentsVisible) {
-      componentListRef.current?.forEach((componentRef) =>
-        componentRef?.showComponent()
-      );
-    } else {
-      componentListRef.current?.forEach((componentRef) =>
-        componentRef?.hideComponent()
-      );
-    }
-  }, [
-    startAngle,
-    sweepAngle,
-    totalParts,
-    isComponentsVisible,
-    componentAngles,
-  ]);
+  const { componentAngles } = use(CircleLayoutContext);
 
   return components.map((component, index) => {
     const angle = componentAngles[index]!;
@@ -125,9 +79,6 @@ function CircleLayoutArray({
         // eslint-disable-next-line @eslint-react/no-array-index-key -- This is a stable index as the order of the components will not change.
         key={`Component-${index}`}
         radians={angle}
-        ref={(el) => {
-          componentListRef.current[index] = el;
-        }}
         onLayout={(event) => {
           const layout = event.nativeEvent.layout;
           setComponentLayouts((prevLayouts) => {

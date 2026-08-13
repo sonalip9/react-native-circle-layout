@@ -3,13 +3,14 @@ import type { ResolvedBgConfig, Layout } from './types';
 import { use, useLayoutEffect, useMemo } from 'react';
 import { useAnimatedSectorPath, useCombinedAnimation } from './hooks';
 import { CircleLayoutContext } from './CircleLayoutContext';
+import { VisibilityContext } from './VisibilityContext';
+import { resolveBgGeometry } from './utils/circle';
 
 export const Bg = ({
   index,
   radius,
   minComponentLayout,
   centerComponentLayout,
-  isVisible = true,
   color = '#3d19e0',
   strokeColor,
   strokeWidth = 1,
@@ -20,7 +21,6 @@ export const Bg = ({
   radius: number;
   minComponentLayout: Layout;
   centerComponentLayout: Layout;
-  isVisible?: boolean;
 } & ResolvedBgConfig) => {
   const {
     sectorAngles,
@@ -28,6 +28,7 @@ export const Bg = ({
     totalParts,
     animationDriver: driver,
   } = use(CircleLayoutContext);
+  const isVisible = use(VisibilityContext);
 
   /* eslint-disable react-hooks/static-components, @eslint-react/static-components -- AnimatedSvg/AnimatedPath are memoized on `driver` (a dynamic, pluggable prop), not module-level constants, so they're necessarily defined inside the component; their identity stays stable across renders as long as `driver` doesn't change. */
   const AnimatedSvg = useMemo(
@@ -39,59 +40,29 @@ export const Bg = ({
     [driver]
   );
 
-  const { startAngleInRadians, endAngleInRadians } = useMemo(() => {
-    // Center the wedge on its own marker: the boundary with each neighbor
-    // sits at the angular midpoint between the two markers, so the wedge
-    // stays gapless/overlap-free even when neighboring sectors have
-    // different weights, while still centering on componentAngles[index]
-    // when all sectors are equal.
-    //
-    // The first/last markers of a partial arc (sweepAngle < 2π) have no
-    // real neighbor on their outer side — wrapping around would borrow the
-    // opposite sector's width and either extend past the sweep or leave its
-    // true edge uncovered, so those boundaries fall back to the un-centered
-    // marker angle instead.
-    const count = sectorAngles.length;
-    const isCompleteCircle = totalParts === count;
-    const angle = componentAngles[index]!;
-    const nextGap = sectorAngles[index]!;
-    const hasPrevNeighbor = isCompleteCircle || index > 0;
-    const hasNextNeighbor = isCompleteCircle || index < count - 1;
-    const prevGap = hasPrevNeighbor
-      ? sectorAngles[(index - 1 + count) % count]!
-      : 0;
-    return {
-      startAngleInRadians: hasPrevNeighbor ? angle - prevGap / 2 : angle,
-      endAngleInRadians: hasNextNeighbor
-        ? angle + nextGap / 2
-        : angle + nextGap,
-    };
-  }, [componentAngles, sectorAngles, totalParts, index]);
-
-  const { size, center } = useMemo(() => {
-    const padding = 0;
-    const diameter = (outerRadius ?? radius) * 2;
-    const width =
-      diameter +
-      minComponentLayout.width -
-      centerComponentLayout.width / 2 +
-      padding;
-    const height =
-      diameter +
-      minComponentLayout.height -
-      centerComponentLayout.height / 2 +
-      padding;
-    const s = Math.max(width, height);
-
-    return { size: s, center: { x: s / 2, y: s / 2 } };
-  }, [
-    outerRadius,
-    radius,
-    minComponentLayout.width,
-    minComponentLayout.height,
-    centerComponentLayout.width,
-    centerComponentLayout.height,
-  ]);
+  const { startAngleInRadians, endAngleInRadians, size, center } = useMemo(
+    () =>
+      resolveBgGeometry({
+        index,
+        componentAngles,
+        sectorAngles,
+        totalParts,
+        radius,
+        outerRadius,
+        minComponentLayout,
+        centerComponentLayout,
+      }),
+    [
+      index,
+      componentAngles,
+      sectorAngles,
+      totalParts,
+      radius,
+      outerRadius,
+      minComponentLayout,
+      centerComponentLayout,
+    ]
+  );
 
   const {
     hideComponent,
