@@ -132,7 +132,7 @@ const Playground = () => {
         minWidth: '100%',
         padding: 24,
         gap: 24,
-        overflowX: Platform.select({ web: 'scroll', default: 'visible' }),
+        overflow: Platform.select({ web: 'scroll', default: 'visible' }),
       }}
       style={{ flex: 1 }}
     >
