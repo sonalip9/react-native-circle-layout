@@ -25,6 +25,7 @@ export const Bg = ({
   const {
     sectorAngles,
     componentAngles,
+    totalParts,
     animationDriver: driver,
   } = use(CircleLayoutContext);
 
@@ -44,15 +45,28 @@ export const Bg = ({
     // stays gapless/overlap-free even when neighboring sectors have
     // different weights, while still centering on componentAngles[index]
     // when all sectors are equal.
+    //
+    // The first/last markers of a partial arc (sweepAngle < 2π) have no
+    // real neighbor on their outer side — wrapping around would borrow the
+    // opposite sector's width and either extend past the sweep or leave its
+    // true edge uncovered, so those boundaries fall back to the un-centered
+    // marker angle instead.
+    const count = sectorAngles.length;
+    const isCompleteCircle = totalParts === count;
     const angle = componentAngles[index]!;
     const nextGap = sectorAngles[index]!;
-    const prevIndex = (index - 1 + sectorAngles.length) % sectorAngles.length;
-    const prevGap = sectorAngles[prevIndex]!;
+    const hasPrevNeighbor = isCompleteCircle || index > 0;
+    const hasNextNeighbor = isCompleteCircle || index < count - 1;
+    const prevGap = hasPrevNeighbor
+      ? sectorAngles[(index - 1 + count) % count]!
+      : 0;
     return {
-      startAngleInRadians: angle - prevGap / 2,
-      endAngleInRadians: angle + nextGap / 2,
+      startAngleInRadians: hasPrevNeighbor ? angle - prevGap / 2 : angle,
+      endAngleInRadians: hasNextNeighbor
+        ? angle + nextGap / 2
+        : angle + nextGap,
     };
-  }, [componentAngles, sectorAngles, index]);
+  }, [componentAngles, sectorAngles, totalParts, index]);
 
   const { size, center } = useMemo(() => {
     const padding = 0;

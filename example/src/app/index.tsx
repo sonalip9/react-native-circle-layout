@@ -81,6 +81,14 @@ type Action =
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'SET':
+      if (action.field === 'numberOfPoints' && state.weights) {
+        const numberOfPoints = action.value as number;
+        const weights = Array.from(
+          { length: numberOfPoints },
+          (_, i) => state.weights?.[i] ?? Math.floor(Math.random() * 10) + 1
+        );
+        return { ...state, numberOfPoints, weights };
+      }
       return { ...state, [action.field]: action.value };
     case 'TOGGLE_CIRCLE':
       return { ...state, showCircle: !state.showCircle };
