@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { pointOnCircle } from '../utils';
+import { computeSectorAngles } from '../utils/circle';
 
 export type CirclePosition = {
   x: number;
@@ -58,9 +59,7 @@ export function useCirclePositions({
     if (count <= 0) return [];
 
     const normalized = normalizeSweepAngle(sweepAngle);
-    const isCompleteCircle = Math.abs(normalized - 2 * Math.PI) < 0.001;
-    const totalParts = isCompleteCircle ? count : count - 1;
-    const sectorAngle = totalParts > 0 ? normalized / totalParts : 0;
+    const { sectorAngle } = computeSectorAngles(count, normalized);
 
     return Array.from({ length: count }, (_, index) =>
       computePosition(index, sectorAngle, startAngle, radius)
@@ -87,9 +86,7 @@ export function useCirclePosition({
 }: CirclePositionsConfig & { index: number }): CirclePosition {
   return useMemo(() => {
     const normalized = normalizeSweepAngle(sweepAngle);
-    const isCompleteCircle = Math.abs(normalized - 2 * Math.PI) < 0.001;
-    const totalParts = isCompleteCircle ? count : count - 1;
-    const sectorAngle = totalParts > 0 ? normalized / totalParts : 0;
+    const { sectorAngle } = computeSectorAngles(count, normalized);
 
     return computePosition(index, sectorAngle, startAngle, radius);
   }, [index, count, radius, startAngle, sweepAngle]);

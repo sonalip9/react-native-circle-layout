@@ -4,6 +4,7 @@ import type { AnimationDriver } from './animation/types';
 import { rnAnimatedDriver } from './animation/rnAnimatedDriver';
 import { CircleLayoutContext } from './CircleLayoutContext';
 import type { CircleLayoutContextType, CircleLayoutProps } from './types';
+import { computeSectorAngles } from './utils/circle';
 
 type CircleLayoutProviderProps = Required<
   Omit<
@@ -49,15 +50,13 @@ export const CircleLayoutProvider = ({
   animationDriver = rnAnimatedDriver,
   weights,
 }: React.PropsWithChildren<CircleLayoutProviderProps>) => {
-  const isCompleteCircle = useMemo(
-    () => Math.abs(sweepAngle - 2 * Math.PI) < 0.001,
-    [sweepAngle]
-  );
-
-  // The total number of parts to divide the circle into
-  const totalParts = React.useMemo(
-    () => (isCompleteCircle ? componentLength : componentLength - 1),
-    [componentLength, isCompleteCircle]
+  const {
+    isCompleteCircle,
+    totalParts,
+    sectorAngle: uniformSector,
+  } = useMemo(
+    () => computeSectorAngles(componentLength, sweepAngle),
+    [componentLength, sweepAngle]
   );
 
   const { sectorAngles, componentAngles } = React.useMemo(() => {
@@ -78,7 +77,6 @@ export const CircleLayoutProvider = ({
       });
       return { sectorAngles: sectors, componentAngles: angles };
     }
-    const uniformSector = sweepAngle / totalParts;
     const sectors = Array<number>(componentLength).fill(uniformSector);
     const angles = Array.from(
       { length: componentLength },
@@ -90,7 +88,7 @@ export const CircleLayoutProvider = ({
     componentLength,
     sweepAngle,
     startAngle,
-    totalParts,
+    uniformSector,
     isCompleteCircle,
   ]);
 

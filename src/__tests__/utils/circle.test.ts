@@ -6,6 +6,7 @@ import {
   getSectorPath,
   pointOnCircle,
   pointOnCircleAnimated,
+  resolveBgGeometry,
 } from '../../utils/circle';
 
 const expectListenerValue = (
@@ -302,5 +303,141 @@ describe('getArcPath', () => {
     expect(tokens[2]).toBeCloseTo(-0 + -3); // -startPoint.y + cy
     expect(tokens[9]).toBeCloseTo(-0 + 5); // -endPoint.x + cx
     expect(tokens[10]).toBeCloseTo(-2 + -3); // -endPoint.y + cy
+  });
+});
+
+describe('resolveBgGeometry', () => {
+  const zeroLayout = { width: 0, height: 0 };
+
+  it('centers the wedge on its own marker, splitting the gap to each neighbor', () => {
+    const result = resolveBgGeometry({
+      index: 1,
+      componentAngles: [0, Math.PI / 2, Math.PI],
+      sectorAngles: [Math.PI / 2, Math.PI / 2, Math.PI],
+      radius: 100,
+      minComponentLayout: zeroLayout,
+      centerComponentLayout: zeroLayout,
+    });
+
+    // marker at PI/2, prevGap and nextGap both PI/2: boundary sits at the
+    // midpoint on each side of the marker.
+    expect(result.startAngleInRadians).toBeCloseTo(Math.PI / 4);
+    expect(result.endAngleInRadians).toBeCloseTo((3 * Math.PI) / 4);
+  });
+
+  it('stays gapless across unequal neighboring sectors, including the wrap', () => {
+    // 3 markers, unequal sectors: index 0's "previous" neighbor is index 2
+    // (the wrap), with a different gap than its "next" neighbor at index 1.
+    const componentAngles = [0, Math.PI / 2, Math.PI];
+    const sectorAngles = [Math.PI / 2, Math.PI / 2, Math.PI];
+
+    const wedge0 = resolveBgGeometry({
+      index: 0,
+      componentAngles,
+      sectorAngles,
+      radius: 100,
+      minComponentLayout: zeroLayout,
+      centerComponentLayout: zeroLayout,
+    });
+    const wedge2 = resolveBgGeometry({
+      index: 2,
+      componentAngles,
+      sectorAngles,
+      radius: 100,
+      minComponentLayout: zeroLayout,
+      centerComponentLayout: zeroLayout,
+    });
+
+    // wedge0's start boundary (wrapping back past marker 2) matches
+    // wedge2's end boundary exactly.
+    expect(wedge0.startAngleInRadians).toBeCloseTo(
+      wedge2.endAngleInRadians - 2 * Math.PI
+    );
+  });
+
+  it('uses radius * 2 as the canvas size when outerRadius is not provided and layouts are zero', () => {
+    const result = resolveBgGeometry({
+      index: 0,
+      componentAngles: [0],
+      sectorAngles: [2 * Math.PI],
+      radius: 50,
+      minComponentLayout: zeroLayout,
+      centerComponentLayout: zeroLayout,
+    });
+
+    expect(result.size).toBeCloseTo(100);
+    expect(result.center).toEqual({ x: 50, y: 50 });
+  });
+
+  it('uses outerRadius over radius when provided', () => {
+    const result = resolveBgGeometry({
+      index: 0,
+      componentAngles: [0],
+      sectorAngles: [2 * Math.PI],
+      radius: 50,
+      outerRadius: 80,
+      minComponentLayout: zeroLayout,
+      centerComponentLayout: zeroLayout,
+    });
+
+    expect(result.size).toBeCloseTo(160);
+  });
+
+  it('grows the canvas to fit minComponentLayout', () => {
+    const result = resolveBgGeometry({
+      index: 0,
+      componentAngles: [0],
+      sectorAngles: [2 * Math.PI],
+      radius: 50,
+      minComponentLayout: { width: 40, height: 10 },
+      centerComponentLayout: zeroLayout,
+    });
+
+    // diameter (100) + minComponentLayout.width (40) = 140, taller than the height branch
+    expect(result.size).toBeCloseTo(140);
+  });
+
+  it('shrinks the canvas by half of centerComponentLayout', () => {
+    const result = resolveBgGeometry({
+      index: 0,
+      componentAngles: [0],
+      sectorAngles: [2 * Math.PI],
+      radius: 50,
+      minComponentLayout: zeroLayout,
+      centerComponentLayout: { width: 20, height: 20 },
+    });
+
+    // diameter (100) - centerComponentLayout.width / 2 (10) = 90
+    expect(result.size).toBeCloseTo(90);
+  });
+
+  it('picks the larger of the width/height branches for a square canvas', () => {
+    const result = resolveBgGeometry({
+      index: 0,
+      componentAngles: [0],
+      sectorAngles: [2 * Math.PI],
+      radius: 10,
+      minComponentLayout: { width: 5, height: 200 },
+      centerComponentLayout: zeroLayout,
+    });
+
+    // width branch: 20 + 5 = 25, height branch: 20 + 200 = 220
+    expect(result.size).toBeCloseTo(220);
+  });
+
+  it('centers the canvas at size/2, size/2', () => {
+    const result = resolveBgGeometry({
+      index: 0,
+      componentAngles: [0],
+      sectorAngles: [2 * Math.PI],
+      radius: 30,
+      minComponentLayout: zeroLayout,
+      centerComponentLayout: zeroLayout,
+    });
+
+    expect(result.center).toEqual({
+      x: result.size / 2,
+      y: result.size / 2,
+    });
   });
 });

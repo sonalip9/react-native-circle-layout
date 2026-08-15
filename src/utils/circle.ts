@@ -1,4 +1,5 @@
 import type { AnimatedNode, AnimationDriver } from '../animation/types';
+import type { Layout } from '../types';
 
 type Point = {
   x: number;
@@ -131,6 +132,184 @@ export function pointOnCircleAnimated<D extends AnimationDriver>({
       ) as AnimatedNode<D>,
     };
   }
+}
+
+/**
+ * The result of dividing a circle (or arc) into equally-spaced sectors.
+ */
+export type SectorAngles = {
+  /**
+   * Whether the sweep angle is a full circle (as opposed to a partial arc).
+   */
+  isCompleteCircle: boolean;
+  /**
+   * The number of angular divisions used for spacing. `count` for full
+   * circles, `count - 1` for partial arcs — see ADR-0002.
+   */
+  totalParts: number;
+  /**
+   * The angle, in radians, between two consecutive components.
+   */
+  sectorAngle: number;
+};
+
+/**
+ * Computes the totalParts invariant (ADR-0002) and the resulting per-step
+ * sector angle for `count` components evenly spaced across `sweepAngle`.
+ * `sweepAngle` is expected to already be normalized (e.g. via `validateProps`
+ * or a caller-side equivalent) — this function does not normalize it.
+ * @param count The number of components to space around the circle.
+ * @param sweepAngle The normalized sweep angle, in radians, the components span.
+ * @returns The totalParts invariant and the resulting sector angle.
+ */
+export function computeSectorAngles(
+  count: number,
+  sweepAngle: number
+): SectorAngles {
+  const isCompleteCircle = Math.abs(sweepAngle - 2 * Math.PI) < 0.001;
+  const totalParts = isCompleteCircle ? count : count - 1;
+  const sectorAngle = totalParts > 0 ? sweepAngle / totalParts : 0;
+  return { isCompleteCircle, totalParts, sectorAngle };
+}
+
+/**
+ * The inputs needed to resolve one background sector's angular span and its
+ * containing SVG canvas size/center, for a component placed at `index` in a
+ * circle layout.
+ */
+export type BgGeometryInput = {
+  /**
+   * The index of the component this sector's background belongs to.
+   */
+  index: number;
+  /**
+   * The absolute angle (in radians) at which each component is placed.
+   * @see CircleLayoutContextType.componentAngles
+   */
+  componentAngles: number[];
+  /**
+   * The angular span (in radians) from each component's placement angle to
+   * the next.
+   * @see CircleLayoutContextType.sectorAngles
+   */
+  sectorAngles: number[];
+  /**
+   * The totalParts invariant (ADR-0002): equal to `sectorAngles.length` for a
+   * complete circle, one less for a partial arc.
+   * @default sectorAngles.length (i.e. a complete circle)
+   * @see CircleLayoutContextType.totalParts
+   */
+  totalParts?: number;
+  /**
+   * The radius of the circle on which the components are placed.
+   */
+  radius: number;
+  /**
+   * The outer radius of the background sector, if overridden.
+   * @default radius
+   */
+  outerRadius?: number;
+  /**
+   * The largest layout of any component in the circle, used to ensure the
+   * background's SVG canvas is large enough to not clip the components.
+   */
+  minComponentLayout: Layout;
+  /**
+   * The layout of the center component, subtracted from the canvas size
+   * since the center component overlaps the middle of the background.
+   */
+  centerComponentLayout: Layout;
+};
+
+/**
+ * A background sector's resolved angular span and its containing SVG
+ * canvas geometry.
+ */
+export type BgGeometry = {
+  /**
+   * The angle at which this sector starts, in radians.
+   */
+  startAngleInRadians: number;
+  /**
+   * The angle at which this sector ends, in radians.
+   */
+  endAngleInRadians: number;
+  /**
+   * The width/height of the (square) SVG canvas the sector is drawn on.
+   */
+  size: number;
+  /**
+   * The center point of the SVG canvas, in canvas-local coordinates.
+   */
+  center: Point;
+};
+
+/**
+ * Resolves the angular span of one component's background sector, and the
+ * size/center of the SVG canvas it needs to be drawn on without clipping
+ * the components. Pulled out of `Bg` so this geometry can be tested
+ * directly, without standing up a full `CircleLayoutContext` provider.
+ *
+ * The wedge is centered on its own marker (`componentAngles[index]`): its
+ * boundary with each neighbor sits at the angular midpoint between the two
+ * markers, so wedges stay gapless/overlap-free even when neighboring
+ * sectors have different weights (including the wrap from the last index
+ * back to index 0), and reduce to exact centering when neighboring sectors
+ * are equal size.
+ *
+ * The first/last markers of a partial arc (sweepAngle < 2π) have no real
+ * neighbor on their outer side — wrapping around would borrow the opposite
+ * sector's width and either extend past the sweep or leave its true edge
+ * uncovered, so those boundaries fall back to the un-centered marker angle
+ * instead.
+ * @param props The inputs needed to resolve the sector's geometry.
+ * @param props.index The index of the component this sector's background belongs to.
+ * @param props.componentAngles The absolute angle (in radians) at which each component is placed.
+ * @param props.sectorAngles The angular span (in radians) from each component's placement angle to the next.
+ * @param props.totalParts The totalParts invariant (ADR-0002).
+ * @param props.radius The radius of the circle on which the components are placed.
+ * @param props.outerRadius The outer radius of the background sector, if overridden. Defaults to radius.
+ * @param props.minComponentLayout The largest layout of any component in the circle.
+ * @param props.centerComponentLayout The layout of the center component.
+ * @returns The resolved angular span and canvas size/center.
+ */
+export function resolveBgGeometry({
+  index,
+  componentAngles,
+  sectorAngles,
+  totalParts = sectorAngles.length,
+  radius,
+  outerRadius,
+  minComponentLayout,
+  centerComponentLayout,
+}: BgGeometryInput): BgGeometry {
+  const count = sectorAngles.length;
+  const isCompleteCircle = totalParts === count;
+  const angle = componentAngles[index]!;
+  const nextGap = sectorAngles[index]!;
+  const hasPrevNeighbor = isCompleteCircle || index > 0;
+  const hasNextNeighbor = isCompleteCircle || index < count - 1;
+  const prevGap = hasPrevNeighbor
+    ? sectorAngles[(index - 1 + count) % count]!
+    : 0;
+  const startAngleInRadians = hasPrevNeighbor ? angle - prevGap / 2 : angle;
+  const endAngleInRadians = hasNextNeighbor
+    ? angle + nextGap / 2
+    : angle + nextGap;
+
+  const diameter = (outerRadius ?? radius) * 2;
+  const width =
+    diameter + minComponentLayout.width - centerComponentLayout.width / 2;
+  const height =
+    diameter + minComponentLayout.height - centerComponentLayout.height / 2;
+  const size = Math.max(width, height);
+
+  return {
+    startAngleInRadians,
+    endAngleInRadians,
+    size,
+    center: { x: size / 2, y: size / 2 },
+  };
 }
 
 /**
