@@ -150,8 +150,8 @@
     "semantic_hash": ""
   },
   "src/Bg.tsx": {
-    "mtime": 1786595099.3175642,
-    "ast_hash": "019a486fad64136115cd5d35c0ea210b",
+    "mtime": 1786718418.5110755,
+    "ast_hash": "95a443675e08036dfe1e1904f4556481",
     "semantic_hash": ""
   },
   "src/CircleLayout.tsx": {
@@ -470,8 +470,8 @@
     "semantic_hash": ""
   },
   "example/src/app/index.tsx": {
-    "mtime": 1786595094.1126955,
-    "ast_hash": "e295667fc17b544b353b0aad96631f5f",
+    "mtime": 1786718232.567814,
+    "ast_hash": "909648b5ab716db01f3a3c605f627297",
     "semantic_hash": ""
   },
   "src/__tests__/hooks/useCirclePositions.test.ts": {
@@ -484,14 +484,9 @@
     "ast_hash": "541c0b53be39f63228a9c34495e1ad47",
     "semantic_hash": "541c0b53be39f63228a9c34495e1ad47"
   },
-  ".claude/launch.json": {
-    "mtime": 1786591569.7766483,
-    "ast_hash": "b9989b9597dfaca0c905c5bf424277b5",
-    "semantic_hash": ""
-  },
   "src/__tests__/Bg.test.tsx": {
-    "mtime": 1786595086.6919258,
-    "ast_hash": "48cb37312b739ad3d44905c2a4cfa676",
+    "mtime": 1786718418.5110707,
+    "ast_hash": "c8f134bf48f9d2b585a2c37775f5fb3c",
     "semantic_hash": ""
   }
 }

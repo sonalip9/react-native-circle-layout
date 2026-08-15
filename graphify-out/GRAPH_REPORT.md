@@ -1,21 +1,20 @@
-# Graph Report - issue-51-51ce39  (2026-08-13)
+# Graph Report - issue-51-51ce39  (2026-08-14)
 
 ## Corpus Check
-- 84 files · ~47,224 words
+- 83 files · ~47,706 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 616 nodes · 865 edges · 61 communities (43 shown, 18 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.88)
+- 618 nodes · 867 edges · 60 communities (42 shown, 18 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b06738ed`
+- Built from commit: `8aef9540`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- [[_COMMUNITY_Example App Screens|Example App Screens]]
 - [[_COMMUNITY_Core Layout & Animation|Core Layout & Animation]]
 - [[_COMMUNITY_Design System Components|Design System Components]]
 - [[_COMMUNITY_Dev Dependencies & Turbo|Dev Dependencies & Turbo]]
@@ -105,19 +104,15 @@
 - **Animation Hook Pipeline** — agents_circlelayoutcomponent, agents_useanimation, agents_usecombinedanimation, agents_useanimatedsectorpath [EXTRACTED 1.00]
 - **Agent Skills System** — agents_issue_tracker, agents_triage_labels, agents_domain_docs, agents_github_issues [EXTRACTED 1.00]
 
-## Communities (61 total, 18 thin omitted)
-
-### Community 0 - "Example App Screens"
-Cohesion: 0.11
-Nodes (16): Action, colorOptions, initialState, State, Icon, icons, subIcons, Icon (+8 more)
+## Communities (60 total, 18 thin omitted)
 
 ### Community 1 - "Core Layout & Animation"
-Cohesion: 0.07
-Nodes (41): rnAnimatedDriver, RNAnimationConfig, AnimatedNode, AnimationDriver, DriverComposite, DriverConfig, DriverValue, Android Icon Background (+33 more)
+Cohesion: 0.06
+Nodes (50): rnAnimatedDriver, RNAnimationConfig, AnimatedNode, AnimationDriver, DriverComposite, DriverConfig, DriverValue, Icon (+42 more)
 
 ### Community 2 - "Design System Components"
-Cohesion: 0.08
-Nodes (33): Button, ButtonComponent(), ButtonComponentProps, ButtonProps, Props, ResolvedStyle, RestyleProps, Dropdown (+25 more)
+Cohesion: 0.06
+Nodes (40): Action, colorOptions, initialState, State, Button, ButtonComponent(), ButtonComponentProps, ButtonProps (+32 more)
 
 ### Community 3 - "Dev Dependencies & Turbo"
 Cohesion: 0.06
@@ -132,7 +127,7 @@ Cohesion: 0.06
 Nodes (30): backgroundColor, backgroundImage, foregroundImage, monochromeImage, adaptiveIcon, package, predictiveBackGestureEnabled, projectId (+22 more)
 
 ### Community 6 - "Circle Math & Geometry"
-Cohesion: 0.15
+Cohesion: 0.14
 Nodes (18): center, UseAnimatedSectorPath, CirclePosition, CirclePositionsConfig, computePosition(), useCirclePosition(), useCirclePositions(), CirclePathProps (+10 more)
 
 ### Community 7 - "TypeScript Config"
@@ -264,7 +259,7 @@ Cohesion: 0.67
 Nodes (3): repository, type, url
 
 ## Knowledge Gaps
-- **353 isolated node(s):** `flatCompat`, `name`, `slug`, `version`, `orientation` (+348 more)
+- **353 isolated node(s):** `colorOptions`, `State`, `initialState`, `Action`, `baseContext` (+348 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -273,15 +268,15 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `devDependencies` connect `Dev Dependencies & Turbo` to `Release Configuration`?**
   _High betweenness centrality (0.015) - this node is a cross-community bridge._
-- **Why does `CircleLayoutRef` connect `Example App Screens` to `Core Layout & Animation`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
-- **Why does `palette` connect `Design System Components` to `Example App Screens`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
-- **What connects `flatCompat`, `name`, `slug` to the rest of the system?**
+- **Why does `CircleLayoutRef` connect `Core Layout & Animation` to `Design System Components`?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **What connects `colorOptions`, `State`, `initialState` to the rest of the system?**
   _356 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Example App Screens` be split into smaller, more focused modules?**
-  _Cohesion score 0.11174242424242424 - nodes in this community are weakly interconnected._
 - **Should `Core Layout & Animation` be split into smaller, more focused modules?**
-  _Cohesion score 0.07316118935837246 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.060073260073260075 - nodes in this community are weakly interconnected._
 - **Should `Design System Components` be split into smaller, more focused modules?**
-  _Cohesion score 0.0797872340425532 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05961538461538462 - nodes in this community are weakly interconnected._
+- **Should `Dev Dependencies & Turbo` be split into smaller, more focused modules?**
+  _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
+- **Should `Example App Dependencies` be split into smaller, more focused modules?**
+  _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
