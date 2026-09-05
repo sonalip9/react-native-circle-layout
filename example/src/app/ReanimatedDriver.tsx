@@ -4,13 +4,20 @@ import {
 } from '@react-native-vector-icons/ant-design';
 import * as React from 'react';
 import {
-  Animated,
   StyleSheet,
   Text,
   TouchableOpacity,
   View as RNView,
 } from 'react-native';
-import ReanimatedAnimated from 'react-native-reanimated';
+import {
+  createAnimatedComponent,
+  isSharedValue,
+  makeMutable,
+  runOnJS,
+  runOnUI,
+  withSpring,
+  type SharedValue,
+} from 'react-native-reanimated';
 
 import {
   AnimationCombinationType,
@@ -58,94 +65,162 @@ type SpringConfig = {
   mass: number;
 };
 
+let nextListenerId = 0;
+
+type DriverNode = SharedValue<number> | SharedValue<number | string> | number;
+
 /**
- * Samples a callback over a numeric range to produce input/output arrays
- * suitable for Animated.Value.interpolate(). Equivalent to the library's
- * internal withFunction utility (not part of the public API).
- * @param callback - maps input sample to output
- * @param config - range and resolution
- * @returns inputRange and outputRange arrays
+ * Reads the current number of a driver value that may be a plain number or
+ * a Reanimated shared value. Driver values only ever hold numbers in this
+ * example (icon positions), even though `SharedValue<number | string>` is
+ * typed to also allow strings for other consumers of `AnimationDriver`
+ * (e.g. interpolated SVG path strings).
+ * @param value - a driver value, or a plain number
+ * @returns the current number
  */
-function withFunction<T extends number | string>(
-  callback: (value: number) => T,
-  config?: { startValue?: number; endValue?: number; totalIterations?: number }
-) {
-  const { startValue = 0, endValue = 1, totalIterations = 50 } = config ?? {};
-  const inputRange: number[] = [];
-  const outputRange: T[] = [];
-  if (totalIterations === 0) return { inputRange, outputRange };
-  for (let i = 0; i <= totalIterations; i++) {
-    const key = startValue + ((endValue - startValue) * i) / totalIterations;
-    inputRange.push(key);
-    outputRange.push(callback(key));
-  }
-  return { inputRange, outputRange };
+function readNumber(value: DriverNode): number {
+  return isSharedValue(value) ? (value.value as number) : (value as number);
 }
 
 /**
- * Builds a spring-based AnimationDriver. Uses RN Animated nodes for
- * reactive graph operations (multiply/subtract/interpolate) and
- * Animated.spring for physics-based entry/exit animations instead
- * of the default Animated.timing.
+ * Builds a shared value derived from one or more driver values, kept in
+ * sync via Reanimated's imperative `addListener` API. This is the
+ * Reanimated analogue of RN Animated's node graph (`Animated.multiply`,
+ * `Animated.subtract`, `.interpolate()`), which has no direct equivalent
+ * since Reanimated favours reactive worklets over composable nodes.
  *
- * createAnimatedComponent comes from react-native-reanimated, giving
- * Reanimated's optimized rendering path for the animated views.
+ * `SharedValue.addListener` may only be called from the UI runtime, and
+ * its listener fires there too — so registration is dispatched via
+ * `runOnUI`, and the listener hops back to the JS thread via `runOnJS`
+ * before calling `compute` (which may call arbitrary, non-worklet JS
+ * passed in by the caller, e.g. `AnimationDriver.interpolate`'s callback).
+ * @param inputs - driver values the result depends on
+ * @param compute - recomputes the derived value from the current inputs
+ * @returns a shared value that updates whenever a dependent input changes
+ */
+function deriveSharedValue<T extends number | string>(
+  inputs: DriverNode[],
+  compute: () => T
+): SharedValue<T> {
+  const derived = makeMutable(compute());
+  const recompute = () => {
+    derived.value = compute();
+  };
+  for (const input of inputs) {
+    if (isSharedValue(input)) {
+      const id = nextListenerId++;
+      runOnUI(() => {
+        'worklet';
+        input.addListener(id, () => {
+          runOnJS(recompute)();
+        });
+      })();
+    }
+  }
+  return derived;
+}
+
+/**
+ * Builds a spring-based AnimationDriver backed entirely by
+ * react-native-reanimated: shared values (`makeMutable`) instead of RN
+ * Animated nodes, `withSpring` instead of `Animated.timing`, and
+ * Reanimated's `createAnimatedComponent`. Every method must come from the
+ * same animation library — mixing RN Animated nodes into a
+ * Reanimated-wrapped component (or vice versa) breaks transform
+ * resolution, since neither library can unwrap the other's node objects.
  * @param preset - spring physics preset
  * @returns an AnimationDriver backed by spring physics
  */
 function createSpringDriver(
   preset: SpringPreset
 ): AnimationDriver<
-  Animated.Value,
-  Animated.AnimatedInterpolation<number | string>,
-  Animated.CompositeAnimation,
+  SharedValue<number>,
+  SharedValue<number | string>,
+  (onDone: () => void) => void,
   SpringConfig
 > {
   return {
-    createValue: (n) => new Animated.Value(n),
+    createValue: (n) => makeMutable(n),
 
-    setValue: (v, n) => v.setValue(n),
-
-    addValueListener: (v, cb) => {
-      const id = v.addListener(({ value }) => cb(value));
-      return () => v.removeListener(id);
+    setValue: (v, n) => {
+      v.value = n;
     },
 
-    timing: (value, toValue, _config, useNativeDriver = true) =>
-      Animated.spring(value, {
-        useNativeDriver,
-        toValue,
-        damping: preset.damping,
-        stiffness: preset.stiffness,
-        mass: preset.mass,
-      }),
+    addValueListener: (v, cb) => {
+      const id = nextListenerId++;
+      runOnUI(() => {
+        'worklet';
+        v.addListener(id, (current) => {
+          runOnJS(cb)(current);
+        });
+      })();
+      return () => {
+        runOnUI(() => {
+          'worklet';
+          v.removeListener(id);
+        })();
+      };
+    },
 
-    sequence: (anims) => Animated.sequence(anims),
-    parallel: (anims) => Animated.parallel(anims),
-    delay: (ms) => Animated.delay(ms),
-    start: (anim, cb) => anim.start(cb),
+    timing: (value, toValue) => (onDone) => {
+      value.value = withSpring(
+        toValue,
+        {
+          damping: preset.damping,
+          stiffness: preset.stiffness,
+          mass: preset.mass,
+        },
+        () => {
+          runOnJS(onDone)();
+        }
+      );
+    },
+
+    sequence: (anims) => (onDone) => {
+      const runFrom = (i: number): void => {
+        if (i >= anims.length) return onDone();
+        anims[i]!(() => runFrom(i + 1));
+      };
+      runFrom(0);
+    },
+
+    parallel: (anims) => (onDone) => {
+      if (anims.length === 0) return onDone();
+      let remaining = anims.length;
+      for (const anim of anims) {
+        anim(() => {
+          remaining -= 1;
+          if (remaining === 0) onDone();
+        });
+      }
+    },
+
+    delay: (ms) => (onDone) => {
+      setTimeout(onDone, ms);
+    },
+
+    start: (anim, cb) => anim(() => cb?.()),
 
     multiply: (a, b) =>
-      Animated.multiply(
-        a as Animated.Value | Animated.AnimatedInterpolation<number> | number,
-        b as Animated.Value | Animated.AnimatedInterpolation<number> | number
+      deriveSharedValue<number | string>(
+        [a, b],
+        () => readNumber(a) * readNumber(b)
       ),
 
     subtract: (a, b) =>
-      Animated.subtract(
-        a as Animated.Value | Animated.AnimatedInterpolation<number> | number,
-        b as Animated.Value | Animated.AnimatedInterpolation<number> | number
+      deriveSharedValue<number | string>(
+        [a, b],
+        () => readNumber(a) - readNumber(b)
       ),
 
-    interpolate: (value, callback, config) =>
-      (value as Animated.Value).interpolate(withFunction(callback, config)),
+    interpolate: (value, callback) =>
+      deriveSharedValue<number | string>([value], () =>
+        callback(readNumber(value))
+      ),
 
-    isAnimatedValue: (v): v is Animated.Value => v instanceof Animated.Value,
+    isAnimatedValue: (v): v is SharedValue<number> => isSharedValue(v),
 
-    createAnimatedComponent: (C) =>
-      ReanimatedAnimated.createAnimatedComponent(
-        C as React.ComponentType<object>
-      ) as typeof C,
+    createAnimatedComponent: (C) => createAnimatedComponent(C) as typeof C,
   };
 }
 
