@@ -1,6 +1,6 @@
 import { use, useRef } from 'react';
 import { Text } from 'react-native';
-import Svg from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import { render, act, renderHook } from '@testing-library/react-native';
 
 import { CircleLayout } from '../CircleLayout';
@@ -214,6 +214,75 @@ describe('validateProps', () => {
         })
       ).not.toThrow();
     });
+
+    it('throws when innerRadius array length mismatches components', () => {
+      expect(() =>
+        validateProps({
+          ...baseProps,
+          bgConfig: { innerRadius: [10] },
+        })
+      ).toThrow(
+        'bgConfig.innerRadius array length (1) must match components length (2)'
+      );
+    });
+
+    it('throws when outerRadius array length mismatches components', () => {
+      expect(() =>
+        validateProps({
+          ...baseProps,
+          bgConfig: { outerRadius: [50, 60, 70] },
+        })
+      ).toThrow(
+        'bgConfig.outerRadius array length (3) must match components length (2)'
+      );
+    });
+
+    it('passes when innerRadius/outerRadius arrays match components length', () => {
+      expect(() =>
+        validateProps({
+          ...baseProps,
+          bgConfig: { innerRadius: [10, 20], outerRadius: [50, 60] },
+        })
+      ).not.toThrow();
+    });
+
+    it('passes when selectedIndex is within bounds', () => {
+      expect(() =>
+        validateProps({
+          ...baseProps,
+          bgConfig: { selectedIndex: 1, expandedOuterRadius: 150 },
+        })
+      ).not.toThrow();
+    });
+
+    it('throws when selectedIndex is out of bounds', () => {
+      expect(() =>
+        validateProps({
+          ...baseProps,
+          bgConfig: { selectedIndex: 2 },
+        })
+      ).toThrow('bgConfig.selectedIndex (2) must be an integer within [0, 2)');
+    });
+
+    it('throws when selectedIndex is negative', () => {
+      expect(() =>
+        validateProps({
+          ...baseProps,
+          bgConfig: { selectedIndex: -1 },
+        })
+      ).toThrow('bgConfig.selectedIndex (-1) must be an integer within [0, 2)');
+    });
+
+    it('throws when expandedOuterRadius is not greater than 0', () => {
+      expect(() =>
+        validateProps({
+          ...baseProps,
+          bgConfig: { expandedOuterRadius: 0 },
+        })
+      ).toThrow(
+        'bgConfig.expandedOuterRadius must be a finite number greater than 0'
+      );
+    });
   });
 });
 
@@ -400,6 +469,82 @@ describe('CircleLayout', () => {
           />
         )
       ).not.toThrow();
+    });
+
+    it('renders without throwing when outerRadius is a per-sector array', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            bgConfig={{ outerRadius: [80, 100, 120] }}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('renders without throwing when outerRadius is a function', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            bgConfig={{ outerRadius: (i: number) => 80 + i * 20 }}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('draws each sector at its own outerRadius when given a per-sector array', () => {
+      const { UNSAFE_getAllByType } = render(
+        <CircleLayout
+          components={makeComponents(3)}
+          radius={100}
+          bgConfig={{ outerRadius: [80, 100, 120], color: 'red' }}
+          ref={null}
+        />
+      );
+
+      const arcRadii = UNSAFE_getAllByType(Path).map((path) =>
+        Number((path.props.d as string).split(' ')[7])
+      );
+
+      expect(arcRadii).toEqual([80, 100, 120]);
+    });
+
+    it('renders without throwing when selectedIndex and expandedOuterRadius are set', () => {
+      expect(() =>
+        render(
+          <CircleLayout
+            components={makeComponents(3)}
+            radius={100}
+            bgConfig={{
+              outerRadius: 100,
+              selectedIndex: 1,
+              expandedOuterRadius: 150,
+            }}
+            ref={null}
+          />
+        )
+      ).not.toThrow();
+    });
+
+    it('calls onSectorPress with the pressed sector index', () => {
+      const onSectorPress = jest.fn();
+      const { UNSAFE_getAllByType } = render(
+        <CircleLayout
+          components={makeComponents(3)}
+          radius={100}
+          bgConfig={{ color: 'red', onSectorPress }}
+          ref={null}
+        />
+      );
+
+      UNSAFE_getAllByType(Path)[2]!.props.onPress();
+
+      expect(onSectorPress).toHaveBeenCalledWith(2);
     });
 
     it('shows the background when showComponents is called via ref', () => {

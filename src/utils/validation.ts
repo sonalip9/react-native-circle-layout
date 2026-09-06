@@ -38,7 +38,15 @@ export function validateProps<D extends AnimationDriver>(
 
   if (props.bgConfig) {
     const count = props.components.length;
-    const { color, strokeColor, strokeWidth } = props.bgConfig;
+    const {
+      color,
+      strokeColor,
+      strokeWidth,
+      innerRadius,
+      outerRadius,
+      selectedIndex,
+      expandedOuterRadius,
+    } = props.bgConfig;
     if (Array.isArray(color) && color.length !== count) {
       errors.push(
         `bgConfig.color array length (${color.length}) must match components length (${count})`
@@ -52,6 +60,34 @@ export function validateProps<D extends AnimationDriver>(
     if (Array.isArray(strokeWidth) && strokeWidth.length !== count) {
       errors.push(
         `bgConfig.strokeWidth array length (${strokeWidth.length}) must match components length (${count})`
+      );
+    }
+    if (Array.isArray(innerRadius) && innerRadius.length !== count) {
+      errors.push(
+        `bgConfig.innerRadius array length (${innerRadius.length}) must match components length (${count})`
+      );
+    }
+    if (Array.isArray(outerRadius) && outerRadius.length !== count) {
+      errors.push(
+        `bgConfig.outerRadius array length (${outerRadius.length}) must match components length (${count})`
+      );
+    }
+    if (
+      selectedIndex !== undefined &&
+      (!Number.isInteger(selectedIndex) ||
+        selectedIndex < 0 ||
+        selectedIndex >= count)
+    ) {
+      errors.push(
+        `bgConfig.selectedIndex (${selectedIndex}) must be an integer within [0, ${count})`
+      );
+    }
+    if (
+      expandedOuterRadius !== undefined &&
+      (!Number.isFinite(expandedOuterRadius) || expandedOuterRadius <= 0)
+    ) {
+      errors.push(
+        'bgConfig.expandedOuterRadius must be a finite number greater than 0'
       );
     }
   }

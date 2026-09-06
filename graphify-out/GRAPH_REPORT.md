@@ -1,7 +1,7 @@
-# Graph Report - issue-51-51ce39  (2026-08-14)
+# Graph Report - issue-51-51ce39  (2026-09-06)
 
 ## Corpus Check
-- 83 files · ~47,706 words
+- 85 files · ~51,242 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8aef9540`
+- Built from commit: `b4e5c98a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -80,9 +80,9 @@
 5. `CircleLayoutContext` - 11 edges
 6. `AnimationDriver` - 11 edges
 7. `Domain Context - react-native-circle-layout` - 11 edges
-8. `CircleLayoutRef` - 10 edges
-9. `Props` - 10 edges
-10. `Theme` - 9 edges
+8. `AnimationType` - 10 edges
+9. `AnimationCombinationType` - 10 edges
+10. `CircleLayoutRef` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `ADR-0002: totalParts invariant for partial arcs` --conceptually_related_to--> `total parts`  [INFERRED]
@@ -108,11 +108,11 @@
 
 ### Community 1 - "Core Layout & Animation"
 Cohesion: 0.06
-Nodes (50): rnAnimatedDriver, RNAnimationConfig, AnimatedNode, AnimationDriver, DriverComposite, DriverConfig, DriverValue, Icon (+42 more)
+Nodes (42): Action, colorOptions, initialState, State, Icon, icons, subIcons, Icon (+34 more)
 
 ### Community 2 - "Design System Components"
-Cohesion: 0.06
-Nodes (40): Action, colorOptions, initialState, State, Button, ButtonComponent(), ButtonComponentProps, ButtonProps (+32 more)
+Cohesion: 0.07
+Nodes (36): Button, ButtonComponent(), ButtonComponentProps, ButtonProps, Props, ResolvedStyle, RestyleProps, Dropdown (+28 more)
 
 ### Community 3 - "Dev Dependencies & Turbo"
 Cohesion: 0.06
@@ -127,8 +127,8 @@ Cohesion: 0.06
 Nodes (30): backgroundColor, backgroundImage, foregroundImage, monochromeImage, adaptiveIcon, package, predictiveBackGestureEnabled, projectId (+22 more)
 
 ### Community 6 - "Circle Math & Geometry"
-Cohesion: 0.14
-Nodes (18): center, UseAnimatedSectorPath, CirclePosition, CirclePositionsConfig, computePosition(), useCirclePosition(), useCirclePositions(), CirclePathProps (+10 more)
+Cohesion: 0.09
+Nodes (30): rnAnimatedDriver, RNAnimationConfig, AnimatedNode, AnimationDriver, DriverComposite, DriverConfig, DriverValue, center (+22 more)
 
 ### Community 7 - "TypeScript Config"
 Cohesion: 0.07
@@ -259,7 +259,7 @@ Cohesion: 0.67
 Nodes (3): repository, type, url
 
 ## Knowledge Gaps
-- **353 isolated node(s):** `colorOptions`, `State`, `initialState`, `Action`, `baseContext` (+348 more)
+- **354 isolated node(s):** `AnimationProps`, `colorOptions`, `State`, `initialState`, `Action` (+349 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -268,15 +268,15 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `devDependencies` connect `Dev Dependencies & Turbo` to `Release Configuration`?**
   _High betweenness centrality (0.015) - this node is a cross-community bridge._
-- **Why does `CircleLayoutRef` connect `Core Layout & Animation` to `Design System Components`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
-- **What connects `colorOptions`, `State`, `initialState` to the rest of the system?**
-  _356 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `AnimationProps`, `colorOptions`, `State` to the rest of the system?**
+  _357 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Core Layout & Animation` be split into smaller, more focused modules?**
-  _Cohesion score 0.060073260073260075 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06421052631578947 - nodes in this community are weakly interconnected._
 - **Should `Design System Components` be split into smaller, more focused modules?**
-  _Cohesion score 0.05961538461538462 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06829573934837092 - nodes in this community are weakly interconnected._
 - **Should `Dev Dependencies & Turbo` be split into smaller, more focused modules?**
   _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
 - **Should `Example App Dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
+- **Should `Expo App Config` be split into smaller, more focused modules?**
+  _Cohesion score 0.06451612903225806 - nodes in this community are weakly interconnected._

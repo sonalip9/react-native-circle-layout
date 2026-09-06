@@ -22,6 +22,7 @@ const colorOptions = Object.entries(palette)
   .map(([name, value]) => ({ label: name, value }));
 
 const DEFAULT_OUTER_RADIUS = 100;
+const DEFAULT_EXPANDED_OUTER_RADIUS = 130;
 const DEFAULT_BG_COLOR = palette.purplePrimary;
 
 type State = {
@@ -42,6 +43,9 @@ type State = {
   strokeWidth: number;
   innerRadius: number;
   outerRadius: number;
+  enableSectorSelect: boolean;
+  selectedIndex?: number;
+  expandedOuterRadius: number;
   showContainerBackground: boolean;
   highlightCenterComponent: boolean;
   weights?: number[];
@@ -69,6 +73,9 @@ const initialState: State = {
   strokeWidth: 1,
   innerRadius: 0,
   outerRadius: DEFAULT_OUTER_RADIUS,
+  enableSectorSelect: false,
+  selectedIndex: undefined,
+  expandedOuterRadius: DEFAULT_EXPANDED_OUTER_RADIUS,
   showContainerBackground: false,
   highlightCenterComponent: false,
 };
@@ -81,13 +88,27 @@ type Action =
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'SET':
-      if (action.field === 'numberOfPoints' && state.weights) {
+      if (action.field === 'numberOfPoints') {
         const numberOfPoints = action.value as number;
-        const weights = Array.from(
-          { length: numberOfPoints },
-          (_, i) => state.weights?.[i] ?? Math.floor(Math.random() * 10) + 1
-        );
-        return { ...state, numberOfPoints, weights };
+        const weights = state.weights
+          ? Array.from(
+              { length: numberOfPoints },
+              (_, i) => state.weights?.[i] ?? Math.floor(Math.random() * 10) + 1
+            )
+          : state.weights;
+        const selectedIndex =
+          state.selectedIndex !== undefined &&
+          state.selectedIndex >= numberOfPoints
+            ? undefined
+            : state.selectedIndex;
+        return { ...state, numberOfPoints, weights, selectedIndex };
+      }
+      if (action.field === 'enableSectorSelect' && !action.value) {
+        return {
+          ...state,
+          enableSectorSelect: false,
+          selectedIndex: undefined,
+        };
       }
       return { ...state, [action.field]: action.value };
     case 'TOGGLE_CIRCLE':
@@ -172,6 +193,16 @@ const Playground = () => {
                 strokeWidth: state.strokeWidth,
                 innerRadius: state.innerRadius,
                 outerRadius: state.outerRadius,
+                ...(state.enableSectorSelect && {
+                  selectedIndex: state.selectedIndex,
+                  expandedOuterRadius: state.expandedOuterRadius,
+                  onSectorPress: (index: number) =>
+                    dispatch({
+                      type: 'SET',
+                      field: 'selectedIndex',
+                      value: state.selectedIndex === index ? undefined : index,
+                    }),
+                }),
               }
             : undefined
         }
@@ -388,6 +419,29 @@ const Playground = () => {
             value={state.outerRadius}
             isDisabled={!state.showBackground}
           />
+          <Switch
+            leftLabel="Sector select off"
+            rightLabel="Sector select on"
+            value={state.enableSectorSelect}
+            onValueChange={set('enableSectorSelect')}
+            isDisabled={!state.showBackground}
+          />
+          <SliderWithLabel
+            label="Expanded Outer Radius"
+            maximumValue={maxRadius}
+            minimumValue={state.outerRadius}
+            onValueChange={set('expandedOuterRadius')}
+            step={1}
+            value={state.expandedOuterRadius}
+            isDisabled={!state.showBackground || !state.enableSectorSelect}
+          />
+          {state.enableSectorSelect && (
+            <Text>
+              {state.selectedIndex === undefined
+                ? 'Tap a sector to expand it'
+                : `Selected sector: ${state.selectedIndex}`}
+            </Text>
+          )}
         </View>
 
         <View gap="s">
