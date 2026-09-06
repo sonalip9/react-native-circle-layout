@@ -1,6 +1,13 @@
 import Svg, { Path } from 'react-native-svg';
 import type { ResolvedBgConfig, Layout } from './types';
-import { use, useLayoutEffect, useMemo } from 'react';
+import {
+  use,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useAnimatedSectorPath, useCombinedAnimation } from './hooks';
 import { CircleLayoutContext } from './CircleLayoutContext';
 import { VisibilityContext } from './VisibilityContext';
@@ -16,6 +23,9 @@ export const Bg = ({
   strokeWidth = 1,
   outerRadius,
   innerRadius = 0,
+  selectedIndex,
+  expandedOuterRadius,
+  onSectorPress,
 }: {
   index: number;
   radius: number;
@@ -40,6 +50,11 @@ export const Bg = ({
     [driver]
   );
 
+  const isSelected = selectedIndex === index;
+  const canExpand = expandedOuterRadius !== undefined;
+  const targetOuterRadius =
+    isSelected && canExpand ? expandedOuterRadius : (outerRadius ?? radius);
+
   const { startAngleInRadians, endAngleInRadians, size, center } = useMemo(
     () =>
       resolveBgGeometry({
@@ -48,7 +63,7 @@ export const Bg = ({
         sectorAngles,
         totalParts,
         radius,
-        outerRadius,
+        outerRadius: targetOuterRadius,
         minComponentLayout,
         centerComponentLayout,
       }),
@@ -58,7 +73,7 @@ export const Bg = ({
       sectorAngles,
       totalParts,
       radius,
-      outerRadius,
+      targetOuterRadius,
       minComponentLayout,
       centerComponentLayout,
     ]
@@ -74,7 +89,7 @@ export const Bg = ({
     index,
     radians: endAngleInRadians,
     startAngle: startAngleInRadians,
-    radius: outerRadius ?? radius,
+    radius: targetOuterRadius,
     useNativeDriver: false,
   });
 
@@ -86,9 +101,28 @@ export const Bg = ({
     }
   }, [hideComponent, isVisible, showComponent]);
 
+  // A dedicated animated value that smoothly retargets the outer radius on
+  // selection change. `radiusValue` (from useCombinedAnimation) only snaps
+  // to prop changes outside of its own entry/exit animation lifecycle, so
+  // selection-driven expansion needs its own animation, kept separate from
+  // (and only used instead of) the entry/exit radius animation.
+  const [expandRadiusValue] = useState(() =>
+    driver.createValue(targetOuterRadius)
+  );
+  const previousTargetOuterRadiusRef = useRef(targetOuterRadius);
+  useEffect(() => {
+    if (!canExpand) return;
+    if (previousTargetOuterRadiusRef.current !== targetOuterRadius) {
+      driver.start(
+        driver.timing(expandRadiusValue, targetOuterRadius, {}, false)
+      );
+      previousTargetOuterRadiusRef.current = targetOuterRadius;
+    }
+  }, [canExpand, targetOuterRadius, driver, expandRadiusValue]);
+
   const path = useAnimatedSectorPath({
     driver,
-    radius: radiusValue,
+    radius: canExpand ? expandRadiusValue : radiusValue,
     startAngle: startAngleInRadians,
     endAngle: radiansValue,
     center,
@@ -116,6 +150,7 @@ export const Bg = ({
         strokeOpacity={0.5}
         strokeWidth={strokeWidth}
         opacity={opacityValue as number}
+        onPress={onSectorPress ? () => onSectorPress(index) : undefined}
       />
     </AnimatedSvg>
   );

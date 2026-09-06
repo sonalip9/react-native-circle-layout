@@ -1,5 +1,6 @@
+import { Animated } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { render } from '@testing-library/react-native';
+import { act, render } from '@testing-library/react-native';
 
 import { rnAnimatedDriver } from '../animation/rnAnimatedDriver';
 import { Bg } from '../Bg';
@@ -36,6 +37,9 @@ const renderBg = (
     strokeWidth: number;
     outerRadius: number;
     innerRadius: number;
+    selectedIndex: number;
+    expandedOuterRadius: number;
+    onSectorPress: (index: number) => void;
     ctx: CircleLayoutContextType;
     visible: boolean;
   }> = {}
@@ -54,6 +58,9 @@ const renderBg = (
           strokeWidth={overrides.strokeWidth}
           outerRadius={overrides.outerRadius}
           innerRadius={overrides.innerRadius}
+          selectedIndex={overrides.selectedIndex}
+          expandedOuterRadius={overrides.expandedOuterRadius}
+          onSectorPress={overrides.onSectorPress}
         />
       </VisibilityContext>
     </CircleLayoutContext>
@@ -213,6 +220,150 @@ describe('Bg', () => {
       // (angle[2] + sectorAngles[2] = 3π/2 rad -> 90 deg once rendered),
       // not stop halfway as it would if centered on a nonexistent neighbor.
       expect(localAngleDeg(last, 'end')).toBeCloseTo(90, 1);
+    });
+  });
+
+  describe('selection / expand-on-select', () => {
+    it('draws the sector arc at outerRadius when not the selected index', () => {
+      const { UNSAFE_getByType } = renderBg({
+        index: 1,
+        outerRadius: 100,
+        expandedOuterRadius: 150,
+        selectedIndex: 0,
+      });
+
+      const path = UNSAFE_getByType(Path).props.d as string;
+      const arcRadius = Number(path.split(' ')[7]);
+
+      expect(arcRadius).toBeCloseTo(100);
+    });
+
+    it('draws the selected sector arc at expandedOuterRadius', () => {
+      const { UNSAFE_getByType } = renderBg({
+        index: 0,
+        outerRadius: 100,
+        expandedOuterRadius: 150,
+        selectedIndex: 0,
+      });
+
+      const path = UNSAFE_getByType(Path).props.d as string;
+      const arcRadius = Number(path.split(' ')[7]);
+
+      expect(arcRadius).toBeCloseTo(150);
+    });
+
+    it('smoothly retargets (not snaps) the animated radius node towards expandedOuterRadius on selection change', () => {
+      jest.useFakeTimers();
+      const timingSpy = jest.spyOn(Animated, 'timing');
+      const ctx = baseContext;
+      const { rerender } = render(
+        <CircleLayoutContext value={ctx}>
+          <VisibilityContext value={true}>
+            <Bg
+              index={0}
+              radius={100}
+              minComponentLayout={zeroLayout}
+              centerComponentLayout={zeroLayout}
+              outerRadius={100}
+              expandedOuterRadius={150}
+            />
+          </VisibilityContext>
+        </CircleLayoutContext>
+      );
+
+      expect(timingSpy).not.toHaveBeenCalled();
+
+      act(() => {
+        rerender(
+          <CircleLayoutContext value={ctx}>
+            <VisibilityContext value={true}>
+              <Bg
+                index={0}
+                radius={100}
+                minComponentLayout={zeroLayout}
+                centerComponentLayout={zeroLayout}
+                outerRadius={100}
+                expandedOuterRadius={150}
+                selectedIndex={0}
+              />
+            </VisibilityContext>
+          </CircleLayoutContext>
+        );
+      });
+
+      // Retargeting an already-mounted sector's radius runs an actual timing
+      // animation (toValue 150) rather than jumping straight to the value,
+      // as would happen if the radius were just a plain re-rendered prop.
+      expect(timingSpy).toHaveBeenCalledWith(
+        expect.any(Animated.Value),
+        expect.objectContaining({ toValue: 150 })
+      );
+
+      act(() => {
+        jest.runAllTimers();
+      });
+
+      timingSpy.mockRestore();
+      jest.useRealTimers();
+    });
+
+    it('does not re-trigger the retargeting animation on unrelated re-renders', () => {
+      const timingSpy = jest.spyOn(Animated, 'timing');
+      const ctx = baseContext;
+      const { rerender } = render(
+        <CircleLayoutContext value={ctx}>
+          <VisibilityContext value={true}>
+            <Bg
+              index={0}
+              radius={100}
+              minComponentLayout={zeroLayout}
+              centerComponentLayout={zeroLayout}
+              outerRadius={100}
+              expandedOuterRadius={150}
+              selectedIndex={0}
+            />
+          </VisibilityContext>
+        </CircleLayoutContext>
+      );
+
+      rerender(
+        <CircleLayoutContext value={ctx}>
+          <VisibilityContext value={true}>
+            <Bg
+              index={0}
+              radius={100}
+              minComponentLayout={zeroLayout}
+              centerComponentLayout={zeroLayout}
+              outerRadius={100}
+              expandedOuterRadius={150}
+              selectedIndex={0}
+            />
+          </VisibilityContext>
+        </CircleLayoutContext>
+      );
+
+      expect(timingSpy).not.toHaveBeenCalled();
+      timingSpy.mockRestore();
+    });
+
+    it('does not throw when selectedIndex is set without expandedOuterRadius', () => {
+      expect(() =>
+        renderBg({ index: 0, selectedIndex: 0, outerRadius: 100 })
+      ).not.toThrow();
+    });
+
+    it('calls onSectorPress with its own index when the wedge is pressed', () => {
+      const onSectorPress = jest.fn();
+      const { UNSAFE_getByType } = renderBg({ index: 2, onSectorPress });
+
+      UNSAFE_getByType(Path).props.onPress();
+
+      expect(onSectorPress).toHaveBeenCalledWith(2);
+    });
+
+    it('does not set an onPress handler when onSectorPress is not provided', () => {
+      const { UNSAFE_getByType } = renderBg({ index: 0 });
+      expect(UNSAFE_getByType(Path).props.onPress).toBeUndefined();
     });
   });
 });

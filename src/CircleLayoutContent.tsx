@@ -41,8 +41,11 @@ function resolveBgConfig(bgConfig: BgConfig, index: number): ResolvedBgConfig {
     color: resolveValue(bgConfig.color, index),
     strokeColor: resolveValue(bgConfig.strokeColor, index),
     strokeWidth: resolveValue(bgConfig.strokeWidth, index),
-    innerRadius: bgConfig.innerRadius,
-    outerRadius: bgConfig.outerRadius,
+    innerRadius: resolveValue(bgConfig.innerRadius, index),
+    outerRadius: resolveValue(bgConfig.outerRadius, index),
+    selectedIndex: bgConfig.selectedIndex,
+    expandedOuterRadius: bgConfig.expandedOuterRadius,
+    onSectorPress: bgConfig.onSectorPress,
   };
 }
 

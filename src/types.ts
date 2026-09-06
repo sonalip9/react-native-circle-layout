@@ -113,6 +113,8 @@ export type BgConfig = {
   strokeWidth?: number | number[] | ((index: number) => number);
   /**
    * The radius of the inner circle in the background.
+   * A single value applies to all sectors. An array or function provides
+   * per-sector radii (length must match components).
    * If this prop is not provided, then there will be no inner circle in
    * the background and the background will be a filled circle with the
    * radius provided in the CircleLayoutProps.
@@ -121,16 +123,38 @@ export type BgConfig = {
    * inner radius provided in this prop.
    * @default 0
    */
-  innerRadius?: number;
+  innerRadius?: number | number[] | ((index: number) => number);
   /**
    * The radius of the outer circle in the background.
+   * A single value applies to all sectors. An array or function provides
+   * per-sector radii (length must match components).
    * If this prop is not provided, then the radius provided in the
    * CircleLayoutProps will be used as the outer radius of the background.
    * @default radius provided in CircleLayoutProps
    * @see CircleLayoutProps.radius
    * @see BgConfig.innerRadius
    */
-  outerRadius?: number;
+  outerRadius?: number | number[] | ((index: number) => number);
+  /**
+   * The index of the sector that is currently selected. The selected
+   * sector's outer radius animates to `expandedOuterRadius` (if provided)
+   * instead of its normal resolved `outerRadius`.
+   * @default undefined
+   * @see BgConfig.expandedOuterRadius
+   */
+  selectedIndex?: number;
+  /**
+   * The outer radius the selected sector (`selectedIndex`) animates to.
+   * Has no effect while `selectedIndex` is undefined.
+   * @default undefined
+   * @see BgConfig.selectedIndex
+   */
+  expandedOuterRadius?: number;
+  /**
+   * Called with a sector's index when its wedge is pressed.
+   * @default undefined
+   */
+  onSectorPress?: (index: number) => void;
 };
 
 export type ResolvedBgConfig = {
@@ -139,6 +163,9 @@ export type ResolvedBgConfig = {
   strokeWidth?: number;
   innerRadius?: number;
   outerRadius?: number;
+  selectedIndex?: number;
+  expandedOuterRadius?: number;
+  onSectorPress?: (index: number) => void;
 };
 
 export type CircleLayoutProps<
