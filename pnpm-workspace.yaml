@@ -1,6 +1,33 @@
 packages:
   - '.'
   - 'example'
+overrides:
+  '@babel/core': ^7.29.6
+  '@xmldom/xmldom@0.7': ^0.8.15
+  '@xmldom/xmldom@0.8': ^0.8.15
+  '@xmldom/xmldom@0.9': ^0.9.12
+  'ajv@8': ^8.18.0
+  'brace-expansion@1': ^1.1.16
+  'brace-expansion@2': ^2.1.4
+  browserslist: ^4.28.7
+  decode-uri-component: ^0.5.0
+  diff: ^8.0.3
+  fast-uri: ^3.1.6
+  form-data: ^4.0.6
+  ip-address: ^10.3.1
+  joi: ^17.13.4
+  'js-yaml@3': ^3.15.1
+  'js-yaml@4': ^4.3.1
+  minimatch: ^5.1.8
+  nanoid: ^3.3.18
+  node-forge: ^1.4.0
+  postcss: ^8.5.23
+  shell-quote: ^1.9.0
+  tar: ^7.5.21
+  ts-deepmerge: ^8.0.0
+  undici: ^7.29.0
+  uuid: ^11.1.1
+  yaml: ^2.8.3
 allowBuilds:
   dtrace-provider: false
   lefthook: true
