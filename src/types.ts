@@ -145,7 +145,13 @@ export type BgConfig = {
   selectedIndex?: number;
   /**
    * The outer radius the selected sector (`selectedIndex`) animates to.
-   * Has no effect while `selectedIndex` is undefined.
+   * No sector actually renders at this radius until it becomes
+   * `selectedIndex`, but merely setting this prop (to any sector count)
+   * opts every sector out of a configured LINEAR/CIRCULAR entry animation
+   * for its radius/angle — they render immediately at their resting
+   * position instead of growing/sweeping in — regardless of whether
+   * `selectedIndex` is ever set. This is a tradeoff for reliably retargeting
+   * the selected sector's radius later; see `Bg`'s seeding effect.
    * @default undefined
    * @see BgConfig.selectedIndex
    */

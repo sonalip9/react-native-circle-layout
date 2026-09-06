@@ -105,10 +105,11 @@ export const Bg = ({
   // selection change. `radiusValue` (from useCombinedAnimation) only snaps
   // to prop changes outside of its own entry/exit animation lifecycle, so
   // selection-driven expansion needs its own animation, kept separate from
-  // (and only used instead of) the entry/exit radius animation. Only used
-  // while `canExpand` (an `expandedOuterRadius` is configured); as a
-  // consequence, a sector using expand-on-select starts directly at its
-  // resting outer radius rather than growing/sweeping in via a configured
+  // (and only used instead of) the entry/exit radius animation. Used
+  // whenever `canExpand` (an `expandedOuterRadius` is configured) — for
+  // every sector in that bgConfig, not just whichever one ends up selected.
+  // As a consequence, every such sector starts directly at its resting
+  // outer radius rather than growing/sweeping in via a configured
   // LINEAR/CIRCULAR entry animation — see the seeding effect below.
   const [expandRadiusValue] = useState(() =>
     driver.createValue(targetOuterRadius)
