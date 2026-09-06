@@ -150,8 +150,8 @@
     "semantic_hash": ""
   },
   "src/Bg.tsx": {
-    "mtime": 1786718418.5110755,
-    "ast_hash": "95a443675e08036dfe1e1904f4556481",
+    "mtime": 1788684932.053133,
+    "ast_hash": "91be5c9109c61fb7874690d01f030b31",
     "semantic_hash": ""
   },
   "src/CircleLayout.tsx": {
@@ -160,18 +160,18 @@
     "semantic_hash": ""
   },
   "src/CircleLayoutArray.tsx": {
-    "mtime": 1786590802.5731401,
-    "ast_hash": "f740f5440174a126e6fddad933751b35",
-    "semantic_hash": "f740f5440174a126e6fddad933751b35"
+    "mtime": 1788676329.3270044,
+    "ast_hash": "07322ff752a6bfa10c48011d094ba6bd",
+    "semantic_hash": ""
   },
   "src/CircleLayoutComponent.tsx": {
-    "mtime": 1786590802.5732038,
-    "ast_hash": "a0b3824435f13d9feebac2f62a10db6e",
-    "semantic_hash": "a0b3824435f13d9feebac2f62a10db6e"
+    "mtime": 1788676329.3270893,
+    "ast_hash": "f55b7c703ca01210c5b40092c86ffa67",
+    "semantic_hash": ""
   },
   "src/CircleLayoutContent.tsx": {
-    "mtime": 1786590802.573297,
-    "ast_hash": "b73506a125c965d1c8cd8a5185ec70f7",
+    "mtime": 1788676558.7279625,
+    "ast_hash": "4bc910c808ca4873730c033fec40c13f",
     "semantic_hash": ""
   },
   "src/CircleLayoutContext.tsx": {
@@ -180,24 +180,24 @@
     "semantic_hash": "ab377a626776e96215fc1626c09e5842"
   },
   "src/CircleLayoutProvider.tsx": {
-    "mtime": 1786590802.5734475,
-    "ast_hash": "26cb65fc4acb0a832a0449cd7bdce8ff",
+    "mtime": 1788676329.327319,
+    "ast_hash": "774c5b0843ac18cc61f54b5316b6f35b",
     "semantic_hash": ""
   },
   "src/__tests__/CircleLayout.test.tsx": {
-    "mtime": 1786590802.573581,
-    "ast_hash": "14ad7fd6eff244df06681b83c8fa4a13",
+    "mtime": 1788676848.0797663,
+    "ast_hash": "316762d8d25b8cae4f942f7b1e14758a",
     "semantic_hash": ""
   },
   "src/__tests__/CircleLayoutArray.test.tsx": {
-    "mtime": 1786590802.5736794,
-    "ast_hash": "41516512741da5417cf6848eb56e2cfd",
-    "semantic_hash": "41516512741da5417cf6848eb56e2cfd"
+    "mtime": 1788676329.3276927,
+    "ast_hash": "77c9fbfc8f4df23612032b5e6d9f7c26",
+    "semantic_hash": ""
   },
   "src/__tests__/CircleLayoutComponent.test.tsx": {
-    "mtime": 1786590802.5737624,
-    "ast_hash": "fb6580bcec6860dcc4a9d02f6bda933a",
-    "semantic_hash": "fb6580bcec6860dcc4a9d02f6bda933a"
+    "mtime": 1788676329.3278,
+    "ast_hash": "af260b7f00f84bca148a2295f3829cf9",
+    "semantic_hash": ""
   },
   "src/__tests__/animation/rnAnimatedDriver.test.ts": {
     "mtime": 1786590802.5738797,
@@ -230,9 +230,9 @@
     "semantic_hash": "3333ef41f9779ca8876213940249d76a"
   },
   "src/__tests__/utils/circle.test.ts": {
-    "mtime": 1786590802.574713,
-    "ast_hash": "fa832aad5fca055782e3a87729504c3b",
-    "semantic_hash": "fa832aad5fca055782e3a87729504c3b"
+    "mtime": 1788676329.3281372,
+    "ast_hash": "8285d1683665cecc79b381cfb38c2a14",
+    "semantic_hash": ""
   },
   "src/animation/index.ts": {
     "mtime": 1786590802.5748146,
@@ -280,8 +280,8 @@
     "semantic_hash": "4a60305ba39dbb6dc85e6171383dcd0c"
   },
   "src/types.ts": {
-    "mtime": 1786590802.5756187,
-    "ast_hash": "95037b6a29add1e30961c8cd4b9c37e2",
+    "mtime": 1788676553.33045,
+    "ast_hash": "b16eacd1cabb0c0d2f415e52b71a9c71",
     "semantic_hash": ""
   },
   "src/utils/animation.ts": {
@@ -290,9 +290,9 @@
     "semantic_hash": "174ca8c4ef5894cc6a6558908e93cf57"
   },
   "src/utils/circle.ts": {
-    "mtime": 1786590802.5758207,
-    "ast_hash": "32cce6555852a158ef658bf487d01728",
-    "semantic_hash": "32cce6555852a158ef658bf487d01728"
+    "mtime": 1788676329.3285587,
+    "ast_hash": "dcd5e9fbbe66b3d9a0e906f8c79fba97",
+    "semantic_hash": ""
   },
   "src/utils/index.ts": {
     "mtime": 1786590802.575928,
@@ -300,8 +300,8 @@
     "semantic_hash": "ebe3682701cf0d49dd02ab10f86014a8"
   },
   "src/utils/validation.ts": {
-    "mtime": 1786590802.5760188,
-    "ast_hash": "99850aa125a5f60388efc3035ace21bd",
+    "mtime": 1788676848.079742,
+    "ast_hash": "1f6ff63e11901d52ae3332a6cf7b6000",
     "semantic_hash": ""
   },
   "tsconfig.build.json": {
@@ -390,9 +390,9 @@
     "semantic_hash": "c004ce1cb03fd08ea4d45134d192a9cb"
   },
   "docs/adr/0001-imperative-ref-api.md": {
-    "mtime": 1786590802.5495129,
-    "ast_hash": "340ce2a9ac8304b5c8ac357d62970198",
-    "semantic_hash": "340ce2a9ac8304b5c8ac357d62970198"
+    "mtime": 1788676329.326595,
+    "ast_hash": "59f95080f9875ffa0fb01b65b4352f8c",
+    "semantic_hash": ""
   },
   "docs/adr/0002-totalparts-invariant-for-partial-arcs.md": {
     "mtime": 1786590802.5495799,
@@ -470,8 +470,8 @@
     "semantic_hash": ""
   },
   "example/src/app/index.tsx": {
-    "mtime": 1786718232.567814,
-    "ast_hash": "909648b5ab716db01f3a3c605f627297",
+    "mtime": 1788684761.4861085,
+    "ast_hash": "c48e3855b0dba47a8f1080160c0465f8",
     "semantic_hash": ""
   },
   "src/__tests__/hooks/useCirclePositions.test.ts": {
@@ -480,13 +480,23 @@
     "semantic_hash": "179e569faa03fffdb114ebf0f4af85a4"
   },
   "src/hooks/useCirclePositions.ts": {
-    "mtime": 1786590802.5752742,
-    "ast_hash": "541c0b53be39f63228a9c34495e1ad47",
-    "semantic_hash": "541c0b53be39f63228a9c34495e1ad47"
+    "mtime": 1788676329.328329,
+    "ast_hash": "99f2db5eb90aa7ecb28e487b174b133d",
+    "semantic_hash": ""
   },
   "src/__tests__/Bg.test.tsx": {
-    "mtime": 1786718418.5110707,
-    "ast_hash": "c8f134bf48f9d2b585a2c37775f5fb3c",
+    "mtime": 1788684945.0817885,
+    "ast_hash": "77e3ed290004caf4aefaf3d4a41e76a8",
+    "semantic_hash": ""
+  },
+  "src/VisibilityContext.tsx": {
+    "mtime": 1788676329.3273656,
+    "ast_hash": "86c554d7875fc66a9115855406894fd7",
+    "semantic_hash": ""
+  },
+  ".claude/launch.json": {
+    "mtime": 1788677557.0210185,
+    "ast_hash": "75683ebaaa1e83775432811a8819dad2",
     "semantic_hash": ""
   }
 }
