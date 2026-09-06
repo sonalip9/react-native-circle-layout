@@ -105,20 +105,15 @@ export const Bg = ({
   // selection change. `radiusValue` (from useCombinedAnimation) only snaps
   // to prop changes outside of its own entry/exit animation lifecycle, so
   // selection-driven expansion needs its own animation, kept separate from
-  // (and only used instead of) the entry/exit radius animation.
+  // (and only used instead of) the entry/exit radius animation. Only used
+  // while `canExpand` (an `expandedOuterRadius` is configured); as a
+  // consequence, a sector using expand-on-select starts directly at its
+  // resting outer radius rather than growing/sweeping in via a configured
+  // LINEAR/CIRCULAR entry animation — see the seeding effect below.
   const [expandRadiusValue] = useState(() =>
     driver.createValue(targetOuterRadius)
   );
-  const previousTargetOuterRadiusRef = useRef(targetOuterRadius);
-  useEffect(() => {
-    if (!canExpand) return;
-    if (previousTargetOuterRadiusRef.current !== targetOuterRadius) {
-      driver.start(
-        driver.timing(expandRadiusValue, targetOuterRadius, {}, false)
-      );
-      previousTargetOuterRadiusRef.current = targetOuterRadius;
-    }
-  }, [canExpand, targetOuterRadius, driver, expandRadiusValue]);
+  const previousTargetOuterRadiusRef = useRef<number | undefined>(undefined);
 
   const path = useAnimatedSectorPath({
     driver,
@@ -128,6 +123,41 @@ export const Bg = ({
     center,
     innerRadius,
   });
+
+  // Must run after the useAnimatedSectorPath call above. Once `canExpand`,
+  // `radius` above is `expandRadiusValue`; if `radiansValue` is also an
+  // animated node (a CIRCULAR entry animation is configured), that hook
+  // tracks both via addValueListener rather than reading them
+  // synchronously, and a listener only learns a value once something
+  // actually calls setValue/timing on the node. The first time this effect
+  // sees `canExpand`, it seeds both nodes directly to their resting
+  // values — skipping (only for this sector) whatever LINEAR/CIRCULAR entry
+  // animation would otherwise have played — so useAnimatedSectorPath's
+  // listeners start from correct values instead of sitting on its internal
+  // 0 placeholders. Effects run in hook-call order, so declaring this one
+  // afterwards guarantees the hook's own listener-setup effect has already
+  // registered those listeners by the time this seed fires.
+  useEffect(() => {
+    if (!canExpand) return;
+    if (previousTargetOuterRadiusRef.current === undefined) {
+      driver.setValue(expandRadiusValue, targetOuterRadius);
+      if (driver.isAnimatedValue(radiansValue)) {
+        driver.setValue(radiansValue, endAngleInRadians);
+      }
+    } else if (previousTargetOuterRadiusRef.current !== targetOuterRadius) {
+      driver.start(
+        driver.timing(expandRadiusValue, targetOuterRadius, {}, false)
+      );
+    }
+    previousTargetOuterRadiusRef.current = targetOuterRadius;
+  }, [
+    canExpand,
+    targetOuterRadius,
+    driver,
+    expandRadiusValue,
+    radiansValue,
+    endAngleInRadians,
+  ]);
 
   return (
     <AnimatedSvg

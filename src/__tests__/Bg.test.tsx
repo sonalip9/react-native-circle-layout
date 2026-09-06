@@ -6,7 +6,12 @@ import { rnAnimatedDriver } from '../animation/rnAnimatedDriver';
 import { Bg } from '../Bg';
 import { CircleLayoutContext } from '../CircleLayoutContext';
 import { VisibilityContext } from '../VisibilityContext';
-import type { CircleLayoutContextType, Layout } from '../types';
+import {
+  AnimationCombinationType,
+  AnimationType,
+  type CircleLayoutContextType,
+  type Layout,
+} from '../types';
 
 const baseContext: CircleLayoutContextType = {
   totalParts: 3,
@@ -364,6 +369,103 @@ describe('Bg', () => {
     it('does not set an onPress handler when onSectorPress is not provided', () => {
       const { UNSAFE_getByType } = renderBg({ index: 0 });
       expect(UNSAFE_getByType(Path).props.onPress).toBeUndefined();
+    });
+
+    it('draws at the real outerRadius (not collapsed to a point) when CIRCULAR animation makes endAngle an animated node too', () => {
+      // Regression: when expandedOuterRadius makes radius an animated node
+      // AND a CIRCULAR animationConfig makes endAngle an animated node too,
+      // useAnimatedSectorPath tracks both via addValueListener rather than
+      // reading them synchronously. A listener only fires on an actual
+      // value change, so without seeding it at mount the sector rendered
+      // collapsed (radius/angle stuck at their internal 0 placeholders)
+      // until (if ever) a real selection change first animates the node.
+      jest.useFakeTimers();
+      const ctxWithCircular: CircleLayoutContextType = {
+        ...baseContext,
+        animationProps: {
+          animationConfigs: {
+            [AnimationType.CIRCULAR]: { duration: 300 },
+          },
+          animationCombinationType: AnimationCombinationType.PARALLEL,
+        },
+      };
+
+      const { UNSAFE_getByType } = renderBg({
+        ctx: ctxWithCircular,
+        index: 0,
+        outerRadius: 100,
+        expandedOuterRadius: 150,
+      });
+
+      const path = UNSAFE_getByType(Path).props.d as string;
+      const arcRadius = Number(path.split(' ')[7]);
+
+      expect(arcRadius).toBeCloseTo(100);
+
+      act(() => {
+        jest.runAllTimers();
+      });
+      jest.useRealTimers();
+    });
+
+    it('stays non-degenerate after a real selection change with CIRCULAR animation configured', () => {
+      // Regression: the seeding above only covers the state right after
+      // useAnimatedSectorPath's listeners are first registered. Once a real
+      // retarget follows (a later selection change), the radius node's
+      // listener must keep tracking correctly rather than collapsing again.
+      jest.useFakeTimers();
+      const ctxWithCircular: CircleLayoutContextType = {
+        ...baseContext,
+        animationProps: {
+          animationConfigs: {
+            [AnimationType.CIRCULAR]: { duration: 300 },
+          },
+          animationCombinationType: AnimationCombinationType.PARALLEL,
+        },
+      };
+
+      const { rerender, UNSAFE_getByType } = render(
+        <CircleLayoutContext value={ctxWithCircular}>
+          <VisibilityContext value={true}>
+            <Bg
+              index={0}
+              radius={100}
+              minComponentLayout={zeroLayout}
+              centerComponentLayout={zeroLayout}
+              outerRadius={100}
+              expandedOuterRadius={150}
+            />
+          </VisibilityContext>
+        </CircleLayoutContext>
+      );
+
+      act(() => {
+        rerender(
+          <CircleLayoutContext value={ctxWithCircular}>
+            <VisibilityContext value={true}>
+              <Bg
+                index={0}
+                radius={100}
+                minComponentLayout={zeroLayout}
+                centerComponentLayout={zeroLayout}
+                outerRadius={100}
+                expandedOuterRadius={150}
+                selectedIndex={0}
+              />
+            </VisibilityContext>
+          </CircleLayoutContext>
+        );
+      });
+
+      act(() => {
+        jest.runAllTimers();
+      });
+
+      const path = UNSAFE_getByType(Path).props.d as string;
+      const arcRadius = Number(path.split(' ')[7]);
+
+      expect(arcRadius).toBeCloseTo(150);
+      jest.useRealTimers();
     });
   });
 });
