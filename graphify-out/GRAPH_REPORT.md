@@ -1,20 +1,21 @@
-# Graph Report - issue-51-51ce39  (2026-09-06)
+# Graph Report - react-native-circle-layout  (2026-09-06)
 
 ## Corpus Check
-- 85 files · ~51,242 words
+- 84 files · ~52,241 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 618 nodes · 867 edges · 60 communities (42 shown, 18 thin omitted)
+- 625 nodes · 895 edges · 59 communities (41 shown, 18 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b4e5c98a`
+- Built from commit: `f8247338`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
+- [[_COMMUNITY_Community 0|Community 0]]
 - [[_COMMUNITY_Core Layout & Animation|Core Layout & Animation]]
 - [[_COMMUNITY_Design System Components|Design System Components]]
 - [[_COMMUNITY_Dev Dependencies & Turbo|Dev Dependencies & Turbo]]
@@ -66,8 +67,6 @@
 - [[_COMMUNITY_Community 52|Community 52]]
 - [[_COMMUNITY_Community 53|Community 53]]
 - [[_COMMUNITY_Community 54|Community 54]]
-- [[_COMMUNITY_Community 55|Community 55]]
-- [[_COMMUNITY_Community 56|Community 56]]
 - [[_COMMUNITY_Community 57|Community 57]]
 - [[_COMMUNITY_Community 58|Community 58]]
 - [[_COMMUNITY_Community 59|Community 59]]
@@ -104,19 +103,23 @@
 - **Animation Hook Pipeline** — agents_circlelayoutcomponent, agents_useanimation, agents_usecombinedanimation, agents_useanimatedsectorpath [EXTRACTED 1.00]
 - **Agent Skills System** — agents_issue_tracker, agents_triage_labels, agents_domain_docs, agents_github_issues [EXTRACTED 1.00]
 
-## Communities (60 total, 18 thin omitted)
+## Communities (59 total, 18 thin omitted)
+
+### Community 0 - "Community 0"
+Cohesion: 0.04
+Nodes (45): devDependencies, commitlint, @commitlint/config-conventional, del-cli, eslint, @eslint-community/eslint-plugin-eslint-comments, @eslint/compat, eslint-config-prettier (+37 more)
 
 ### Community 1 - "Core Layout & Animation"
 Cohesion: 0.06
-Nodes (42): Action, colorOptions, initialState, State, Icon, icons, subIcons, Icon (+34 more)
+Nodes (50): rnAnimatedDriver, RNAnimationConfig, AnimatedNode, AnimationDriver, DriverComposite, DriverConfig, DriverValue, Icon (+42 more)
 
 ### Community 2 - "Design System Components"
-Cohesion: 0.07
-Nodes (36): Button, ButtonComponent(), ButtonComponentProps, ButtonProps, Props, ResolvedStyle, RestyleProps, Dropdown (+28 more)
+Cohesion: 0.06
+Nodes (41): Action, colorOptions, initialState, State, Icon, Button, ButtonComponent(), ButtonComponentProps (+33 more)
 
 ### Community 3 - "Dev Dependencies & Turbo"
-Cohesion: 0.06
-Nodes (33): devDependencies, commitlint, @commitlint/config-conventional, del-cli, eslint, @eslint-community/eslint-plugin-eslint-comments, @eslint/compat, eslint-config-prettier (+25 more)
+Cohesion: 0.07
+Nodes (28): compilerOptions, allowUnreachableCode, allowUnusedLabels, customConditions, esModuleInterop, forceConsistentCasingInFileNames, jsx, lib (+20 more)
 
 ### Community 4 - "Example App Dependencies"
 Cohesion: 0.06
@@ -127,12 +130,12 @@ Cohesion: 0.06
 Nodes (30): backgroundColor, backgroundImage, foregroundImage, monochromeImage, adaptiveIcon, package, predictiveBackGestureEnabled, projectId (+22 more)
 
 ### Community 6 - "Circle Math & Geometry"
-Cohesion: 0.09
-Nodes (30): rnAnimatedDriver, RNAnimationConfig, AnimatedNode, AnimationDriver, DriverComposite, DriverConfig, DriverValue, center (+22 more)
+Cohesion: 0.12
+Nodes (23): center, UseAnimatedSectorPath, CirclePosition, CirclePositionsConfig, computePosition(), useCirclePosition(), useCirclePositions(), BgGeometry (+15 more)
 
 ### Community 7 - "TypeScript Config"
-Cohesion: 0.07
-Nodes (28): compilerOptions, allowUnreachableCode, allowUnusedLabels, customConditions, esModuleInterop, forceConsistentCasingInFileNames, jsx, lib (+20 more)
+Cohesion: 0.08
+Nodes (25): AnimationCombinationType, AnimationConfig, `animationProps`, AnimationProps, AnimationType, Authors, `bgConfig`, BgConfig (+17 more)
 
 ### Community 8 - "CI/CD & Workflows"
 Cohesion: 0.13
@@ -147,16 +150,16 @@ Cohesion: 0.18
 Nodes (11): src/utils/circle.ts, animation gap, center component, circle layout (glossary term), Domain Context - react-native-circle-layout, polar-to-Cartesian, start angle, sweep angle (+3 more)
 
 ### Community 11 - "Package Metadata"
-Cohesion: 0.08
-Nodes (25): AnimationCombinationType, AnimationConfig, `animationProps`, AnimationProps, AnimationType, Authors, `bgConfig`, BgConfig (+17 more)
+Cohesion: 0.13
+Nodes (14): author, bugs, url, commitlint, extends, description, files, homepage (+6 more)
 
 ### Community 12 - "Agent Documentation"
 Cohesion: 0.33
 Nodes (6): needs-info label, needs-triage label, ready-for-agent label, ready-for-human label, Triage Labels mapping, wontfix label
 
 ### Community 13 - "Release Configuration"
-Cohesion: 0.13
-Nodes (14): author, bugs, url, commitlint, extends, description, files, homepage (+6 more)
+Cohesion: 0.15
+Nodes (12): 1. Correction, 2. Warning, 3. Temporary Ban, 4. Permanent Ban, Attribution, Contributor Covenant Code of Conduct, Enforcement, Enforcement Guidelines (+4 more)
 
 ### Community 14 - "Architecture Decisions"
 Cohesion: 0.20
@@ -179,8 +182,8 @@ Cohesion: 0.25
 Nodes (8): AnimationCombinationType, AnimationConfig, AnimationType, BgConfig, CircleLayoutProps, CircleLayoutRef, src/index.tsx (public API), animation combination type (glossary)
 
 ### Community 19 - "Package Scripts"
-Cohesion: 0.15
-Nodes (12): 1. Correction, 2. Warning, 3. Temporary Ban, 4. Permanent Ban, Attribution, Contributor Covenant Code of Conduct, Enforcement, Enforcement Guidelines (+4 more)
+Cohesion: 0.17
+Nodes (12): commitMessage, tagName, release, publish, @release-it/conventional-changelog, name, release-it, preset (+4 more)
 
 ### Community 20 - "Community 20"
 Cohesion: 0.33
@@ -191,28 +194,28 @@ Cohesion: 0.33
 Nodes (6): AnimationCombinationType (enum, README), AnimationConfig (type, README), AnimationProps (type), AnimationType (enum, README), BgConfig (type, README), CircleLayoutProps (type)
 
 ### Community 22 - "Community 22"
-Cohesion: 0.15
-Nodes (12): env, inputs, outputs, env, inputs, outputs, globalDependencies, globalEnv (+4 more)
+Cohesion: 0.22
+Nodes (8): Agent skills, Architecture, Commands, Domain docs, graphify, Issue tracker, Triage labels, react-native-circle-layout
 
 ### Community 23 - "Grid-to-Circle Morph"
-Cohesion: 0.17
-Nodes (12): commitMessage, tagName, release, publish, @release-it/conventional-changelog, name, release-it, preset (+4 more)
+Cohesion: 0.25
+Nodes (8): scripts, clean, example, lint, prepare, release, test, typecheck
 
 ### Community 24 - "Agent Issue System"
 Cohesion: 0.33
 Nodes (5): Before exploring, read these, Domain Docs, File structure, Flag ADR conflicts, Use the glossary's vocabulary
 
 ### Community 25 - "Prettier Config"
-Cohesion: 0.22
-Nodes (8): Agent skills, Architecture, Commands, Domain docs, graphify, Issue tracker, react-native-circle-layout, Triage labels
-
-### Community 27 - "Library Builder Config"
-Cohesion: 0.25
-Nodes (8): scripts, clean, example, lint, prepare, release, test, typecheck
-
-### Community 28 - "Package Exports"
 Cohesion: 0.29
 Nodes (6): Commit message convention, Contributing, Development workflow, Publishing to npm, Scripts, Sending a pull request
+
+### Community 27 - "Library Builder Config"
+Cohesion: 0.33
+Nodes (5): Domain Context — react-native-circle-layout, Example app runtime, Glossary, Preferred terminology, What this library does NOT do
+
+### Community 28 - "Package Exports"
+Cohesion: 0.33
+Nodes (6): jest, modulePathIgnorePatterns, preset, setupFilesAfterEnv, testPathIgnorePatterns, transformIgnorePatterns
 
 ### Community 29 - "Jest Config"
 Cohesion: 0.33
@@ -220,63 +223,55 @@ Nodes (5): Conventions, Issue tracker: GitHub, When a skill says "fetch the rele
 
 ### Community 30 - "Peer Dependencies"
 Cohesion: 0.33
-Nodes (5): Domain Context — react-native-circle-layout, Example app runtime, Glossary, Preferred terminology, What this library does NOT do
+Nodes (6): prettier, quoteProps, singleQuote, tabWidth, trailingComma, useTabs
 
 ### Community 31 - "Builder Bob Config"
-Cohesion: 0.33
-Nodes (6): jest, modulePathIgnorePatterns, preset, setupFilesAfterEnv, testPathIgnorePatterns, transformIgnorePatterns
+Cohesion: 0.40
+Nodes (5): create-react-native-library, languages, tools, type, version
 
 ### Community 32 - "Publish Config"
-Cohesion: 0.33
-Nodes (6): prettier, quoteProps, singleQuote, tabWidth, trailingComma, useTabs
+Cohesion: 0.40
+Nodes (5): default, exports, ./package.json, source, types
 
 ### Community 33 - "Repository Info"
 Cohesion: 0.50
 Nodes (5): gh CLI for Issue Operations, GitHub Issues (sonalip9/react-native-circle-layout), Issue Tracker Agent Skill, Triage Labels, AGENTS.md - Project Documentation
 
 ### Community 34 - "Build TypeScript Config"
-Cohesion: 0.40
-Nodes (5): create-react-native-library, languages, tools, type, version
-
-### Community 51 - "Community 51"
-Cohesion: 0.40
-Nodes (5): default, exports, ./package.json, source, types
-
-### Community 52 - "Community 52"
 Cohesion: 0.50
 Nodes (4): peerDependencies, react, react-native, react-native-svg
 
-### Community 53 - "Community 53"
+### Community 51 - "Community 51"
 Cohesion: 0.50
 Nodes (4): react-native-builder-bob, output, source, targets
 
-### Community 54 - "Community 54"
+### Community 52 - "Community 52"
 Cohesion: 0.67
 Nodes (3): publishConfig, access, registry
 
-### Community 55 - "Community 55"
+### Community 53 - "Community 53"
 Cohesion: 0.67
 Nodes (3): repository, type, url
 
 ## Knowledge Gaps
-- **354 isolated node(s):** `AnimationProps`, `colorOptions`, `State`, `initialState`, `Action` (+349 more)
+- **356 isolated node(s):** `flatCompat`, `name`, `slug`, `version`, `orientation` (+351 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `devDependencies` connect `Dev Dependencies & Turbo` to `Release Configuration`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
-- **What connects `AnimationProps`, `colorOptions`, `State` to the rest of the system?**
-  _357 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `devDependencies` connect `Community 0` to `Package Metadata`?**
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
+- **Why does `CircleLayoutRef` connect `Core Layout & Animation` to `Design System Components`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **Why does `AnimationType` connect `Core Layout & Animation` to `Design System Components`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **What connects `flatCompat`, `name`, `slug` to the rest of the system?**
+  _359 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Community 0` be split into smaller, more focused modules?**
+  _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._
 - **Should `Core Layout & Animation` be split into smaller, more focused modules?**
-  _Cohesion score 0.06421052631578947 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06256384065372829 - nodes in this community are weakly interconnected._
 - **Should `Design System Components` be split into smaller, more focused modules?**
-  _Cohesion score 0.06829573934837092 - nodes in this community are weakly interconnected._
-- **Should `Dev Dependencies & Turbo` be split into smaller, more focused modules?**
-  _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
-- **Should `Example App Dependencies` be split into smaller, more focused modules?**
-  _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
-- **Should `Expo App Config` be split into smaller, more focused modules?**
-  _Cohesion score 0.06451612903225806 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05662862159789289 - nodes in this community are weakly interconnected._
