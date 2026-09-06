@@ -172,6 +172,16 @@ export const Bg = ({
       }}
       width={size}
       height={size}
+      // Every sector's canvas is sized/positioned identically (large enough
+      // to fit the whole circle, not just this wedge), so they fully
+      // overlap. Without this, the topmost (last-rendered) sector's canvas
+      // would claim every touch within that shared bounding box regardless
+      // of which wedge was actually tapped — RN's responder system hit-tests
+      // a View's full layout rectangle, not the shape actually painted
+      // inside it. `box-none` makes the canvas itself untouchable so a
+      // touch falls through to whichever sector's `AnimatedPath` really
+      // contains it.
+      pointerEvents="box-none"
     >
       <AnimatedPath
         d={path as string}

@@ -85,6 +85,16 @@ describe('Bg', () => {
       expect(() => renderBg({ index: 2 })).not.toThrow();
     });
 
+    it('sets pointerEvents="box-none" on the Svg canvas so touches fall through to the Path', () => {
+      // Every sector's Svg canvas is sized/positioned identically (large
+      // enough for the whole circle, not just its own wedge), so they fully
+      // overlap. Without box-none, the topmost (last-rendered) sector's
+      // canvas would claim every touch within that shared rectangle
+      // regardless of which wedge was actually tapped.
+      const { UNSAFE_getByType } = renderBg();
+      expect(UNSAFE_getByType(Svg).props.pointerEvents).toBe('box-none');
+    });
+
     it('renders without throwing with a donut (innerRadius) config', () => {
       expect(() =>
         renderBg({ innerRadius: 20, outerRadius: 80 })
