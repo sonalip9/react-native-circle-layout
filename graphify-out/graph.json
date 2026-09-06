@@ -51,84 +51,14 @@
   },
   "nodes": [
     {
-      "label": "index.tsx",
-      "file_type": "code",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "app_index",
-      "community": 1,
-      "norm_label": "index.tsx"
-    },
-    {
-      "label": "colorOptions",
-      "file_type": "code",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L20",
-      "_origin": "ast",
-      "id": "app_index_coloroptions",
-      "community": 1,
-      "norm_label": "coloroptions"
-    },
-    {
-      "label": "State",
-      "file_type": "code",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L28",
-      "_origin": "ast",
-      "id": "app_index_state",
-      "community": 1,
-      "norm_label": "state"
-    },
-    {
-      "label": "initialState",
-      "file_type": "code",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L54",
-      "_origin": "ast",
-      "id": "app_index_initialstate",
-      "community": 1,
-      "norm_label": "initialstate"
-    },
-    {
-      "label": "Action",
-      "file_type": "code",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L83",
-      "_origin": "ast",
-      "id": "app_index_action",
-      "community": 1,
-      "norm_label": "action"
-    },
-    {
-      "label": "reducer()",
-      "file_type": "code",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L88",
-      "_origin": "ast",
-      "id": "app_index_reducer",
-      "community": 1,
-      "norm_label": "reducer()"
-    },
-    {
-      "label": "Playground()",
-      "file_type": "code",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L121",
-      "_origin": "ast",
-      "id": "app_index_playground",
-      "community": 1,
-      "norm_label": "playground()"
-    },
-    {
       "label": "Bg.tsx",
       "file_type": "code",
       "source_file": "src/Bg.tsx",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "src_bg",
       "community": 1,
-      "norm_label": "bg.tsx",
-      "id": "src_bg"
+      "norm_label": "bg.tsx"
     },
     {
       "label": "Bg()",
@@ -136,9 +66,199 @@
       "source_file": "src/Bg.tsx",
       "source_location": "L16",
       "_origin": "ast",
+      "id": "src_bg_bg",
       "community": 1,
-      "norm_label": "bg()",
-      "id": "src_bg_bg"
+      "norm_label": "bg()"
+    },
+    {
+      "label": "types.ts",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_types",
+      "community": 1,
+      "norm_label": "types.ts"
+    },
+    {
+      "label": "AnimationType",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_types_animationtype",
+      "community": 1,
+      "norm_label": "animationtype"
+    },
+    {
+      "label": "AnimationCombinationType",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "src_types_animationcombinationtype",
+      "community": 1,
+      "norm_label": "animationcombinationtype"
+    },
+    {
+      "label": "AnimationConfig",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "src_types_animationconfig",
+      "community": 1,
+      "norm_label": "animationconfig"
+    },
+    {
+      "label": "AnimationProps",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "src_types_animationprops",
+      "community": 1,
+      "norm_label": "animationprops"
+    },
+    {
+      "label": "BgConfig",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L92",
+      "_origin": "ast",
+      "id": "src_types_bgconfig",
+      "community": 1,
+      "norm_label": "bgconfig"
+    },
+    {
+      "label": "ResolvedBgConfig",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L166",
+      "_origin": "ast",
+      "id": "src_types_resolvedbgconfig",
+      "community": 1,
+      "norm_label": "resolvedbgconfig"
+    },
+    {
+      "label": "CircleLayoutProps",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L177",
+      "_origin": "ast",
+      "id": "src_types_circlelayoutprops",
+      "community": 1,
+      "norm_label": "circlelayoutprops"
+    },
+    {
+      "label": "CircleLayoutRef",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L260",
+      "_origin": "ast",
+      "id": "src_types_circlelayoutref",
+      "community": 1,
+      "norm_label": "circlelayoutref"
+    },
+    {
+      "label": "ComponentProps",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L279",
+      "_origin": "ast",
+      "id": "src_types_componentprops",
+      "community": 1,
+      "norm_label": "componentprops"
+    },
+    {
+      "label": "CircleLayoutContextType",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L308",
+      "_origin": "ast",
+      "id": "src_types_circlelayoutcontexttype",
+      "community": 1,
+      "norm_label": "circlelayoutcontexttype"
+    },
+    {
+      "label": "Layout",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L348",
+      "_origin": "ast",
+      "id": "src_types_layout",
+      "community": 1,
+      "norm_label": "layout"
+    },
+    {
+      "label": "index.tsx",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "index.tsx",
+      "id": "app_index"
+    },
+    {
+      "label": "colorOptions",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L20",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "coloroptions",
+      "id": "app_index_coloroptions"
+    },
+    {
+      "label": "State",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L28",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "state",
+      "id": "app_index_state"
+    },
+    {
+      "label": "initialState",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L54",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "initialstate",
+      "id": "app_index_initialstate"
+    },
+    {
+      "label": "Action",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L83",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "action",
+      "id": "app_index_action"
+    },
+    {
+      "label": "reducer()",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L88",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "reducer()",
+      "id": "app_index_reducer"
+    },
+    {
+      "label": "Playground()",
+      "file_type": "code",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L121",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "playground()",
+      "id": "app_index_playground"
     },
     {
       "label": "Bg.test.tsx",
@@ -259,126 +379,6 @@
       "community": 1,
       "norm_label": "baseprops",
       "id": "tests_circlelayout_test_baseprops"
-    },
-    {
-      "label": "types.ts",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "types.ts",
-      "id": "src_types"
-    },
-    {
-      "label": "AnimationType",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L7",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "animationtype",
-      "id": "src_types_animationtype"
-    },
-    {
-      "label": "AnimationCombinationType",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L31",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "animationcombinationtype",
-      "id": "src_types_animationcombinationtype"
-    },
-    {
-      "label": "AnimationConfig",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L50",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "animationconfig",
-      "id": "src_types_animationconfig"
-    },
-    {
-      "label": "AnimationProps",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L54",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "animationprops",
-      "id": "src_types_animationprops"
-    },
-    {
-      "label": "BgConfig",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L92",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "bgconfig",
-      "id": "src_types_bgconfig"
-    },
-    {
-      "label": "ResolvedBgConfig",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L160",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "resolvedbgconfig",
-      "id": "src_types_resolvedbgconfig"
-    },
-    {
-      "label": "CircleLayoutProps",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L171",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "circlelayoutprops",
-      "id": "src_types_circlelayoutprops"
-    },
-    {
-      "label": "CircleLayoutRef",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L254",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "circlelayoutref",
-      "id": "src_types_circlelayoutref"
-    },
-    {
-      "label": "ComponentProps",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L273",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "componentprops",
-      "id": "src_types_componentprops"
-    },
-    {
-      "label": "CircleLayoutContextType",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L302",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "circlelayoutcontexttype",
-      "id": "src_types_circlelayoutcontexttype"
-    },
-    {
-      "label": "Layout",
-      "file_type": "code",
-      "source_file": "src/types.ts",
-      "source_location": "L342",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "layout",
-      "id": "src_types_layout"
     },
     {
       "label": "validation.ts",
@@ -6538,198 +6538,6 @@
   ],
   "links": [
     {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L75",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "app_index_action"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L22",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "app_index_coloroptions"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L49",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "app_index_initialstate"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L29",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "app_index_playground"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L80",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "app_index_reducer"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L27",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "app_index_state"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "atoms_index"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L19",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "molecules_index"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_appcontext"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_appcontext_appcontext"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_circlelayout_circlelayout"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_types_animationcombinationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_types_animationconfig"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_types_animationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "src_types_circlelayoutref"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "style_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "example/src/app/index.tsx",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_index",
-      "target": "style_index_palette"
-    },
-    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -6886,404 +6694,6 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/Bg.test.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_bg_test",
-      "target": "animation_rnanimateddriver"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/Bg.test.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_bg_test",
-      "target": "animation_rnanimateddriver_rnanimateddriver"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/Bg.test.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_bg_test",
-      "target": "src_circlelayoutcontext"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/Bg.test.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_bg_test",
-      "target": "src_circlelayoutcontext_circlelayoutcontext"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/Bg.test.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_bg_test",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/Bg.test.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_bg_test",
-      "target": "src_types_animationcombinationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/Bg.test.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_bg_test",
-      "target": "src_types_animationtype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/Bg.test.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_bg_test",
-      "target": "src_types_circlelayoutcontexttype"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/Bg.test.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_bg_test",
-      "target": "src_types_layout"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/Bg.test.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_bg_test",
-      "target": "tests_bg_test_basecontext"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/Bg.test.tsx",
-      "source_location": "L37",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_bg_test",
-      "target": "tests_bg_test_localangledeg"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/Bg.test.tsx",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_bg_test",
-      "target": "tests_bg_test_renderbg"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/Bg.test.tsx",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_bg_test",
-      "target": "tests_bg_test_zerolayout"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "src_circlelayoutcontent"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_circlelayoutarray"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L67",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_circlelayoutcontent_circlelayoutcontent"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L38",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_circlelayoutcontent_resolvebgconfig"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L19",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_circlelayoutcontent_resolvevalue"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_types_bgconfig"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_types_circlelayoutref"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_types_layout"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent",
-      "target": "src_types_resolvedbgconfig"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayoutContent.tsx",
-      "source_location": "L40",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayoutcontent_resolvebgconfig",
-      "target": "src_circlelayoutcontent_resolvevalue"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/CircleLayout.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_circlelayout",
-      "target": "src_circlelayoutcontent_circlelayoutcontent"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_circlelayout"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_circlelayout_circlelayout"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_circlelayoutcontext"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_circlelayoutcontext_circlelayoutcontext"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_circlelayoutprovider"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_circlelayoutprovider_circlelayoutprovider"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_types"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "src_types_circlelayoutref"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "tests_circlelayout_test_baseprops"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "tests_circlelayout_test_makecomponents"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "utils_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/__tests__/CircleLayout.test.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_circlelayout_test",
-      "target": "utils_validation_validateprops"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "src/hooks/useCombinedAnimation.ts",
       "source_location": "L4",
       "weight": 1.0,
@@ -7333,6 +6743,17 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "src_circlelayoutcomponent",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
       "target": "src_types"
     },
     {
@@ -7537,6 +6958,28 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/Bg.test.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_bg_test",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "src_types"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/__tests__/CircleLayoutArray.test.tsx",
       "source_location": "L8",
       "weight": 1.0,
@@ -7570,6 +7013,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_types_animationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "example/src/app/NestedRingMenu.tsx",
       "source_location": "L7",
       "weight": 1.0,
@@ -7625,6 +7079,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/Bg.test.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_bg_test",
+      "target": "src_types_animationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
       "source_location": "L8",
       "weight": 1.0,
@@ -7642,6 +7107,17 @@
       "confidence_score": 1.0,
       "source": "tests_index_test",
       "target": "src_types_animationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_types_animationcombinationtype"
     },
     {
       "relation": "imports",
@@ -7702,6 +7178,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/Bg.test.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_bg_test",
+      "target": "src_types_animationcombinationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/__tests__/CircleLayoutComponent.test.tsx",
       "source_location": "L8",
       "weight": 1.0,
@@ -7719,6 +7206,17 @@
       "confidence_score": 1.0,
       "source": "tests_index_test",
       "target": "src_types_animationcombinationtype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_types_animationconfig"
     },
     {
       "relation": "re_exports",
@@ -7732,6 +7230,17 @@
       "target": "src_types_animationconfig"
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_types_bgconfig"
+    },
+    {
       "relation": "re_exports",
       "context": "re-export",
       "confidence": "EXTRACTED",
@@ -7741,6 +7250,17 @@
       "confidence_score": 1.0,
       "source": "src_index",
       "target": "src_types_bgconfig"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_types_resolvedbgconfig"
     },
     {
       "relation": "re_exports",
@@ -7801,6 +7321,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_types_circlelayoutref"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "example/src/app/NestedRingMenu.tsx",
       "source_location": "L7",
       "weight": 1.0,
@@ -7842,6 +7373,17 @@
       "target": "src_types_circlelayoutref"
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_types_circlelayoutref"
+    },
+    {
       "relation": "re_exports",
       "context": "re-export",
       "confidence": "EXTRACTED",
@@ -7850,6 +7392,17 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "src_index",
+      "target": "src_types_circlelayoutref"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
       "target": "src_types_circlelayoutref"
     },
     {
@@ -7911,6 +7464,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/Bg.test.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_bg_test",
+      "target": "src_types_circlelayoutcontexttype"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/__tests__/CircleLayoutArray.test.tsx",
       "source_location": "L8",
       "weight": 1.0,
@@ -7955,6 +7519,28 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_types_layout"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/Bg.test.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_bg_test",
+      "target": "src_types_layout"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/__tests__/CircleLayoutArray.test.tsx",
       "source_location": "L8",
       "weight": 1.0,
@@ -7972,6 +7558,420 @@
       "confidence_score": 1.0,
       "source": "tests_circlelayoutcomponent_test",
       "target": "src_types_layout"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L75",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "app_index_action"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "app_index_coloroptions"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L49",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "app_index_initialstate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "app_index_playground"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L80",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "app_index_reducer"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "app_index_state"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "atoms_index"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "molecules_index"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_appcontext"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_appcontext_appcontext"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_circlelayout_circlelayout"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "src_index"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "style_index"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "example/src/app/index.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_index",
+      "target": "style_index_palette"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/Bg.test.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_bg_test",
+      "target": "animation_rnanimateddriver"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/Bg.test.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_bg_test",
+      "target": "animation_rnanimateddriver_rnanimateddriver"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/Bg.test.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_bg_test",
+      "target": "src_circlelayoutcontext"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/Bg.test.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_bg_test",
+      "target": "src_circlelayoutcontext_circlelayoutcontext"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/Bg.test.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_bg_test",
+      "target": "tests_bg_test_basecontext"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/Bg.test.tsx",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_bg_test",
+      "target": "tests_bg_test_localangledeg"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/Bg.test.tsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_bg_test",
+      "target": "tests_bg_test_renderbg"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/Bg.test.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_bg_test",
+      "target": "tests_bg_test_zerolayout"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "src_circlelayoutcontent"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_circlelayoutarray"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L67",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_circlelayoutcontent_circlelayoutcontent"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_circlelayoutcontent_resolvebgconfig"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent",
+      "target": "src_circlelayoutcontent_resolvevalue"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayoutContent.tsx",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayoutcontent_resolvebgconfig",
+      "target": "src_circlelayoutcontent_resolvevalue"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CircleLayout.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_circlelayout",
+      "target": "src_circlelayoutcontent_circlelayoutcontent"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "src_circlelayout"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "src_circlelayout_circlelayout"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "src_circlelayoutcontext"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "src_circlelayoutcontext_circlelayoutcontext"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "src_circlelayoutprovider"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "src_circlelayoutprovider_circlelayoutprovider"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "tests_circlelayout_test_baseprops"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "tests_circlelayout_test_makecomponents"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "utils_index"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/__tests__/CircleLayout.test.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_circlelayout_test",
+      "target": "utils_validation_validateprops"
     },
     {
       "relation": "re_exports",
@@ -15586,5 +15586,5 @@
       "source_file": "AGENTS.md"
     }
   ],
-  "built_at_commit": "f9f7b401a83670f14d5ea776f762fbbf900f76af"
+  "built_at_commit": "b4e5c98ad8cc4f347089fce921cbdb7c749bcb9c"
 }
