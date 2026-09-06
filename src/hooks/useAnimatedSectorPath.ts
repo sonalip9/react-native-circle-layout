@@ -96,6 +96,14 @@ export const useAnimatedSectorPath = <D extends AnimationDriver>({
     if (bothListenable) return undefined;
 
     if (!radiusIsNumber && endAngleIsNumber) {
+      if (maxRadius === undefined) {
+        console.warn(
+          '[useAnimatedSectorPath] `radius` is an animated node but `maxRadius` was not provided. ' +
+            'The interpolation domain defaults to [0, 1], which will produce a distorted path once ' +
+            "the animated radius moves outside that range. Pass `maxRadius` (the sector's peak " +
+            'resting radius) to fix this.'
+        );
+      }
       return driver.interpolate(radius, (s) => buildPath(s, endAngle), {
         endValue: maxRadius,
       }) as AnimatedNode<D>;

@@ -52,15 +52,20 @@ export const Bg = ({
 
   const isSelected = selectedIndex === index;
   const canExpand = expandedOuterRadius !== undefined;
+  const baseOuterRadius = outerRadius ?? radius;
   const targetOuterRadius =
-    isSelected && canExpand ? expandedOuterRadius : (outerRadius ?? radius);
+    isSelected && canExpand ? expandedOuterRadius : baseOuterRadius;
   // The sector's peak possible radius: constant across select/deselect
   // (unlike targetOuterRadius, which flips between the base and expanded
   // radius). Used to size the SVG canvas so it never has to resize as
-  // selection changes — see the useMemo below.
+  // selection changes — see the useMemo below. Takes the max of the two
+  // configured radii rather than assuming expandedOuterRadius is always
+  // the larger one: nothing validates that expandedOuterRadius exceeds
+  // outerRadius/radius, and if it's misconfigured smaller, sizing off it
+  // alone would clip the (larger) resting sector even while unselected.
   const maxOuterRadius = canExpand
-    ? expandedOuterRadius
-    : (outerRadius ?? radius);
+    ? Math.max(baseOuterRadius, expandedOuterRadius)
+    : baseOuterRadius;
 
   const { startAngleInRadians, endAngleInRadians, size, center } = useMemo(
     () =>

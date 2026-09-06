@@ -29,6 +29,7 @@ describe('useAnimatedSectorPath', () => {
 
   describe('only radius animated', () => {
     it('returns an animated interpolation node', () => {
+      jest.spyOn(console, 'warn').mockImplementation(() => {});
       const radius = new Animated.Value(40);
       const { result } = renderHook(() =>
         useAnimatedSectorPath({
@@ -41,6 +42,46 @@ describe('useAnimatedSectorPath', () => {
       );
 
       expect(result.current?.constructor.name).toBe('AnimatedInterpolation');
+      jest.restoreAllMocks();
+    });
+
+    it('warns when maxRadius is omitted, since the path would silently degrade', () => {
+      const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+      const radius = new Animated.Value(40);
+
+      renderHook(() =>
+        useAnimatedSectorPath({
+          driver: rnAnimatedDriver,
+          radius,
+          startAngle,
+          endAngle: Math.PI / 2,
+          center,
+        })
+      );
+
+      expect(warnSpy).toHaveBeenCalledWith(
+        expect.stringContaining('maxRadius')
+      );
+      warnSpy.mockRestore();
+    });
+
+    it('does not warn when maxRadius is provided', () => {
+      const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+      const radius = new Animated.Value(40);
+
+      renderHook(() =>
+        useAnimatedSectorPath({
+          driver: rnAnimatedDriver,
+          radius,
+          startAngle,
+          endAngle: Math.PI / 2,
+          center,
+          maxRadius: 150,
+        })
+      );
+
+      expect(warnSpy).not.toHaveBeenCalled();
+      warnSpy.mockRestore();
     });
 
     // `radius` carries real pixel values (e.g. an entry animation or a
