@@ -145,8 +145,8 @@
     "semantic_hash": "f4f8ece5df28035d7b29cd2845e965cf"
   },
   "package.json": {
-    "mtime": 1788593117.7885473,
-    "ast_hash": "fac95c76996d2e930e40d3f806475c7b",
+    "mtime": 1788704735.3407402,
+    "ast_hash": "a58f2e202c46704dbfec0e2697665284",
     "semantic_hash": ""
   },
   "src/Bg.tsx": {
