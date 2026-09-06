@@ -54,6 +54,13 @@ export const Bg = ({
   const canExpand = expandedOuterRadius !== undefined;
   const targetOuterRadius =
     isSelected && canExpand ? expandedOuterRadius : (outerRadius ?? radius);
+  // The sector's peak possible radius: constant across select/deselect
+  // (unlike targetOuterRadius, which flips between the base and expanded
+  // radius). Used to size the SVG canvas so it never has to resize as
+  // selection changes — see the useMemo below.
+  const maxOuterRadius = canExpand
+    ? expandedOuterRadius
+    : (outerRadius ?? radius);
 
   const { startAngleInRadians, endAngleInRadians, size, center } = useMemo(
     () =>
@@ -63,7 +70,15 @@ export const Bg = ({
         sectorAngles,
         totalParts,
         radius,
-        outerRadius: targetOuterRadius,
+        // Sized to the sector's peak radius, not the current selection
+        // target: targetOuterRadius changes the instant selection changes,
+        // while the painted radius (expandRadiusValue) only catches up to
+        // it gradually via animation. Sizing the canvas to the immediate
+        // target made it snap on every select/deselect — shrinking out
+        // from under the still-large painted sector on deselect and
+        // clipping it mid-animation. Sizing to the constant peak instead
+        // keeps the canvas stable throughout the whole animation.
+        outerRadius: maxOuterRadius,
         minComponentLayout,
         centerComponentLayout,
       }),
@@ -73,7 +88,7 @@ export const Bg = ({
       sectorAngles,
       totalParts,
       radius,
-      targetOuterRadius,
+      maxOuterRadius,
       minComponentLayout,
       centerComponentLayout,
     ]
@@ -123,6 +138,16 @@ export const Bg = ({
     endAngle: radiansValue,
     center,
     innerRadius,
+    // The animated radius node (expandRadiusValue, or radiusValue during a
+    // LINEAR entry animation) carries real pixel values, not a 0-1 progress,
+    // so the interpolation domain must be seeded with the actual resting
+    // radius — otherwise every sample lands near the bottom of a [0,1]
+    // domain and gets linearly extrapolated once the real radius ticks in.
+    // Uses the sector's constant peak radius (see maxOuterRadius above) so
+    // the domain stays correct throughout a collapse too, while the node is
+    // still transiently passing through values above the new, smaller
+    // target.
+    maxRadius: maxOuterRadius,
   });
 
   // Must run after the useAnimatedSectorPath call above. Once `canExpand`,

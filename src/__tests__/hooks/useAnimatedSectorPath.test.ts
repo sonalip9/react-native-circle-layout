@@ -42,6 +42,38 @@ describe('useAnimatedSectorPath', () => {
 
       expect(result.current?.constructor.name).toBe('AnimatedInterpolation');
     });
+
+    // `radius` carries real pixel values (e.g. an entry animation or a
+    // selection-driven expand animation), not a 0-1 progress. Without
+    // `maxRadius` telling the interpolation what domain to sample, the
+    // node's value at any realistic radius falls outside the default [0,1]
+    // domain and gets linearly extrapolated into a distorted path instead
+    // of the true sector shape.
+    it('produces the correct path once the radius exceeds 1, given maxRadius', () => {
+      const radius = new Animated.Value(150);
+      const { result } = renderHook(() =>
+        useAnimatedSectorPath({
+          driver: rnAnimatedDriver,
+          radius,
+          startAngle,
+          endAngle: Math.PI / 2,
+          center,
+          maxRadius: 150,
+        })
+      );
+
+      const readValue = (node: unknown): string =>
+        (node as { __getValue: () => string }).__getValue();
+
+      expect(readValue(result.current)).toBe(
+        getSectorPath({
+          radius: 150,
+          startAngle,
+          endAngle: Math.PI / 2,
+          center,
+        })
+      );
+    });
   });
 
   describe('only endAngle animated', () => {

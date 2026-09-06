@@ -477,5 +477,141 @@ describe('Bg', () => {
       expect(arcRadius).toBeCloseTo(150);
       jest.useRealTimers();
     });
+
+    it('stays within [outerRadius, expandedOuterRadius] while collapsing back after deselection', () => {
+      // Regression: maxRadius (the interpolation domain fed to
+      // useAnimatedSectorPath) was being set to targetOuterRadius, the
+      // *current* selection target. On deselect that target drops back to
+      // the small outerRadius, but the animated node is still transiently
+      // passing through larger values on its way down from
+      // expandedOuterRadius — those samples land outside the narrowed
+      // domain and get linearly extrapolated into a bogus radius.
+      jest.useFakeTimers();
+
+      const { rerender, UNSAFE_getByType } = render(
+        <CircleLayoutContext value={baseContext}>
+          <VisibilityContext value={true}>
+            <Bg
+              index={0}
+              radius={100}
+              minComponentLayout={zeroLayout}
+              centerComponentLayout={zeroLayout}
+              outerRadius={100}
+              expandedOuterRadius={150}
+              selectedIndex={0}
+            />
+          </VisibilityContext>
+        </CircleLayoutContext>
+      );
+
+      act(() => {
+        jest.runAllTimers();
+      });
+
+      act(() => {
+        rerender(
+          <CircleLayoutContext value={baseContext}>
+            <VisibilityContext value={true}>
+              <Bg
+                index={0}
+                radius={100}
+                minComponentLayout={zeroLayout}
+                centerComponentLayout={zeroLayout}
+                outerRadius={100}
+                expandedOuterRadius={150}
+                selectedIndex={undefined}
+              />
+            </VisibilityContext>
+          </CircleLayoutContext>
+        );
+      });
+
+      act(() => {
+        jest.advanceTimersByTime(250);
+      });
+
+      const midPath = UNSAFE_getByType(Path).props.d as string;
+      const midArcRadius = Number(midPath.split(' ')[7]);
+
+      expect(midArcRadius).toBeGreaterThanOrEqual(100);
+      expect(midArcRadius).toBeLessThanOrEqual(150);
+
+      act(() => {
+        jest.runAllTimers();
+      });
+
+      const finalPath = UNSAFE_getByType(Path).props.d as string;
+      const finalArcRadius = Number(finalPath.split(' ')[7]);
+
+      expect(finalArcRadius).toBeCloseTo(100);
+      jest.useRealTimers();
+    });
+
+    it('keeps the SVG canvas size stable across select/deselect instead of snapping to the new target instantly', () => {
+      // Regression: the canvas (Svg width/height, and the center point paths
+      // are built around) was sized from targetOuterRadius, the *current*
+      // selection target, which changes the instant selection changes — a
+      // full render tick before the animated radius node has moved at all.
+      // On deselect this shrunk the canvas out from under the still-large
+      // painted sector, clipping it until the (separately animating) radius
+      // caught down to fit. Sizing the canvas to the sector's constant peak
+      // radius instead means it never has to resize as selection changes.
+      const { rerender, UNSAFE_getByType } = render(
+        <CircleLayoutContext value={baseContext}>
+          <VisibilityContext value={true}>
+            <Bg
+              index={0}
+              radius={100}
+              minComponentLayout={zeroLayout}
+              centerComponentLayout={zeroLayout}
+              outerRadius={100}
+              expandedOuterRadius={150}
+              selectedIndex={undefined}
+            />
+          </VisibilityContext>
+        </CircleLayoutContext>
+      );
+
+      const sizeBeforeSelect = UNSAFE_getByType(Svg).props.width as number;
+
+      rerender(
+        <CircleLayoutContext value={baseContext}>
+          <VisibilityContext value={true}>
+            <Bg
+              index={0}
+              radius={100}
+              minComponentLayout={zeroLayout}
+              centerComponentLayout={zeroLayout}
+              outerRadius={100}
+              expandedOuterRadius={150}
+              selectedIndex={0}
+            />
+          </VisibilityContext>
+        </CircleLayoutContext>
+      );
+
+      const sizeAfterSelect = UNSAFE_getByType(Svg).props.width as number;
+
+      rerender(
+        <CircleLayoutContext value={baseContext}>
+          <VisibilityContext value={true}>
+            <Bg
+              index={0}
+              radius={100}
+              minComponentLayout={zeroLayout}
+              centerComponentLayout={zeroLayout}
+              outerRadius={100}
+              expandedOuterRadius={150}
+              selectedIndex={undefined}
+            />
+          </VisibilityContext>
+        </CircleLayoutContext>
+      );
+
+      const sizeAfterDeselect = UNSAFE_getByType(Svg).props.width as number;
+
+      expect(sizeAfterSelect).toBe(sizeBeforeSelect);
+      expect(sizeAfterDeselect).toBe(sizeBeforeSelect);
+    });
   });
 });

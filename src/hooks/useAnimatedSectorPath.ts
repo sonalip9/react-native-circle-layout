@@ -29,6 +29,16 @@ type UseAnimatedSectorPath<D extends AnimationDriver> = {
    * instead of a full sector pie slice.
    */
   innerRadius?: number;
+  /**
+   * The maximum value `radius` will animate through. Required for a correct
+   * path whenever `radius` is an animated node: the interpolation samples
+   * `radius` across `[0, maxRadius]`, so an omitted or too-small value makes
+   * every sample land near the bottom of that range and the path gets
+   * linearly extrapolated far outside it once the real (pixel-scale) radius
+   * ticks in — producing a distorted, glitchy shape instead of a smooth
+   * sweep. Ignored when `radius` is a plain number.
+   */
+  maxRadius?: number;
 };
 
 /**
@@ -52,6 +62,7 @@ type UseAnimatedSectorPath<D extends AnimationDriver> = {
  * @param props.endAngle The angle at which the sector ends. Can be a static number or an animated node.
  * @param props.center The center point of the circle on which the sector is drawn.
  * @param props.innerRadius When provided and > 0, the path describes an annular sector (donut slice) instead of a full sector pie slice.
+ * @param props.maxRadius The maximum value `radius` will animate through. Required for a correct path whenever `radius` is an animated node.
  * @returns The animated (or static) SVG path for the sector.
  */
 export const useAnimatedSectorPath = <D extends AnimationDriver>({
@@ -61,6 +72,7 @@ export const useAnimatedSectorPath = <D extends AnimationDriver>({
   endAngle,
   center,
   innerRadius,
+  maxRadius,
 }: UseAnimatedSectorPath<D>): AnimatedNode<D> | string => {
   const buildPath = useCallback(
     (r: number, a: number) =>
@@ -84,9 +96,9 @@ export const useAnimatedSectorPath = <D extends AnimationDriver>({
     if (bothListenable) return undefined;
 
     if (!radiusIsNumber && endAngleIsNumber) {
-      return driver.interpolate(radius, (s) =>
-        buildPath(s, endAngle)
-      ) as AnimatedNode<D>;
+      return driver.interpolate(radius, (s) => buildPath(s, endAngle), {
+        endValue: maxRadius,
+      }) as AnimatedNode<D>;
     }
 
     if (radiusIsNumber && !endAngleIsNumber) {
@@ -111,6 +123,7 @@ export const useAnimatedSectorPath = <D extends AnimationDriver>({
     radius,
     endAngle,
     buildPath,
+    maxRadius,
   ]);
 
   const [listenerPath, setListenerPath] = useState('');
