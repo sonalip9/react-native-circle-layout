@@ -51,14 +51,25 @@ export const CircleLayoutComponent = ({
 
   // The position of the component.
   // This is animated if either linear or circular animation config is passed.
-  const position =
-    typeof radiansValue === 'number' && typeof radiusValue === 'number'
-      ? pointOnCircle({ radians: radiansValue, radius: radiusValue })
-      : pointOnCircleAnimated({
-          driver,
-          radians: radiansValue,
-          radius: radiusValue,
-        });
+  // Memoized on the underlying value identities (not just their current
+  // number/AnimatedNode shape): drivers whose `interpolate`/`multiply` build
+  // a derived node by registering a listener (e.g. a custom Reanimated
+  // driver backed by `addListener`) would otherwise register a fresh,
+  // never-cleaned-up listener on every render this component takes for any
+  // reason, compounding JS-thread work over time. RN Animated's own driver
+  // builds cheap listener-free graph nodes, so it was fine calling this
+  // unmemoized — but the driver interface makes no such guarantee.
+  const position = useMemo(
+    () =>
+      typeof radiansValue === 'number' && typeof radiusValue === 'number'
+        ? pointOnCircle({ radians: radiansValue, radius: radiusValue })
+        : pointOnCircleAnimated({
+            driver,
+            radians: radiansValue,
+            radius: radiusValue,
+          }),
+    [driver, radiansValue, radiusValue]
+  );
 
   useLayoutEffect(() => {
     if (isVisible) {
@@ -68,32 +79,38 @@ export const CircleLayoutComponent = ({
     }
   }, [hideComponent, isVisible, showComponent]);
 
+  // Same leak concern as `position` above: memoized on the actual inputs,
+  // not recomputed on every unrelated re-render.
+  const translateX = useMemo(
+    () =>
+      driver.multiply(
+        driver.subtract(
+          position.x,
+          (layout.width - centerComponentLayout.width) / 2
+        ),
+        -1
+      ) as number,
+    [driver, position.x, layout.width, centerComponentLayout.width]
+  );
+  const translateY = useMemo(
+    () =>
+      driver.multiply(
+        driver.subtract(
+          position.y,
+          (layout.height - centerComponentLayout.height) / 2
+        ),
+        -1
+      ) as number,
+    [driver, position.y, layout.height, centerComponentLayout.height]
+  );
+
   return (
     <AnimatedView
       style={[
         circleComponentStyles.componentContainer,
         {
           opacity: opacity as number,
-          transform: [
-            {
-              translateX: driver.multiply(
-                driver.subtract(
-                  position.x,
-                  (layout.width - centerComponentLayout.width) / 2
-                ),
-                -1
-              ) as number,
-            },
-            {
-              translateY: driver.multiply(
-                driver.subtract(
-                  position.y,
-                  (layout.height - centerComponentLayout.height) / 2
-                ),
-                -1
-              ) as number,
-            },
-          ],
+          transform: [{ translateX }, { translateY }],
         },
       ]}
       onLayout={(event) => {
