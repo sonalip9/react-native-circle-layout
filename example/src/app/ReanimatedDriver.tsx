@@ -4,6 +4,7 @@ import {
 } from '@react-native-vector-icons/ant-design';
 import * as React from 'react';
 import {
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -23,11 +24,26 @@ import {
   AnimationCombinationType,
   AnimationType,
   CircleLayout,
+  rnAnimatedDriver,
   type AnimationDriver,
   type CircleLayoutRef,
 } from 'react-native-circle-layout';
 
+import { DriverMetricsFooter } from '../DriverMetrics';
 import { View } from '../design_system/atoms';
+
+const METRICS_ITEMS = [
+  {
+    label: 'RN Animated',
+    detail:
+      '0 extra deps · built into react-native · driver: 74 lines (rnAnimatedDriver.ts), all built in — nothing to write',
+  },
+  {
+    label: 'Reanimated',
+    detail:
+      'react-native-reanimated@4.3.1 (native module + Babel plugin) · custom AnimationDriver: 161 lines to write (readNumber + deriveSharedValue + createSpringDriver, this file)',
+  },
+];
 
 const ICONS: AntDesignIconName[] = [
   'heart',
@@ -96,11 +112,16 @@ function readNumber(value: DriverNode): number {
  * passed in by the caller, e.g. `AnimationDriver.interpolate`'s callback).
  * @param inputs - driver values the result depends on
  * @param compute - recomputes the derived value from the current inputs
+ * @param onListenerRegistered - called (on the JS thread, via `runOnJS`)
+ * once a listener actually attaches on the UI thread — a hook for counting
+ * registrations, deliberately not read/written during render since the
+ * registration itself is async.
  * @returns a shared value that updates whenever a dependent input changes
  */
 function deriveSharedValue<T extends number | string>(
   inputs: DriverNode[],
-  compute: () => T
+  compute: () => T,
+  onListenerRegistered?: () => void
 ): SharedValue<T> {
   const derived = makeMutable(compute());
   const recompute = () => {
@@ -114,6 +135,7 @@ function deriveSharedValue<T extends number | string>(
         input.addListener(id, () => {
           runOnJS(recompute)();
         });
+        if (onListenerRegistered) runOnJS(onListenerRegistered)();
       })();
     }
   }
@@ -129,10 +151,14 @@ function deriveSharedValue<T extends number | string>(
  * Reanimated-wrapped component (or vice versa) breaks transform
  * resolution, since neither library can unwrap the other's node objects.
  * @param preset - spring physics preset
+ * @param onListenerRegistered - called once per listener actually attached
+ * by `multiply`/`subtract`/`interpolate`, for the on-screen listener-count
+ * metric. See {@link deriveSharedValue} for why this is a callback, not a ref.
  * @returns an AnimationDriver backed by spring physics
  */
 function createSpringDriver(
-  preset: SpringPreset
+  preset: SpringPreset,
+  onListenerRegistered: () => void
 ): AnimationDriver<
   SharedValue<number>,
   SharedValue<number | string>,
@@ -204,23 +230,52 @@ function createSpringDriver(
     multiply: (a, b) =>
       deriveSharedValue<number | string>(
         [a, b],
-        () => readNumber(a) * readNumber(b)
+        () => readNumber(a) * readNumber(b),
+        onListenerRegistered
       ),
 
     subtract: (a, b) =>
       deriveSharedValue<number | string>(
         [a, b],
-        () => readNumber(a) - readNumber(b)
+        () => readNumber(a) - readNumber(b),
+        onListenerRegistered
       ),
 
     interpolate: (value, callback) =>
-      deriveSharedValue<number | string>([value], () =>
-        callback(readNumber(value))
+      deriveSharedValue<number | string>(
+        [value],
+        () => callback(readNumber(value)),
+        onListenerRegistered
       ),
 
     isAnimatedValue: (v): v is SharedValue<number> => isSharedValue(v),
 
     createAnimatedComponent: (C) => createAnimatedComponent(C) as typeof C,
+  };
+}
+
+/**
+ * Wraps any `AnimationDriver` to time entry/exit sequences: `start()` is the
+ * one call both RN Animated's and the custom Reanimated driver's shapes
+ * funnel through (their `timing`/composite types differ, `start` doesn't),
+ * so this needs no per-driver special-casing to measure settle time.
+ * @param driver - the driver to wrap
+ * @param onSettle - called with the elapsed ms once `start`'s composite finishes
+ * @returns a driver identical to `driver`, except `start` also times itself
+ */
+function withSettleTiming<TValue, TInterpolated, TComposite, TConfig>(
+  driver: AnimationDriver<TValue, TInterpolated, TComposite, TConfig>,
+  onSettle: (ms: number) => void
+): AnimationDriver<TValue, TInterpolated, TComposite, TConfig> {
+  return {
+    ...driver,
+    start: (animation, onComplete) => {
+      const startedAt = Date.now();
+      driver.start(animation, () => {
+        onSettle(Date.now() - startedAt);
+        onComplete?.();
+      });
+    },
   };
 }
 
@@ -232,10 +287,48 @@ const ReanimatedDriver = () => {
   const timingRef = React.useRef<CircleLayoutRef>(null);
   const springRef = React.useRef<CircleLayoutRef>(null);
 
+  const [rnSettleMs, setRnSettleMs] = React.useState<number | null>(null);
+  const [springSettleMs, setSpringSettleMs] = React.useState<number | null>(
+    null
+  );
+  const [springListenerCount, setSpringListenerCount] = React.useState(0);
+
+  // Animations can outlive the screen (e.g. the long RN Animated SEQUENCE —
+  // see below) — their onSettle callback must not set state after unmount.
+  // A plain mutable box, not `useRef`: these callbacks are handed to
+  // `useMemo` calls that run during render, and only ever read `.mounted`
+  // later, asynchronously, once the animation actually settles — never
+  // during render itself.
+  const [mountedBox] = React.useState(() => ({ mounted: true }));
+  React.useEffect(
+    () => () => {
+      mountedBox.mounted = false;
+    },
+    [mountedBox]
+  );
+
+  const bumpSpringListenerCount = React.useCallback(() => {
+    if (mountedBox.mounted) setSpringListenerCount((c) => c + 1);
+  }, [mountedBox]);
+
   const preset = PRESETS[presetIdx]!;
   const springDriver = React.useMemo(
-    () => createSpringDriver(preset),
-    [preset]
+    () => createSpringDriver(preset, bumpSpringListenerCount),
+    [preset, bumpSpringListenerCount]
+  );
+  const timingDriver = React.useMemo(
+    () =>
+      withSettleTiming(rnAnimatedDriver, (ms) => {
+        if (mountedBox.mounted) setRnSettleMs(ms);
+      }),
+    [mountedBox]
+  );
+  const measuredSpringDriver = React.useMemo(
+    () =>
+      withSettleTiming(springDriver, (ms) => {
+        if (mountedBox.mounted) setSpringSettleMs(ms);
+      }),
+    [springDriver, mountedBox]
   );
 
   React.useEffect(() => {
@@ -290,8 +383,11 @@ const ReanimatedDriver = () => {
         ))}
       </RNView>
 
-      <View flex={1} flexDirection="row">
-        <View flex={1} alignItems="center" justifyContent="center">
+      <ScrollView
+        style={styles.scroll}
+        contentContainerStyle={styles.scrollContent}
+      >
+        <View alignItems="center">
           <Text style={styles.label}>Default (Timing)</Text>
           <CircleLayout
             components={iconComponents}
@@ -309,6 +405,7 @@ const ReanimatedDriver = () => {
             }
             radius={RADIUS}
             ref={timingRef}
+            animationDriver={timingDriver}
             animationProps={{
               animationCombinationType: AnimationCombinationType.SEQUENCE,
               animationGap: 40,
@@ -320,7 +417,7 @@ const ReanimatedDriver = () => {
           />
         </View>
 
-        <View flex={1} alignItems="center" justifyContent="center">
+        <View alignItems="center">
           <Text style={styles.label}>Spring Driver ({preset.label})</Text>
           <CircleLayout
             components={springIconComponents}
@@ -338,7 +435,7 @@ const ReanimatedDriver = () => {
             }
             radius={RADIUS}
             ref={springRef}
-            animationDriver={springDriver}
+            animationDriver={measuredSpringDriver}
             animationProps={{
               animationCombinationType: AnimationCombinationType.SEQUENCE,
               animationGap: 40,
@@ -357,7 +454,7 @@ const ReanimatedDriver = () => {
             }}
           />
         </View>
-      </View>
+      </ScrollView>
 
       <RNView style={styles.footer}>
         <Text style={styles.footerText}>
@@ -365,6 +462,24 @@ const ReanimatedDriver = () => {
           {preset.mass}
         </Text>
       </RNView>
+
+      <DriverMetricsFooter
+        items={METRICS_ITEMS}
+        trackStressDrop
+        columns={[
+          {
+            label: 'RN Animated',
+            lines: [`Settle: ${rnSettleMs === null ? '—' : `${rnSettleMs}ms`}`],
+          },
+          {
+            label: 'Reanimated',
+            lines: [
+              `Settle: ${springSettleMs === null ? '—' : `${springSettleMs}ms`}`,
+              `Listeners: ${springListenerCount}`,
+            ],
+          },
+        ]}
+      />
     </View>
   );
 };
@@ -375,6 +490,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 8,
     padding: 16,
+  },
+  scroll: {
+    flex: 1,
+  },
+  scrollContent: {
+    alignItems: 'center',
+    paddingVertical: 24,
+    gap: 32,
   },
   presetBtn: {
     paddingHorizontal: 16,
