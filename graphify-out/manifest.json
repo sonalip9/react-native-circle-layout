@@ -30,12 +30,12 @@
     "semantic_hash": "287d6e9a51a34628496d0f28b4b46493"
   },
   "example/metro.config.js": {
-    "mtime": 1788699647.5022264,
+    "mtime": 1788970574.9192924,
     "ast_hash": "9bdf2dea387b88c9a879289209b61e0a",
     "semantic_hash": ""
   },
   "example/package.json": {
-    "mtime": 1788699647.5023797,
+    "mtime": 1788970574.9194026,
     "ast_hash": "e6682cad71671b660bc15b9225930e97",
     "semantic_hash": ""
   },
@@ -120,12 +120,12 @@
     "semantic_hash": "ba77bbaaa7d1935db813591d3b80afd4"
   },
   "example/src/design_system/molecules/index.ts": {
-    "mtime": 1788699647.5028389,
+    "mtime": 1788970574.9198403,
     "ast_hash": "5c9938e40eadfd25bf0b1e0ab42453fb",
     "semantic_hash": ""
   },
   "example/src/design_system/style/index.ts": {
-    "mtime": 1788699647.5029688,
+    "mtime": 1788970574.9199734,
     "ast_hash": "1ac0d45ba86d1bf85c67bb0a9896b1ea",
     "semantic_hash": ""
   },
@@ -145,12 +145,12 @@
     "semantic_hash": "f4f8ece5df28035d7b29cd2845e965cf"
   },
   "package.json": {
-    "mtime": 1788704735.3407402,
-    "ast_hash": "a58f2e202c46704dbfec0e2697665284",
+    "mtime": 1788711136.1864552,
+    "ast_hash": "cbff8d8e0a324086d30013141d27b9c7",
     "semantic_hash": ""
   },
   "src/Bg.tsx": {
-    "mtime": 1788704168.1986117,
+    "mtime": 1788707510.746858,
     "ast_hash": "616535926ff5df19aa9fd0b6177c7dca",
     "semantic_hash": ""
   },
@@ -165,8 +165,8 @@
     "semantic_hash": ""
   },
   "src/CircleLayoutComponent.tsx": {
-    "mtime": 1788593117.7907727,
-    "ast_hash": "f55b7c703ca01210c5b40092c86ffa67",
+    "mtime": 1788970638.6810954,
+    "ast_hash": "ead4250f4f78f282b6833754811f3aed",
     "semantic_hash": ""
   },
   "src/CircleLayoutContent.tsx": {
@@ -205,7 +205,7 @@
     "semantic_hash": "64529f6831a4234c523c2541cbe1a4f4"
   },
   "src/__tests__/hooks/useAnimatedSectorPath.test.ts": {
-    "mtime": 1788704168.1990657,
+    "mtime": 1788707510.7473185,
     "ast_hash": "67491355a36c36bbe46728b3dc69b38e",
     "semantic_hash": ""
   },
@@ -255,7 +255,7 @@
     "semantic_hash": "7e16a99851c97d95115b515b0603d434"
   },
   "src/hooks/useAnimatedSectorPath.ts": {
-    "mtime": 1788704168.1992638,
+    "mtime": 1788707510.7475839,
     "ast_hash": "da997cbf49500cd2a4ef8fbda21f5890",
     "semantic_hash": ""
   },
@@ -355,12 +355,12 @@
     "semantic_hash": "5ede946ba101620a461e046b1e5455c3"
   },
   ".github/workflows/npm-publish.yml": {
-    "mtime": 1782359642.4423244,
-    "ast_hash": "0c78366751e0cd9a9aae61199ccaf790",
-    "semantic_hash": "0c78366751e0cd9a9aae61199ccaf790"
+    "mtime": 1788707510.74075,
+    "ast_hash": "fce26f77b1ebc1a5ec894603ebbddc5f",
+    "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1788699647.5018916,
+    "mtime": 1788970574.918819,
     "ast_hash": "6b18206b6bd32899b2896d03756ae627",
     "semantic_hash": ""
   },
@@ -405,7 +405,7 @@
     "semantic_hash": "477d9959972912279da5677825ef61c3"
   },
   "docs/agents/issue-tracker.md": {
-    "mtime": 1788699647.5020785,
+    "mtime": 1788970574.919015,
     "ast_hash": "b3268117bb0bb6b731632d35d6a1369a",
     "semantic_hash": ""
   },
@@ -420,9 +420,9 @@
     "semantic_hash": "efc5a6411e866be3e5d95d8ef52559b7"
   },
   "pnpm-workspace.yaml": {
-    "mtime": 1788593036.2226007,
-    "ast_hash": "abe0b867f1cc78bcd0528b92c4e3de57",
-    "semantic_hash": "abe0b867f1cc78bcd0528b92c4e3de57"
+    "mtime": 1788970574.9227552,
+    "ast_hash": "38735dcfb4ab3b9a5c1f596b5acc7468",
+    "semantic_hash": ""
   },
   "example/assets/android-icon-background.png": {
     "mtime": 1781110032.4346452,
@@ -455,7 +455,7 @@
     "semantic_hash": "97dae5a0e62ad8551d8a31897b425e63"
   },
   "example/src/app/NestedRingMenu.tsx": {
-    "mtime": 1788699647.502567,
+    "mtime": 1788970574.919558,
     "ast_hash": "1bb5adc3e92e21ae12e3678dd3deb6a4",
     "semantic_hash": ""
   },
@@ -465,7 +465,7 @@
     "semantic_hash": ""
   },
   "example/src/app/_layout.tsx": {
-    "mtime": 1788699647.502705,
+    "mtime": 1788970574.919693,
     "ast_hash": "775d8c29cf38cd0f7675bbd62b519c54",
     "semantic_hash": ""
   },
@@ -485,13 +485,18 @@
     "semantic_hash": ""
   },
   "src/__tests__/Bg.test.tsx": {
-    "mtime": 1788704168.1988215,
+    "mtime": 1788707510.747068,
     "ast_hash": "fd68460bd5ada9d65cdffad136972c3b",
     "semantic_hash": ""
   },
   "src/VisibilityContext.tsx": {
     "mtime": 1788593117.7912316,
     "ast_hash": "86c554d7875fc66a9115855406894fd7",
+    "semantic_hash": ""
+  },
+  ".github/dependabot.yml": {
+    "mtime": 1788970574.918483,
+    "ast_hash": "2efeba925581b6843c8eb6d99637535f",
     "semantic_hash": ""
   }
 }
