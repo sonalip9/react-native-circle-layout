@@ -33,7 +33,7 @@
     "react-native-worklets": "0.8.3"
   },
   "devDependencies": {
-    "eas-cli": "^20.1.0",
-    "react-native-monorepo-config": "^0.3.5"
+    "eas-cli": "^23.2.0",
+    "react-native-monorepo-config": "^0.4.0"
   }
 }
