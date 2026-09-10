@@ -2,7 +2,6 @@ import {
   AntDesign,
   type AntDesignIconName,
 } from '@react-native-vector-icons/ant-design';
-import { useState } from 'react';
 import { Pressable, TouchableOpacity } from 'react-native';
 import {
   AnimationCombinationType,
@@ -11,6 +10,7 @@ import {
 } from 'react-native-circle-layout';
 
 import { CircleBadge, View } from '../design_system/atoms';
+import { useToggle } from '../hooks/useToggle';
 
 type Icon = AntDesignIconName;
 
@@ -19,16 +19,14 @@ const SECTION_ANGLE = (2 * Math.PI) / icons.length;
 const subIcons: Icon[] = ['group', 'idcard', 'phone', 'camera'];
 
 const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
-  const [showCircleComponent, setShowCircleComponent] = useState(false);
+  const [showCircleComponent, toggleShowCircleComponent] = useToggle();
 
   return (
     <View style={{ transform: [{ rotate: `${rotation}rad` }] }}>
       <CircleLayout
         visible={showCircleComponent}
         centerComponent={
-          <TouchableOpacity
-            onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
-          >
+          <TouchableOpacity onPress={toggleShowCircleComponent}>
             <CircleBadge
               size={48}
               color="white"
@@ -64,16 +62,14 @@ const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
 };
 
 const NestedRingMenu = () => {
-  const [showCircleComponent, setShowCircleComponent] = useState(false);
+  const [showCircleComponent, toggleShowCircleComponent] = useToggle();
 
   return (
     <View flex={1} alignItems="center" justifyContent="center">
       <CircleLayout
         visible={showCircleComponent}
         centerComponent={
-          <Pressable
-            onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
-          >
+          <Pressable onPress={toggleShowCircleComponent}>
             <CircleBadge size={48} color="black">
               <AntDesign
                 color="white"

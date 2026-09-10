@@ -1,5 +1,5 @@
 import { AntDesign } from '@react-native-vector-icons/ant-design';
-import { use, useState } from 'react';
+import { use } from 'react';
 
 import {
   AnimationCombinationType,
@@ -11,12 +11,13 @@ import { AppContext } from '../AppContext';
 
 import { Pressable, TouchableOpacity } from 'react-native';
 import { CircleBadge, View } from '../design_system/atoms';
+import { useToggle } from '../hooks/useToggle';
 
 type Icon = 'delete' | 'edit' | 'home' | 'star';
 
 const RadialMenu = () => {
   const icons: Icon[] = ['edit', 'home', 'star', 'delete'];
-  const [showCircleComponent, setShowCircleComponent] = useState(false);
+  const [showCircleComponent, toggleShowCircleComponent] = useToggle();
   const { showPopUp } = use(AppContext);
 
   return (
@@ -24,9 +25,7 @@ const RadialMenu = () => {
       <CircleLayout
         visible={showCircleComponent}
         centerComponent={
-          <TouchableOpacity
-            onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
-          >
+          <TouchableOpacity onPress={toggleShowCircleComponent}>
             <CircleBadge size={56} color="black">
               <AntDesign
                 color="white"
