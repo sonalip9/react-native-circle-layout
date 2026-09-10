@@ -37,6 +37,7 @@ const COLORS: { name: string; hex: string; icon: AntDesignIconName }[] = [
 const RADIUS = 130;
 const SNAP_ANGLE = (2 * Math.PI) / COLORS.length;
 const TWO_PI = 2 * Math.PI;
+const SNAP_SPRING = { damping: 20, stiffness: 150 };
 
 /**
  * Normalizes an angle to the range [0, 2π).
@@ -115,7 +116,7 @@ const GestureSelector = () => {
     })
     .onEnd(() => {
       const snapped = nearestSnap(rotation.value);
-      rotation.value = withSpring(snapped, { damping: 20, stiffness: 150 });
+      rotation.value = withSpring(snapped, SNAP_SPRING);
     });
 
   const wheelStyle = useAnimatedStyle(() => ({
@@ -131,7 +132,7 @@ const GestureSelector = () => {
       Gesture.Tap().onEnd(() => {
         const target = -index * SNAP_ANGLE - Math.PI;
         const nearest = nearestEquivalentAngle(target, rotation.value);
-        rotation.value = withSpring(nearest, { damping: 20, stiffness: 150 });
+        rotation.value = withSpring(nearest, SNAP_SPRING);
       }),
     [rotation]
   );
