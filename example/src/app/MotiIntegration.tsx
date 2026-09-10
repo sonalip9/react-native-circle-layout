@@ -19,17 +19,14 @@ import {
   FadeIn,
 } from 'react-native-reanimated';
 
-import {
-  CircleLayout,
-  AnimationCombinationType,
-  AnimationType,
-} from 'react-native-circle-layout';
+import { CircleLayout, AnimationType } from 'react-native-circle-layout';
 
 import { AnimView } from '../AnimatedComponents';
 import { DriverMetricsFooter, useMountedGuard } from '../DriverMetrics';
 import { CircleBadge, View } from '../design_system/atoms';
 import { ScreenHeader } from '../design_system/molecules';
 import { useCircleVisibilityRef } from '../hooks/useCircleVisibilityRef';
+import { sequenceAnimation } from '../utils/animationPresets';
 
 const ICONS: { name: AntDesignIconName; color: string; label: string }[] = [
   { name: 'edit', color: '#f43f5e', label: 'Edit' },
@@ -43,6 +40,14 @@ const ICONS: { name: AntDesignIconName; color: string; label: string }[] = [
 const RADIUS = 100;
 const PRESS_SPRING = { damping: 15, stiffness: 200 };
 const FAB_SPRING = { damping: 12, stiffness: 100 };
+
+const ITEM_ANIMATION = sequenceAnimation(
+  {
+    [AnimationType.LINEAR]: { duration: 300 },
+    [AnimationType.OPACITY]: { duration: 200 },
+  },
+  80
+);
 
 const METRICS_ITEMS = [
   { label: 'RN Animated', detail: '0 extra deps · built into react-native' },
@@ -241,14 +246,7 @@ const MotiIntegration = () => {
             }
             radius={RADIUS}
             ref={rnCircleRef}
-            animationProps={{
-              animationCombinationType: AnimationCombinationType.SEQUENCE,
-              animationGap: 80,
-              animationConfigs: {
-                [AnimationType.LINEAR]: { duration: 300 },
-                [AnimationType.OPACITY]: { duration: 200 },
-              },
-            }}
+            animationProps={ITEM_ANIMATION}
           />
         </View>
 
@@ -273,14 +271,7 @@ const MotiIntegration = () => {
             }
             radius={RADIUS}
             ref={motiCircleRef}
-            animationProps={{
-              animationCombinationType: AnimationCombinationType.SEQUENCE,
-              animationGap: 80,
-              animationConfigs: {
-                [AnimationType.LINEAR]: { duration: 300 },
-                [AnimationType.OPACITY]: { duration: 200 },
-              },
-            }}
+            animationProps={ITEM_ANIMATION}
           />
         </View>
       </ScrollView>

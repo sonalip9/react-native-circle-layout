@@ -3,20 +3,22 @@ import {
   type AntDesignIconName,
 } from '@react-native-vector-icons/ant-design';
 import { Pressable, TouchableOpacity } from 'react-native';
-import {
-  AnimationCombinationType,
-  AnimationType,
-  CircleLayout,
-} from 'react-native-circle-layout';
+import { AnimationType, CircleLayout } from 'react-native-circle-layout';
 
 import { CircleBadge, View } from '../design_system/atoms';
 import { useToggle } from '../hooks/useToggle';
+import { parallelAnimation } from '../utils/animationPresets';
 
 type Icon = AntDesignIconName;
 
 const icons: Icon[] = ['edit', 'home', 'star', 'delete', 'search', 'setting'];
 const SECTION_ANGLE = (2 * Math.PI) / icons.length;
 const subIcons: Icon[] = ['group', 'idcard', 'phone', 'camera'];
+
+const RING_ANIMATION = parallelAnimation({
+  [AnimationType.LINEAR]: { duration: 500 },
+  [AnimationType.OPACITY]: { duration: 500 },
+});
 
 const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
   const [showCircleComponent, toggleShowCircleComponent] = useToggle();
@@ -45,13 +47,7 @@ const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
             size={12}
           />
         ))}
-        animationProps={{
-          animationCombinationType: AnimationCombinationType.PARALLEL,
-          animationConfigs: {
-            [AnimationType.LINEAR]: { duration: 500 },
-            [AnimationType.OPACITY]: { duration: 500 },
-          },
-        }}
+        animationProps={RING_ANIMATION}
         radius={60}
         startAngle={SECTION_ANGLE / 2}
         sweepAngle={SECTION_ANGLE * 2}
@@ -84,13 +80,7 @@ const NestedRingMenu = () => {
           return <Component key={icon} icon={icon} rotation={rotation} />;
         })}
         containerStyle={{ bottom: 10, left: 0, position: 'absolute', right: 0 }}
-        animationProps={{
-          animationCombinationType: AnimationCombinationType.PARALLEL,
-          animationConfigs: {
-            [AnimationType.LINEAR]: { duration: 500 },
-            [AnimationType.OPACITY]: { duration: 500 },
-          },
-        }}
+        animationProps={RING_ANIMATION}
         radius={120}
         startAngle={0}
         sweepAngle={Math.PI * 2}

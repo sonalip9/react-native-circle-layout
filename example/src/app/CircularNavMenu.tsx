@@ -11,17 +11,14 @@ import {
   interpolate,
 } from 'react-native-reanimated';
 
-import {
-  AnimationCombinationType,
-  AnimationType,
-  CircleLayout,
-} from 'react-native-circle-layout';
+import { AnimationType, CircleLayout } from 'react-native-circle-layout';
 
 import { AnimView } from '../AnimatedComponents';
 
 import { CircleBadge, View } from '../design_system/atoms';
 import { ScreenHeader } from '../design_system/molecules';
 import { useCircleVisibilityRef } from '../hooks/useCircleVisibilityRef';
+import { sequenceAnimation } from '../utils/animationPresets';
 
 const NAV_ITEMS: { icon: AntDesignIconName; label: string; color: string }[] = [
   { icon: 'home', label: 'Home', color: '#6366f1' },
@@ -110,14 +107,13 @@ const CircularNavMenu = () => {
         sweepAngle={Math.PI}
         ref={circleLayoutRef}
         containerStyle={styles.menuContainer}
-        animationProps={{
-          animationCombinationType: AnimationCombinationType.SEQUENCE,
-          animationGap: 50,
-          animationConfigs: {
+        animationProps={sequenceAnimation(
+          {
             [AnimationType.LINEAR]: { duration: 300 },
             [AnimationType.OPACITY]: { duration: 200 },
           },
-        }}
+          50
+        )}
       />
     </View>
   );

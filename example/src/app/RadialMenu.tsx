@@ -1,17 +1,14 @@
 import { AntDesign } from '@react-native-vector-icons/ant-design';
 import { use } from 'react';
 
-import {
-  AnimationCombinationType,
-  AnimationType,
-  CircleLayout,
-} from 'react-native-circle-layout';
+import { AnimationType, CircleLayout } from 'react-native-circle-layout';
 
 import { AppContext } from '../AppContext';
 
 import { Pressable, TouchableOpacity } from 'react-native';
 import { CircleBadge, View } from '../design_system/atoms';
 import { useToggle } from '../hooks/useToggle';
+import { parallelAnimation } from '../utils/animationPresets';
 
 type Icon = 'delete' | 'edit' | 'home' | 'star';
 
@@ -54,13 +51,10 @@ const RadialMenu = () => {
           elevation: 3,
           position: 'absolute',
         }}
-        animationProps={{
-          animationCombinationType: AnimationCombinationType.PARALLEL,
-          animationConfigs: {
-            [AnimationType.LINEAR]: { duration: 500 },
-            [AnimationType.OPACITY]: { duration: 500 },
-          },
-        }}
+        animationProps={parallelAnimation({
+          [AnimationType.LINEAR]: { duration: 500 },
+          [AnimationType.OPACITY]: { duration: 500 },
+        })}
         radius={100}
         startAngle={0}
         sweepAngle={Math.PI}

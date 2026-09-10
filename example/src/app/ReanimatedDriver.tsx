@@ -21,7 +21,6 @@ import {
 } from 'react-native-reanimated';
 
 import {
-  AnimationCombinationType,
   AnimationType,
   CircleLayout,
   rnAnimatedDriver,
@@ -31,6 +30,7 @@ import {
 
 import { DriverMetricsFooter, useMountedGuard } from '../DriverMetrics';
 import { CircleBadge, View } from '../design_system/atoms';
+import { sequenceAnimation } from '../utils/animationPresets';
 
 const METRICS_ITEMS = [
   {
@@ -298,6 +298,11 @@ const ReanimatedDriver = () => {
   const guard = useMountedGuard();
 
   const preset = PRESETS[presetIdx]!;
+  const springConfig: SpringConfig = {
+    damping: preset.damping,
+    stiffness: preset.stiffness,
+    mass: preset.mass,
+  };
   const springDriver = React.useMemo(
     () =>
       createSpringDriver(
@@ -389,14 +394,13 @@ const ReanimatedDriver = () => {
             radius={RADIUS}
             ref={timingRef}
             animationDriver={timingDriver}
-            animationProps={{
-              animationCombinationType: AnimationCombinationType.SEQUENCE,
-              animationGap: 40,
-              animationConfigs: {
+            animationProps={sequenceAnimation(
+              {
                 [AnimationType.LINEAR]: { duration: 400 },
                 [AnimationType.OPACITY]: { duration: 300 },
               },
-            }}
+              40
+            )}
           />
         </View>
 
@@ -418,22 +422,13 @@ const ReanimatedDriver = () => {
             radius={RADIUS}
             ref={springRef}
             animationDriver={measuredSpringDriver}
-            animationProps={{
-              animationCombinationType: AnimationCombinationType.SEQUENCE,
-              animationGap: 40,
-              animationConfigs: {
-                [AnimationType.LINEAR]: {
-                  damping: preset.damping,
-                  stiffness: preset.stiffness,
-                  mass: preset.mass,
-                },
-                [AnimationType.OPACITY]: {
-                  damping: preset.damping,
-                  stiffness: preset.stiffness,
-                  mass: preset.mass,
-                },
+            animationProps={sequenceAnimation<typeof measuredSpringDriver>(
+              {
+                [AnimationType.LINEAR]: springConfig,
+                [AnimationType.OPACITY]: springConfig,
               },
-            }}
+              40
+            )}
           />
         </View>
       </ScrollView>
