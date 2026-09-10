@@ -30,7 +30,7 @@ import {
 } from 'react-native-circle-layout';
 
 import { DriverMetricsFooter } from '../DriverMetrics';
-import { View } from '../design_system/atoms';
+import { CircleBadge, View } from '../design_system/atoms';
 
 const METRICS_ITEMS = [
   {
@@ -348,15 +348,15 @@ const ReanimatedDriver = () => {
   }, [showSpring]);
 
   const iconComponents = ICONS.map((icon) => (
-    <RNView key={icon} style={styles.iconItem}>
+    <CircleBadge key={icon} size={36} color="#5A31F4">
       <AntDesign name={icon} size={18} color="#fff" />
-    </RNView>
+    </CircleBadge>
   ));
 
   const springIconComponents = ICONS.map((icon) => (
-    <RNView key={icon} style={styles.springIconItem}>
+    <CircleBadge key={icon} size={36} color="#6366f1">
       <AntDesign name={icon} size={18} color="#fff" />
-    </RNView>
+    </CircleBadge>
   ));
 
   return (
@@ -392,15 +392,14 @@ const ReanimatedDriver = () => {
           <CircleLayout
             components={iconComponents}
             centerComponent={
-              <TouchableOpacity
-                style={styles.centerBtn}
-                onPress={() => setShowTiming((v) => !v)}
-              >
-                <AntDesign
-                  name={showTiming ? 'close' : 'appstore'}
-                  size={22}
-                  color="#fff"
-                />
+              <TouchableOpacity onPress={() => setShowTiming((v) => !v)}>
+                <CircleBadge size={44} color="#1e1e2e">
+                  <AntDesign
+                    name={showTiming ? 'close' : 'appstore'}
+                    size={22}
+                    color="#fff"
+                  />
+                </CircleBadge>
               </TouchableOpacity>
             }
             radius={RADIUS}
@@ -422,15 +421,14 @@ const ReanimatedDriver = () => {
           <CircleLayout
             components={springIconComponents}
             centerComponent={
-              <TouchableOpacity
-                style={[styles.centerBtn, styles.springCenterBtn]}
-                onPress={() => setShowSpring((v) => !v)}
-              >
-                <AntDesign
-                  name={showSpring ? 'close' : 'appstore'}
-                  size={22}
-                  color="#fff"
-                />
+              <TouchableOpacity onPress={() => setShowSpring((v) => !v)}>
+                <CircleBadge size={44} color="#4f46e5">
+                  <AntDesign
+                    name={showSpring ? 'close' : 'appstore'}
+                    size={22}
+                    color="#fff"
+                  />
+                </CircleBadge>
               </TouchableOpacity>
             }
             radius={RADIUS}
@@ -522,33 +520,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginBottom: 8,
     fontWeight: '600',
-  },
-  iconItem: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: '#5A31F4',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  springIconItem: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: '#6366f1',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  centerBtn: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: '#1e1e2e',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  springCenterBtn: {
-    backgroundColor: '#4f46e5',
   },
   footer: {
     padding: 12,

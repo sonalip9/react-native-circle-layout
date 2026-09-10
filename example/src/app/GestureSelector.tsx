@@ -17,7 +17,7 @@ import { CircleLayout } from 'react-native-circle-layout';
 
 import { AnimView } from '../AnimatedComponents';
 
-import { View } from '../design_system/atoms';
+import { CircleBadge, View } from '../design_system/atoms';
 import { ScreenHeader } from '../design_system/molecules';
 import { useShowOnMount } from '../hooks/useShowOnMount';
 
@@ -159,13 +159,11 @@ const GestureSelector = () => {
                     key={color.name}
                     gesture={selectGesture(index)}
                   >
-                    <RNView
-                      style={[styles.colorItem, { backgroundColor: color.hex }]}
-                    >
+                    <CircleBadge size={44} color={color.hex} shadow="item">
                       <AnimView style={iconCounterStyle}>
                         <AntDesign name={color.icon} size={20} color="#fff" />
                       </AnimView>
-                    </RNView>
+                    </CircleBadge>
                   </GestureDetector>
                 ))}
                 radius={RADIUS}
@@ -177,8 +175,12 @@ const GestureSelector = () => {
         </GestureDetector>
 
         <RNView style={styles.selectedCard}>
-          <RNView
-            style={[styles.selectedSwatch, { backgroundColor: selected.hex }]}
+          <CircleBadge
+            size={60}
+            color={selected.hex}
+            shadow="fab"
+            shadowColor="#000"
+            style={styles.selectedSwatchShadow}
           />
           <Text style={styles.selectedName}>{selected.name}</Text>
           <Text style={styles.hexText}>{selected.hex}</Text>
@@ -204,18 +206,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  colorItem: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 5,
-  },
   selectionIndicator: {
     position: 'absolute',
     top: '14%',
@@ -237,14 +227,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8,
   },
-  selectedSwatch: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
+  selectedSwatchShadow: {
     shadowOpacity: 0.3,
-    shadowRadius: 8,
     elevation: 6,
   },
   selectedName: {

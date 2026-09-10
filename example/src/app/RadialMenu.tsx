@@ -9,8 +9,8 @@ import {
 
 import { AppContext } from '../AppContext';
 
-import { TouchableOpacity } from 'react-native';
-import { View } from '../design_system/atoms';
+import { Pressable, TouchableOpacity } from 'react-native';
+import { CircleBadge, View } from '../design_system/atoms';
 
 type Icon = 'delete' | 'edit' | 'home' | 'star';
 
@@ -25,31 +25,28 @@ const RadialMenu = () => {
         visible={showCircleComponent}
         centerComponent={
           <TouchableOpacity
-            style={{
-              backgroundColor: 'black',
-              borderRadius: 100,
-              padding: 12,
-            }}
             onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
           >
-            <AntDesign
-              color="white"
-              name={showCircleComponent ? 'close' : 'appstore'}
-              size={32}
-            />
+            <CircleBadge size={56} color="black">
+              <AntDesign
+                color="white"
+                name={showCircleComponent ? 'close' : 'appstore'}
+                size={32}
+              />
+            </CircleBadge>
           </TouchableOpacity>
         }
         components={icons.map((icon) => (
-          <AntDesign
+          <Pressable
             key={icon}
-            color="black"
-            style={{ backgroundColor: 'white', borderRadius: 100, padding: 12 }}
-            name={icon}
             onPress={() =>
               showPopUp({ message: `The ${icon} button was clicked.` })
             }
-            size={24}
-          />
+          >
+            <CircleBadge size={48} color="white">
+              <AntDesign color="black" name={icon} size={24} />
+            </CircleBadge>
+          </Pressable>
         ))}
         containerStyle={{
           bottom: 0,

@@ -19,7 +19,7 @@ import {
 
 import { AnimView } from '../AnimatedComponents';
 
-import { View } from '../design_system/atoms';
+import { CircleBadge, View } from '../design_system/atoms';
 import { ScreenHeader } from '../design_system/molecules';
 import { useCircleVisibilityRef } from '../hooks/useCircleVisibilityRef';
 
@@ -88,19 +88,20 @@ const CircularNavMenu = () => {
 
       <CircleLayout
         components={NAV_ITEMS.map((item) => (
-          <Pressable
-            key={item.label}
-            style={[styles.navItemInner, { backgroundColor: item.color }]}
-          >
-            <AntDesign name={item.icon} size={22} color="#fff" />
-            <Text style={styles.navLabel}>{item.label}</Text>
+          <Pressable key={item.label}>
+            <CircleBadge size={50} color={item.color} shadow="item">
+              <AntDesign name={item.icon} size={22} color="#fff" />
+              <Text style={styles.navLabel}>{item.label}</Text>
+            </CircleBadge>
           </Pressable>
         ))}
         centerComponent={
           <RNView style={styles.fabContainer}>
             <Pressable onPress={toggle}>
-              <AnimView style={[styles.fab, fabRotation]}>
-                <AntDesign name="plus" size={28} color="#fff" />
+              <AnimView style={fabRotation}>
+                <CircleBadge size={56} color="#6366f1" shadow="fab">
+                  <AntDesign name="plus" size={28} color="#fff" />
+                </CircleBadge>
               </AnimView>
             </Pressable>
           </RNView>
@@ -149,18 +150,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
-  navItemInner: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    elevation: 5,
-  },
   navLabel: {
     color: '#fff',
     fontSize: 9,
@@ -169,19 +158,6 @@ const styles = StyleSheet.create({
   },
   fabContainer: {
     alignItems: 'center',
-  },
-  fab: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: '#6366f1',
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#6366f1',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 10,
-    elevation: 8,
   },
 });
 

@@ -17,7 +17,7 @@ import { CircleLayout, useCirclePositions } from 'react-native-circle-layout';
 
 import { AnimView } from '../AnimatedComponents';
 
-import { View } from '../design_system/atoms';
+import { CircleBadge, View } from '../design_system/atoms';
 import { ScreenHeader } from '../design_system/molecules';
 import { useShowOnMount } from '../hooks/useShowOnMount';
 
@@ -132,11 +132,10 @@ const OrbitRing = ({
           ref={circleLayoutRef}
           components={ring.items.map((item) => (
             <AnimView key={item.label} style={counterRotationStyle}>
-              <Pressable
-                onPress={() => onItemPress(item.label)}
-                style={[styles.orbitItem, { backgroundColor: ring.color }]}
-              >
-                <AntDesign name={item.icon} size={16} color="#fff" />
+              <Pressable onPress={() => onItemPress(item.label)}>
+                <CircleBadge size={36} color={ring.color} shadow="item">
+                  <AntDesign name={item.icon} size={16} color="#fff" />
+                </CircleBadge>
               </Pressable>
             </AnimView>
           ))}
@@ -171,8 +170,15 @@ const OrbitalAnimation = () => {
 
       <View flex={1} alignItems="center" justifyContent="center">
         <RNView style={styles.solarSystem}>
-          <Pressable style={styles.sun} onPress={handleResume}>
-            <AntDesign name="code-sandbox" size={24} color="#fff" />
+          <Pressable style={styles.sunWrapper} onPress={handleResume}>
+            <CircleBadge
+              size={48}
+              color="#f59e0b"
+              shadow="fab"
+              style={styles.sunShadow}
+            >
+              <AntDesign name="code-sandbox" size={24} color="#fff" />
+            </CircleBadge>
           </Pressable>
 
           {RINGS.map((ring, i) => (
@@ -212,19 +218,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  sun: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: '#f59e0b',
-    alignItems: 'center',
-    justifyContent: 'center',
+  sunWrapper: {
     zIndex: 10,
-    shadowColor: '#f59e0b',
+  },
+  sunShadow: {
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.6,
     shadowRadius: 12,
-    elevation: 8,
   },
   ringWrapper: {
     position: 'absolute',
@@ -243,18 +243,6 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     marginLeft: -2,
     marginTop: -2,
-  },
-  orbitItem: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 5,
   },
   detailCard: {
     marginTop: 24,

@@ -3,14 +3,14 @@ import {
   type AntDesignIconName,
 } from '@react-native-vector-icons/ant-design';
 import { useState } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { Pressable, TouchableOpacity } from 'react-native';
 import {
   AnimationCombinationType,
   AnimationType,
   CircleLayout,
 } from 'react-native-circle-layout';
 
-import { View } from '../design_system/atoms';
+import { CircleBadge, View } from '../design_system/atoms';
 
 type Icon = AntDesignIconName;
 
@@ -26,19 +26,16 @@ const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
       <CircleLayout
         visible={showCircleComponent}
         centerComponent={
-          <TouchableOpacity>
-            <AntDesign
-              style={{
-                borderRadius: 100,
-                transform: [{ rotate: `${-rotation}rad` }],
-                padding: 12,
-                backgroundColor: 'white',
-              }}
-              color="black"
-              name={icon}
-              size={24}
-              onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
-            />
+          <TouchableOpacity
+            onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
+          >
+            <CircleBadge
+              size={48}
+              color="white"
+              style={{ transform: [{ rotate: `${-rotation}rad` }] }}
+            >
+              <AntDesign color="black" name={icon} size={24} />
+            </CircleBadge>
           </TouchableOpacity>
         }
         components={subIcons.map((subIcon) => (
@@ -74,18 +71,17 @@ const NestedRingMenu = () => {
       <CircleLayout
         visible={showCircleComponent}
         centerComponent={
-          <AntDesign
-            color="white"
-            style={{
-              justifyContent: 'center',
-              backgroundColor: 'black',
-              borderRadius: 100,
-              padding: 12,
-            }}
-            size={24}
-            name={showCircleComponent ? 'close' : 'appstore'}
+          <Pressable
             onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
-          />
+          >
+            <CircleBadge size={48} color="black">
+              <AntDesign
+                color="white"
+                size={24}
+                name={showCircleComponent ? 'close' : 'appstore'}
+              />
+            </CircleBadge>
+          </Pressable>
         }
         components={icons.map((icon, index) => {
           const rotation = index * SECTION_ANGLE - Math.PI / 2;

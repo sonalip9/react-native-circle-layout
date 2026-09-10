@@ -27,7 +27,7 @@ import {
 
 import { AnimView } from '../AnimatedComponents';
 import { DriverMetricsFooter } from '../DriverMetrics';
-import { View } from '../design_system/atoms';
+import { CircleBadge, View } from '../design_system/atoms';
 import { ScreenHeader } from '../design_system/molecules';
 import { useCircleVisibilityRef } from '../hooks/useCircleVisibilityRef';
 
@@ -89,12 +89,11 @@ const RnAnimatedItem = ({
       onPressIn={pressIn}
       onPressOut={pressOut}
       onPress={() => onPress(icon.label)}
-      style={[
-        styles.item,
-        { backgroundColor: icon.color, transform: [{ scale }] },
-      ]}
+      style={{ transform: [{ scale }] }}
     >
-      <AntDesign name={icon.name} size={22} color="#fff" />
+      <CircleBadge size={48} color={icon.color} shadow="item">
+        <AntDesign name={icon.name} size={22} color="#fff" />
+      </CircleBadge>
     </AnimatedPressable>
   );
 };
@@ -114,9 +113,10 @@ const MotiItem = ({
       }}
       transition={{ type: 'spring', ...PRESS_SPRING }}
       onPress={() => onPress(icon.label)}
-      style={[styles.item, { backgroundColor: icon.color }]}
     >
-      <AntDesign name={icon.name} size={22} color="#fff" />
+      <CircleBadge size={48} color={icon.color} shadow="item">
+        <AntDesign name={icon.name} size={22} color="#fff" />
+      </CircleBadge>
     </MotiPressable>
   );
 };
@@ -240,15 +240,14 @@ const MotiIntegration = () => {
             ))}
             centerComponent={
               <Animated.View style={rnFabStyle}>
-                <Pressable
-                  style={[styles.fab, styles.fabRn]}
-                  onPress={toggleMenu}
-                >
-                  <AntDesign
-                    name={visible ? 'close' : 'plus'}
-                    size={28}
-                    color="#fff"
-                  />
+                <Pressable onPress={toggleMenu}>
+                  <CircleBadge size={52} color="#334155" shadow="fab">
+                    <AntDesign
+                      name={visible ? 'close' : 'plus'}
+                      size={28}
+                      color="#fff"
+                    />
+                  </CircleBadge>
                 </Pressable>
               </Animated.View>
             }
@@ -273,15 +272,14 @@ const MotiIntegration = () => {
             ))}
             centerComponent={
               <AnimView style={motiFabStyle}>
-                <Pressable
-                  style={[styles.fab, styles.fabMoti]}
-                  onPress={toggleMenu}
-                >
-                  <AntDesign
-                    name={visible ? 'close' : 'plus'}
-                    size={28}
-                    color="#fff"
-                  />
+                <Pressable onPress={toggleMenu}>
+                  <CircleBadge size={52} color="#6366f1" shadow="fab">
+                    <AntDesign
+                      name={visible ? 'close' : 'plus'}
+                      size={28}
+                      color="#fff"
+                    />
+                  </CircleBadge>
                 </Pressable>
               </AnimView>
             }
@@ -326,37 +324,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 24,
     gap: 32,
-  },
-  item: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  fab: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  fabRn: {
-    backgroundColor: '#334155',
-    shadowColor: '#334155',
-  },
-  fabMoti: {
-    backgroundColor: '#6366f1',
-    shadowColor: '#6366f1',
   },
   label: {
     color: '#0B0B0B',
