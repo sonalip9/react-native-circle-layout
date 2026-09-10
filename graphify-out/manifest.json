@@ -30,13 +30,13 @@
     "semantic_hash": "287d6e9a51a34628496d0f28b4b46493"
   },
   "example/metro.config.js": {
-    "mtime": 1788970574.9192924,
-    "ast_hash": "9bdf2dea387b88c9a879289209b61e0a",
+    "mtime": 1788970760.0432184,
+    "ast_hash": "e480abcc46432ac2283f5e86db584202",
     "semantic_hash": ""
   },
   "example/package.json": {
-    "mtime": 1788970574.9194026,
-    "ast_hash": "e6682cad71671b660bc15b9225930e97",
+    "mtime": 1788970760.0433114,
+    "ast_hash": "94a748928623770c5fef1aef7d51c121",
     "semantic_hash": ""
   },
   "example/src/AppContext.ts": {
@@ -75,9 +75,9 @@
     "semantic_hash": "37e4991014bccc0ff01b64bcb4ef01b3"
   },
   "example/src/design_system/atoms/index.ts": {
-    "mtime": 1781091154.37629,
-    "ast_hash": "fdb1227988d07918426e5ff94666f8b4",
-    "semantic_hash": "fdb1227988d07918426e5ff94666f8b4"
+    "mtime": 1788972111.5171957,
+    "ast_hash": "f42963bee36283ea489a2be43d9e89e5",
+    "semantic_hash": ""
   },
   "example/src/design_system/molecules/Dropdown/Dropdown.tsx": {
     "mtime": 1788593117.7858226,
@@ -120,13 +120,13 @@
     "semantic_hash": "ba77bbaaa7d1935db813591d3b80afd4"
   },
   "example/src/design_system/molecules/index.ts": {
-    "mtime": 1788970574.9198403,
-    "ast_hash": "5c9938e40eadfd25bf0b1e0ab42453fb",
+    "mtime": 1788970789.5193996,
+    "ast_hash": "0f7b81adf25f56121abe2229f22580b4",
     "semantic_hash": ""
   },
   "example/src/design_system/style/index.ts": {
-    "mtime": 1788970574.9199734,
-    "ast_hash": "1ac0d45ba86d1bf85c67bb0a9896b1ea",
+    "mtime": 1788970789.5194821,
+    "ast_hash": "57619b920676ff9a95224efb64b5dbb6",
     "semantic_hash": ""
   },
   "example/src/utils/resolveStyles.ts": {
@@ -360,8 +360,8 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1788970574.918819,
-    "ast_hash": "6b18206b6bd32899b2896d03756ae627",
+    "mtime": 1788970780.0041554,
+    "ast_hash": "5ca7fc7d3a0ad3ea9a736fe5770822d4",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
@@ -405,8 +405,8 @@
     "semantic_hash": "477d9959972912279da5677825ef61c3"
   },
   "docs/agents/issue-tracker.md": {
-    "mtime": 1788970574.919015,
-    "ast_hash": "b3268117bb0bb6b731632d35d6a1369a",
+    "mtime": 1788970780.0042439,
+    "ast_hash": "8b556e8dd053f7d11010d4e9c9227b1b",
     "semantic_hash": ""
   },
   "docs/agents/triage-labels.md": {
@@ -420,7 +420,7 @@
     "semantic_hash": "efc5a6411e866be3e5d95d8ef52559b7"
   },
   "pnpm-workspace.yaml": {
-    "mtime": 1788970574.9227552,
+    "mtime": 1788970743.4239063,
     "ast_hash": "38735dcfb4ab3b9a5c1f596b5acc7468",
     "semantic_hash": ""
   },
@@ -455,18 +455,18 @@
     "semantic_hash": "97dae5a0e62ad8551d8a31897b425e63"
   },
   "example/src/app/NestedRingMenu.tsx": {
-    "mtime": 1788970574.919558,
-    "ast_hash": "1bb5adc3e92e21ae12e3678dd3deb6a4",
+    "mtime": 1789019248.0894852,
+    "ast_hash": "eeb15e3037b0955c987308eb0d58bf0c",
     "semantic_hash": ""
   },
   "example/src/app/RadialMenu.tsx": {
-    "mtime": 1788592163.6743908,
-    "ast_hash": "4f7639ad6362e5c95b553fed07f39b46",
+    "mtime": 1789019233.6873887,
+    "ast_hash": "e8df496a1c453717699c90441dcbc93f",
     "semantic_hash": ""
   },
   "example/src/app/_layout.tsx": {
-    "mtime": 1788970574.919693,
-    "ast_hash": "775d8c29cf38cd0f7675bbd62b519c54",
+    "mtime": 1788970750.0355816,
+    "ast_hash": "47bcf6a0569472c051d544d05f61cded",
     "semantic_hash": ""
   },
   "example/src/app/index.tsx": {
@@ -495,8 +495,88 @@
     "semantic_hash": ""
   },
   ".github/dependabot.yml": {
-    "mtime": 1788970574.918483,
+    "mtime": 1788970743.42182,
     "ast_hash": "2efeba925581b6843c8eb6d99637535f",
+    "semantic_hash": ""
+  },
+  ".claude/launch.json": {
+    "mtime": 1788971826.415532,
+    "ast_hash": "7f0a3acf7e6ecc9c4cd22cedb4223a2c",
+    "semantic_hash": ""
+  },
+  "example/src/AnimatedComponents.tsx": {
+    "mtime": 1788970750.035503,
+    "ast_hash": "c9670a51417ef9d91cce128d3385d852",
+    "semantic_hash": ""
+  },
+  "example/src/DriverMetrics.tsx": {
+    "mtime": 1789019061.7510393,
+    "ast_hash": "3cb5e60ce6995eec58d569be79f053ad",
+    "semantic_hash": ""
+  },
+  "example/src/app/CircularNavMenu.tsx": {
+    "mtime": 1788972111.5155883,
+    "ast_hash": "9236ce26763c3a9b2192b2399634b393",
+    "semantic_hash": ""
+  },
+  "example/src/app/DonutChart.tsx": {
+    "mtime": 1788970789.5186572,
+    "ast_hash": "064958144bfe29da5603308353ceebd1",
+    "semantic_hash": ""
+  },
+  "example/src/app/GestureSelector.tsx": {
+    "mtime": 1789022848.4715958,
+    "ast_hash": "1de48710a422a490958b271a8e631545",
+    "semantic_hash": ""
+  },
+  "example/src/app/MotiIntegration.tsx": {
+    "mtime": 1789019061.7511933,
+    "ast_hash": "b1c7632b5bbb47a3b6b2a35b69bd3e9d",
+    "semantic_hash": ""
+  },
+  "example/src/app/OrbitalAnimation.tsx": {
+    "mtime": 1788972111.5166574,
+    "ast_hash": "d4fb412d868cfc1a293ea0131b10f87d",
+    "semantic_hash": ""
+  },
+  "example/src/app/ReanimatedDriver.tsx": {
+    "mtime": 1789019061.7513142,
+    "ast_hash": "49a396abfb8173c2b4ea39d43e6087da",
+    "semantic_hash": ""
+  },
+  "example/src/design_system/atoms/CircleBadge/CircleBadge.tsx": {
+    "mtime": 1788971802.058905,
+    "ast_hash": "0237286ab40a4c6171b4d716030babd4",
+    "semantic_hash": ""
+  },
+  "example/src/design_system/atoms/CircleBadge/index.ts": {
+    "mtime": 1788971702.6895027,
+    "ast_hash": "a23555ae832537a03dc149711c023e70",
+    "semantic_hash": ""
+  },
+  "example/src/design_system/molecules/ScreenHeader/ScreenHeader.tsx": {
+    "mtime": 1788970789.5192661,
+    "ast_hash": "41c8c70a39025fe95b3791e2fdc5f392",
+    "semantic_hash": ""
+  },
+  "example/src/design_system/molecules/ScreenHeader/index.ts": {
+    "mtime": 1788970789.5193152,
+    "ast_hash": "b934f77284c169f9e8117267dc760695",
+    "semantic_hash": ""
+  },
+  "example/src/hooks/useCircleVisibilityRef.ts": {
+    "mtime": 1788970795.1380348,
+    "ast_hash": "0d5f9abec9f6da46864bce8d9d32f42b",
+    "semantic_hash": ""
+  },
+  "example/src/hooks/useShowOnMount.ts": {
+    "mtime": 1788970795.1380994,
+    "ast_hash": "c0a952e33d3dd0fdf996b0b391589aed",
+    "semantic_hash": ""
+  },
+  "example/src/hooks/useToggle.ts": {
+    "mtime": 1789019223.6756837,
+    "ast_hash": "97b289a4b51fd8d9e1e47624b290b9c8",
     "semantic_hash": ""
   }
 }

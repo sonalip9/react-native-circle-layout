@@ -1,16 +1,16 @@
-# Graph Report - react-native-circle-layout  (2026-09-06)
+# Graph Report - react-native-circle-layout  (2026-09-10)
 
 ## Corpus Check
-- 84 files · ~52,241 words
+- 100 files · ~58,948 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 625 nodes · 895 edges · 59 communities (41 shown, 18 thin omitted)
+- 685 nodes · 972 edges · 63 communities (45 shown, 18 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f8247338`
+- Built from commit: `faa53902`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -67,9 +67,13 @@
 - [[_COMMUNITY_Community 52|Community 52]]
 - [[_COMMUNITY_Community 53|Community 53]]
 - [[_COMMUNITY_Community 54|Community 54]]
+- [[_COMMUNITY_Community 56|Community 56]]
 - [[_COMMUNITY_Community 57|Community 57]]
 - [[_COMMUNITY_Community 58|Community 58]]
 - [[_COMMUNITY_Community 59|Community 59]]
+- [[_COMMUNITY_Community 60|Community 60]]
+- [[_COMMUNITY_Community 65|Community 65]]
+- [[_COMMUNITY_Community 66|Community 66]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 26 edges
@@ -103,19 +107,19 @@
 - **Animation Hook Pipeline** — agents_circlelayoutcomponent, agents_useanimation, agents_usecombinedanimation, agents_useanimatedsectorpath [EXTRACTED 1.00]
 - **Agent Skills System** — agents_issue_tracker, agents_triage_labels, agents_domain_docs, agents_github_issues [EXTRACTED 1.00]
 
-## Communities (59 total, 18 thin omitted)
+## Communities (63 total, 18 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.04
 Nodes (45): devDependencies, commitlint, @commitlint/config-conventional, del-cli, eslint, @eslint-community/eslint-plugin-eslint-comments, @eslint/compat, eslint-config-prettier (+37 more)
 
 ### Community 1 - "Core Layout & Animation"
-Cohesion: 0.06
-Nodes (50): rnAnimatedDriver, RNAnimationConfig, AnimatedNode, AnimationDriver, DriverComposite, DriverConfig, DriverValue, Icon (+42 more)
+Cohesion: 0.07
+Nodes (42): rnAnimatedDriver, RNAnimationConfig, AnimatedNode, AnimationDriver, DriverComposite, DriverConfig, DriverValue, Android Icon Background (+34 more)
 
 ### Community 2 - "Design System Components"
 Cohesion: 0.06
-Nodes (41): Action, colorOptions, initialState, State, Icon, Button, ButtonComponent(), ButtonComponentProps (+33 more)
+Nodes (38): NAV_ITEMS, styles, OrbitalRing, RINGS, styles, Button, ButtonComponent(), ButtonComponentProps (+30 more)
 
 ### Community 3 - "Dev Dependencies & Turbo"
 Cohesion: 0.07
@@ -253,8 +257,24 @@ Nodes (3): publishConfig, access, registry
 Cohesion: 0.67
 Nodes (3): repository, type, url
 
+### Community 56 - "Community 56"
+Cohesion: 0.11
+Nodes (20): Action, colorOptions, initialState, State, Component(), Icon, icons, NestedRingMenu() (+12 more)
+
+### Community 60 - "Community 60"
+Cohesion: 0.08
+Nodes (22): AnimatedPressable, FAB_SPRING, ICONS, METRICS_ITEMS, MotiIntegration(), PRESS_SPRING, styles, DriverNode (+14 more)
+
+### Community 65 - "Community 65"
+Cohesion: 0.22
+Nodes (3): COLORS, SNAP_SPRING, styles
+
+### Community 66 - "Community 66"
+Cohesion: 0.38
+Nodes (4): CircleBadgeProps, CircleBadgeShadow, SHADOW_PRESETS, styles
+
 ## Knowledge Gaps
-- **356 isolated node(s):** `flatCompat`, `name`, `slug`, `version`, `orientation` (+351 more)
+- **382 isolated node(s):** `COLORS`, `SNAP_SPRING`, `styles`, `Icon`, `icons` (+377 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -262,16 +282,16 @@ Nodes (3): repository, type, url
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `devDependencies` connect `Community 0` to `Package Metadata`?**
-  _High betweenness centrality (0.021) - this node is a cross-community bridge._
-- **Why does `CircleLayoutRef` connect `Core Layout & Animation` to `Design System Components`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
-- **Why does `AnimationType` connect `Core Layout & Animation` to `Design System Components`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
-- **What connects `flatCompat`, `name`, `slug` to the rest of the system?**
-  _359 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
+- **Why does `CircleLayoutRef` connect `Community 56` to `Core Layout & Animation`?**
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
+- **Why does `AnimationType` connect `Community 56` to `Core Layout & Animation`?**
+  _High betweenness centrality (0.011) - this node is a cross-community bridge._
+- **What connects `COLORS`, `SNAP_SPRING`, `styles` to the rest of the system?**
+  _385 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._
 - **Should `Core Layout & Animation` be split into smaller, more focused modules?**
-  _Cohesion score 0.06256384065372829 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07017543859649122 - nodes in this community are weakly interconnected._
 - **Should `Design System Components` be split into smaller, more focused modules?**
-  _Cohesion score 0.05662862159789289 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06019871420222092 - nodes in this community are weakly interconnected._
