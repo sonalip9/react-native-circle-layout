@@ -29,7 +29,7 @@ import {
   type CircleLayoutRef,
 } from 'react-native-circle-layout';
 
-import { DriverMetricsFooter } from '../DriverMetrics';
+import { DriverMetricsFooter, useMountedGuard } from '../DriverMetrics';
 import { CircleBadge, View } from '../design_system/atoms';
 
 const METRICS_ITEMS = [
@@ -294,41 +294,25 @@ const ReanimatedDriver = () => {
   const [springListenerCount, setSpringListenerCount] = React.useState(0);
 
   // Animations can outlive the screen (e.g. the long RN Animated SEQUENCE —
-  // see below) — their onSettle callback must not set state after unmount.
-  // A plain mutable box, not `useRef`: these callbacks are handed to
-  // `useMemo` calls that run during render, and only ever read `.mounted`
-  // later, asynchronously, once the animation actually settles — never
-  // during render itself.
-  const [mountedBox] = React.useState(() => ({ mounted: true }));
-  React.useEffect(
-    () => () => {
-      mountedBox.mounted = false;
-    },
-    [mountedBox]
-  );
-
-  const bumpSpringListenerCount = React.useCallback(() => {
-    if (mountedBox.mounted) setSpringListenerCount((c) => c + 1);
-  }, [mountedBox]);
+  // see below) — these callbacks must not set state after unmount.
+  const guard = useMountedGuard();
 
   const preset = PRESETS[presetIdx]!;
   const springDriver = React.useMemo(
-    () => createSpringDriver(preset, bumpSpringListenerCount),
-    [preset, bumpSpringListenerCount]
+    () =>
+      createSpringDriver(
+        preset,
+        guard(() => setSpringListenerCount((c) => c + 1))
+      ),
+    [preset, guard]
   );
   const timingDriver = React.useMemo(
-    () =>
-      withSettleTiming(rnAnimatedDriver, (ms) => {
-        if (mountedBox.mounted) setRnSettleMs(ms);
-      }),
-    [mountedBox]
+    () => withSettleTiming(rnAnimatedDriver, guard(setRnSettleMs)),
+    [guard]
   );
   const measuredSpringDriver = React.useMemo(
-    () =>
-      withSettleTiming(springDriver, (ms) => {
-        if (mountedBox.mounted) setSpringSettleMs(ms);
-      }),
-    [springDriver, mountedBox]
+    () => withSettleTiming(springDriver, guard(setSpringSettleMs)),
+    [springDriver, guard]
   );
 
   React.useEffect(() => {

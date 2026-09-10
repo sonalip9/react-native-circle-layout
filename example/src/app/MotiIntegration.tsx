@@ -26,7 +26,7 @@ import {
 } from 'react-native-circle-layout';
 
 import { AnimView } from '../AnimatedComponents';
-import { DriverMetricsFooter } from '../DriverMetrics';
+import { DriverMetricsFooter, useMountedGuard } from '../DriverMetrics';
 import { CircleBadge, View } from '../design_system/atoms';
 import { ScreenHeader } from '../design_system/molecules';
 import { useCircleVisibilityRef } from '../hooks/useCircleVisibilityRef';
@@ -150,13 +150,7 @@ const MotiIntegration = () => {
 
   // The FAB spring can settle after the screen is navigated away from —
   // guard both completion callbacks against setting state post-unmount.
-  const isMountedRef = React.useRef(true);
-  React.useEffect(
-    () => () => {
-      isMountedRef.current = false;
-    },
-    []
-  );
+  const guard = useMountedGuard();
 
   const toggleMenu = () => {
     const next = !visible;
@@ -167,21 +161,15 @@ const MotiIntegration = () => {
       toValue: next ? 1 : 0,
       useNativeDriver: true,
       ...FAB_SPRING,
-    }).start(() => {
-      if (isMountedRef.current) setRnFabSettleMs(Date.now() - rnStartedAt);
-    });
+    }).start(guard(() => setRnFabSettleMs(Date.now() - rnStartedAt)));
 
     const motiStartedAt = Date.now();
     motiFabRotation.value = withSpring(next ? 1 : 0, FAB_SPRING, (finished) => {
-      // `isMountedRef` is a plain JS ref: only safe to read once back on the
-      // JS thread (inside the `runOnJS`-scheduled callback), not here in the
+      // `guard` reads a plain JS ref: only safe to call once back on the JS
+      // thread (inside the `runOnJS`-scheduled callback), not here in the
       // worklet — reading it directly on the UI thread isn't supported.
       if (finished) {
-        runOnJS(() => {
-          if (isMountedRef.current) {
-            setMotiFabSettleMs(Date.now() - motiStartedAt);
-          }
-        })();
+        runOnJS(guard(() => setMotiFabSettleMs(Date.now() - motiStartedAt)))();
       }
     });
 

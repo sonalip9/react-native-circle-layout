@@ -19,6 +19,40 @@ export function blockJsThread(ms: number = STRESS_MS): void {
 }
 
 /**
+ * Guards callbacks against firing after unmount — for async completion
+ * callbacks (animation `onDone`, driver listeners) that can resolve once a
+ * driver-comparison screen has been navigated away from.
+ * @returns `guard(fn)`, wrapping `fn` so it's a no-op once unmounted
+ */
+export function useMountedGuard(): <
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- generic callback wrapper, any callback signature
+  T extends (...args: any[]) => void,
+>(
+  fn: T
+) => T {
+  const mountedRef = React.useRef(true);
+  React.useEffect(
+    () => () => {
+      mountedRef.current = false;
+    },
+    []
+  );
+
+  return React.useCallback(
+    <
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- generic callback wrapper, any callback signature
+      T extends (...args: any[]) => void,
+    >(
+      fn: T
+    ) =>
+      ((...args: Parameters<T>) => {
+        if (mountedRef.current) fn(...args);
+      }) as T,
+    []
+  );
+}
+
+/**
  * JS thread FPS, sampled on a `setInterval` heartbeat rather than a
  * self-rescheduling `requestAnimationFrame` chain. A chained rAF loop dies
  * permanently the moment one call doesn't fire (e.g. a backgrounded /
