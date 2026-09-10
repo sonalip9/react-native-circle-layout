@@ -4,12 +4,17 @@ import { View } from '../../atoms/View';
 export type ScreenHeaderProps = {
   title: string;
   subtitle: string;
+  isDarkMode?: boolean;
 };
 
-const ScreenHeader = ({ title, subtitle }: ScreenHeaderProps) => (
+const ScreenHeader = ({ title, subtitle, isDarkMode }: ScreenHeaderProps) => (
   <View padding="m">
-    <Text variant="screenTitle">{title}</Text>
-    <Text variant="screenSubtitle">{subtitle}</Text>
+    <Text variant="screenTitle" color={isDarkMode ? 'white' : 'black'}>
+      {title}
+    </Text>
+    <Text variant="screenSubtitle" color={isDarkMode ? 'white' : 'black'}>
+      {subtitle}
+    </Text>
   </View>
 );
 

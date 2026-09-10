@@ -51,10 +51,7 @@ const App = () => {
             name="CircularNavMenu"
             options={{ title: 'Circular Nav Menu' }}
           />
-          <Drawer.Screen
-            name="GridToCircleMorph"
-            options={{ title: 'Grid to Circle Morph' }}
-          />
+          <Drawer.Screen name="MediaReel" options={{ title: 'Media Reel' }} />
         </Drawer>
         {popUp ? <PopUp {...popUp} /> : null}
       </ThemeProvider>
