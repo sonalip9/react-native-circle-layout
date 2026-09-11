@@ -51,11 +51,21 @@ const theme = createTheme({
     m: 8,
     l: 16,
     xl: 24,
+    full: 9999,
   },
   textVariants: {
     defaults: {
       color: 'black',
       fontSize: 16,
+    },
+    screenTitle: {
+      color: 'black',
+      fontSize: 20,
+      fontWeight: '700',
+    },
+    screenSubtitle: {
+      color: 'grey',
+      fontSize: 14,
     },
   },
   buttonVariants,

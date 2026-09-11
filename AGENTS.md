@@ -45,7 +45,7 @@ CircleLayout (validates props, ref prop)
 
 ### Issue tracker
 
-Issues live in GitHub Issues (`sonalip9/react-native-circle-layout`). See `docs/agents/issue-tracker.md`.
+Issues live in GitHub Issues (`sonalip9/react-native-circle-layout`). Deferred work — "future update", "tech debt", "future enhancement" — should be filed as a GitHub issue. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 

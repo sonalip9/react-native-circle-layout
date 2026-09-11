@@ -2,15 +2,12 @@ import {
   AntDesign,
   type AntDesignIconName,
 } from '@react-native-vector-icons/ant-design';
-import { useState } from 'react';
-import { TouchableOpacity } from 'react-native';
-import {
-  AnimationCombinationType,
-  AnimationType,
-  CircleLayout,
-} from 'react-native-circle-layout';
+import { Pressable, TouchableOpacity } from 'react-native';
+import { AnimationType, CircleLayout } from 'react-native-circle-layout';
 
-import { View } from '../design_system/atoms';
+import { CircleBadge, View } from '../design_system/atoms';
+import { useToggle } from '../hooks/useToggle';
+import { parallelAnimation } from '../utils/animationPresets';
 
 type Icon = AntDesignIconName;
 
@@ -18,27 +15,27 @@ const icons: Icon[] = ['edit', 'home', 'star', 'delete', 'search', 'setting'];
 const SECTION_ANGLE = (2 * Math.PI) / icons.length;
 const subIcons: Icon[] = ['group', 'idcard', 'phone', 'camera'];
 
+const RING_ANIMATION = parallelAnimation({
+  [AnimationType.LINEAR]: { duration: 500 },
+  [AnimationType.OPACITY]: { duration: 500 },
+});
+
 const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
-  const [showCircleComponent, setShowCircleComponent] = useState(false);
+  const [showCircleComponent, toggleShowCircleComponent] = useToggle();
 
   return (
     <View style={{ transform: [{ rotate: `${rotation}rad` }] }}>
       <CircleLayout
         visible={showCircleComponent}
         centerComponent={
-          <TouchableOpacity>
-            <AntDesign
-              style={{
-                borderRadius: 100,
-                transform: [{ rotate: `${-rotation}rad` }],
-                padding: 12,
-                backgroundColor: 'white',
-              }}
-              color="black"
-              name={icon}
-              size={24}
-              onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
-            />
+          <TouchableOpacity onPress={toggleShowCircleComponent}>
+            <CircleBadge
+              size={48}
+              color="white"
+              style={{ transform: [{ rotate: `${-rotation}rad` }] }}
+            >
+              <AntDesign color="black" name={icon} size={24} />
+            </CircleBadge>
           </TouchableOpacity>
         }
         components={subIcons.map((subIcon) => (
@@ -50,13 +47,7 @@ const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
             size={12}
           />
         ))}
-        animationProps={{
-          animationCombinationType: AnimationCombinationType.PARALLEL,
-          animationConfigs: {
-            [AnimationType.LINEAR]: { duration: 500 },
-            [AnimationType.OPACITY]: { duration: 500 },
-          },
-        }}
+        animationProps={RING_ANIMATION}
         radius={60}
         startAngle={SECTION_ANGLE / 2}
         sweepAngle={SECTION_ANGLE * 2}
@@ -67,38 +58,29 @@ const Component = ({ icon, rotation }: { icon: Icon; rotation: number }) => {
 };
 
 const NestedRingMenu = () => {
-  const [showCircleComponent, setShowCircleComponent] = useState(false);
+  const [showCircleComponent, toggleShowCircleComponent] = useToggle();
 
   return (
-    <View style={{ flex: 1 }}>
+    <View flex={1} alignItems="center" justifyContent="center">
       <CircleLayout
         visible={showCircleComponent}
         centerComponent={
-          <AntDesign
-            color="white"
-            style={{
-              justifyContent: 'center',
-              backgroundColor: 'black',
-              borderRadius: 100,
-              padding: 12,
-            }}
-            size={24}
-            name={showCircleComponent ? 'close' : 'appstore'}
-            onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
-          />
+          <Pressable onPress={toggleShowCircleComponent}>
+            <CircleBadge size={48} color="black">
+              <AntDesign
+                color="white"
+                size={24}
+                name={showCircleComponent ? 'close' : 'appstore'}
+              />
+            </CircleBadge>
+          </Pressable>
         }
         components={icons.map((icon, index) => {
           const rotation = index * SECTION_ANGLE - Math.PI / 2;
           return <Component key={icon} icon={icon} rotation={rotation} />;
         })}
         containerStyle={{ bottom: 10, left: 0, position: 'absolute', right: 0 }}
-        animationProps={{
-          animationCombinationType: AnimationCombinationType.PARALLEL,
-          animationConfigs: {
-            [AnimationType.LINEAR]: { duration: 500 },
-            [AnimationType.OPACITY]: { duration: 500 },
-          },
-        }}
+        animationProps={RING_ANIMATION}
         radius={120}
         startAngle={0}
         sweepAngle={Math.PI * 2}

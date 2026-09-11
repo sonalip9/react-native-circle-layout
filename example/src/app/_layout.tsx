@@ -25,6 +25,33 @@ const App = () => {
         <StatusBar />
         <Drawer>
           <Drawer.Screen name="index" options={{ title: 'Playground' }} />
+          <Drawer.Screen name="RadialMenu" options={{ title: 'Radial Menu' }} />
+          <Drawer.Screen
+            name="NestedRingMenu"
+            options={{ title: 'Nested Ring Menu' }}
+          />
+          <Drawer.Screen
+            name="ReanimatedDriver"
+            options={{ title: 'Reanimated Driver' }}
+          />
+          <Drawer.Screen
+            name="MotiIntegration"
+            options={{ title: 'Moti Integration' }}
+          />
+          <Drawer.Screen
+            name="GestureSelector"
+            options={{ title: 'Gesture Selector' }}
+          />
+          <Drawer.Screen name="DonutChart" options={{ title: 'Donut Chart' }} />
+          <Drawer.Screen
+            name="OrbitalAnimation"
+            options={{ title: 'Orbital Animation' }}
+          />
+          <Drawer.Screen
+            name="CircularNavMenu"
+            options={{ title: 'Circular Nav Menu' }}
+          />
+          <Drawer.Screen name="MediaReel" options={{ title: 'Media Reel' }} />
         </Drawer>
         {popUp ? <PopUp {...popUp} /> : null}
       </ThemeProvider>

@@ -1,22 +1,20 @@
 import { AntDesign } from '@react-native-vector-icons/ant-design';
-import { use, useState } from 'react';
+import { use } from 'react';
 
-import {
-  AnimationCombinationType,
-  AnimationType,
-  CircleLayout,
-} from 'react-native-circle-layout';
+import { AnimationType, CircleLayout } from 'react-native-circle-layout';
 
 import { AppContext } from '../AppContext';
 
-import { TouchableOpacity } from 'react-native';
-import { View } from '../design_system/atoms';
+import { Pressable, TouchableOpacity } from 'react-native';
+import { CircleBadge, View } from '../design_system/atoms';
+import { useToggle } from '../hooks/useToggle';
+import { parallelAnimation } from '../utils/animationPresets';
 
 type Icon = 'delete' | 'edit' | 'home' | 'star';
 
 const RadialMenu = () => {
   const icons: Icon[] = ['edit', 'home', 'star', 'delete'];
-  const [showCircleComponent, setShowCircleComponent] = useState(false);
+  const [showCircleComponent, toggleShowCircleComponent] = useToggle();
   const { showPopUp } = use(AppContext);
 
   return (
@@ -24,32 +22,27 @@ const RadialMenu = () => {
       <CircleLayout
         visible={showCircleComponent}
         centerComponent={
-          <TouchableOpacity
-            style={{
-              backgroundColor: 'black',
-              borderRadius: 100,
-              padding: 12,
-            }}
-            onPress={() => setShowCircleComponent((oldValue) => !oldValue)}
-          >
-            <AntDesign
-              color="white"
-              name={showCircleComponent ? 'close' : 'appstore'}
-              size={32}
-            />
+          <TouchableOpacity onPress={toggleShowCircleComponent}>
+            <CircleBadge size={56} color="black">
+              <AntDesign
+                color="white"
+                name={showCircleComponent ? 'close' : 'appstore'}
+                size={32}
+              />
+            </CircleBadge>
           </TouchableOpacity>
         }
         components={icons.map((icon) => (
-          <AntDesign
+          <Pressable
             key={icon}
-            color="black"
-            style={{ backgroundColor: 'white', borderRadius: 100, padding: 12 }}
-            name={icon}
             onPress={() =>
               showPopUp({ message: `The ${icon} button was clicked.` })
             }
-            size={24}
-          />
+          >
+            <CircleBadge size={48} color="white">
+              <AntDesign color="black" name={icon} size={24} />
+            </CircleBadge>
+          </Pressable>
         ))}
         containerStyle={{
           bottom: 0,
@@ -58,13 +51,10 @@ const RadialMenu = () => {
           elevation: 3,
           position: 'absolute',
         }}
-        animationProps={{
-          animationCombinationType: AnimationCombinationType.PARALLEL,
-          animationConfigs: {
-            [AnimationType.LINEAR]: { duration: 500 },
-            [AnimationType.OPACITY]: { duration: 500 },
-          },
-        }}
+        animationProps={parallelAnimation({
+          [AnimationType.LINEAR]: { duration: 500 },
+          [AnimationType.OPACITY]: { duration: 500 },
+        })}
         radius={100}
         startAngle={0}
         sweepAngle={Math.PI}
