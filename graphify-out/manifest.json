@@ -455,18 +455,18 @@
     "semantic_hash": "97dae5a0e62ad8551d8a31897b425e63"
   },
   "example/src/app/NestedRingMenu.tsx": {
-    "mtime": 1789019248.0894852,
-    "ast_hash": "eeb15e3037b0955c987308eb0d58bf0c",
+    "mtime": 1789024368.5744646,
+    "ast_hash": "649f095c822ec893cde90f24f7194ae7",
     "semantic_hash": ""
   },
   "example/src/app/RadialMenu.tsx": {
-    "mtime": 1789019233.6873887,
-    "ast_hash": "e8df496a1c453717699c90441dcbc93f",
+    "mtime": 1789024368.574563,
+    "ast_hash": "317e5374258d57f4c35c23d334b73688",
     "semantic_hash": ""
   },
   "example/src/app/_layout.tsx": {
-    "mtime": 1788970750.0355816,
-    "ast_hash": "47bcf6a0569472c051d544d05f61cded",
+    "mtime": 1789053266.3681734,
+    "ast_hash": "ac63abb2effc0fe9778291802533969a",
     "semantic_hash": ""
   },
   "example/src/app/index.tsx": {
@@ -515,12 +515,12 @@
     "semantic_hash": ""
   },
   "example/src/app/CircularNavMenu.tsx": {
-    "mtime": 1788972111.5155883,
-    "ast_hash": "9236ce26763c3a9b2192b2399634b393",
+    "mtime": 1789024368.5741682,
+    "ast_hash": "bccd142a1cded76c62e1dd024ec7be79",
     "semantic_hash": ""
   },
   "example/src/app/DonutChart.tsx": {
-    "mtime": 1788970789.5186572,
+    "mtime": 1789024520.8917148,
     "ast_hash": "064958144bfe29da5603308353ceebd1",
     "semantic_hash": ""
   },
@@ -530,8 +530,8 @@
     "semantic_hash": ""
   },
   "example/src/app/MotiIntegration.tsx": {
-    "mtime": 1789019061.7511933,
-    "ast_hash": "b1c7632b5bbb47a3b6b2a35b69bd3e9d",
+    "mtime": 1789024368.5743506,
+    "ast_hash": "c3df207197a81e32bb3553d50684a84c",
     "semantic_hash": ""
   },
   "example/src/app/OrbitalAnimation.tsx": {
@@ -540,8 +540,8 @@
     "semantic_hash": ""
   },
   "example/src/app/ReanimatedDriver.tsx": {
-    "mtime": 1789019061.7513142,
-    "ast_hash": "49a396abfb8173c2b4ea39d43e6087da",
+    "mtime": 1789024368.5747006,
+    "ast_hash": "72de40feb9fc598b542ac5fcee8011f9",
     "semantic_hash": ""
   },
   "example/src/design_system/atoms/CircleBadge/CircleBadge.tsx": {
@@ -555,8 +555,8 @@
     "semantic_hash": ""
   },
   "example/src/design_system/molecules/ScreenHeader/ScreenHeader.tsx": {
-    "mtime": 1788970789.5192661,
-    "ast_hash": "41c8c70a39025fe95b3791e2fdc5f392",
+    "mtime": 1789054262.5209398,
+    "ast_hash": "64336257cdf9af48d72720aae564840b",
     "semantic_hash": ""
   },
   "example/src/design_system/molecules/ScreenHeader/index.ts": {
@@ -577,6 +577,21 @@
   "example/src/hooks/useToggle.ts": {
     "mtime": 1789019223.6756837,
     "ast_hash": "97b289a4b51fd8d9e1e47624b290b9c8",
+    "semantic_hash": ""
+  },
+  "example/src/app/MediaReel.tsx": {
+    "mtime": 1789055783.091185,
+    "ast_hash": "292c8b8350fa6799231516f75a78a689",
+    "semantic_hash": ""
+  },
+  "example/src/utils/animationPresets.ts": {
+    "mtime": 1789024368.5939581,
+    "ast_hash": "fa7f0ad060ff8cec6cfa553af43e2a93",
+    "semantic_hash": ""
+  },
+  "example/src/app/COMPARISON.md": {
+    "mtime": 1789024594.9795756,
+    "ast_hash": "a6d99fd5d7650e1f5640057f45b51941",
     "semantic_hash": ""
   }
 }
