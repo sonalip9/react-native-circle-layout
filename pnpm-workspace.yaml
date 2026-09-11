@@ -48,3 +48,20 @@ minimumReleaseAgeExclude:
   - eslint-plugin-react-web-api@5.9.0
   - eslint-plugin-react-x@5.9.0
   - eslint@10.5.0
+  - '@expo/cli@57.0.24'
+  - '@expo/fingerprint@0.20.13'
+  - '@expo/prebuild-config@57.0.16'
+  - expo-asset@57.0.17
+  - expo-constants@57.0.18
+  - expo-file-system@57.0.7
+  - expo-font@57.0.4
+  - expo-keep-awake@57.0.2
+  - expo-modules-autolinking@57.0.13
+  - expo-modules-core@57.0.18
+  - expo@57.0.22
+  - '@expo/ui@57.0.18'
+  - expo-glass-effect@57.0.3
+  - expo-router@57.0.21
+  - expo-splash-screen@57.0.9
+  - expo-symbols@57.0.3
+  - expo-system-ui@57.0.4
