@@ -33,7 +33,7 @@ jobs:
           EXPO_BASE_URL: /${{ github.event.repository.name }}
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: example/dist
 
