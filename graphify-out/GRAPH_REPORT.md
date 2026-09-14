@@ -1,23 +1,22 @@
-# Graph Report - react-native-circle-layout  (2026-09-10)
+# Graph Report - react-native-circle-layout  (2026-09-14)
 
 ## Corpus Check
-- 103 files · ~61,557 words
+- 101 files · ~61,079 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 701 nodes · 986 edges · 70 communities (51 shown, 19 thin omitted)
+- 726 nodes · 1089 edges · 62 communities (44 shown, 18 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a8252fab`
+- Built from commit: `6a70bd18`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Community 0|Community 0]]
 - [[_COMMUNITY_Core Layout & Animation|Core Layout & Animation]]
-- [[_COMMUNITY_Design System Components|Design System Components]]
 - [[_COMMUNITY_Dev Dependencies & Turbo|Dev Dependencies & Turbo]]
 - [[_COMMUNITY_Example App Dependencies|Example App Dependencies]]
 - [[_COMMUNITY_Expo App Config|Expo App Config]]
@@ -67,32 +66,25 @@
 - [[_COMMUNITY_Community 52|Community 52]]
 - [[_COMMUNITY_Community 53|Community 53]]
 - [[_COMMUNITY_Community 54|Community 54]]
-- [[_COMMUNITY_Community 56|Community 56]]
 - [[_COMMUNITY_Community 57|Community 57]]
 - [[_COMMUNITY_Community 58|Community 58]]
 - [[_COMMUNITY_Community 59|Community 59]]
 - [[_COMMUNITY_Community 60|Community 60]]
-- [[_COMMUNITY_Community 61|Community 61]]
 - [[_COMMUNITY_Community 62|Community 62]]
 - [[_COMMUNITY_Community 63|Community 63]]
-- [[_COMMUNITY_Community 64|Community 64]]
-- [[_COMMUNITY_Community 65|Community 65]]
 - [[_COMMUNITY_Community 66|Community 66]]
-- [[_COMMUNITY_Community 67|Community 67]]
-- [[_COMMUNITY_Community 68|Community 68]]
-- [[_COMMUNITY_Community 69|Community 69]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 26 edges
 2. `compilerOptions` - 16 edges
-3. `expo` - 15 edges
-4. `rnAnimatedDriver` - 13 edges
-5. `CircleLayoutContext` - 11 edges
-6. `AnimationDriver` - 11 edges
-7. `Domain Context - react-native-circle-layout` - 11 edges
-8. `AnimationType` - 10 edges
-9. `AnimationCombinationType` - 10 edges
-10. `CircleLayoutRef` - 10 edges
+3. `AnimationType` - 16 edges
+4. `expo` - 15 edges
+5. `CircleLayout()` - 15 edges
+6. `rnAnimatedDriver` - 15 edges
+7. `AnimationDriver` - 13 edges
+8. `CircleLayoutRef` - 13 edges
+9. `AnimationCombinationType` - 12 edges
+10. `CircleLayoutContext` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `ADR-0002: totalParts invariant for partial arcs` --conceptually_related_to--> `total parts`  [INFERRED]
@@ -101,10 +93,10 @@
   pnpm-workspace.yaml → CONTRIBUTING.md
 - `pnpm Workspace Config` --conceptually_related_to--> `CircleLayout Component`  [INFERRED]
   pnpm-workspace.yaml → AGENTS.md
+- `OrbitRing()` --calls--> `useCirclePositions()`  [EXTRACTED]
+  example/src/app/OrbitalAnimation.tsx → src/hooks/useCirclePositions.ts
 - `ADR-0001: Imperative ref API for show/hide` --references--> `CircleLayoutRef (type)`  [INFERRED]
   docs/adr/0001-imperative-ref-api.md → README.md
-- `hideComponents()` --conceptually_related_to--> `ADR-0001: Imperative ref API for show/hide`  [INFERRED]
-  README.md → docs/adr/0001-imperative-ref-api.md
 
 ## Import Cycles
 - None detected.
@@ -114,19 +106,15 @@
 - **Animation Hook Pipeline** — agents_circlelayoutcomponent, agents_useanimation, agents_usecombinedanimation, agents_useanimatedsectorpath [EXTRACTED 1.00]
 - **Agent Skills System** — agents_issue_tracker, agents_triage_labels, agents_domain_docs, agents_github_issues [EXTRACTED 1.00]
 
-## Communities (70 total, 19 thin omitted)
+## Communities (62 total, 18 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.04
 Nodes (45): devDependencies, commitlint, @commitlint/config-conventional, del-cli, eslint, @eslint-community/eslint-plugin-eslint-comments, @eslint/compat, eslint-config-prettier (+37 more)
 
 ### Community 1 - "Core Layout & Animation"
-Cohesion: 0.06
-Nodes (54): rnAnimatedDriver, RNAnimationConfig, AnimationDriver, DriverComposite, DriverConfig, DriverValue, Component(), Icon (+46 more)
-
-### Community 2 - "Design System Components"
-Cohesion: 0.15
-Nodes (6): NAV_ITEMS, styles, OrbitalRing, RINGS, styles, ButtonProps
+Cohesion: 0.07
+Nodes (45): rnAnimatedDriver, RNAnimationConfig, AnimatedNode, AnimationDriver, DriverComposite, DriverConfig, DriverValue, Android Icon Background (+37 more)
 
 ### Community 3 - "Dev Dependencies & Turbo"
 Cohesion: 0.07
@@ -134,7 +122,7 @@ Nodes (28): compilerOptions, allowUnreachableCode, allowUnusedLabels, customCond
 
 ### Community 4 - "Example App Dependencies"
 Cohesion: 0.06
-Nodes (34): dependencies, expo, @expo/metro-runtime, expo-router, expo-splash-screen, expo-status-bar, expo-system-ui, react (+26 more)
+Nodes (35): dependencies, expo, @expo/metro-runtime, expo-router, expo-splash-screen, expo-status-bar, expo-system-ui, moti (+27 more)
 
 ### Community 5 - "Expo App Config"
 Cohesion: 0.06
@@ -142,7 +130,7 @@ Nodes (30): backgroundColor, backgroundImage, foregroundImage, monochromeImage, 
 
 ### Community 6 - "Circle Math & Geometry"
 Cohesion: 0.12
-Nodes (24): AnimatedNode, center, UseAnimatedSectorPath, CirclePosition, CirclePositionsConfig, computePosition(), useCirclePosition(), useCirclePositions() (+16 more)
+Nodes (23): center, UseAnimatedSectorPath, CirclePosition, CirclePositionsConfig, computePosition(), useCirclePosition(), useCirclePositions(), BgGeometry (+15 more)
 
 ### Community 7 - "TypeScript Config"
 Cohesion: 0.08
@@ -181,8 +169,8 @@ Cohesion: 0.20
 Nodes (10): Bg (Background Sector), Bg[] (background sectors), CircleLayoutArray, CircleLayoutComponent (wrapper), CircleLayoutContent, CircleLayoutContext, useAnimatedSectorPath, useAnimation (+2 more)
 
 ### Community 16 - "Metro Bundler Config"
-Cohesion: 0.33
-Nodes (5): config, { getDefaultConfig }, path, root, { withMetroConfig }
+Cohesion: 0.22
+Nodes (8): config, framerMotionBundle, fs, { getDefaultConfig }, motiDir, path, root, { withMetroConfig }
 
 ### Community 17 - "Community 17"
 Cohesion: 0.20
@@ -229,8 +217,8 @@ Cohesion: 0.33
 Nodes (6): jest, modulePathIgnorePatterns, preset, setupFilesAfterEnv, testPathIgnorePatterns, transformIgnorePatterns
 
 ### Community 29 - "Jest Config"
-Cohesion: 0.33
-Nodes (5): Conventions, Issue tracker: GitHub, When a skill says "fetch the relevant ticket", When a skill says "publish to the issue tracker", gh CLI
+Cohesion: 0.29
+Nodes (6): Conventions, Issue tracker: GitHub, Triggers that should create an issue, When a skill says "fetch the relevant ticket", When a skill says "publish to the issue tracker", gh CLI
 
 ### Community 30 - "Peer Dependencies"
 Cohesion: 0.33
@@ -264,65 +252,41 @@ Nodes (3): publishConfig, access, registry
 Cohesion: 0.67
 Nodes (3): repository, type, url
 
-### Community 56 - "Community 56"
-Cohesion: 0.36
-Nodes (3): PopUpProps, AppContext, AppContextValue
-
 ### Community 60 - "Community 60"
-Cohesion: 0.08
-Nodes (22): AnimatedPressable, FAB_SPRING, ICONS, METRICS_ITEMS, MotiIntegration(), PRESS_SPRING, styles, DriverNode (+14 more)
-
-### Community 61 - "Community 61"
-Cohesion: 0.15
-Nodes (10): Action, colorOptions, initialState, State, buttonVariants, palette, Theme, TextProps (+2 more)
+Cohesion: 0.07
+Nodes (28): CircularNavMenu(), NAV_ITEMS, styles, AnimatedPressable, FAB_SPRING, ICONS, ITEM_ANIMATION, METRICS_ITEMS (+20 more)
 
 ### Community 62 - "Community 62"
-Cohesion: 0.15
-Nodes (7): ALBUMS, MONTHS, REEL_ANIMATION, ROWS, SNAP_SPRING, styles, TITLES
+Cohesion: 0.05
+Nodes (36): COLORS, GestureSelector(), SNAP_SPRING, styles, Action, colorOptions, initialState, State (+28 more)
 
 ### Community 63 - "Community 63"
-Cohesion: 0.22
-Nodes (9): Button, ButtonComponent(), ButtonComponentProps, Props, ResolvedStyle, RestyleProps, DropdownComponent(), SwitchComponent() (+1 more)
-
-### Community 64 - "Community 64"
-Cohesion: 0.28
-Nodes (7): Dropdown, DropdownComponentProps, DropdownOption, DropdownOwnProps, DropdownProps, MultipleSelectProps, SingleSelectProps
-
-### Community 65 - "Community 65"
-Cohesion: 0.22
-Nodes (3): COLORS, SNAP_SPRING, styles
+Cohesion: 0.06
+Nodes (40): DATA, styles, TOTAL, Button, ButtonComponent(), ButtonComponentProps, ButtonProps, Props (+32 more)
 
 ### Community 66 - "Community 66"
 Cohesion: 0.38
 Nodes (4): CircleBadgeProps, CircleBadgeShadow, SHADOW_PRESETS, styles
 
-### Community 67 - "Community 67"
-Cohesion: 0.32
-Nodes (5): Switch, SwitchComponentProps, SwitchOwnProps, SwitchProps, ViewProps
-
-### Community 68 - "Community 68"
-Cohesion: 0.33
-Nodes (5): SliderWithLabel, SliderWithLabelComponent(), SliderWithLabelComponentProps, SliderWithLabelOwnProps, SliderWithLabelProps
-
 ## Knowledge Gaps
-- **390 isolated node(s):** `TITLES`, `MONTHS`, `ALBUMS`, `ROWS`, `SNAP_SPRING` (+385 more)
+- **402 isolated node(s):** `name`, `slug`, `version`, `orientation`, `icon` (+397 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **19 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `devDependencies` connect `Community 0` to `Package Metadata`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
-- **Why does `CircleLayoutRef` connect `Core Layout & Animation` to `Community 61`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
-- **Why does `AnimationType` connect `Core Layout & Animation` to `Community 61`?**
-  _High betweenness centrality (0.011) - this node is a cross-community bridge._
-- **What connects `TITLES`, `MONTHS`, `ALBUMS` to the rest of the system?**
-  _393 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.016) - this node is a cross-community bridge._
+- **Why does `AnimationType` connect `Core Layout & Animation` to `Community 60`, `Community 62`, `Community 63`?**
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
+- **Why does `rnAnimatedDriver` connect `Core Layout & Animation` to `Community 62`, `Community 60`, `Circle Math & Geometry`?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **What connects `name`, `slug`, `version` to the rest of the system?**
+  _405 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._
 - **Should `Core Layout & Animation` be split into smaller, more focused modules?**
-  _Cohesion score 0.06030855539971949 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06835443037974684 - nodes in this community are weakly interconnected._
 - **Should `Dev Dependencies & Turbo` be split into smaller, more focused modules?**
   _Cohesion score 0.06896551724137931 - nodes in this community are weakly interconnected._

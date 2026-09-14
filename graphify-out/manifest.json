@@ -15,9 +15,9 @@
     "semantic_hash": ""
   },
   "example/app.json": {
-    "mtime": 1788592163.673967,
-    "ast_hash": "8f1199a1677f21137b8f1de6a0fa0b15",
-    "semantic_hash": "8f1199a1677f21137b8f1de6a0fa0b15"
+    "mtime": 1789396761.344863,
+    "ast_hash": "b405e20851b1226e601964904e629140",
+    "semantic_hash": ""
   },
   "example/babel.config.js": {
     "mtime": 1780823301.2815454,
@@ -30,13 +30,13 @@
     "semantic_hash": "287d6e9a51a34628496d0f28b4b46493"
   },
   "example/metro.config.js": {
-    "mtime": 1788970760.0432184,
+    "mtime": 1789134379.3228626,
     "ast_hash": "e480abcc46432ac2283f5e86db584202",
     "semantic_hash": ""
   },
   "example/package.json": {
-    "mtime": 1788970760.0433114,
-    "ast_hash": "94a748928623770c5fef1aef7d51c121",
+    "mtime": 1789396791.4561086,
+    "ast_hash": "7869a023aef37f8348bded43cf98489d",
     "semantic_hash": ""
   },
   "example/src/AppContext.ts": {
@@ -75,7 +75,7 @@
     "semantic_hash": "37e4991014bccc0ff01b64bcb4ef01b3"
   },
   "example/src/design_system/atoms/index.ts": {
-    "mtime": 1788972111.5171957,
+    "mtime": 1789134379.3264854,
     "ast_hash": "f42963bee36283ea489a2be43d9e89e5",
     "semantic_hash": ""
   },
@@ -100,9 +100,9 @@
     "semantic_hash": "a9f5c60cb504350567673506c5c4499e"
   },
   "example/src/design_system/molecules/SliderWithLabel/SliderWithLabel.tsx": {
-    "mtime": 1788592163.6751065,
-    "ast_hash": "bf08495d5ac58052dfafde9921dab8c1",
-    "semantic_hash": "bf08495d5ac58052dfafde9921dab8c1"
+    "mtime": 1789396672.8865793,
+    "ast_hash": "05de5ae0a448d667bfdaaf7502f5d4e8",
+    "semantic_hash": ""
   },
   "example/src/design_system/molecules/SliderWithLabel/index.ts": {
     "mtime": 1781091154.3775084,
@@ -120,12 +120,12 @@
     "semantic_hash": "ba77bbaaa7d1935db813591d3b80afd4"
   },
   "example/src/design_system/molecules/index.ts": {
-    "mtime": 1788970789.5193996,
+    "mtime": 1789134379.3270094,
     "ast_hash": "0f7b81adf25f56121abe2229f22580b4",
     "semantic_hash": ""
   },
   "example/src/design_system/style/index.ts": {
-    "mtime": 1788970789.5194821,
+    "mtime": 1789134379.3271713,
     "ast_hash": "57619b920676ff9a95224efb64b5dbb6",
     "semantic_hash": ""
   },
@@ -145,8 +145,8 @@
     "semantic_hash": "f4f8ece5df28035d7b29cd2845e965cf"
   },
   "package.json": {
-    "mtime": 1788711136.1864552,
-    "ast_hash": "cbff8d8e0a324086d30013141d27b9c7",
+    "mtime": 1789396672.8869436,
+    "ast_hash": "eb427638858a7f08f00d53d132e56531",
     "semantic_hash": ""
   },
   "src/Bg.tsx": {
@@ -165,7 +165,7 @@
     "semantic_hash": ""
   },
   "src/CircleLayoutComponent.tsx": {
-    "mtime": 1788970638.6810954,
+    "mtime": 1789134379.3332932,
     "ast_hash": "ead4250f4f78f282b6833754811f3aed",
     "semantic_hash": ""
   },
@@ -330,9 +330,9 @@
     "semantic_hash": "9e8858fb9c2c53164adfab0d23bd903b"
   },
   ".github/actions/setup/action.yml": {
-    "mtime": 1781016277.857244,
-    "ast_hash": "50107dff3e30306cd5be9247ed0605db",
-    "semantic_hash": "50107dff3e30306cd5be9247ed0605db"
+    "mtime": 1789396672.8855827,
+    "ast_hash": "cf840587e16692a743f1fe4228801a0d",
+    "semantic_hash": ""
   },
   ".github/copilot-instructions.md": {
     "mtime": 1788592163.6728554,
@@ -340,27 +340,27 @@
     "semantic_hash": "ec2dc0dc7bef63488889f34de2f5584d"
   },
   ".github/workflows/ci.yml": {
-    "mtime": 1780823301.2803698,
-    "ast_hash": "58a4fdcbf8a0b32bb435dd9311682a17",
-    "semantic_hash": "58a4fdcbf8a0b32bb435dd9311682a17"
+    "mtime": 1789368942.9145844,
+    "ast_hash": "45d10d385a8e140a8c9defdbc883355a",
+    "semantic_hash": ""
   },
   ".github/workflows/deploy-pages.yml": {
-    "mtime": 1788592163.6729307,
-    "ast_hash": "c06585facaffb950b14a4108f1b10823",
-    "semantic_hash": "c06585facaffb950b14a4108f1b10823"
+    "mtime": 1789369406.0512056,
+    "ast_hash": "2e6e138d87cbd56d0a0c6164507ea2d7",
+    "semantic_hash": ""
   },
   ".github/workflows/eas-build.yml": {
-    "mtime": 1788592163.6730082,
-    "ast_hash": "5ede946ba101620a461e046b1e5455c3",
-    "semantic_hash": "5ede946ba101620a461e046b1e5455c3"
+    "mtime": 1789369406.0513654,
+    "ast_hash": "c6f1da76de73208c749233ba2194d454",
+    "semantic_hash": ""
   },
   ".github/workflows/npm-publish.yml": {
-    "mtime": 1788707510.74075,
-    "ast_hash": "fce26f77b1ebc1a5ec894603ebbddc5f",
+    "mtime": 1789368942.91519,
+    "ast_hash": "097781bb31ae5f9824ae553f9c636243",
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1788970780.0041554,
+    "mtime": 1789134379.3224716,
     "ast_hash": "5ca7fc7d3a0ad3ea9a736fe5770822d4",
     "semantic_hash": ""
   },
@@ -405,7 +405,7 @@
     "semantic_hash": "477d9959972912279da5677825ef61c3"
   },
   "docs/agents/issue-tracker.md": {
-    "mtime": 1788970780.0042439,
+    "mtime": 1789134379.3226771,
     "ast_hash": "8b556e8dd053f7d11010d4e9c9227b1b",
     "semantic_hash": ""
   },
@@ -420,8 +420,8 @@
     "semantic_hash": "efc5a6411e866be3e5d95d8ef52559b7"
   },
   "pnpm-workspace.yaml": {
-    "mtime": 1788970743.4239063,
-    "ast_hash": "38735dcfb4ab3b9a5c1f596b5acc7468",
+    "mtime": 1789396672.8885653,
+    "ast_hash": "8d8602662d8dba83f0dca9bcda731a23",
     "semantic_hash": ""
   },
   "example/assets/android-icon-background.png": {
@@ -455,17 +455,17 @@
     "semantic_hash": "97dae5a0e62ad8551d8a31897b425e63"
   },
   "example/src/app/NestedRingMenu.tsx": {
-    "mtime": 1789024368.5744646,
+    "mtime": 1789134379.3248336,
     "ast_hash": "649f095c822ec893cde90f24f7194ae7",
     "semantic_hash": ""
   },
   "example/src/app/RadialMenu.tsx": {
-    "mtime": 1789024368.574563,
+    "mtime": 1789134379.3253415,
     "ast_hash": "317e5374258d57f4c35c23d334b73688",
     "semantic_hash": ""
   },
   "example/src/app/_layout.tsx": {
-    "mtime": 1789053266.3681734,
+    "mtime": 1789134379.3258653,
     "ast_hash": "ac63abb2effc0fe9778291802533969a",
     "semantic_hash": ""
   },
@@ -499,99 +499,89 @@
     "ast_hash": "2efeba925581b6843c8eb6d99637535f",
     "semantic_hash": ""
   },
-  ".claude/launch.json": {
-    "mtime": 1788971826.415532,
-    "ast_hash": "7f0a3acf7e6ecc9c4cd22cedb4223a2c",
-    "semantic_hash": ""
-  },
   "example/src/AnimatedComponents.tsx": {
-    "mtime": 1788970750.035503,
+    "mtime": 1789134379.3231878,
     "ast_hash": "c9670a51417ef9d91cce128d3385d852",
     "semantic_hash": ""
   },
   "example/src/DriverMetrics.tsx": {
-    "mtime": 1789019061.7510393,
+    "mtime": 1789134379.3234377,
     "ast_hash": "3cb5e60ce6995eec58d569be79f053ad",
     "semantic_hash": ""
   },
   "example/src/app/CircularNavMenu.tsx": {
-    "mtime": 1789024368.5741682,
+    "mtime": 1789134379.3236651,
     "ast_hash": "bccd142a1cded76c62e1dd024ec7be79",
     "semantic_hash": ""
   },
   "example/src/app/DonutChart.tsx": {
-    "mtime": 1789024520.8917148,
+    "mtime": 1789134379.3238544,
     "ast_hash": "064958144bfe29da5603308353ceebd1",
     "semantic_hash": ""
   },
   "example/src/app/GestureSelector.tsx": {
-    "mtime": 1789022848.4715958,
+    "mtime": 1789134379.3240778,
     "ast_hash": "1de48710a422a490958b271a8e631545",
     "semantic_hash": ""
   },
   "example/src/app/MotiIntegration.tsx": {
-    "mtime": 1789024368.5743506,
-    "ast_hash": "c3df207197a81e32bb3553d50684a84c",
+    "mtime": 1789396672.886254,
+    "ast_hash": "f09d17bee89e43f20e4422b834c44540",
     "semantic_hash": ""
   },
   "example/src/app/OrbitalAnimation.tsx": {
-    "mtime": 1788972111.5166574,
+    "mtime": 1789134379.3250449,
     "ast_hash": "d4fb412d868cfc1a293ea0131b10f87d",
     "semantic_hash": ""
   },
   "example/src/app/ReanimatedDriver.tsx": {
-    "mtime": 1789024368.5747006,
+    "mtime": 1789134379.3256538,
     "ast_hash": "72de40feb9fc598b542ac5fcee8011f9",
     "semantic_hash": ""
   },
   "example/src/design_system/atoms/CircleBadge/CircleBadge.tsx": {
-    "mtime": 1788971802.058905,
+    "mtime": 1789134379.3260767,
     "ast_hash": "0237286ab40a4c6171b4d716030babd4",
     "semantic_hash": ""
   },
   "example/src/design_system/atoms/CircleBadge/index.ts": {
-    "mtime": 1788971702.6895027,
+    "mtime": 1789134379.3262289,
     "ast_hash": "a23555ae832537a03dc149711c023e70",
     "semantic_hash": ""
   },
   "example/src/design_system/molecules/ScreenHeader/ScreenHeader.tsx": {
-    "mtime": 1789054262.5209398,
+    "mtime": 1789134379.3267195,
     "ast_hash": "64336257cdf9af48d72720aae564840b",
     "semantic_hash": ""
   },
   "example/src/design_system/molecules/ScreenHeader/index.ts": {
-    "mtime": 1788970789.5193152,
+    "mtime": 1789134379.326847,
     "ast_hash": "b934f77284c169f9e8117267dc760695",
     "semantic_hash": ""
   },
   "example/src/hooks/useCircleVisibilityRef.ts": {
-    "mtime": 1788970795.1380348,
+    "mtime": 1789134379.3273506,
     "ast_hash": "0d5f9abec9f6da46864bce8d9d32f42b",
     "semantic_hash": ""
   },
   "example/src/hooks/useShowOnMount.ts": {
-    "mtime": 1788970795.1380994,
+    "mtime": 1789134379.3274803,
     "ast_hash": "c0a952e33d3dd0fdf996b0b391589aed",
     "semantic_hash": ""
   },
   "example/src/hooks/useToggle.ts": {
-    "mtime": 1789019223.6756837,
+    "mtime": 1789134379.3276412,
     "ast_hash": "97b289a4b51fd8d9e1e47624b290b9c8",
     "semantic_hash": ""
   },
   "example/src/app/MediaReel.tsx": {
-    "mtime": 1789055783.091185,
+    "mtime": 1789134379.3243666,
     "ast_hash": "292c8b8350fa6799231516f75a78a689",
     "semantic_hash": ""
   },
   "example/src/utils/animationPresets.ts": {
-    "mtime": 1789024368.5939581,
+    "mtime": 1789134379.3278434,
     "ast_hash": "fa7f0ad060ff8cec6cfa553af43e2a93",
-    "semantic_hash": ""
-  },
-  "example/src/app/COMPARISON.md": {
-    "mtime": 1789024594.9795756,
-    "ast_hash": "a6d99fd5d7650e1f5640057f45b51941",
     "semantic_hash": ""
   }
 }
