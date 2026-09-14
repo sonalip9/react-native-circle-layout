@@ -19,10 +19,9 @@ runs:
         path: |
           **/node_modules
           ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('**/package.json', '!node_modules/**') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          ${{ runner.os }}-pnpm-
+        # Exact match only: installing over a node_modules tree restored from
+        # an older lockfile leaves pnpm's hoisted packages missing.
+        key: ${{ runner.os }}-pnpm-v2-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('**/package.json', '!node_modules/**') }}
 
     - name: Install dependencies
       if: steps.pnpm-cache.outputs.cache-hit != 'true'

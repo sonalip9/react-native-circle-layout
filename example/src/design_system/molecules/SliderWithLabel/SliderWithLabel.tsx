@@ -1,4 +1,4 @@
-import Slider from '@react-native-community/slider';
+import SliderClass, { type SliderProps } from '@react-native-community/slider';
 import {
   color,
   createRestyleComponent,
@@ -6,12 +6,17 @@ import {
   type ColorProps,
   type SpacingProps,
 } from '@shopify/restyle';
+import type { ComponentType } from 'react';
 import { Platform, type ViewStyle } from 'react-native';
 
 import { palette, type Theme } from '../../style';
 import { Text } from '../../atoms/Text';
 import { View, type ViewProps } from '../../atoms/View';
 import { resolveStyles } from '../../../utils/resolveStyles';
+
+// Slider 5.2.0's mixin class typing is not a valid JSX type under React
+// Native 0.86 types. 5.2.1 fixes it, but Expo SDK 57 pins 5.2.0.
+const Slider = SliderClass as unknown as ComponentType<SliderProps>;
 
 type SliderWithLabelOwnProps = {
   label: string;
