@@ -116,7 +116,7 @@ const MotiItem = ({
         'worklet';
         return { scale: pressed ? 0.85 : 1 };
       }}
-      transition={{ type: 'spring', ...PRESS_SPRING }}
+      transition={PRESS_SPRING}
       onPress={() => onPress(icon.label)}
     >
       <CircleBadge size={48} color={icon.color} shadow="item">
