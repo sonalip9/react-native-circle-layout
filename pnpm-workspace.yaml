@@ -18,7 +18,10 @@ overrides:
   joi: ^17.13.4
   'js-yaml@3': ^3.15.1
   'js-yaml@4': ^4.3.1
-  minimatch: ^5.1.8
+  'minimatch@3': ^3.1.5
+  'minimatch@5': ^5.1.8
+  'minimatch@9': ^9.0.9
+  'minimatch@10': ^10.2.6
   nanoid: ^3.3.18
   node-forge: ^1.4.0
   postcss: ^8.5.23
@@ -29,9 +32,11 @@ overrides:
   uuid: ^11.1.1
   yaml: ^2.8.3
 allowBuilds:
+  '@parcel/watcher': false
   dtrace-provider: false
   lefthook: true
   msgpackr-extract: true
+  protobufjs: false
   unrs-resolver: true
 minimumReleaseAgeExclude:
   - '@eslint-react/ast@5.9.0'
@@ -48,3 +53,20 @@ minimumReleaseAgeExclude:
   - eslint-plugin-react-web-api@5.9.0
   - eslint-plugin-react-x@5.9.0
   - eslint@10.5.0
+  - '@expo/cli@57.0.24'
+  - '@expo/fingerprint@0.20.13'
+  - '@expo/prebuild-config@57.0.16'
+  - expo-asset@57.0.17
+  - expo-constants@57.0.18
+  - expo-file-system@57.0.7
+  - expo-font@57.0.4
+  - expo-keep-awake@57.0.2
+  - expo-modules-autolinking@57.0.13
+  - expo-modules-core@57.0.18
+  - expo@57.0.22
+  - '@expo/ui@57.0.18'
+  - expo-glass-effect@57.0.3
+  - expo-router@57.0.21
+  - expo-splash-screen@57.0.9
+  - expo-symbols@57.0.3
+  - expo-system-ui@57.0.4
