@@ -37,7 +37,8 @@
           }
         }
       ],
-      "@react-native-vector-icons/ant-design"
+      "@react-native-vector-icons/ant-design",
+      "expo-status-bar"
     ],
     "experiments": {
       "typedRoutes": true,
