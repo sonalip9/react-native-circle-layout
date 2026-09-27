@@ -26,32 +26,32 @@ const baseContext: CircleLayoutContextType = {
 
 describe('useCombinedAnimation', () => {
   describe('without animation props', () => {
-    it('returns static radius from context when no LINEAR config', () => {
-      const { result } = renderHook(
+    it('returns static radius from context when no LINEAR config', async () => {
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(baseContext) }
       );
       expect(result.current.radiusValue).toBe(100);
     });
 
-    it('returns static radians prop when no CIRCULAR config', () => {
-      const { result } = renderHook(
+    it('returns static radians prop when no CIRCULAR config', async () => {
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 1, radians: Math.PI / 2 }),
         { wrapper: makeWrapper(baseContext) }
       );
       expect(result.current.radiansValue).toBe(Math.PI / 2);
     });
 
-    it('returns opacity 1 when no OPACITY config', () => {
-      const { result } = renderHook(
+    it('returns opacity 1 when no OPACITY config', async () => {
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(baseContext) }
       );
       expect(result.current.opacityValue).toBe(1);
     });
 
-    it('exposes showComponent and hideComponent functions', () => {
-      const { result } = renderHook(
+    it('exposes showComponent and hideComponent functions', async () => {
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(baseContext) }
       );
@@ -59,8 +59,8 @@ describe('useCombinedAnimation', () => {
       expect(typeof result.current.hideComponent).toBe('function');
     });
 
-    it('showComponent and hideComponent are no-ops without animationProps', () => {
-      const { result } = renderHook(
+    it('showComponent and hideComponent are no-ops without animationProps', async () => {
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(baseContext) }
       );
@@ -86,8 +86,8 @@ describe('useCombinedAnimation', () => {
       },
     };
 
-    it('returns Animated.Value for opacity when OPACITY config provided', () => {
-      const { result } = renderHook(
+    it('returns Animated.Value for opacity when OPACITY config provided', async () => {
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(ctxWithOpacity) }
       );
@@ -95,8 +95,8 @@ describe('useCombinedAnimation', () => {
       expect(typeof result.current.opacityValue).toBe('object');
     });
 
-    it('showComponent and hideComponent run OPACITY animation without throwing', () => {
-      const { result } = renderHook(
+    it('showComponent and hideComponent run OPACITY animation without throwing', async () => {
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(ctxWithOpacity) }
       );
@@ -122,8 +122,8 @@ describe('useCombinedAnimation', () => {
       },
     };
 
-    it('returns Animated.Value for radius when LINEAR config provided', () => {
-      const { result } = renderHook(
+    it('returns Animated.Value for radius when LINEAR config provided', async () => {
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(ctxWithLinear) }
       );
@@ -142,8 +142,8 @@ describe('useCombinedAnimation', () => {
       },
     };
 
-    it('returns Animated.Value for radians when CIRCULAR config provided', () => {
-      const { result } = renderHook(
+    it('returns Animated.Value for radians when CIRCULAR config provided', async () => {
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 0, radians: Math.PI }),
         { wrapper: makeWrapper(ctxWithCircular) }
       );
@@ -163,8 +163,8 @@ describe('useCombinedAnimation', () => {
       },
     };
 
-    it('showComponent and hideComponent run animations in SEQUENCE without throwing', () => {
-      const { result } = renderHook(
+    it('showComponent and hideComponent run animations in SEQUENCE without throwing', async () => {
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(ctxWithSequence) }
       );
@@ -180,7 +180,7 @@ describe('useCombinedAnimation', () => {
   });
 
   describe('edge cases', () => {
-    it('handles empty animationConfigs object without throwing', () => {
+    it('handles empty animationConfigs object without throwing', async () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationProps: {
@@ -188,7 +188,7 @@ describe('useCombinedAnimation', () => {
           animationCombinationType: AnimationCombinationType.PARALLEL,
         },
       };
-      const { result } = renderHook(
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(ctx) }
       );
@@ -202,7 +202,7 @@ describe('useCombinedAnimation', () => {
       }).not.toThrow();
     });
 
-    it('handles radians > 2π with CIRCULAR animation without throwing', () => {
+    it('handles radians > 2π with CIRCULAR animation without throwing', async () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationProps: {
@@ -212,15 +212,17 @@ describe('useCombinedAnimation', () => {
           animationCombinationType: AnimationCombinationType.PARALLEL,
         },
       };
-      expect(() => {
-        renderHook(
-          () => useCombinedAnimation({ index: 0, radians: 3 * Math.PI }),
-          { wrapper: makeWrapper(ctx) }
-        );
-      }).not.toThrow();
+      await expect(
+        (async () => {
+          await renderHook(
+            () => useCombinedAnimation({ index: 0, radians: 3 * Math.PI }),
+            { wrapper: makeWrapper(ctx) }
+          );
+        })()
+      ).resolves.not.toThrow();
     });
 
-    it('animationGap of 0 in SEQUENCE produces zero delay without throwing', () => {
+    it('animationGap of 0 in SEQUENCE produces zero delay without throwing', async () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationProps: {
@@ -231,7 +233,7 @@ describe('useCombinedAnimation', () => {
           animationGap: 0,
         },
       };
-      const { result } = renderHook(
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(ctx) }
       );
@@ -245,16 +247,16 @@ describe('useCombinedAnimation', () => {
       }).not.toThrow();
     });
 
-    it('returns opacity 1 when no OPACITY config and component is visible', () => {
+    it('returns opacity 1 when no OPACITY config and component is visible', async () => {
       // No animationProps → componentVisible drives opacityValue
-      const { result } = renderHook(
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(baseContext) }
       );
       expect(result.current.opacityValue).toBe(1);
     });
 
-    it('handles large index with SEQUENCE (large staggered delay) without throwing', () => {
+    it('handles large index with SEQUENCE (large staggered delay) without throwing', async () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationProps: {
@@ -266,11 +268,11 @@ describe('useCombinedAnimation', () => {
         },
       };
       jest.useFakeTimers();
+      const { result } = await renderHook(
+        () => useCombinedAnimation({ index: 999, radians: 0 }),
+        { wrapper: makeWrapper(ctx) }
+      );
       expect(() => {
-        const { result } = renderHook(
-          () => useCombinedAnimation({ index: 999, radians: 0 }),
-          { wrapper: makeWrapper(ctx) }
-        );
         act(() => {
           result.current.showComponent();
         });
@@ -284,8 +286,8 @@ describe('useCombinedAnimation', () => {
       jest.useRealTimers();
     });
 
-    it('returns static values when no animationProps provided with non-zero radians', () => {
-      const { result } = renderHook(
+    it('returns static values when no animationProps provided with non-zero radians', async () => {
+      const { result } = await renderHook(
         () => useCombinedAnimation({ index: 2, radians: Math.PI }),
         { wrapper: makeWrapper(baseContext) }
       );
