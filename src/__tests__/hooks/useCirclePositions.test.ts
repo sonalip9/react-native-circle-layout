@@ -2,15 +2,15 @@ import { renderHook } from '@testing-library/react-native';
 import { useCirclePosition, useCirclePositions } from '../../hooks';
 
 describe('useCirclePositions', () => {
-  it('returns empty array for count 0', () => {
-    const { result } = renderHook(() =>
+  it('returns empty array for count 0', async () => {
+    const { result } = await renderHook(() =>
       useCirclePositions({ count: 0, radius: 100 })
     );
     expect(result.current).toEqual([]);
   });
 
-  it('distributes positions evenly around full circle', () => {
-    const { result } = renderHook(() =>
+  it('distributes positions evenly around full circle', async () => {
+    const { result } = await renderHook(() =>
       useCirclePositions({ count: 4, radius: 100 })
     );
     expect(result.current).toHaveLength(4);
@@ -36,8 +36,8 @@ describe('useCirclePositions', () => {
     expect(result.current[3]!.angle).toBeCloseTo((3 * Math.PI) / 2);
   });
 
-  it('respects startAngle', () => {
-    const { result } = renderHook(() =>
+  it('respects startAngle', async () => {
+    const { result } = await renderHook(() =>
       useCirclePositions({
         count: 2,
         radius: 100,
@@ -50,8 +50,8 @@ describe('useCirclePositions', () => {
     expect(result.current[0]!.y).toBeCloseTo(100);
   });
 
-  it('distributes over partial sweep (not complete circle)', () => {
-    const { result } = renderHook(() =>
+  it('distributes over partial sweep (not complete circle)', async () => {
+    const { result } = await renderHook(() =>
       useCirclePositions({
         count: 3,
         radius: 100,
@@ -68,8 +68,8 @@ describe('useCirclePositions', () => {
     expect(result.current[2]!.angle).toBeCloseTo(Math.PI);
   });
 
-  it('handles single item', () => {
-    const { result } = renderHook(() =>
+  it('handles single item', async () => {
+    const { result } = await renderHook(() =>
       useCirclePositions({ count: 1, radius: 50 })
     );
     expect(result.current).toHaveLength(1);
@@ -79,8 +79,8 @@ describe('useCirclePositions', () => {
 });
 
 describe('useCirclePosition', () => {
-  it('returns position for a single index', () => {
-    const { result } = renderHook(() =>
+  it('returns position for a single index', async () => {
+    const { result } = await renderHook(() =>
       useCirclePosition({ index: 1, count: 4, radius: 100 })
     );
     // Second item in 4-item full circle: angle = π/2
@@ -89,11 +89,11 @@ describe('useCirclePosition', () => {
     expect(result.current.y).toBeCloseTo(100);
   });
 
-  it('matches useCirclePositions output', () => {
-    const { result: allResult } = renderHook(() =>
+  it('matches useCirclePositions output', async () => {
+    const { result: allResult } = await renderHook(() =>
       useCirclePositions({ count: 6, radius: 120, startAngle: 0.5 })
     );
-    const { result: singleResult } = renderHook(() =>
+    const { result: singleResult } = await renderHook(() =>
       useCirclePosition({ index: 3, count: 6, radius: 120, startAngle: 0.5 })
     );
 

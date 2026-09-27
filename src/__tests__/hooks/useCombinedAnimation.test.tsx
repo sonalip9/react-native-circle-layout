@@ -64,14 +64,16 @@ describe('useCombinedAnimation', () => {
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(baseContext) }
       );
-      expect(() => {
-        act(() => {
-          result.current.hideComponent();
-        });
-        act(() => {
-          result.current.showComponent();
-        });
-      }).not.toThrow();
+      await expect(
+        (async () => {
+          await act(() => {
+            result.current.hideComponent();
+          });
+          await act(() => {
+            result.current.showComponent();
+          });
+        })()
+      ).resolves.not.toThrow();
     });
   });
 
@@ -100,14 +102,16 @@ describe('useCombinedAnimation', () => {
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(ctxWithOpacity) }
       );
-      expect(() => {
-        act(() => {
-          result.current.hideComponent();
-        });
-        act(() => {
-          result.current.showComponent();
-        });
-      }).not.toThrow();
+      await expect(
+        (async () => {
+          await act(() => {
+            result.current.hideComponent();
+          });
+          await act(() => {
+            result.current.showComponent();
+          });
+        })()
+      ).resolves.not.toThrow();
     });
   });
 
@@ -168,14 +172,16 @@ describe('useCombinedAnimation', () => {
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(ctxWithSequence) }
       );
-      expect(() => {
-        act(() => {
-          result.current.hideComponent();
-        });
-        act(() => {
-          result.current.showComponent();
-        });
-      }).not.toThrow();
+      await expect(
+        (async () => {
+          await act(() => {
+            result.current.hideComponent();
+          });
+          await act(() => {
+            result.current.showComponent();
+          });
+        })()
+      ).resolves.not.toThrow();
     });
   });
 
@@ -192,14 +198,16 @@ describe('useCombinedAnimation', () => {
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(ctx) }
       );
-      expect(() => {
-        act(() => {
-          result.current.hideComponent();
-        });
-        act(() => {
-          result.current.showComponent();
-        });
-      }).not.toThrow();
+      await expect(
+        (async () => {
+          await act(() => {
+            result.current.hideComponent();
+          });
+          await act(() => {
+            result.current.showComponent();
+          });
+        })()
+      ).resolves.not.toThrow();
     });
 
     it('handles radians > 2π with CIRCULAR animation without throwing', async () => {
@@ -237,14 +245,16 @@ describe('useCombinedAnimation', () => {
         () => useCombinedAnimation({ index: 0, radians: 0 }),
         { wrapper: makeWrapper(ctx) }
       );
-      expect(() => {
-        act(() => {
-          result.current.hideComponent();
-        });
-        act(() => {
-          result.current.showComponent();
-        });
-      }).not.toThrow();
+      await expect(
+        (async () => {
+          await act(() => {
+            result.current.hideComponent();
+          });
+          await act(() => {
+            result.current.showComponent();
+          });
+        })()
+      ).resolves.not.toThrow();
     });
 
     it('returns opacity 1 when no OPACITY config and component is visible', async () => {
@@ -272,17 +282,19 @@ describe('useCombinedAnimation', () => {
         () => useCombinedAnimation({ index: 999, radians: 0 }),
         { wrapper: makeWrapper(ctx) }
       );
-      expect(() => {
-        act(() => {
-          result.current.showComponent();
-        });
-        act(() => {
-          result.current.hideComponent();
-        });
-        act(() => {
-          jest.runOnlyPendingTimers();
-        });
-      }).not.toThrow();
+      await expect(
+        (async () => {
+          await act(() => {
+            result.current.showComponent();
+          });
+          await act(() => {
+            result.current.hideComponent();
+          });
+          await act(() => {
+            jest.runOnlyPendingTimers();
+          });
+        })()
+      ).resolves.not.toThrow();
       jest.useRealTimers();
     });
 

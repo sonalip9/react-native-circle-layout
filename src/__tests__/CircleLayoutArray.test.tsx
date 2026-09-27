@@ -28,7 +28,7 @@ const zeroCenterLayout: Layout = { width: 0, height: 0 };
 const makeComponents = (n: number) =>
   Array.from({ length: n }, (_, i) => <Text key={i}>Item {i}</Text>);
 
-const renderArray = (
+const renderArray = async (
   components: React.ReactNode[],
   ctx?: CircleLayoutContextType,
   props: Partial<{
@@ -37,7 +37,7 @@ const renderArray = (
   }> = {}
 ) => {
   const context = ctx ?? makeContext(components.length);
-  return render(
+  return await render(
     <CircleLayoutContext value={context}>
       <View>
         <CircleLayoutArray
@@ -55,8 +55,8 @@ const renderArray = (
 
 describe('CircleLayoutArray', () => {
   describe('rendering', () => {
-    it('renders all components', () => {
-      const { getAllByText } = renderArray([
+    it('renders all components', async () => {
+      const { getAllByText } = await renderArray([
         <Text key="A">A</Text>,
         <Text key="B">B</Text>,
         <Text key="C">C</Text>,
@@ -64,23 +64,23 @@ describe('CircleLayoutArray', () => {
       expect(getAllByText(/^[ABC]$/)).toHaveLength(3);
     });
 
-    it('renders with minimum of 2 components', () => {
-      expect(() => renderArray(makeComponents(2))).not.toThrow();
+    it('renders with minimum of 2 components', async () => {
+      await expect(renderArray(makeComponents(2))).resolves.not.toThrow();
     });
 
-    it('renders all 8 components when given 8', () => {
-      const { getAllByText } = renderArray(makeComponents(8));
+    it('renders all 8 components when given 8', async () => {
+      const { getAllByText } = await renderArray(makeComponents(8));
       expect(getAllByText(/^Item \d$/)).toHaveLength(8);
     });
   });
 
   describe('dynamic component changes', () => {
-    it('renders newly added component when components prop grows', () => {
-      const { rerender, getAllByText } = renderArray([
+    it('renders newly added component when components prop grows', async () => {
+      const { rerender, getAllByText } = await renderArray([
         <Text key="A">A</Text>,
         <Text key="B">B</Text>,
       ]);
-      rerender(
+      await rerender(
         <CircleLayoutContext value={makeContext(3)}>
           <View>
             <CircleLayoutArray
@@ -99,13 +99,13 @@ describe('CircleLayoutArray', () => {
       expect(getAllByText(/^[ABC]$/)).toHaveLength(3);
     });
 
-    it('removes unmounted component when components prop shrinks', () => {
-      const { rerender, queryByText } = renderArray([
+    it('removes unmounted component when components prop shrinks', async () => {
+      const { rerender, queryByText } = await renderArray([
         <Text key="A">A</Text>,
         <Text key="B">B</Text>,
         <Text key="C">C</Text>,
       ]);
-      rerender(
+      await rerender(
         <CircleLayoutContext value={makeContext(2)}>
           <View>
             <CircleLayoutArray
@@ -122,9 +122,9 @@ describe('CircleLayoutArray', () => {
   });
 
   describe('visibility (via VisibilityContext)', () => {
-    const renderArrayWithVisibility = (visible: boolean) => {
+    const renderArrayWithVisibility = async (visible: boolean) => {
       const context = makeContext(3);
-      return render(
+      return await render(
         <CircleLayoutContext value={context}>
           <VisibilityContext value={visible}>
             <View>
@@ -140,36 +140,38 @@ describe('CircleLayoutArray', () => {
       );
     };
 
-    it('renders components when VisibilityContext is true', () => {
-      const { getAllByText } = renderArrayWithVisibility(true);
+    it('renders components when VisibilityContext is true', async () => {
+      const { getAllByText } = await renderArrayWithVisibility(true);
       expect(getAllByText(/^Item \d$/)).toHaveLength(3);
     });
 
-    it('still mounts components when VisibilityContext is false (hidden via animation, not unmount)', () => {
-      const { getAllByText } = renderArrayWithVisibility(false);
+    it('still mounts components when VisibilityContext is false (hidden via animation, not unmount)', async () => {
+      const { getAllByText } = await renderArrayWithVisibility(false);
       expect(getAllByText(/^Item \d$/)).toHaveLength(3);
     });
   });
 
   describe('setMinComponentLayout callback', () => {
-    it('calls setMinComponentLayout with layout dimensions after render', () => {
+    it('calls setMinComponentLayout with layout dimensions after render', async () => {
       const setMinComponentLayout = jest.fn();
-      renderArray(makeComponents(3), makeContext(3), { setMinComponentLayout });
+      await renderArray(makeComponents(3), makeContext(3), {
+        setMinComponentLayout,
+      });
       expect(setMinComponentLayout).toHaveBeenCalled();
     });
   });
 
   describe('edge cases', () => {
-    it('renders large number of components (20) without throwing', () => {
-      expect(() => renderArray(makeComponents(20))).not.toThrow();
+    it('renders large number of components (20) without throwing', async () => {
+      await expect(renderArray(makeComponents(20))).resolves.not.toThrow();
     });
 
-    it('renders when all components in array are null', () => {
-      expect(() => renderArray([null, null, null])).not.toThrow();
+    it('renders when all components in array are null', async () => {
+      await expect(renderArray([null, null, null])).resolves.not.toThrow();
     });
 
-    it('renders with sweepAngle < 2π (quarter-circle)', () => {
-      expect(() =>
+    it('renders with sweepAngle < 2π (quarter-circle)', async () => {
+      await expect(
         render(
           <CircleLayoutContext value={makeContext(4)}>
             <View>
@@ -182,24 +184,28 @@ describe('CircleLayoutArray', () => {
             </View>
           </CircleLayoutContext>
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders with non-zero centerComponentLayout without throwing', () => {
-      expect(() =>
+    it('renders with non-zero centerComponentLayout without throwing', async () => {
+      await expect(
         renderArray(makeComponents(3), makeContext(3), {
           centerComponentLayout: { width: 50, height: 50 },
         })
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('calls setMinComponentLayout again when components grow', () => {
+    it('calls setMinComponentLayout again when components grow', async () => {
       const setMinComponentLayout = jest.fn();
-      const { rerender } = renderArray(makeComponents(3), makeContext(3), {
-        setMinComponentLayout,
-      });
+      const { rerender } = await renderArray(
+        makeComponents(3),
+        makeContext(3),
+        {
+          setMinComponentLayout,
+        }
+      );
       const callsBefore = setMinComponentLayout.mock.calls.length;
-      rerender(
+      await rerender(
         <CircleLayoutContext value={makeContext(5)}>
           <View>
             <CircleLayoutArray
