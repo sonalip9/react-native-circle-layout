@@ -35,40 +35,36 @@ const trackAnimatedValue = (v: Animated.Value, initialValue: number) => {
 
 describe('useAnimation', () => {
   describe('native driver configuration', () => {
-    it('uses native driver by default', () => {
+    it('uses native driver by default', async () => {
       const timingSpy = jest.spyOn(Animated, 'timing');
 
-      const { result } = renderHook(() => useAnimation(baseConfig));
+      const { result } = await renderHook(() => useAnimation(baseConfig));
       result.current.entryAnimation();
       result.current.exitAnimation();
 
       const entryCallConfig = timingSpy.mock.calls[0]?.[1] as
-        | Animated.TimingAnimationConfig
-        | undefined;
+        Animated.TimingAnimationConfig | undefined;
       const exitCallConfig = timingSpy.mock.calls[1]?.[1] as
-        | Animated.TimingAnimationConfig
-        | undefined;
+        Animated.TimingAnimationConfig | undefined;
 
       expect(entryCallConfig?.useNativeDriver).toBe(true);
       expect(exitCallConfig?.useNativeDriver).toBe(true);
       timingSpy.mockRestore();
     });
 
-    it('allows disabling native driver explicitly', () => {
+    it('allows disabling native driver explicitly', async () => {
       const timingSpy = jest.spyOn(Animated, 'timing');
 
-      const { result } = renderHook(() =>
+      const { result } = await renderHook(() =>
         useAnimation({ ...baseConfig, useNativeDriver: false })
       );
       result.current.entryAnimation();
       result.current.exitAnimation();
 
       const entryCallConfig = timingSpy.mock.calls[0]?.[1] as
-        | Animated.TimingAnimationConfig
-        | undefined;
+        Animated.TimingAnimationConfig | undefined;
       const exitCallConfig = timingSpy.mock.calls[1]?.[1] as
-        | Animated.TimingAnimationConfig
-        | undefined;
+        Animated.TimingAnimationConfig | undefined;
 
       expect(entryCallConfig?.useNativeDriver).toBe(false);
       expect(exitCallConfig?.useNativeDriver).toBe(false);
@@ -77,30 +73,30 @@ describe('useAnimation', () => {
   });
 
   describe('initial state', () => {
-    it('initializes Animated.Value at initialValue', () => {
-      const { result } = renderHook(() => useAnimation(baseConfig));
+    it('initializes Animated.Value at initialValue', async () => {
+      const { result } = await renderHook(() => useAnimation(baseConfig));
       const tracker = trackAnimatedValue(result.current.value, 0);
       // Confirm by setting to initialValue and reading back
-      act(() => {
+      await act(() => {
         result.current.value.setValue(0);
       });
       expect(tracker.get()).toBe(0);
       tracker.dispose();
     });
 
-    it('initializes Animated.Value at non-zero initialValue', () => {
+    it('initializes Animated.Value at non-zero initialValue', async () => {
       const config = { ...baseConfig, initialValue: 0.5 };
-      const { result } = renderHook(() => useAnimation(config));
+      const { result } = await renderHook(() => useAnimation(config));
       const tracker = trackAnimatedValue(result.current.value, 0.5);
-      act(() => {
+      await act(() => {
         result.current.value.setValue(0.5);
       });
       expect(tracker.get()).toBe(0.5);
       tracker.dispose();
     });
 
-    it('returns value, entryAnimation fn, and exitAnimation fn', () => {
-      const { result } = renderHook(() => useAnimation(baseConfig));
+    it('returns value, entryAnimation fn, and exitAnimation fn', async () => {
+      const { result } = await renderHook(() => useAnimation(baseConfig));
       expect(typeof result.current.entryAnimation).toBe('function');
       expect(typeof result.current.exitAnimation).toBe('function');
       expect(typeof result.current.value).toBe('object');
@@ -108,8 +104,8 @@ describe('useAnimation', () => {
   });
 
   describe('value sync when initial/final props change', () => {
-    it('snaps to new finalValue when value is at old finalValue', () => {
-      const { result, rerender } = renderHook<
+    it('snaps to new finalValue when value is at old finalValue', async () => {
+      const { result, rerender } = await renderHook<
         ReturnType<typeof useAnimation<typeof rnAnimatedDriver>>,
         AnimationConfig
       >((props) => useAnimation(props), { initialProps: baseConfig });
@@ -117,22 +113,22 @@ describe('useAnimation', () => {
       const tracker = trackAnimatedValue(result.current.value, 0);
 
       // Move to finalValue (1)
-      act(() => {
+      await act(() => {
         result.current.value.setValue(1);
       });
       expect(tracker.get()).toBe(1);
 
       // Change finalValue → snap to new finalValue
-      act(() => {
-        rerender({ ...baseConfig, finalValue: 2 });
+      await act(async () => {
+        await rerender({ ...baseConfig, finalValue: 2 });
       });
       expect(tracker.get()).toBe(2);
 
       tracker.dispose();
     });
 
-    it('snaps to new initialValue when value is at old initialValue', () => {
-      const { result, rerender } = renderHook<
+    it('snaps to new initialValue when value is at old initialValue', async () => {
+      const { result, rerender } = await renderHook<
         ReturnType<typeof useAnimation<typeof rnAnimatedDriver>>,
         AnimationConfig
       >((props) => useAnimation(props), { initialProps: baseConfig });
@@ -140,21 +136,21 @@ describe('useAnimation', () => {
       const tracker = trackAnimatedValue(result.current.value, 0);
 
       // Set to initialValue (0) explicitly so listener tracks it
-      act(() => {
+      await act(() => {
         result.current.value.setValue(0);
       });
       expect(tracker.get()).toBe(0);
 
-      act(() => {
-        rerender({ ...baseConfig, initialValue: -1 });
+      await act(async () => {
+        await rerender({ ...baseConfig, initialValue: -1 });
       });
       expect(tracker.get()).toBe(-1);
 
       tracker.dispose();
     });
 
-    it('does not snap when value is between initial and final', () => {
-      const { result, rerender } = renderHook<
+    it('does not snap when value is between initial and final', async () => {
+      const { result, rerender } = await renderHook<
         ReturnType<typeof useAnimation<typeof rnAnimatedDriver>>,
         AnimationConfig
       >((props) => useAnimation(props), { initialProps: baseConfig });
@@ -162,52 +158,55 @@ describe('useAnimation', () => {
       const tracker = trackAnimatedValue(result.current.value, 0);
 
       // Place at mid-point (neither initial=0 nor final=1)
-      act(() => {
+      await act(() => {
         result.current.value.setValue(0.5);
       });
       expect(tracker.get()).toBe(0.5);
 
       // Change finalValue — should NOT snap (value is not at old finalValue)
-      act(() => {
-        rerender({ ...baseConfig, finalValue: 2 });
+      await act(async () => {
+        await rerender({ ...baseConfig, finalValue: 2 });
       });
       expect(tracker.get()).toBe(0.5);
 
       tracker.dispose();
     });
 
-    it('does not snap when neither initial nor final changed', () => {
-      const { result, rerender } = renderHook<
+    it('does not snap when neither initial nor final changed', async () => {
+      const { result, rerender } = await renderHook<
         ReturnType<typeof useAnimation<typeof rnAnimatedDriver>>,
         AnimationConfig
       >((props) => useAnimation(props), { initialProps: baseConfig });
 
       const tracker = trackAnimatedValue(result.current.value, 0);
-      act(() => {
+      await act(() => {
         result.current.value.setValue(1);
       });
 
-      act(() => {
-        rerender({ ...baseConfig, entryAnimationConfig: { duration: 500 } });
+      await act(async () => {
+        await rerender({
+          ...baseConfig,
+          entryAnimationConfig: { duration: 500 },
+        });
       });
       expect(tracker.get()).toBe(1);
 
       tracker.dispose();
     });
 
-    it('does not snap when only exitAnimationConfig changes', () => {
-      const { result, rerender } = renderHook<
+    it('does not snap when only exitAnimationConfig changes', async () => {
+      const { result, rerender } = await renderHook<
         ReturnType<typeof useAnimation<typeof rnAnimatedDriver>>,
         AnimationConfig
       >((props) => useAnimation(props), { initialProps: baseConfig });
 
       const tracker = trackAnimatedValue(result.current.value, 0);
-      act(() => {
+      await act(() => {
         result.current.value.setValue(0);
       });
 
-      act(() => {
-        rerender({
+      await act(async () => {
+        await rerender({
           ...baseConfig,
           exitAnimationConfig: { duration: 200 },
         });
@@ -220,8 +219,8 @@ describe('useAnimation', () => {
   });
 
   describe('edge cases', () => {
-    it('handles initialValue equal to finalValue without error', () => {
-      const { result } = renderHook(() =>
+    it('handles initialValue equal to finalValue without error', async () => {
+      const { result } = await renderHook(() =>
         useAnimation({
           driver: rnAnimatedDriver,
           initialValue: 1,
@@ -230,15 +229,15 @@ describe('useAnimation', () => {
         })
       );
       const tracker = trackAnimatedValue(result.current.value, 1);
-      act(() => {
+      await act(() => {
         result.current.value.setValue(1);
       });
       expect(tracker.get()).toBe(1);
       tracker.dispose();
     });
 
-    it('handles negative initialValue and finalValue', () => {
-      const { result } = renderHook(() =>
+    it('handles negative initialValue and finalValue', async () => {
+      const { result } = await renderHook(() =>
         useAnimation({
           driver: rnAnimatedDriver,
           initialValue: -1,
@@ -247,37 +246,39 @@ describe('useAnimation', () => {
         })
       );
       const tracker = trackAnimatedValue(result.current.value, -1);
-      act(() => {
+      await act(() => {
         result.current.value.setValue(-1);
       });
       expect(tracker.get()).toBe(-1);
       tracker.dispose();
     });
 
-    it('does not throw when both initialValue and finalValue change simultaneously', () => {
-      const { result, rerender } = renderHook<
+    it('does not throw when both initialValue and finalValue change simultaneously', async () => {
+      const { result, rerender } = await renderHook<
         ReturnType<typeof useAnimation<typeof rnAnimatedDriver>>,
         AnimationConfig
       >((props) => useAnimation(props), { initialProps: baseConfig });
 
       const tracker = trackAnimatedValue(result.current.value, 0);
-      act(() => {
+      await act(() => {
         result.current.value.setValue(1);
       });
 
-      expect(() => {
-        act(() => {
-          rerender({ ...baseConfig, initialValue: -1, finalValue: 2 });
-        });
-      }).not.toThrow();
+      await expect(
+        (async () => {
+          await act(async () => {
+            await rerender({ ...baseConfig, initialValue: -1, finalValue: 2 });
+          });
+        })()
+      ).resolves.not.toThrow();
       // Value snaps to one of the new boundary values (not left at mid-point)
       const v = tracker.get();
       expect(v === -1 || v === 2).toBe(true);
       tracker.dispose();
     });
 
-    it('entry and exit animations do not throw when duration is 0', () => {
-      const { result } = renderHook(() =>
+    it('entry and exit animations do not throw when duration is 0', async () => {
+      const { result } = await renderHook(() =>
         useAnimation({
           driver: rnAnimatedDriver,
           initialValue: 0,
@@ -298,8 +299,8 @@ describe('useAnimation', () => {
       exit.stop();
     });
 
-    it('exitAnimationConfig defaults to entryAnimationConfig when omitted', () => {
-      const { result } = renderHook(() =>
+    it('exitAnimationConfig defaults to entryAnimationConfig when omitted', async () => {
+      const { result } = await renderHook(() =>
         useAnimation({
           driver: rnAnimatedDriver,
           initialValue: 0,

@@ -54,50 +54,54 @@ const renderComponent = (
 
 describe('CircleLayoutComponent', () => {
   describe('rendering', () => {
-    it('renders the passed component', () => {
-      const { getByText } = renderComponent({ component: <Text>Hello</Text> });
+    it('renders the passed component', async () => {
+      const { getByText } = await renderComponent({
+        component: <Text>Hello</Text>,
+      });
       expect(getByText('Hello')).toBeTruthy();
     });
 
-    it('positions component at 0 radians', () => {
-      expect(() => renderComponent({ radians: 0 })).not.toThrow();
+    it('positions component at 0 radians', async () => {
+      await expect(renderComponent({ radians: 0 })).resolves.not.toThrow();
     });
 
-    it('positions component at π radians', () => {
-      expect(() => renderComponent({ radians: Math.PI })).not.toThrow();
+    it('positions component at π radians', async () => {
+      await expect(
+        renderComponent({ radians: Math.PI })
+      ).resolves.not.toThrow();
     });
 
-    it('positions component at 3π/2 radians', () => {
-      expect(() =>
+    it('positions component at 3π/2 radians', async () => {
+      await expect(
         renderComponent({ radians: (3 * Math.PI) / 2 })
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('positions component at index 0 and higher without throwing', () => {
-      expect(() => renderComponent({ index: 0 })).not.toThrow();
-      expect(() => renderComponent({ index: 5 })).not.toThrow();
+    it('positions component at index 0 and higher without throwing', async () => {
+      await expect(renderComponent({ index: 0 })).resolves.not.toThrow();
+      await expect(renderComponent({ index: 5 })).resolves.not.toThrow();
     });
   });
 
   describe('visibility (via VisibilityContext)', () => {
-    it('renders the passed component when VisibilityContext is true', () => {
-      const { getByText } = renderComponent({
+    it('renders the passed component when VisibilityContext is true', async () => {
+      const { getByText } = await renderComponent({
         component: <Text>Hello</Text>,
         visible: true,
       });
       expect(getByText('Hello')).toBeTruthy();
     });
 
-    it('still mounts the component when VisibilityContext is false (hidden via animation, not unmount)', () => {
-      const { getByText } = renderComponent({
+    it('still mounts the component when VisibilityContext is false (hidden via animation, not unmount)', async () => {
+      const { getByText } = await renderComponent({
         component: <Text>Hello</Text>,
         visible: false,
       });
       expect(getByText('Hello')).toBeTruthy();
     });
 
-    it('does not throw when VisibilityContext value changes after mount', () => {
-      const { rerender } = render(
+    it('does not throw when VisibilityContext value changes after mount', async () => {
+      const { rerender } = await render(
         <CircleLayoutContext value={baseContext}>
           <VisibilityContext value={true}>
             <CircleLayoutComponent
@@ -109,7 +113,7 @@ describe('CircleLayoutComponent', () => {
           </VisibilityContext>
         </CircleLayoutContext>
       );
-      expect(() =>
+      await expect(
         rerender(
           <CircleLayoutContext value={baseContext}>
             <VisibilityContext value={false}>
@@ -122,54 +126,58 @@ describe('CircleLayoutComponent', () => {
             </VisibilityContext>
           </CircleLayoutContext>
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
   });
 
   describe('onLayout callback', () => {
-    it('calls onLayout prop when invoked', () => {
+    it('calls onLayout prop when invoked', async () => {
       const onLayout = jest.fn();
-      renderComponent({ onLayout });
+      await renderComponent({ onLayout });
       // onLayout is forwarded from the Animated.View — no throw when invoked
       expect(() => onLayout({})).not.toThrow();
     });
   });
 
   describe('edge cases', () => {
-    it('positions component at radians > 2π without throwing', () => {
-      expect(() => renderComponent({ radians: 3 * Math.PI })).not.toThrow();
+    it('positions component at radians > 2π without throwing', async () => {
+      await expect(
+        renderComponent({ radians: 3 * Math.PI })
+      ).resolves.not.toThrow();
     });
 
-    it('positions component at negative radians without throwing', () => {
-      expect(() => renderComponent({ radians: -Math.PI / 4 })).not.toThrow();
+    it('positions component at negative radians without throwing', async () => {
+      await expect(
+        renderComponent({ radians: -Math.PI / 4 })
+      ).resolves.not.toThrow();
     });
 
-    it('renders with non-zero centerComponentLayout without throwing', () => {
-      expect(() =>
+    it('renders with non-zero centerComponentLayout without throwing', async () => {
+      await expect(
         renderComponent({ centerComponentLayout: { width: 80, height: 80 } })
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders at very large index without throwing', () => {
-      expect(() => renderComponent({ index: 1000 })).not.toThrow();
+    it('renders at very large index without throwing', async () => {
+      await expect(renderComponent({ index: 1000 })).resolves.not.toThrow();
     });
 
-    it('renders null component without throwing', () => {
-      expect(() => renderComponent({ component: null })).not.toThrow();
+    it('renders null component without throwing', async () => {
+      await expect(renderComponent({ component: null })).resolves.not.toThrow();
     });
 
-    it('renders with radius 0 in context without throwing', () => {
-      expect(() =>
+    it('renders with radius 0 in context without throwing', async () => {
+      await expect(
         renderComponent({
           ctx: { ...baseContext, radius: 0 },
         })
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders with very large radius in context without throwing', () => {
-      expect(() =>
+    it('renders with very large radius in context without throwing', async () => {
+      await expect(
         renderComponent({ ctx: { ...baseContext, radius: 100000 } })
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
   });
 
@@ -191,7 +199,7 @@ describe('CircleLayoutComponent', () => {
       ) => onComplete?.(),
     };
 
-    it('positions component with OPACITY animation context', () => {
+    it('positions component with OPACITY animation context', async () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationDriver: nonNativeDriver,
@@ -202,10 +210,10 @@ describe('CircleLayoutComponent', () => {
           animationCombinationType: AnimationCombinationType.PARALLEL,
         },
       };
-      expect(() => renderComponent({ ctx })).not.toThrow();
+      await expect(renderComponent({ ctx })).resolves.not.toThrow();
     });
 
-    it('positions component with LINEAR animation context', () => {
+    it('positions component with LINEAR animation context', async () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationDriver: nonNativeDriver,
@@ -216,10 +224,10 @@ describe('CircleLayoutComponent', () => {
           animationCombinationType: AnimationCombinationType.PARALLEL,
         },
       };
-      expect(() => renderComponent({ ctx })).not.toThrow();
+      await expect(renderComponent({ ctx })).resolves.not.toThrow();
     });
 
-    it('positions component with CIRCULAR animation context', () => {
+    it('positions component with CIRCULAR animation context', async () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationDriver: nonNativeDriver,
@@ -230,10 +238,10 @@ describe('CircleLayoutComponent', () => {
           animationCombinationType: AnimationCombinationType.PARALLEL,
         },
       };
-      expect(() => renderComponent({ ctx })).not.toThrow();
+      await expect(renderComponent({ ctx })).resolves.not.toThrow();
     });
 
-    it('positions component with all animation types and SEQUENCE combination', () => {
+    it('positions component with all animation types and SEQUENCE combination', async () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         animationDriver: nonNativeDriver,
@@ -247,7 +255,7 @@ describe('CircleLayoutComponent', () => {
           animationGap: 50,
         },
       };
-      expect(() => renderComponent({ ctx })).not.toThrow();
+      await expect(renderComponent({ ctx })).resolves.not.toThrow();
     });
   });
 });

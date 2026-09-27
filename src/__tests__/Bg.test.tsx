@@ -1,6 +1,5 @@
 import { Animated } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
-import { act, render } from '@testing-library/react-native';
+import { act, fireEvent, render } from '@testing-library/react-native';
 
 import { rnAnimatedDriver } from '../animation/rnAnimatedDriver';
 import { Bg } from '../Bg';
@@ -74,61 +73,63 @@ const renderBg = (
 
 describe('Bg', () => {
   describe('rendering', () => {
-    it('renders one Svg element', () => {
-      const { UNSAFE_getAllByType } = renderBg();
-      expect(UNSAFE_getAllByType(Svg)).toHaveLength(1);
+    it('renders one Svg element', async () => {
+      const { getAllByTestId } = await renderBg();
+      expect(getAllByTestId(/^circle-layout-bg-svg-/)).toHaveLength(1);
     });
 
-    it('renders without throwing at index 0, 1, 2 of a 3-part context', () => {
-      expect(() => renderBg({ index: 0 })).not.toThrow();
-      expect(() => renderBg({ index: 1 })).not.toThrow();
-      expect(() => renderBg({ index: 2 })).not.toThrow();
+    it('renders without throwing at index 0, 1, 2 of a 3-part context', async () => {
+      await expect(renderBg({ index: 0 })).resolves.not.toThrow();
+      await expect(renderBg({ index: 1 })).resolves.not.toThrow();
+      await expect(renderBg({ index: 2 })).resolves.not.toThrow();
     });
 
-    it('sets pointerEvents="box-none" on the Svg canvas so touches fall through to the Path', () => {
+    it('sets pointerEvents="box-none" on the Svg canvas so touches fall through to the Path', async () => {
       // Every sector's Svg canvas is sized/positioned identically (large
       // enough for the whole circle, not just its own wedge), so they fully
       // overlap. Without box-none, the topmost (last-rendered) sector's
       // canvas would claim every touch within that shared rectangle
       // regardless of which wedge was actually tapped.
-      const { UNSAFE_getByType } = renderBg();
-      expect(UNSAFE_getByType(Svg).props.pointerEvents).toBe('box-none');
+      const { getByTestId } = await renderBg();
+      expect(getByTestId(/^circle-layout-bg-svg-/).props.pointerEvents).toBe(
+        'box-none'
+      );
     });
 
-    it('renders without throwing with a donut (innerRadius) config', () => {
-      expect(() =>
+    it('renders without throwing with a donut (innerRadius) config', async () => {
+      await expect(
         renderBg({ innerRadius: 20, outerRadius: 80 })
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
   });
 
   describe('sector arc radius', () => {
-    it('draws the sector arc at outerRadius, not at the padded canvas size', () => {
+    it('draws the sector arc at outerRadius, not at the padded canvas size', async () => {
       // minComponentLayout/centerComponentLayout differ, as they do once real
       // marker/center components have been measured, so the SVG canvas (size)
       // ends up padded larger than the configured outerRadius.
-      const { UNSAFE_getByType } = renderBg({
+      const { getByTestId } = await renderBg({
         outerRadius: 100,
         minComponentLayout: { width: 37, height: 48 },
         centerComponentLayout: { width: 25, height: 25 },
         color: 'red',
       });
 
-      const path = UNSAFE_getByType(Path).props.d as string;
+      const path = getByTestId(/^circle-layout-bg-path-/).props.d as string;
       const arcRadius = Number(path.split(' ')[7]);
 
       expect(arcRadius).toBeCloseTo(100);
     });
 
-    it('falls back to radius when outerRadius is not provided', () => {
-      const { UNSAFE_getByType } = renderBg({
+    it('falls back to radius when outerRadius is not provided', async () => {
+      const { getByTestId } = await renderBg({
         radius: 80,
         minComponentLayout: { width: 37, height: 48 },
         centerComponentLayout: { width: 25, height: 25 },
         color: 'red',
       });
 
-      const path = UNSAFE_getByType(Path).props.d as string;
+      const path = getByTestId(/^circle-layout-bg-path-/).props.d as string;
       const arcRadius = Number(path.split(' ')[7]);
 
       expect(arcRadius).toBeCloseTo(80);
@@ -136,14 +137,14 @@ describe('Bg', () => {
   });
 
   describe('visibility (via VisibilityContext)', () => {
-    it('still mounts (does not unmount) when VisibilityContext is false', () => {
-      const { UNSAFE_getAllByType } = renderBg({ visible: false });
-      expect(UNSAFE_getAllByType(Svg)).toHaveLength(1);
+    it('still mounts (does not unmount) when VisibilityContext is false', async () => {
+      const { getAllByTestId } = await renderBg({ visible: false });
+      expect(getAllByTestId(/^circle-layout-bg-svg-/)).toHaveLength(1);
     });
 
-    it('does not throw when VisibilityContext value changes after mount', () => {
+    it('does not throw when VisibilityContext value changes after mount', async () => {
       const context = baseContext;
-      const { rerender, UNSAFE_getAllByType } = render(
+      const { rerender, getAllByTestId } = await render(
         <CircleLayoutContext value={context}>
           <VisibilityContext value={true}>
             <Bg
@@ -155,7 +156,7 @@ describe('Bg', () => {
           </VisibilityContext>
         </CircleLayoutContext>
       );
-      expect(() =>
+      await expect(
         rerender(
           <CircleLayoutContext value={context}>
             <VisibilityContext value={false}>
@@ -168,33 +169,33 @@ describe('Bg', () => {
             </VisibilityContext>
           </CircleLayoutContext>
         )
-      ).not.toThrow();
-      expect(UNSAFE_getAllByType(Svg)).toHaveLength(1);
+      ).resolves.not.toThrow();
+      expect(getAllByTestId(/^circle-layout-bg-svg-/)).toHaveLength(1);
     });
   });
 
   describe('edge cases', () => {
-    it('renders with radius 0 without throwing', () => {
-      expect(() => renderBg({ radius: 0 })).not.toThrow();
+    it('renders with radius 0 without throwing', async () => {
+      await expect(renderBg({ radius: 0 })).resolves.not.toThrow();
     });
 
-    it('renders with non-zero minComponentLayout and centerComponentLayout without throwing', () => {
-      expect(() =>
+    it('renders with non-zero minComponentLayout and centerComponentLayout without throwing', async () => {
+      await expect(
         renderBg({
           minComponentLayout: { width: 40, height: 40 },
           centerComponentLayout: { width: 20, height: 20 },
         })
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
   });
 
   describe('wedge boundaries', () => {
-    const pathNums = (result: ReturnType<typeof renderBg>): number[] =>
-      (result.UNSAFE_getByType(Path).props.d as string)
+    const pathNums = (result: Awaited<ReturnType<typeof renderBg>>): number[] =>
+      (result.getByTestId(/^circle-layout-bg-path-/).props.d as string)
         .match(/-?[\d.]+/g)!
         .map(Number);
 
-    it('keeps wedges gapless around the wrap for unequal weights on a complete circle', () => {
+    it('keeps wedges gapless around the wrap for unequal weights on a complete circle', async () => {
       const ctx: CircleLayoutContextType = {
         ...baseContext,
         totalParts: 3,
@@ -202,8 +203,12 @@ describe('Bg', () => {
         componentAngles: [0, Math.PI, (3 * Math.PI) / 2],
       };
 
-      const first = pathNums(renderBg({ ctx, index: 0, outerRadius: 100 }));
-      const last = pathNums(renderBg({ ctx, index: 2, outerRadius: 100 }));
+      const first = pathNums(
+        await renderBg({ ctx, index: 0, outerRadius: 100 })
+      );
+      const last = pathNums(
+        await renderBg({ ctx, index: 2, outerRadius: 100 })
+      );
 
       // The last wedge's end point must land exactly on the first wedge's
       // start point for the ring to be gapless/overlap-free at the wrap.
@@ -213,7 +218,7 @@ describe('Bg', () => {
       expect(lastEndY).toBeCloseTo(firstStartY!);
     });
 
-    it('does not wrap the first/last wedge of a partial arc across the sweep boundary', () => {
+    it('does not wrap the first/last wedge of a partial arc across the sweep boundary', async () => {
       // 3 markers over a half-sweep: totalParts (2) !== sectorAngles.length
       // (3) marks this as a partial arc, same as CircleLayoutProvider
       // produces for sweepAngle < 2π.
@@ -224,8 +229,12 @@ describe('Bg', () => {
         componentAngles: [0, Math.PI / 2, Math.PI],
       };
 
-      const first = pathNums(renderBg({ ctx, index: 0, outerRadius: 100 }));
-      const last = pathNums(renderBg({ ctx, index: 2, outerRadius: 100 }));
+      const first = pathNums(
+        await renderBg({ ctx, index: 0, outerRadius: 100 })
+      );
+      const last = pathNums(
+        await renderBg({ ctx, index: 2, outerRadius: 100 })
+      );
 
       // First wedge's start must sit at its own (un-centered) marker angle
       // (0 rad -> 180 deg once rendered), not wrapped backward using the
@@ -239,39 +248,39 @@ describe('Bg', () => {
   });
 
   describe('selection / expand-on-select', () => {
-    it('draws the sector arc at outerRadius when not the selected index', () => {
-      const { UNSAFE_getByType } = renderBg({
+    it('draws the sector arc at outerRadius when not the selected index', async () => {
+      const { getByTestId } = await renderBg({
         index: 1,
         outerRadius: 100,
         expandedOuterRadius: 150,
         selectedIndex: 0,
       });
 
-      const path = UNSAFE_getByType(Path).props.d as string;
+      const path = getByTestId(/^circle-layout-bg-path-/).props.d as string;
       const arcRadius = Number(path.split(' ')[7]);
 
       expect(arcRadius).toBeCloseTo(100);
     });
 
-    it('draws the selected sector arc at expandedOuterRadius', () => {
-      const { UNSAFE_getByType } = renderBg({
+    it('draws the selected sector arc at expandedOuterRadius', async () => {
+      const { getByTestId } = await renderBg({
         index: 0,
         outerRadius: 100,
         expandedOuterRadius: 150,
         selectedIndex: 0,
       });
 
-      const path = UNSAFE_getByType(Path).props.d as string;
+      const path = getByTestId(/^circle-layout-bg-path-/).props.d as string;
       const arcRadius = Number(path.split(' ')[7]);
 
       expect(arcRadius).toBeCloseTo(150);
     });
 
-    it('smoothly retargets (not snaps) the animated radius node towards expandedOuterRadius on selection change', () => {
+    it('smoothly retargets (not snaps) the animated radius node towards expandedOuterRadius on selection change', async () => {
       jest.useFakeTimers();
       const timingSpy = jest.spyOn(Animated, 'timing');
       const ctx = baseContext;
-      const { rerender } = render(
+      const { rerender } = await render(
         <CircleLayoutContext value={ctx}>
           <VisibilityContext value={true}>
             <Bg
@@ -288,8 +297,8 @@ describe('Bg', () => {
 
       expect(timingSpy).not.toHaveBeenCalled();
 
-      act(() => {
-        rerender(
+      await act(async () => {
+        await rerender(
           <CircleLayoutContext value={ctx}>
             <VisibilityContext value={true}>
               <Bg
@@ -314,7 +323,7 @@ describe('Bg', () => {
         expect.objectContaining({ toValue: 150 })
       );
 
-      act(() => {
+      await act(() => {
         jest.runAllTimers();
       });
 
@@ -322,10 +331,10 @@ describe('Bg', () => {
       jest.useRealTimers();
     });
 
-    it('does not re-trigger the retargeting animation on unrelated re-renders', () => {
+    it('does not re-trigger the retargeting animation on unrelated re-renders', async () => {
       const timingSpy = jest.spyOn(Animated, 'timing');
       const ctx = baseContext;
-      const { rerender } = render(
+      const { rerender } = await render(
         <CircleLayoutContext value={ctx}>
           <VisibilityContext value={true}>
             <Bg
@@ -341,7 +350,7 @@ describe('Bg', () => {
         </CircleLayoutContext>
       );
 
-      rerender(
+      await rerender(
         <CircleLayoutContext value={ctx}>
           <VisibilityContext value={true}>
             <Bg
@@ -361,27 +370,29 @@ describe('Bg', () => {
       timingSpy.mockRestore();
     });
 
-    it('does not throw when selectedIndex is set without expandedOuterRadius', () => {
-      expect(() =>
+    it('does not throw when selectedIndex is set without expandedOuterRadius', async () => {
+      await expect(
         renderBg({ index: 0, selectedIndex: 0, outerRadius: 100 })
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('calls onSectorPress with its own index when the wedge is pressed', () => {
+    it('calls onSectorPress with its own index when the wedge is pressed', async () => {
       const onSectorPress = jest.fn();
-      const { UNSAFE_getByType } = renderBg({ index: 2, onSectorPress });
+      const { getByTestId } = await renderBg({ index: 2, onSectorPress });
 
-      UNSAFE_getByType(Path).props.onPress();
+      await fireEvent.press(getByTestId(/^circle-layout-bg-path-/));
 
       expect(onSectorPress).toHaveBeenCalledWith(2);
     });
 
-    it('does not set an onPress handler when onSectorPress is not provided', () => {
-      const { UNSAFE_getByType } = renderBg({ index: 0 });
-      expect(UNSAFE_getByType(Path).props.onPress).toBeUndefined();
+    it('does not set an onPress handler when onSectorPress is not provided', async () => {
+      const { getByTestId } = await renderBg({ index: 0 });
+      expect(
+        getByTestId(/^circle-layout-bg-path-/).props.onPress
+      ).toBeUndefined();
     });
 
-    it('draws at the real outerRadius (not collapsed to a point) when CIRCULAR animation makes endAngle an animated node too', () => {
+    it('draws at the real outerRadius (not collapsed to a point) when CIRCULAR animation makes endAngle an animated node too', async () => {
       // Regression: when expandedOuterRadius makes radius an animated node
       // AND a CIRCULAR animationConfig makes endAngle an animated node too,
       // useAnimatedSectorPath tracks both via addValueListener rather than
@@ -400,25 +411,25 @@ describe('Bg', () => {
         },
       };
 
-      const { UNSAFE_getByType } = renderBg({
+      const { getByTestId } = await renderBg({
         ctx: ctxWithCircular,
         index: 0,
         outerRadius: 100,
         expandedOuterRadius: 150,
       });
 
-      const path = UNSAFE_getByType(Path).props.d as string;
+      const path = getByTestId(/^circle-layout-bg-path-/).props.d as string;
       const arcRadius = Number(path.split(' ')[7]);
 
       expect(arcRadius).toBeCloseTo(100);
 
-      act(() => {
+      await act(() => {
         jest.runAllTimers();
       });
       jest.useRealTimers();
     });
 
-    it('stays non-degenerate after a real selection change with CIRCULAR animation configured', () => {
+    it('stays non-degenerate after a real selection change with CIRCULAR animation configured', async () => {
       // Regression: the seeding above only covers the state right after
       // useAnimatedSectorPath's listeners are first registered. Once a real
       // retarget follows (a later selection change), the radius node's
@@ -434,7 +445,7 @@ describe('Bg', () => {
         },
       };
 
-      const { rerender, UNSAFE_getByType } = render(
+      const { rerender, getByTestId } = await render(
         <CircleLayoutContext value={ctxWithCircular}>
           <VisibilityContext value={true}>
             <Bg
@@ -449,8 +460,8 @@ describe('Bg', () => {
         </CircleLayoutContext>
       );
 
-      act(() => {
-        rerender(
+      await act(async () => {
+        await rerender(
           <CircleLayoutContext value={ctxWithCircular}>
             <VisibilityContext value={true}>
               <Bg
@@ -467,18 +478,18 @@ describe('Bg', () => {
         );
       });
 
-      act(() => {
+      await act(() => {
         jest.runAllTimers();
       });
 
-      const path = UNSAFE_getByType(Path).props.d as string;
+      const path = getByTestId(/^circle-layout-bg-path-/).props.d as string;
       const arcRadius = Number(path.split(' ')[7]);
 
       expect(arcRadius).toBeCloseTo(150);
       jest.useRealTimers();
     });
 
-    it('stays within [outerRadius, expandedOuterRadius] while collapsing back after deselection', () => {
+    it('stays within [outerRadius, expandedOuterRadius] while collapsing back after deselection', async () => {
       // Regression: maxRadius (the interpolation domain fed to
       // useAnimatedSectorPath) was being set to targetOuterRadius, the
       // *current* selection target. On deselect that target drops back to
@@ -488,7 +499,7 @@ describe('Bg', () => {
       // domain and get linearly extrapolated into a bogus radius.
       jest.useFakeTimers();
 
-      const { rerender, UNSAFE_getByType } = render(
+      const { rerender, getByTestId } = await render(
         <CircleLayoutContext value={baseContext}>
           <VisibilityContext value={true}>
             <Bg
@@ -504,12 +515,12 @@ describe('Bg', () => {
         </CircleLayoutContext>
       );
 
-      act(() => {
+      await act(() => {
         jest.runAllTimers();
       });
 
-      act(() => {
-        rerender(
+      await act(async () => {
+        await rerender(
           <CircleLayoutContext value={baseContext}>
             <VisibilityContext value={true}>
               <Bg
@@ -526,28 +537,29 @@ describe('Bg', () => {
         );
       });
 
-      act(() => {
+      await act(() => {
         jest.advanceTimersByTime(250);
       });
 
-      const midPath = UNSAFE_getByType(Path).props.d as string;
+      const midPath = getByTestId(/^circle-layout-bg-path-/).props.d as string;
       const midArcRadius = Number(midPath.split(' ')[7]);
 
       expect(midArcRadius).toBeGreaterThanOrEqual(100);
       expect(midArcRadius).toBeLessThanOrEqual(150);
 
-      act(() => {
+      await act(() => {
         jest.runAllTimers();
       });
 
-      const finalPath = UNSAFE_getByType(Path).props.d as string;
+      const finalPath = getByTestId(/^circle-layout-bg-path-/).props
+        .d as string;
       const finalArcRadius = Number(finalPath.split(' ')[7]);
 
       expect(finalArcRadius).toBeCloseTo(100);
       jest.useRealTimers();
     });
 
-    it('keeps the SVG canvas size stable across select/deselect instead of snapping to the new target instantly', () => {
+    it('keeps the SVG canvas size stable across select/deselect instead of snapping to the new target instantly', async () => {
       // Regression: the canvas (Svg width/height, and the center point paths
       // are built around) was sized from targetOuterRadius, the *current*
       // selection target, which changes the instant selection changes — a
@@ -556,7 +568,7 @@ describe('Bg', () => {
       // painted sector, clipping it until the (separately animating) radius
       // caught down to fit. Sizing the canvas to the sector's constant peak
       // radius instead means it never has to resize as selection changes.
-      const { rerender, UNSAFE_getByType } = render(
+      const { rerender, getByTestId } = await render(
         <CircleLayoutContext value={baseContext}>
           <VisibilityContext value={true}>
             <Bg
@@ -572,9 +584,10 @@ describe('Bg', () => {
         </CircleLayoutContext>
       );
 
-      const sizeBeforeSelect = UNSAFE_getByType(Svg).props.width as number;
+      const sizeBeforeSelect = getByTestId(/^circle-layout-bg-svg-/).props
+        .width as number;
 
-      rerender(
+      await rerender(
         <CircleLayoutContext value={baseContext}>
           <VisibilityContext value={true}>
             <Bg
@@ -590,9 +603,10 @@ describe('Bg', () => {
         </CircleLayoutContext>
       );
 
-      const sizeAfterSelect = UNSAFE_getByType(Svg).props.width as number;
+      const sizeAfterSelect = getByTestId(/^circle-layout-bg-svg-/).props
+        .width as number;
 
-      rerender(
+      await rerender(
         <CircleLayoutContext value={baseContext}>
           <VisibilityContext value={true}>
             <Bg
@@ -608,7 +622,8 @@ describe('Bg', () => {
         </CircleLayoutContext>
       );
 
-      const sizeAfterDeselect = UNSAFE_getByType(Svg).props.width as number;
+      const sizeAfterDeselect = getByTestId(/^circle-layout-bg-svg-/).props
+        .width as number;
 
       expect(sizeAfterSelect).toBe(sizeBeforeSelect);
       expect(sizeAfterDeselect).toBe(sizeBeforeSelect);

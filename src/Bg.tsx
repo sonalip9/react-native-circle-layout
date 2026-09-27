@@ -213,8 +213,10 @@ export const Bg = ({
       // touch falls through to whichever sector's `AnimatedPath` really
       // contains it.
       pointerEvents="box-none"
+      testID={`circle-layout-bg-svg-${index}`}
     >
       <AnimatedPath
+        testID={`circle-layout-bg-path-${index}`}
         d={path as string}
         fill={color}
         stroke={strokeColor ?? color}

@@ -10,8 +10,8 @@ const startAngle = 0;
 
 describe('useAnimatedSectorPath', () => {
   describe('static radius and endAngle', () => {
-    it('returns the same path as getSectorPath', () => {
-      const { result } = renderHook(() =>
+    it('returns the same path as getSectorPath', async () => {
+      const { result } = await renderHook(() =>
         useAnimatedSectorPath({
           driver: rnAnimatedDriver,
           radius: 40,
@@ -28,10 +28,10 @@ describe('useAnimatedSectorPath', () => {
   });
 
   describe('only radius animated', () => {
-    it('returns an animated interpolation node', () => {
+    it('returns an animated interpolation node', async () => {
       jest.spyOn(console, 'warn').mockImplementation(() => {});
       const radius = new Animated.Value(40);
-      const { result } = renderHook(() =>
+      const { result } = await renderHook(() =>
         useAnimatedSectorPath({
           driver: rnAnimatedDriver,
           radius,
@@ -45,11 +45,11 @@ describe('useAnimatedSectorPath', () => {
       jest.restoreAllMocks();
     });
 
-    it('warns when maxRadius is omitted, since the path would silently degrade', () => {
+    it('warns when maxRadius is omitted, since the path would silently degrade', async () => {
       const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
       const radius = new Animated.Value(40);
 
-      renderHook(() =>
+      await renderHook(() =>
         useAnimatedSectorPath({
           driver: rnAnimatedDriver,
           radius,
@@ -65,11 +65,11 @@ describe('useAnimatedSectorPath', () => {
       warnSpy.mockRestore();
     });
 
-    it('does not warn when maxRadius is provided', () => {
+    it('does not warn when maxRadius is provided', async () => {
       const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
       const radius = new Animated.Value(40);
 
-      renderHook(() =>
+      await renderHook(() =>
         useAnimatedSectorPath({
           driver: rnAnimatedDriver,
           radius,
@@ -90,9 +90,9 @@ describe('useAnimatedSectorPath', () => {
     // node's value at any realistic radius falls outside the default [0,1]
     // domain and gets linearly extrapolated into a distorted path instead
     // of the true sector shape.
-    it('produces the correct path once the radius exceeds 1, given maxRadius', () => {
+    it('produces the correct path once the radius exceeds 1, given maxRadius', async () => {
       const radius = new Animated.Value(150);
-      const { result } = renderHook(() =>
+      const { result } = await renderHook(() =>
         useAnimatedSectorPath({
           driver: rnAnimatedDriver,
           radius,
@@ -118,9 +118,9 @@ describe('useAnimatedSectorPath', () => {
   });
 
   describe('only endAngle animated', () => {
-    it('returns an animated interpolation node', () => {
+    it('returns an animated interpolation node', async () => {
       const endAngle = new Animated.Value(0);
-      const { result } = renderHook(() =>
+      const { result } = await renderHook(() =>
         useAnimatedSectorPath({
           driver: rnAnimatedDriver,
           radius: 40,
@@ -135,10 +135,10 @@ describe('useAnimatedSectorPath', () => {
   });
 
   describe('both radius and endAngle animated', () => {
-    it('starts as an empty string before any listener fires', () => {
+    it('starts as an empty string before any listener fires', async () => {
       const radius = new Animated.Value(40);
       const endAngle = new Animated.Value(0);
-      const { result } = renderHook(() =>
+      const { result } = await renderHook(() =>
         useAnimatedSectorPath({
           driver: rnAnimatedDriver,
           radius,
@@ -151,10 +151,10 @@ describe('useAnimatedSectorPath', () => {
       expect(result.current).toBe('');
     });
 
-    it('recomputes the path from the latest radius and endAngle values', () => {
+    it('recomputes the path from the latest radius and endAngle values', async () => {
       const radius = new Animated.Value(40);
       const endAngle = new Animated.Value(0);
-      const { result } = renderHook(() =>
+      const { result } = await renderHook(() =>
         useAnimatedSectorPath({
           driver: rnAnimatedDriver,
           radius,
@@ -164,7 +164,7 @@ describe('useAnimatedSectorPath', () => {
         })
       );
 
-      act(() => {
+      await act(() => {
         radius.setValue(60);
         endAngle.setValue(Math.PI / 2);
       });
@@ -179,13 +179,13 @@ describe('useAnimatedSectorPath', () => {
       );
     });
 
-    it('removes listeners on unmount', () => {
+    it('removes listeners on unmount', async () => {
       const radius = new Animated.Value(40);
       const endAngle = new Animated.Value(0);
       const removeRadiusListener = jest.spyOn(radius, 'removeListener');
       const removeEndAngleListener = jest.spyOn(endAngle, 'removeListener');
 
-      const { unmount } = renderHook(() =>
+      const { unmount } = await renderHook(() =>
         useAnimatedSectorPath({
           driver: rnAnimatedDriver,
           radius,
@@ -194,7 +194,7 @@ describe('useAnimatedSectorPath', () => {
           center,
         })
       );
-      unmount();
+      await unmount();
 
       expect(removeRadiusListener).toHaveBeenCalledTimes(1);
       expect(removeEndAngleListener).toHaveBeenCalledTimes(1);

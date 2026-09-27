@@ -1,7 +1,11 @@
 import { use, useRef } from 'react';
 import { Text } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
-import { render, act, renderHook } from '@testing-library/react-native';
+import {
+  render,
+  act,
+  fireEvent,
+  renderHook,
+} from '@testing-library/react-native';
 
 import { CircleLayout } from '../CircleLayout';
 import { CircleLayoutContext } from '../CircleLayoutContext';
@@ -344,8 +348,8 @@ describe('weights validation', () => {
 
 describe('CircleLayout', () => {
   describe('rendering', () => {
-    it('renders with minimum required props', () => {
-      expect(() =>
+    it('renders with minimum required props', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(2)}
@@ -353,11 +357,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders all provided components', () => {
-      const { getAllByText } = render(
+    it('renders all provided components', async () => {
+      const { getAllByText } = await render(
         <CircleLayout
           components={[
             <Text key="A">A</Text>,
@@ -371,8 +375,8 @@ describe('CircleLayout', () => {
       expect(getAllByText(/^[ABC]$/)).toHaveLength(3);
     });
 
-    it('renders center component when provided', () => {
-      const { getByText } = render(
+    it('renders center component when provided', async () => {
+      const { getByText } = await render(
         <CircleLayout
           components={makeComponents(3)}
           radius={100}
@@ -383,8 +387,8 @@ describe('CircleLayout', () => {
       expect(getByText('Center')).toBeTruthy();
     });
 
-    it('renders with custom containerStyle', () => {
-      expect(() =>
+    it('renders with custom containerStyle', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(2)}
@@ -393,20 +397,20 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
   });
 
   describe('background (bgConfig)', () => {
-    it('does not render a background when bgConfig is not provided', () => {
-      const { UNSAFE_queryAllByType } = render(
+    it('does not render a background when bgConfig is not provided', async () => {
+      const { queryAllByTestId } = await render(
         <CircleLayout components={makeComponents(2)} radius={100} ref={null} />
       );
-      expect(UNSAFE_queryAllByType(Svg)).toHaveLength(0);
+      expect(queryAllByTestId(/^circle-layout-bg-svg-/)).toHaveLength(0);
     });
 
-    it('renders one background sector per component when bgConfig is provided', () => {
-      const { UNSAFE_queryAllByType } = render(
+    it('renders one background sector per component when bgConfig is provided', async () => {
+      const { queryAllByTestId } = await render(
         <CircleLayout
           components={makeComponents(3)}
           radius={100}
@@ -414,11 +418,11 @@ describe('CircleLayout', () => {
           ref={null}
         />
       );
-      expect(UNSAFE_queryAllByType(Svg)).toHaveLength(3);
+      expect(queryAllByTestId(/^circle-layout-bg-svg-/)).toHaveLength(3);
     });
 
-    it('renders without throwing when color is a per-sector array', () => {
-      expect(() =>
+    it('renders without throwing when color is a per-sector array', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -427,11 +431,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders without throwing when color is a function', () => {
-      expect(() =>
+    it('renders without throwing when color is a function', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -440,11 +444,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('throws when bgConfig color array length mismatches components', () => {
-      expect(() =>
+    it('throws when bgConfig color array length mismatches components', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -453,13 +457,13 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).toThrow(
+      ).rejects.toThrow(
         'bgConfig.color array length (2) must match components length (3)'
       );
     });
 
-    it('renders without throwing when innerRadius and outerRadius are set', () => {
-      expect(() =>
+    it('renders without throwing when innerRadius and outerRadius are set', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -468,11 +472,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders without throwing when outerRadius is a per-sector array', () => {
-      expect(() =>
+    it('renders without throwing when outerRadius is a per-sector array', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -481,11 +485,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders without throwing when outerRadius is a function', () => {
-      expect(() =>
+    it('renders without throwing when outerRadius is a function', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -494,11 +498,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('draws each sector at its own outerRadius when given a per-sector array', () => {
-      const { UNSAFE_getAllByType } = render(
+    it('draws each sector at its own outerRadius when given a per-sector array', async () => {
+      const { getAllByTestId } = await render(
         <CircleLayout
           components={makeComponents(3)}
           radius={100}
@@ -507,15 +511,15 @@ describe('CircleLayout', () => {
         />
       );
 
-      const arcRadii = UNSAFE_getAllByType(Path).map((path) =>
+      const arcRadii = getAllByTestId(/^circle-layout-bg-path-/).map((path) =>
         Number((path.props.d as string).split(' ')[7])
       );
 
       expect(arcRadii).toEqual([80, 100, 120]);
     });
 
-    it('renders without throwing when selectedIndex and expandedOuterRadius are set', () => {
-      expect(() =>
+    it('renders without throwing when selectedIndex and expandedOuterRadius are set', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -528,12 +532,12 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('calls onSectorPress with the pressed sector index', () => {
+    it('calls onSectorPress with the pressed sector index', async () => {
       const onSectorPress = jest.fn();
-      const { UNSAFE_getAllByType } = render(
+      const { getAllByTestId } = await render(
         <CircleLayout
           components={makeComponents(3)}
           radius={100}
@@ -542,34 +546,36 @@ describe('CircleLayout', () => {
         />
       );
 
-      UNSAFE_getAllByType(Path)[2]!.props.onPress();
+      await fireEvent.press(getAllByTestId(/^circle-layout-bg-path-/)[2]!);
 
       expect(onSectorPress).toHaveBeenCalledWith(2);
     });
 
-    it('shows the background when showComponents is called via ref', () => {
-      const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
+    it('shows the background when showComponents is called via ref', async () => {
+      const { result } = await renderHook(() => useRef<CircleLayoutRef>(null));
       const ref = result.current;
-      expect(() => {
-        render(
-          <CircleLayout
-            components={makeComponents(2)}
-            radius={100}
-            bgConfig={{ color: 'blue' }}
-            ref={ref}
-          />
-        );
-        act(() => {
-          ref.current?.showComponents();
-          ref.current?.hideComponents();
-        });
-      }).not.toThrow();
+      await expect(
+        (async () => {
+          await render(
+            <CircleLayout
+              components={makeComponents(2)}
+              radius={100}
+              bgConfig={{ color: 'blue' }}
+              ref={ref}
+            />
+          );
+          await act(() => {
+            ref.current?.showComponents();
+            ref.current?.hideComponents();
+          });
+        })()
+      ).resolves.not.toThrow();
     });
   });
 
   describe('prop validation', () => {
-    it('throws when fewer than 2 components passed', () => {
-      expect(() =>
+    it('throws when fewer than 2 components passed', async () => {
+      await expect(
         render(
           <CircleLayout
             components={[<Text key="A">A</Text>]}
@@ -577,19 +583,21 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).toThrow('At least two components need to be passed to CircleLayout');
+      ).rejects.toThrow(
+        'At least two components need to be passed to CircleLayout'
+      );
     });
 
-    it('throws when radius is 0', () => {
-      expect(() =>
+    it('throws when radius is 0', async () => {
+      await expect(
         render(
           <CircleLayout components={makeComponents(2)} radius={0} ref={null} />
         )
-      ).toThrow('Radius needs to be greater than 0');
+      ).rejects.toThrow('Radius needs to be greater than 0');
     });
 
-    it('throws when sweepAngle is 0', () => {
-      expect(() =>
+    it('throws when sweepAngle is 0', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(2)}
@@ -598,40 +606,42 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).toThrow('Sweep angle cannot be 0');
+      ).rejects.toThrow('Sweep angle cannot be 0');
     });
   });
 
   describe('ref methods', () => {
-    it('exposes showComponents and hideComponents via ref', () => {
+    it('exposes showComponents and hideComponents via ref', async () => {
       // "Testing Component-Level Hooks via Refs" pattern — useRef inside renderHook
-      const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
+      const { result } = await renderHook(() => useRef<CircleLayoutRef>(null));
       const ref = result.current;
-      render(
+      await render(
         <CircleLayout components={makeComponents(3)} radius={100} ref={ref} />
       );
       expect(typeof ref.current?.showComponents).toBe('function');
       expect(typeof ref.current?.hideComponents).toBe('function');
     });
 
-    it('showComponents and hideComponents execute without throwing', () => {
-      const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
+    it('showComponents and hideComponents execute without throwing', async () => {
+      const { result } = await renderHook(() => useRef<CircleLayoutRef>(null));
       const ref = result.current;
-      render(
+      await render(
         <CircleLayout components={makeComponents(3)} radius={100} ref={ref} />
       );
-      expect(() => {
-        act(() => {
-          ref.current?.hideComponents();
-          ref.current?.showComponents();
-        });
-      }).not.toThrow();
+      await expect(
+        (async () => {
+          await act(() => {
+            ref.current?.hideComponents();
+            ref.current?.showComponents();
+          });
+        })()
+      ).resolves.not.toThrow();
     });
   });
 
   describe('visible prop', () => {
-    it('renders with visible={false} without throwing', () => {
-      expect(() =>
+    it('renders with visible={false} without throwing', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -640,11 +650,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders with visible={true} without throwing', () => {
-      expect(() =>
+    it('renders with visible={true} without throwing', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -653,11 +663,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('toggles visibility when visible prop changes', () => {
-      const { rerender } = render(
+    it('toggles visibility when visible prop changes', async () => {
+      const { rerender } = await render(
         <CircleLayout
           components={makeComponents(3)}
           radius={100}
@@ -665,7 +675,7 @@ describe('CircleLayout', () => {
           ref={null}
         />
       );
-      expect(() =>
+      await expect(
         rerender(
           <CircleLayout
             components={makeComponents(3)}
@@ -674,8 +684,8 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
-      expect(() =>
+      ).resolves.not.toThrow();
+      await expect(
         rerender(
           <CircleLayout
             components={makeComponents(3)}
@@ -684,13 +694,13 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('imperative ref methods are no-op when visible is defined', () => {
-      const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
+    it('imperative ref methods are no-op when visible is defined', async () => {
+      const { result } = await renderHook(() => useRef<CircleLayoutRef>(null));
       const ref = result.current;
-      render(
+      await render(
         <CircleLayout
           components={makeComponents(3)}
           radius={100}
@@ -698,36 +708,42 @@ describe('CircleLayout', () => {
           ref={ref}
         />
       );
-      expect(() => {
-        act(() => {
-          ref.current?.showComponents();
-          ref.current?.hideComponents();
-        });
-      }).not.toThrow();
+      await expect(
+        (async () => {
+          await act(() => {
+            ref.current?.showComponents();
+            ref.current?.hideComponents();
+          });
+        })()
+      ).resolves.not.toThrow();
     });
 
-    it('falls back to imperative API when visible is undefined', () => {
-      const { result } = renderHook(() => useRef<CircleLayoutRef>(null));
+    it('falls back to imperative API when visible is undefined', async () => {
+      const { result } = await renderHook(() => useRef<CircleLayoutRef>(null));
       const ref = result.current;
-      render(
+      await render(
         <CircleLayout components={makeComponents(3)} radius={100} ref={ref} />
       );
-      expect(() => {
-        act(() => {
-          ref.current?.showComponents();
-        });
-      }).not.toThrow();
-      expect(() => {
-        act(() => {
-          ref.current?.hideComponents();
-        });
-      }).not.toThrow();
+      await expect(
+        (async () => {
+          await act(() => {
+            ref.current?.showComponents();
+          });
+        })()
+      ).resolves.not.toThrow();
+      await expect(
+        (async () => {
+          await act(() => {
+            ref.current?.hideComponents();
+          });
+        })()
+      ).resolves.not.toThrow();
     });
   });
 
   describe('edge cases', () => {
-    it('renders with large number of components (20)', () => {
-      expect(() =>
+    it('renders with large number of components (20)', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(20)}
@@ -735,11 +751,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders correctly when sweepAngle > 2π (normalizes)', () => {
-      expect(() =>
+    it('renders correctly when sweepAngle > 2π (normalizes)', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -748,11 +764,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders with startAngle > 2π (normalizes)', () => {
-      expect(() =>
+    it('renders with startAngle > 2π (normalizes)', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -761,21 +777,21 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders minimum 2 components without centerComponent', () => {
-      expect(() =>
+    it('renders minimum 2 components without centerComponent', async () => {
+      await expect(
         render(
           <CircleLayout components={makeComponents(2)} radius={50} ref={null} />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
   });
 
   describe('sweepAngle variations', () => {
-    it('renders with sweepAngle of π (semi-circle)', () => {
-      expect(() =>
+    it('renders with sweepAngle of π (semi-circle)', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(4)}
@@ -784,11 +800,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders with sweepAngle of π/2 (quarter-circle)', () => {
-      expect(() =>
+    it('renders with sweepAngle of π/2 (quarter-circle)', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -797,11 +813,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders with custom startAngle', () => {
-      expect(() =>
+    it('renders with custom startAngle', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -810,20 +826,20 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
   });
 
   describe('dynamic component changes', () => {
-    it('adds new component to layout when components prop grows', () => {
-      const { rerender, getAllByText } = render(
+    it('adds new component to layout when components prop grows', async () => {
+      const { rerender, getAllByText } = await render(
         <CircleLayout
           components={[<Text key="A">A</Text>, <Text key="B">B</Text>]}
           radius={100}
           ref={null}
         />
       );
-      rerender(
+      await rerender(
         <CircleLayout
           components={[
             <Text key="A">A</Text>,
@@ -837,8 +853,8 @@ describe('CircleLayout', () => {
       expect(getAllByText(/^[ABC]$/)).toHaveLength(3);
     });
 
-    it('removes component from layout when components prop shrinks', () => {
-      const { rerender, queryByText } = render(
+    it('removes component from layout when components prop shrinks', async () => {
+      const { rerender, queryByText } = await render(
         <CircleLayout
           components={[
             <Text key="A">A</Text>,
@@ -849,7 +865,7 @@ describe('CircleLayout', () => {
           ref={null}
         />
       );
-      rerender(
+      await rerender(
         <CircleLayout
           components={[<Text key="A">A</Text>, <Text key="B">B</Text>]}
           radius={100}
@@ -861,8 +877,8 @@ describe('CircleLayout', () => {
   });
 
   describe('weighted angles', () => {
-    it('renders with equal weights (same as no weights)', () => {
-      expect(() =>
+    it('renders with equal weights (same as no weights)', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -871,11 +887,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('renders with uneven weights', () => {
-      const { getAllByText } = render(
+    it('renders with uneven weights', async () => {
+      const { getAllByText } = await render(
         <CircleLayout
           components={makeComponents(3)}
           radius={100}
@@ -886,8 +902,8 @@ describe('CircleLayout', () => {
       expect(getAllByText(/^Item \d$/)).toHaveLength(3);
     });
 
-    it('renders with weights and bgConfig', () => {
-      expect(() =>
+    it('renders with weights and bgConfig', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -897,11 +913,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).not.toThrow();
+      ).resolves.not.toThrow();
     });
 
-    it('throws when weights length mismatches components', () => {
-      expect(() =>
+    it('throws when weights length mismatches components', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(3)}
@@ -910,11 +926,11 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).toThrow('Weights length (2) must match components length (3)');
+      ).rejects.toThrow('Weights length (2) must match components length (3)');
     });
 
-    it('throws when a weight is zero', () => {
-      expect(() =>
+    it('throws when a weight is zero', async () => {
+      await expect(
         render(
           <CircleLayout
             components={makeComponents(2)}
@@ -923,7 +939,7 @@ describe('CircleLayout', () => {
             ref={null}
           />
         )
-      ).toThrow('All weights must be finite numbers greater than 0');
+      ).rejects.toThrow('All weights must be finite numbers greater than 0');
     });
   });
 });
@@ -942,12 +958,12 @@ describe('CircleLayoutProvider weighted angles', () => {
     return null;
   };
 
-  const renderProvider = (
+  const renderProvider = async (
     count: number,
     sweepAngle = 2 * Math.PI,
     weights?: number[]
   ) => {
-    render(
+    await render(
       <CircleLayoutProvider
         sweepAngle={sweepAngle}
         radius={100}
@@ -961,9 +977,9 @@ describe('CircleLayoutProvider weighted angles', () => {
     return capturedContext;
   };
 
-  it('equal weights produce same angles as uniform (full circle)', () => {
-    const uniform = renderProvider(3);
-    const weighted = renderProvider(3, 2 * Math.PI, [1, 1, 1]);
+  it('equal weights produce same angles as uniform (full circle)', async () => {
+    const uniform = await renderProvider(3);
+    const weighted = await renderProvider(3, 2 * Math.PI, [1, 1, 1]);
 
     uniform.componentAngles.forEach((angle, i) => {
       expect(weighted.componentAngles[i]).toBeCloseTo(angle, 5);
@@ -973,37 +989,37 @@ describe('CircleLayoutProvider weighted angles', () => {
     });
   });
 
-  it('equal weights produce same angles as uniform (partial arc)', () => {
+  it('equal weights produce same angles as uniform (partial arc)', async () => {
     const sweep = Math.PI;
-    const uniform = renderProvider(3, sweep);
-    const weighted = renderProvider(3, sweep, [1, 1, 1]);
+    const uniform = await renderProvider(3, sweep);
+    const weighted = await renderProvider(3, sweep, [1, 1, 1]);
 
     uniform.componentAngles.forEach((angle, i) => {
       expect(weighted.componentAngles[i]).toBeCloseTo(angle, 5);
     });
   });
 
-  it('first component placed at startAngle with weights (full circle)', () => {
-    const ctx = renderProvider(3, 2 * Math.PI, [3, 1, 1]);
+  it('first component placed at startAngle with weights (full circle)', async () => {
+    const ctx = await renderProvider(3, 2 * Math.PI, [3, 1, 1]);
     expect(ctx.componentAngles[0]).toBeCloseTo(0, 5);
   });
 
-  it('last component at startAngle + sweepAngle (partial arc)', () => {
+  it('last component at startAngle + sweepAngle (partial arc)', async () => {
     const sweep = Math.PI;
-    const ctx = renderProvider(3, sweep, [2, 1, 1]);
+    const ctx = await renderProvider(3, sweep, [2, 1, 1]);
     expect(ctx.componentAngles[ctx.componentAngles.length - 1]).toBeCloseTo(
       sweep,
       5
     );
   });
 
-  it('sector angles are proportional to weights', () => {
-    const ctx = renderProvider(2, 2 * Math.PI, [2, 1]);
+  it('sector angles are proportional to weights', async () => {
+    const ctx = await renderProvider(2, 2 * Math.PI, [2, 1]);
     expect(ctx.sectorAngles[0]! / ctx.sectorAngles[1]!).toBeCloseTo(2, 5);
   });
 
-  it('sector angles sum to sweepAngle (full circle)', () => {
-    const ctx = renderProvider(3, 2 * Math.PI, [3, 1, 2]);
+  it('sector angles sum to sweepAngle (full circle)', async () => {
+    const ctx = await renderProvider(3, 2 * Math.PI, [3, 1, 2]);
     const sum = ctx.sectorAngles.reduce((a, b) => a + b, 0);
     expect(sum).toBeCloseTo(2 * Math.PI, 5);
   });
